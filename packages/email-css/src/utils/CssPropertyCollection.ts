@@ -71,6 +71,18 @@ export class CssPropertyCollection {
             console.warn(`CssPropertyCollection > add > ${target} ${property.key} already exists`);
         }
     }
+
+    public forEach(callback: ICallback<string, any>): void {
+        for (const key in this._items) {
+            if (this._items.hasOwnProperty(key)) {
+                const pair = this._items[key];
+                const ret = callback(key, pair);
+                if (!ret) {
+                    return;
+                }
+            }
+        }
+    }
 }
 
 //[Symbol.toStringTag]: string;

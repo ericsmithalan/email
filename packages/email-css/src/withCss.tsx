@@ -13,7 +13,8 @@ const withCss = (cssFragment: CssFragment) => <P extends object>(
     const { repository } = useCssContext();
 
     if (cssFragment) {
-        repository.add(cssFragment.styles);
+        repository.addClasses(cssFragment.classList);
+        repository.addProperties(cssFragment.propertyList);
     }
 
     const defaultClassName = WrappedComponent.defaultProps?.className || undefined;

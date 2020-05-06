@@ -16,23 +16,19 @@ import { CssPropertyCollection } from "./utils/CssPropertyCollection";
 export type ParseArgs = {
     value: CssDirtyStyles;
     target: CssTarget;
-    classes: CssCollection<string, CssClass>;
-    classes2: CssClassCollection;
     theme: CssTheme;
     classKey?: string | undefined;
     propertyKey?: string | undefined;
     pseudo?: CssPseudo | undefined;
-    properties: CssPropertyCollection;
 };
 
 export class CssFragment {
     constructor(
         private readonly _dirtyStyles: CssDirtyStyles,
         private readonly _theme: CssTheme,
+        public readonly classList = new CssClassCollection(),
+        public readonly propertyList = new CssPropertyCollection(),
         public readonly classNames: CssClassNames = {},
-        public readonly styles = new CssCollection<string, CssClass>(),
-        public readonly styles2 = new CssClassCollection(),
-        public readonly properties = new CssPropertyCollection(),
     ) {
         this._init();
     }
@@ -42,22 +38,17 @@ export class CssFragment {
             value: this._dirtyStyles,
             target: "@global",
             theme: this._theme,
-            classes: this.styles,
-            classes2: this.styles2,
-            properties: this.properties,
         };
 
         for (const key of Object.keys(this._dirtyStyles)) {
-            // const hash = `${stringHashId(key)}`;
             const cssClassName = decamelize(`${key}`);
-
             this.classNames[key] = cssClassName;
         }
 
-        parseCss(parseArgs);
+        parseCss(parseArgs, this.classList);
 
-        console.log("styles", this.styles2);
-        console.log("properties", this.properties);
+        console.log("styles", this.classList);
+        console.log("properties", this.propertyList);
     }
 
     // matches unhashed id with hashed id
@@ -66,8 +57,11 @@ export class CssFragment {
     };
 }
 
-const parseCss = (args: ParseArgs): CssCollection<string, CssClassProperty> => {
-    const properties = new CssCollection<string, CssClassProperty>();
+// classes: CssClassCollection;
+// properties: CssPropertyCollection;
+
+const parseCss = (args: ParseArgs, classList: CssClassCollection): CssPropertyCollection => {
+    const properties = new CssPropertyCollection();
 
     for (const key in args.value) {
         if (args.value.hasOwnProperty(key)) {
@@ -85,8 +79,7 @@ const parseCss = (args: ParseArgs): CssCollection<string, CssClassProperty> => {
 
                     const property = createProperty(newArgs);
 
-                    properties.add(attrKey, property);
-                    args.properties.add(property.className, property);
+                    properties.add(property.className, property);
                 } else {
                     console.error(`${key} is not a CssAttribute`);
                 }
@@ -100,10 +93,10 @@ const parseCss = (args: ParseArgs): CssCollection<string, CssClassProperty> => {
                     target: key as CssTarget,
                 });
 
-                args.classes.add(key, createClass(key, newArgs));
+                const props: CssPropertyCollection = parseCss(newArgs, classList);
 
-                const cls = createClass(key, newArgs);
-                args.classes2.add(key as CssTarget, cls);
+                const cls = createClass(key, newArgs, props);
+                classList.add(key as CssTarget, cls);
 
                 continue;
             }
@@ -114,10 +107,9 @@ const parseCss = (args: ParseArgs): CssCollection<string, CssClassProperty> => {
                     pseudo: key as CssPseudo,
                 });
 
-                args.classes.add(key, createClass(key, newArgs));
-
-                const cls = createClass(key, newArgs);
-                args.classes2.add(cls.target, cls);
+                const props: CssPropertyCollection = parseCss(newArgs, classList);
+                const cls = createClass(key, newArgs, props);
+                classList.add(cls.target, cls);
 
                 continue;
             }
@@ -128,10 +120,9 @@ const parseCss = (args: ParseArgs): CssCollection<string, CssClassProperty> => {
                     classKey: key,
                 });
 
-                args.classes.add(key, createClass(key, newArgs));
-
-                const cls = createClass(key, newArgs);
-                args.classes2.add(cls.target, cls);
+                const props: CssPropertyCollection = parseCss(newArgs, classList);
+                const cls = createClass(key, newArgs, props);
+                classList.add(cls.target, cls);
 
                 continue;
             }
@@ -141,13 +132,13 @@ const parseCss = (args: ParseArgs): CssCollection<string, CssClassProperty> => {
     return properties;
 };
 
-const createClass = (key: string, args: ParseArgs): CssClass => {
+const createClass = (key: string, args: ParseArgs, properties: CssPropertyCollection): CssClass => {
     return new CssClass({
         key: key,
         target: args.target,
         isPseudo: args.pseudo != undefined,
         className: args.classKey || "",
-        properties: parseCss(args),
+        properties: properties,
         css: "",
     });
 };

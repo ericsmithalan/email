@@ -1,20 +1,17 @@
 import { decamelize } from "./utils/camelize";
 import { CssPseudoKind } from "./CssPseudos";
 import { CssClassProperty } from "./CssClassProperty";
-import { CSSProperties } from "react";
-import { CssValue, CssTarget, CssAttribute } from "./types";
-import { stringHashId } from "./utils/stringHashId";
-import { Set } from "typescript-collections";
-import { CssCollection } from "./utils/CssCollection";
+import { CssValue, CssTarget } from "./types";
 import { CssAttributesKind } from "./CssAttributes";
+import { CssPropertyCollection } from "./utils/CssPropertyCollection";
 
 export type CssClassProps = {
     key: string;
     className: string;
-    properties: CssCollection<string, CssClassProperty>;
     target: CssTarget;
     css: string;
     isPseudo: boolean;
+    properties: CssPropertyCollection;
 };
 
 export class CssClass {
@@ -33,7 +30,7 @@ export class CssClass {
         return this._props.className;
     }
 
-    get properties(): CssCollection<string, CssClassProperty> {
+    get properties(): CssPropertyCollection {
         return this._props.properties;
     }
 
@@ -51,8 +48,8 @@ export class CssClass {
         return this._props.target as CssTarget;
     }
 
-    getCssProperties(): CssCollection<string, CssValue> {
-        const properties = new CssCollection<string, CssValue>();
+    getCssProperties(): CssPropertyCollection {
+        const properties = new CssPropertyCollection();
 
         if (!this.isPseudo && this.target === "@global") {
             this.properties.forEach((key: string, value: CssValue) => {
@@ -63,7 +60,7 @@ export class CssClass {
         return properties;
     }
 
-    updateProperties(values: CssCollection<string, CssValue>) {
+    updateProperties(values: CssPropertyCollection) {
         values.forEach((key: string, value: CssValue) => {
             const attrKey = key;
 
@@ -86,7 +83,7 @@ export class CssClass {
     }
 }
 
-const renderCss = (className: string, key: string, properties: CssCollection<string, CssClassProperty>): string => {
+const renderCss = (className: string, key: string, properties: CssPropertyCollection): string => {
     const css: string[] = [];
 
     const clsName = classString(key, className);

@@ -1,21 +1,27 @@
-import { Dictionary, Set } from "typescript-collections";
-import { CSSProperties } from "react";
 import { CssClass } from "./CssClass";
-import { CssTarget, CssAttribute, CssValue } from "./types";
+import { CssTarget, CssValue } from "./types";
 import { camelize } from "./utils/camelize";
 import { CssCollection } from "./utils/CssCollection";
 import { CssClassCollection } from "./utils/CssClassCollection";
 import { CssPropertyCollection } from "./utils/CssPropertyCollection";
+import { CssClassProperty } from "./CssClassProperty";
 
 export class CssRepository {
-    public readonly classes2 = new CssClassCollection();
     public readonly properties = new CssPropertyCollection();
     public readonly classes = new CssCollection<string, CssClass>();
 
-    public add = (cssClasses: CssCollection<string, CssClass> | undefined): void => {
+    public addClasses = (cssClasses: CssClassCollection | undefined): void => {
         if (cssClasses) {
             cssClasses.forEach((key: string, value: CssClass) => {
                 this.classes.add(key, value);
+            });
+        }
+    };
+
+    public addProperties = (properties: CssPropertyCollection | undefined): void => {
+        if (properties) {
+            properties.forEach((key: string, value: CssClassProperty) => {
+                this.properties.add(key, value);
             });
         }
     };
@@ -30,13 +36,13 @@ export class CssRepository {
         }
     };
 
-    public getInlinableStyles = (className: string): CssCollection<string, CssValue> => {
-        let props = new CssCollection<string, CssValue>();
+    public getInlinableStyles = (className: string): CssPropertyCollection => {
+        let props = new CssPropertyCollection();
         if (className) {
             const item = this.classes.findIn("className", camelize(className)) as CssClass;
 
             if (item) {
-                item.getCssProperties().forEach((key: string, value: CssValue) => {
+                item.getCssProperties().forEach((key: string, value: CssClassProperty) => {
                     props.add(key as string, value);
                 });
             }
