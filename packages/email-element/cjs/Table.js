@@ -7,9 +7,7 @@ const react_1 = __importDefault(require("react"));
 const css_1 = require("@email/css");
 const styles_1 = require("./styles");
 const styles = css_1.css({
-    ascTable: {
-        ...styles_1.commonFonts,
-    },
+    ascTable: Object.assign({}, styles_1.commonFonts),
 });
 const TableElement = (props) => {
     return (react_1.default.createElement("table", Object.assign({}, props),
