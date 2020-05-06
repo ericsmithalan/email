@@ -3,9 +3,8 @@ import { CssFragment } from "./CssFragment";
 import { useCssContext } from "./CssContext";
 import { CssRepository } from "./CssRepository";
 import { CssStyleablePropertiesKind } from "./CssStyleableProperties";
-import { Set } from "typescript-collections";
 import { CssCollection } from "./utils/CssCollection";
-import { CssAttribute, CssValue } from "./types";
+import { CssValue } from "./types";
 
 const withCss = (cssFragment: CssFragment) => <P extends object>(
     WrappedComponent: React.ComponentType<React.HTMLProps<P>>,

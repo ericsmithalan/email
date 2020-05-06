@@ -1,4 +1,4 @@
-import { CssDirtyStyles, CssClassNames, CssDirtyValue, CssValue, CssTarget, CssPseudo, CssAttribute } from "./types";
+import { CssDirtyStyles, CssClassNames, CssDirtyValue, CssValue, CssTarget, CssPseudo } from "./types";
 import { decamelize } from "./utils/camelize";
 import { CssTargetKind } from "./CssTarget";
 import { CssValidValueKind } from "./CssValidValue";
@@ -7,8 +7,6 @@ import { CssTheme } from "./CssTheme";
 import { CssClass } from "./CssClass";
 import { CssClassProperty } from "./CssClassProperty";
 import { CssPseudoKind } from "./CssPseudos";
-import { Set } from "typescript-collections";
-import { CssCollection } from "./utils/CssCollection";
 import { CssAttributesKind } from "./CssAttributes";
 import { CssClassCollection } from "./utils/CssClassCollection";
 import { CssPropertyCollection } from "./utils/CssPropertyCollection";
