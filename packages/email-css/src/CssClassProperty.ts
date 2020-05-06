@@ -1,4 +1,4 @@
-import { CssValue } from "./types";
+import { CssValue, CssUnit } from "./types";
 import { decamelize } from "./utils/camelize";
 import { CssValidValueKind } from "./CssValidValue";
 
@@ -9,7 +9,9 @@ export type CssClassPropertyProps = {
     value: CssValue;
     css: string;
 };
+
 export class CssClassProperty {
+    _defaultUnit: CssUnit = "px";
     _props: CssClassPropertyProps;
     _css: string;
     constructor(props: CssClassPropertyProps) {
@@ -33,12 +35,12 @@ export class CssClassProperty {
     }
 
     get css(): string {
-        return propertyStringTemplate(this.name, this.value);
+        return propertyStringTemplate(this.name, this.value, this._defaultUnit);
     }
 }
 
-const propertyStringTemplate = (name: string, value: string): string => {
-    return `${decamelize(name)}:${ensureUnit(value as CssValue, "px")};`;
+const propertyStringTemplate = (name: string, value: string, unit: CssUnit): string => {
+    return `${decamelize(name)}:${ensureUnit(value as CssValue, unit)};`;
 };
 
 const ensureUnit = (value: CssValue, unit: string): string => {

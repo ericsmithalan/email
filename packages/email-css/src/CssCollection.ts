@@ -1,7 +1,7 @@
 import CSS from "csstype";
-import { CssValue, CssAttribute } from "../types";
-import { CssAttributesKind } from "../CssAttributes";
-import { stringHashId } from "./stringHashId";
+import { CssValue, CssAttribute } from "./types";
+import { CssAttributesKind } from "./CssAttributes";
+import { stringHashId } from "./utils/stringHashId";
 import _ from "underscore";
 
 interface ICallback<K extends string, T> {

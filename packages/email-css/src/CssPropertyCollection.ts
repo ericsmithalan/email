@@ -1,8 +1,8 @@
-import { CssValue, CssTarget } from "../types";
+import { CssValue, CssTarget } from "./types";
 import _ from "underscore";
 import { CssCollection } from "./CssCollection";
-import { camelize } from "./camelize";
-import { CssClassProperty } from "../CssClassProperty";
+import { camelize } from "./utils/camelize";
+import { CssClassProperty } from "./CssClassProperty";
 
 interface ICallback<K extends string, CssClass> {
     (key: any, value: any): CssClass;

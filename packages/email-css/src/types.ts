@@ -1,4 +1,5 @@
 import CSS from "csstype";
+
 import { CssPseudoKind } from "./CssPseudos";
 import { CssValidValueKind } from "./CssValidValue";
 import { CssTargetKind } from "./CssTarget";
@@ -8,14 +9,18 @@ import { CssAttributesKind } from "./CssAttributes";
 
 export type CssValue = keyof typeof CssValidValueKind;
 export type CssUnit = "px" | undefined;
+
 export type Fn<R = CssValue> = (theme: CssTheme) => R;
+
 export type CssPseudo = keyof typeof CssPseudoKind;
-export type CssDirtyValue = CssValue | Fn | string[] | number[] | Function;
-export type CssClasses = Dictionary<string, CssClass>;
-export interface CssDirtyProperty<T extends CSS.Properties<T> | CssPseudo> {}
 export type CssTarget = keyof typeof CssTargetKind;
 export type CssAttribute = keyof typeof CssAttributesKind;
+
+export type CssDirtyValue = CssValue | Fn | string[] | number[] | Function;
+export type CssClasses = Dictionary<string, CssClass>;
 export type CssStyle = CssDirtyStyles;
+
+export interface CssDirtyProperty<T extends CSS.Properties<T> | CssPseudo> {}
 
 export type CssPropertyKeyValue = {
     [K in keyof CSS.Properties<K>]?: CssValue;

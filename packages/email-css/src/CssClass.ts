@@ -3,7 +3,7 @@ import { CssPseudoKind } from "./CssPseudos";
 import { CssClassProperty } from "./CssClassProperty";
 import { CssValue, CssTarget } from "./types";
 import { CssAttributesKind } from "./CssAttributes";
-import { CssPropertyCollection } from "./utils/CssPropertyCollection";
+import { CssPropertyCollection } from "./CssPropertyCollection";
 
 export type CssClassProps = {
     key: string;

@@ -8,8 +8,8 @@ import { CssClass } from "./CssClass";
 import { CssClassProperty } from "./CssClassProperty";
 import { CssPseudoKind } from "./CssPseudos";
 import { CssAttributesKind } from "./CssAttributes";
-import { CssClassCollection } from "./utils/CssClassCollection";
-import { CssPropertyCollection } from "./utils/CssPropertyCollection";
+import { CssClassCollection } from "./CssClassCollection";
+import { CssPropertyCollection } from "./CssPropertyCollection";
 
 export type ParseArgs = {
     value: CssDirtyStyles;
@@ -28,35 +28,21 @@ export class CssFragment {
         public readonly propertyList = new CssPropertyCollection(),
         public readonly classNames: CssClassNames = {},
     ) {
-        this._init();
-    }
-
-    private _init() {
-        const parseArgs: ParseArgs = {
-            value: this._dirtyStyles,
-            target: "@global",
-            theme: this._theme,
-        };
-
         for (const key of Object.keys(this._dirtyStyles)) {
             const cssClassName = decamelize(`${key}`);
             this.classNames[key] = cssClassName;
         }
 
-        parseCss(parseArgs, this.classList);
-
-        console.log("styles", this.classList);
-        console.log("properties", this.propertyList);
+        parseCss(
+            {
+                value: this._dirtyStyles,
+                target: "@global",
+                theme: this._theme,
+            },
+            this.classList,
+        );
     }
-
-    // matches unhashed id with hashed id
-    public parseClassName = (unhashedId: string) => {
-        return _.invert(this.classNames)[unhashedId];
-    };
 }
-
-// classes: CssClassCollection;
-// properties: CssPropertyCollection;
 
 const parseCss = (args: ParseArgs, classList: CssClassCollection): CssPropertyCollection => {
     const properties = new CssPropertyCollection();

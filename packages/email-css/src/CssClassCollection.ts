@@ -1,12 +1,12 @@
 import CSS from "csstype";
-import { CssValue, CssAttribute, CssTarget } from "../types";
-import { CssAttributesKind } from "../CssAttributes";
-import { stringHashId } from "./stringHashId";
-import { CssClass } from "../CssClass";
+import { CssValue, CssAttribute, CssTarget } from "./types";
+import { CssAttributesKind } from "./CssAttributes";
+import { stringHashId } from "./utils/stringHashId";
+import { CssClass } from "./CssClass";
 
 import _ from "underscore";
 import { CssCollection, ICssCollection } from "./CssCollection";
-import { camelize } from "./camelize";
+import { camelize } from "./utils/camelize";
 
 interface ICallback<K extends string, CssClass> {
     (key: any, value: any): CssClass;

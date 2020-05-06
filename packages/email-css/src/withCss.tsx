@@ -3,7 +3,7 @@ import { CssFragment } from "./CssFragment";
 import { useCssContext } from "./CssContext";
 import { CssRepository } from "./CssRepository";
 import { CssStyleablePropertiesKind } from "./CssStyleableProperties";
-import { CssCollection } from "./utils/CssCollection";
+import { CssCollection } from "./CssCollection";
 import { CssValue } from "./types";
 
 const withCss = (cssFragment: CssFragment) => <P extends object>(

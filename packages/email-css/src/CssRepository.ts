@@ -1,9 +1,9 @@
 import { CssClass } from "./CssClass";
 import { CssTarget, CssValue } from "./types";
 import { camelize } from "./utils/camelize";
-import { CssCollection } from "./utils/CssCollection";
-import { CssClassCollection } from "./utils/CssClassCollection";
-import { CssPropertyCollection } from "./utils/CssPropertyCollection";
+import { CssCollection } from "./CssCollection";
+import { CssClassCollection } from "./CssClassCollection";
+import { CssPropertyCollection } from "./CssPropertyCollection";
 import { CssClassProperty } from "./CssClassProperty";
 
 export class CssRepository {
