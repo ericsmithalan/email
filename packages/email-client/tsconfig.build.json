@@ -1,0 +1,30 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "cjs",
+        "allowJs": true,
+        "allowUnreachableCode": false,
+        "noFallthroughCasesInSwitch": true,
+        "allowSyntheticDefaultImports": true,
+        "downlevelIteration": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "Node",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": false,
+        "sourceMap": true,
+        "strictNullChecks": true,
+        "strict": true,
+        "pretty": true,
+        "suppressImplicitAnyIndexErrors": true,
+
+        "paths": {
+            "@email/*": ["node_modules/@email/*/src"]
+        }
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "razzle.config.js"],
+    "types": ["typePatches", "node", "webpack-env"]
+}

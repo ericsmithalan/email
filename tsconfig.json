@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "forceConsistentCasingInFileNames": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        // "strict": true,
+        "declarationMap": true,
+        "noImplicitReturns": true,
+        "sourceMap": true,
+        "jsx": "react",
+        "declaration": true,
+        "target": "es2019",
+        "module": "esnext",
+        "lib": ["es6", "es2019", "es2015", "es2017", "dom"],
+        "noFallthroughCasesInSwitch": true,
+        "paths": {
+            "@email/*": ["packages/*/src"]
+        }
+    },
+    "include": ["packages"],
+    "exclude": ["packages/*/cjs", "packages/*/esm", "packages/*/dist"]
+}
