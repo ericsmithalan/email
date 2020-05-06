@@ -1,11 +1,6 @@
-import CSS from "csstype";
-import { CssValue, CssAttribute, CssTarget } from "../types";
-import { CssAttributesKind } from "../enums/CssAttributes";
-import { stringHashId } from "./stringHashId";
-import { CssClass } from "../CssClass";
-
+import { CssValue, CssTarget } from "../types";
 import _ from "underscore";
-import { CssCollection, ICssCollection } from "./CssCollection";
+import { CssCollection } from "./CssCollection";
 import { camelize } from "./camelize";
 import { CssClassProperty } from "../CssClassProperty";
 

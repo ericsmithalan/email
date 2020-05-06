@@ -1,10 +1,10 @@
 import CSS from "csstype";
-import { CssPseudoKind } from "./enums/CssPseudos";
-import { CssValidValueKind } from "./enums/CssValidValue";
-import { CssTargetKind } from "./enums/CssTarget";
+import { CssPseudoKind } from "./CssPseudos";
+import { CssValidValueKind } from "./CssValidValue";
+import { CssTargetKind } from "./CssTarget";
 import { Dictionary } from "typescript-collections";
 import { CssTheme } from "./CssTheme";
-import { CssAttributesKind } from "./enums/CssAttributes";
+import { CssAttributesKind } from "./CssAttributes";
 
 export type CssValue = keyof typeof CssValidValueKind;
 export type CssUnit = "px" | undefined;

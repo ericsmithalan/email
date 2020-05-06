@@ -1,12 +1,12 @@
 import { decamelize } from "./utils/camelize";
-import { CssPseudoKind } from "./enums/CssPseudos";
+import { CssPseudoKind } from "./CssPseudos";
 import { CssClassProperty } from "./CssClassProperty";
 import { CSSProperties } from "react";
 import { CssValue, CssTarget, CssAttribute } from "./types";
 import { stringHashId } from "./utils/stringHashId";
 import { Set } from "typescript-collections";
 import { CssCollection } from "./utils/CssCollection";
-import { CssAttributesKind } from "./enums/CssAttributes";
+import { CssAttributesKind } from "./CssAttributes";
 
 export type CssClassProps = {
     key: string;

@@ -1,2 +1,2 @@
-import { strEnum } from "../utils/enums";
+import { strEnum } from "./utils/strEnum";
 export const CssComputedValueKind = strEnum(["function", "array"]);

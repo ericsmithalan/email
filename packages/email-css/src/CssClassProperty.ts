@@ -1,6 +1,6 @@
 import { CssValue } from "./types";
 import { decamelize } from "./utils/camelize";
-import { CssValidValueKind } from "./enums/CssValidValue";
+import { CssValidValueKind } from "./CssValidValue";
 
 export type CssClassPropertyProps = {
     key: string;

@@ -1,6 +1,6 @@
 import CSS from "csstype";
 import { CssValue, CssAttribute, CssTarget } from "../types";
-import { CssAttributesKind } from "../enums/CssAttributes";
+import { CssAttributesKind } from "../CssAttributes";
 import { stringHashId } from "./stringHashId";
 import { CssClass } from "../CssClass";
 

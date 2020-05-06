@@ -1,6 +1,6 @@
 import CSS from "csstype";
 import { CssValue, CssAttribute } from "../types";
-import { CssAttributesKind } from "../enums/CssAttributes";
+import { CssAttributesKind } from "../CssAttributes";
 import { stringHashId } from "./stringHashId";
 import _ from "underscore";
 

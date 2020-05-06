@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 import { CssFragment } from "./CssFragment";
 import { useCssContext } from "./CssContext";
 import { CssRepository } from "./CssRepository";
-import { CssStyleablePropertiesKind } from "./enums/CssStyleableProperties";
+import { CssStyleablePropertiesKind } from "./CssStyleableProperties";
 import { Set } from "typescript-collections";
 import { CssCollection } from "./utils/CssCollection";
 import { CssAttribute, CssValue } from "./types";
