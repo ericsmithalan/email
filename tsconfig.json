@@ -9,13 +9,14 @@
         "noUnusedParameters": false,
         // "strict": true,
         "declarationMap": true,
-        "noImplicitReturns": true,
+        "noImplicitReturns": false,
+        "noImplicitAny": false,
         "sourceMap": true,
         "jsx": "react",
         "declaration": true,
-        "target": "es2019",
+        "target": "es2016",
         "module": "esnext",
-        "lib": ["es6", "es2019", "es2015", "es2017", "dom"],
+        "lib": ["es6", "es2015", "es2017", "dom"],
         "noFallthroughCasesInSwitch": true,
         "paths": {
             "@email/*": ["packages/*/src"]

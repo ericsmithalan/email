@@ -1,4 +1,4 @@
-export * from "./A";
+export * from "./Link";
 export * from "./Div";
 export * from "./Img";
 export * from "./Span";

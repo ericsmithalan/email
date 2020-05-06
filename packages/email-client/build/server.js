@@ -23,7 +23,7 @@ module.exports =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "aac8bd99f479ad8f8ed9";
+/******/ 	var hotCurrentHash = "422592e77977dffdf392";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1320,69 +1320,6 @@ function highlight(code, options = {}) {
 
 /***/ }),
 
-/***/ "../../node_modules/@babel/runtime/helpers/assertThisInitialized.js":
-/*!*******************************************************************************************************!*\
-  !*** /Users/ericsmith/Development/email/node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-module.exports = _assertThisInitialized;
-
-/***/ }),
-
-/***/ "../../node_modules/@babel/runtime/helpers/classCallCheck.js":
-/*!************************************************************************************************!*\
-  !*** /Users/ericsmith/Development/email/node_modules/@babel/runtime/helpers/classCallCheck.js ***!
-  \************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
-
-/***/ "../../node_modules/@babel/runtime/helpers/createClass.js":
-/*!*********************************************************************************************!*\
-  !*** /Users/ericsmith/Development/email/node_modules/@babel/runtime/helpers/createClass.js ***!
-  \*********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-module.exports = _createClass;
-
-/***/ }),
-
 /***/ "../../node_modules/@babel/runtime/helpers/esm/extends.js":
 /*!*********************************************************************************************!*\
   !*** /Users/ericsmith/Development/email/node_modules/@babel/runtime/helpers/esm/extends.js ***!
@@ -1458,52 +1395,6 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 /***/ }),
 
-/***/ "../../node_modules/@babel/runtime/helpers/getPrototypeOf.js":
-/*!************************************************************************************************!*\
-  !*** /Users/ericsmith/Development/email/node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
-  \************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-module.exports = _getPrototypeOf;
-
-/***/ }),
-
-/***/ "../../node_modules/@babel/runtime/helpers/inherits.js":
-/*!******************************************************************************************!*\
-  !*** /Users/ericsmith/Development/email/node_modules/@babel/runtime/helpers/inherits.js ***!
-  \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "../../node_modules/@babel/runtime/helpers/setPrototypeOf.js");
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-
-module.exports = _inherits;
-
-/***/ }),
-
 /***/ "../../node_modules/@babel/runtime/helpers/inheritsLoose.js":
 /*!***********************************************************************************************!*\
   !*** /Users/ericsmith/Development/email/node_modules/@babel/runtime/helpers/inheritsLoose.js ***!
@@ -1518,76 +1409,6 @@ function _inheritsLoose(subClass, superClass) {
 }
 
 module.exports = _inheritsLoose;
-
-/***/ }),
-
-/***/ "../../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
-/*!***********************************************************************************************************!*\
-  !*** /Users/ericsmith/Development/email/node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
-  \***********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! ../helpers/typeof */ "../../node_modules/@babel/runtime/helpers/typeof.js");
-
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized */ "../../node_modules/@babel/runtime/helpers/assertThisInitialized.js");
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return assertThisInitialized(self);
-}
-
-module.exports = _possibleConstructorReturn;
-
-/***/ }),
-
-/***/ "../../node_modules/@babel/runtime/helpers/setPrototypeOf.js":
-/*!************************************************************************************************!*\
-  !*** /Users/ericsmith/Development/email/node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
-  \************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-module.exports = _setPrototypeOf;
-
-/***/ }),
-
-/***/ "../../node_modules/@babel/runtime/helpers/typeof.js":
-/*!****************************************************************************************!*\
-  !*** /Users/ericsmith/Development/email/node_modules/@babel/runtime/helpers/typeof.js ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
-module.exports = _typeof;
 
 /***/ }),
 
@@ -60787,45 +60608,39 @@ if (true) {
 
 /***/ }),
 
-/***/ "../email-css/esm/Css.js":
+/***/ "../email-css/cjs/Css.js":
 /*!*******************************!*\
-  !*** ../email-css/esm/Css.js ***!
+  !*** ../email-css/cjs/Css.js ***!
   \*******************************/
-/*! exports provided: css */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "css", function() { return css; });
-/* harmony import */ var _CssTheme__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CssTheme */ "../email-css/esm/CssTheme.js");
-/* harmony import */ var _CssFragment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CssFragment */ "../email-css/esm/CssFragment.js");
 
-
-const css = (styles, theme = _CssTheme__WEBPACK_IMPORTED_MODULE_0__["defaultTheme"]) => {
-    return new _CssFragment__WEBPACK_IMPORTED_MODULE_1__["CssFragment"](styles, theme);
+Object.defineProperty(exports, "__esModule", { value: true });
+const CssTheme_1 = __webpack_require__(/*! ./CssTheme */ "../email-css/cjs/CssTheme.js");
+const CssFragment_1 = __webpack_require__(/*! ./CssFragment */ "../email-css/cjs/CssFragment.js");
+exports.css = (styles, theme = CssTheme_1.defaultTheme) => {
+    return new CssFragment_1.CssFragment(styles, theme);
 };
 //# sourceMappingURL=Css.js.map
 
 /***/ }),
 
-/***/ "../email-css/esm/CssClass.js":
+/***/ "../email-css/cjs/CssClass.js":
 /*!************************************!*\
-  !*** ../email-css/esm/CssClass.js ***!
+  !*** ../email-css/cjs/CssClass.js ***!
   \************************************/
-/*! exports provided: CssClass */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CssClass", function() { return CssClass; });
-/* harmony import */ var _utils_camelize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/camelize */ "../email-css/esm/utils/camelize.js");
-/* harmony import */ var _enums_CssPseudos__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./enums/CssPseudos */ "../email-css/esm/enums/CssPseudos.js");
-/* harmony import */ var _CssClassProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CssClassProperty */ "../email-css/esm/CssClassProperty.js");
-/* harmony import */ var _utils_stringHashId__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/stringHashId */ "../email-css/esm/utils/stringHashId.js");
 
-
-
-
+Object.defineProperty(exports, "__esModule", { value: true });
+const camelize_1 = __webpack_require__(/*! ./utils/camelize */ "../email-css/cjs/utils/camelize.js");
+const CssPseudos_1 = __webpack_require__(/*! ./enums/CssPseudos */ "../email-css/cjs/enums/CssPseudos.js");
+const CssClassProperty_1 = __webpack_require__(/*! ./CssClassProperty */ "../email-css/cjs/CssClassProperty.js");
+const stringHashId_1 = __webpack_require__(/*! ./utils/stringHashId */ "../email-css/cjs/utils/stringHashId.js");
 class CssClass {
     constructor(props) {
         this._css = "";
@@ -60850,7 +60665,7 @@ class CssClass {
         const combinedProperties = Object.assign({}, this.getCssProperties(), value);
         for (const key in combinedProperties) {
             if (combinedProperties.hasOwnProperty(key)) {
-                const property = new _CssClassProperty__WEBPACK_IMPORTED_MODULE_2__["CssClassProperty"]({
+                const property = new CssClassProperty_1.CssClassProperty({
                     key: key,
                     className: this.className,
                     name: key,
@@ -60873,7 +60688,7 @@ class CssClass {
         return this._css;
     }
     get id() {
-        return Object(_utils_stringHashId__WEBPACK_IMPORTED_MODULE_3__["stringHashId"])(this._props.target + this._props.key);
+        return stringHashId_1.stringHashId(this._props.target + this._props.key);
     }
     get isPseudo() {
         return this._props.isPseudo;
@@ -60882,6 +60697,7 @@ class CssClass {
         return this._props.target;
     }
 }
+exports.CssClass = CssClass;
 const renderCss = (className, key, properties) => {
     const css = [];
     const clsName = classString(key, className);
@@ -60892,13 +60708,13 @@ const renderCss = (className, key, properties) => {
 };
 const classString = (key, className) => {
     let name = key;
-    if (key in _enums_CssPseudos__WEBPACK_IMPORTED_MODULE_1__["CssPseudoKind"]) {
+    if (key in CssPseudos_1.CssPseudoKind) {
         if (className) {
-            name = `${Object(_utils_camelize__WEBPACK_IMPORTED_MODULE_0__["decamelize"])(className)}${Object(_utils_camelize__WEBPACK_IMPORTED_MODULE_0__["decamelize"])(key)}`;
+            name = `${camelize_1.decamelize(className)}${camelize_1.decamelize(key)}`;
         }
     }
     else {
-        name = `${Object(_utils_camelize__WEBPACK_IMPORTED_MODULE_0__["decamelize"])(className)}`;
+        name = `${camelize_1.decamelize(className)}`;
     }
     return name;
 };
@@ -60909,20 +60725,18 @@ const classStringTemplate = (className, properties) => {
 
 /***/ }),
 
-/***/ "../email-css/esm/CssClassProperty.js":
+/***/ "../email-css/cjs/CssClassProperty.js":
 /*!********************************************!*\
-  !*** ../email-css/esm/CssClassProperty.js ***!
+  !*** ../email-css/cjs/CssClassProperty.js ***!
   \********************************************/
-/*! exports provided: CssClassProperty */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CssClassProperty", function() { return CssClassProperty; });
-/* harmony import */ var _utils_camelize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/camelize */ "../email-css/esm/utils/camelize.js");
-/* harmony import */ var _enums_CssValidValue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./enums/CssValidValue */ "../email-css/esm/enums/CssValidValue.js");
 
-
+Object.defineProperty(exports, "__esModule", { value: true });
+const camelize_1 = __webpack_require__(/*! ./utils/camelize */ "../email-css/cjs/utils/camelize.js");
+const CssValidValue_1 = __webpack_require__(/*! ./enums/CssValidValue */ "../email-css/cjs/enums/CssValidValue.js");
 class CssClassProperty {
     constructor(props) {
         this._props = props;
@@ -60944,15 +60758,16 @@ class CssClassProperty {
         return this._css;
     }
 }
+exports.CssClassProperty = CssClassProperty;
 const propertyStringTemplate = (name, value) => {
-    return `${Object(_utils_camelize__WEBPACK_IMPORTED_MODULE_0__["decamelize"])(name)}:${ensureUnit(value, "px")};`;
+    return `${camelize_1.decamelize(name)}:${ensureUnit(value, "px")};`;
 };
 const ensureUnit = (value, unit) => {
     let newValue = value;
     if (value.toString() === "0") {
         return "0";
     }
-    if (value && typeof value in _enums_CssValidValue__WEBPACK_IMPORTED_MODULE_1__["CssValidValueKind"]) {
+    if (value && typeof value in CssValidValue_1.CssValidValueKind) {
         if (typeof value === "number") {
             newValue = `${value}${unit}`;
         }
@@ -60982,65 +60797,55 @@ const ensureUnit = (value, unit) => {
 
 /***/ }),
 
-/***/ "../email-css/esm/CssContext.js":
+/***/ "../email-css/cjs/CssContext.js":
 /*!**************************************!*\
-  !*** ../email-css/esm/CssContext.js ***!
+  !*** ../email-css/cjs/CssContext.js ***!
   \**************************************/
-/*! exports provided: defaultStyleContext, useCssContext, CssStyleContext, CssStyleProvider */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultStyleContext", function() { return defaultStyleContext; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useCssContext", function() { return useCssContext; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CssStyleContext", function() { return CssStyleContext; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CssStyleProvider", function() { return CssStyleProvider; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _CssTheme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CssTheme */ "../email-css/esm/CssTheme.js");
-/* harmony import */ var _CssRepository__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CssRepository */ "../email-css/esm/CssRepository.js");
 
-
-
-const defaultStyleContext = {
-    repository: new _CssRepository__WEBPACK_IMPORTED_MODULE_2__["CssRepository"](),
-    theme: _CssTheme__WEBPACK_IMPORTED_MODULE_1__["defaultTheme"],
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-const useCssContext = () => {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.useContext(CssStyleContext);
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(/*! react */ "../../node_modules/react/index.js"));
+const CssTheme_1 = __webpack_require__(/*! ./CssTheme */ "../email-css/cjs/CssTheme.js");
+const CssRepository_1 = __webpack_require__(/*! ./CssRepository */ "../email-css/cjs/CssRepository.js");
+exports.defaultStyleContext = {
+    repository: new CssRepository_1.CssRepository(),
+    theme: CssTheme_1.defaultTheme,
 };
-const CssStyleContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext(defaultStyleContext);
-const CssStyleProvider = CssStyleContext.Provider;
+exports.useCssContext = () => {
+    return react_1.default.useContext(exports.CssStyleContext);
+};
+exports.CssStyleContext = react_1.default.createContext(exports.defaultStyleContext);
+exports.CssStyleProvider = exports.CssStyleContext.Provider;
 //# sourceMappingURL=CssContext.js.map
 
 /***/ }),
 
-/***/ "../email-css/esm/CssFragment.js":
+/***/ "../email-css/cjs/CssFragment.js":
 /*!***************************************!*\
-  !*** ../email-css/esm/CssFragment.js ***!
+  !*** ../email-css/cjs/CssFragment.js ***!
   \***************************************/
-/*! exports provided: CssFragment, createProperty, calculate */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CssFragment", function() { return CssFragment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createProperty", function() { return createProperty; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calculate", function() { return calculate; });
-/* harmony import */ var _utils_camelize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/camelize */ "../email-css/esm/utils/camelize.js");
-/* harmony import */ var _enums_CssTarget__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./enums/CssTarget */ "../email-css/esm/enums/CssTarget.js");
-/* harmony import */ var _enums_CssValidValue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./enums/CssValidValue */ "../email-css/esm/enums/CssValidValue.js");
-/* harmony import */ var underscore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! underscore */ "../../node_modules/underscore/modules/index-all.js");
-/* harmony import */ var _CssClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CssClass */ "../email-css/esm/CssClass.js");
-/* harmony import */ var _CssClassProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CssClassProperty */ "../email-css/esm/CssClassProperty.js");
-/* harmony import */ var _enums_CssPseudos__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./enums/CssPseudos */ "../email-css/esm/enums/CssPseudos.js");
 
-
-
-
-
-
-
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const camelize_1 = __webpack_require__(/*! ./utils/camelize */ "../email-css/cjs/utils/camelize.js");
+const CssTarget_1 = __webpack_require__(/*! ./enums/CssTarget */ "../email-css/cjs/enums/CssTarget.js");
+const CssValidValue_1 = __webpack_require__(/*! ./enums/CssValidValue */ "../email-css/cjs/enums/CssValidValue.js");
+const underscore_1 = __importDefault(__webpack_require__(/*! underscore */ "../../node_modules/underscore/modules/index-all.js"));
+const CssClass_1 = __webpack_require__(/*! ./CssClass */ "../email-css/cjs/CssClass.js");
+const CssClassProperty_1 = __webpack_require__(/*! ./CssClassProperty */ "../email-css/cjs/CssClassProperty.js");
+const CssPseudos_1 = __webpack_require__(/*! ./enums/CssPseudos */ "../email-css/cjs/enums/CssPseudos.js");
 class CssFragment {
     constructor(_dirtyStyles, _theme, classNames = {}, styles = []) {
         this._dirtyStyles = _dirtyStyles;
@@ -61049,7 +60854,7 @@ class CssFragment {
         this.styles = styles;
         // matches unhashed id with hashed id
         this.parseClassName = (unhashedId) => {
-            return underscore__WEBPACK_IMPORTED_MODULE_3__["default"].invert(this.classNames)[unhashedId];
+            return underscore_1.default.invert(this.classNames)[unhashedId];
         };
         this._init();
     }
@@ -61062,27 +60867,28 @@ class CssFragment {
         };
         for (const key of Object.keys(this._dirtyStyles)) {
             // const hash = `${stringHashId(key)}`;
-            const cssClassName = Object(_utils_camelize__WEBPACK_IMPORTED_MODULE_0__["decamelize"])(`${key}`);
+            const cssClassName = camelize_1.decamelize(`${key}`);
             this.classNames[key] = cssClassName;
         }
         parseCss(parseArgs);
     }
 }
+exports.CssFragment = CssFragment;
 const parseCss = (args) => {
     const properties = [];
     for (const key in args.value) {
         if (args.value.hasOwnProperty(key)) {
             let value = args.value[key];
-            let calculated = calculate(value, args.theme);
-            if (typeof calculated in _enums_CssValidValue__WEBPACK_IMPORTED_MODULE_2__["CssValidValueKind"]) {
+            let calculated = exports.calculate(value, args.theme);
+            if (typeof calculated in CssValidValue_1.CssValidValueKind) {
                 const newArgs = updateArgs(args, {
                     value: calculated,
                     propertyKey: key,
                 });
-                properties.push(createProperty(newArgs));
+                properties.push(exports.createProperty(newArgs));
                 continue;
             }
-            if (key in _enums_CssTarget__WEBPACK_IMPORTED_MODULE_1__["CssTargetKind"]) {
+            if (key in CssTarget_1.CssTargetKind) {
                 const newArgs = updateArgs(args, {
                     value: calculated,
                     target: key,
@@ -61090,7 +60896,7 @@ const parseCss = (args) => {
                 args.classes.push(createClass(key, newArgs));
                 continue;
             }
-            if (key in _enums_CssPseudos__WEBPACK_IMPORTED_MODULE_6__["CssPseudoKind"]) {
+            if (key in CssPseudos_1.CssPseudoKind) {
                 const newArgs = updateArgs(args, {
                     value: calculated,
                     pseudo: key,
@@ -61098,7 +60904,7 @@ const parseCss = (args) => {
                 args.classes.push(createClass(key, newArgs));
                 continue;
             }
-            if (underscore__WEBPACK_IMPORTED_MODULE_3__["default"].isObject(calculated)) {
+            if (underscore_1.default.isObject(calculated)) {
                 const newArgs = updateArgs(args, {
                     value: calculated,
                     classKey: key,
@@ -61111,7 +60917,7 @@ const parseCss = (args) => {
     return properties;
 };
 const createClass = (key, args) => {
-    return new _CssClass__WEBPACK_IMPORTED_MODULE_4__["CssClass"]({
+    return new CssClass_1.CssClass({
         key: key,
         target: args.target,
         isPseudo: args.pseudo != undefined,
@@ -61120,8 +60926,8 @@ const createClass = (key, args) => {
         css: "",
     });
 };
-const createProperty = (args) => {
-    return new _CssClassProperty__WEBPACK_IMPORTED_MODULE_5__["CssClassProperty"]({
+exports.createProperty = (args) => {
+    return new CssClassProperty_1.CssClassProperty({
         key: args.propertyKey || "",
         className: args.classKey,
         name: args.propertyKey || "",
@@ -61132,9 +60938,9 @@ const createProperty = (args) => {
 const updateArgs = (oldArgs, newArgs) => {
     return Object.assign({}, oldArgs, newArgs);
 };
-const calculate = (value, theme) => {
+exports.calculate = (value, theme) => {
     let calculated = value;
-    if (underscore__WEBPACK_IMPORTED_MODULE_3__["default"].isArray(calculated)) {
+    if (underscore_1.default.isArray(calculated)) {
         const arrayValue = calculated;
         if (arrayValue.length <= 2) {
             calculated = arrayValue.join("!");
@@ -61143,7 +60949,7 @@ const calculate = (value, theme) => {
             calculated = arrayValue.join(",");
         }
     }
-    if (underscore__WEBPACK_IMPORTED_MODULE_3__["default"].isFunction(calculated)) {
+    if (underscore_1.default.isFunction(calculated)) {
         const fn = value;
         calculated = fn(theme);
     }
@@ -61153,26 +60959,23 @@ const calculate = (value, theme) => {
 
 /***/ }),
 
-/***/ "../email-css/esm/CssRepository.js":
+/***/ "../email-css/cjs/CssRepository.js":
 /*!*****************************************!*\
-  !*** ../email-css/esm/CssRepository.js ***!
+  !*** ../email-css/cjs/CssRepository.js ***!
   \*****************************************/
-/*! exports provided: CssRepository */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CssRepository", function() { return CssRepository; });
-/* harmony import */ var typescript_collections__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typescript-collections */ "../../node_modules/typescript-collections/dist/lib/umd.js");
-/* harmony import */ var typescript_collections__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typescript_collections__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils_camelize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/camelize */ "../email-css/esm/utils/camelize.js");
 
-
+Object.defineProperty(exports, "__esModule", { value: true });
+const typescript_collections_1 = __webpack_require__(/*! typescript-collections */ "../../node_modules/typescript-collections/dist/lib/umd.js");
+const camelize_1 = __webpack_require__(/*! ./utils/camelize */ "../email-css/cjs/utils/camelize.js");
 class CssRepository {
     constructor() {
         this.sheets = [];
         this.stylesheets = [];
-        this.classes = new typescript_collections__WEBPACK_IMPORTED_MODULE_0__["Dictionary"]();
+        this.classes = new typescript_collections_1.Dictionary();
         this.add = (cssClasses) => {
             if (cssClasses) {
                 cssClasses.forEach((cssClass) => {
@@ -61182,7 +60985,7 @@ class CssRepository {
         };
         this.updateStyle = (className, styles) => {
             if (className) {
-                const item = this.classes.values().find((item) => item.className === Object(_utils_camelize__WEBPACK_IMPORTED_MODULE_1__["camelize"])(className));
+                const item = this.classes.values().find((item) => item.className === camelize_1.camelize(className));
                 if (item) {
                     item.updateProperties(styles);
                 }
@@ -61191,7 +60994,7 @@ class CssRepository {
         this.getInlinableStyles = (className) => {
             let props = {};
             if (className) {
-                const item = this.classes.values().find((item) => item.className === Object(_utils_camelize__WEBPACK_IMPORTED_MODULE_1__["camelize"])(className));
+                const item = this.classes.values().find((item) => item.className === camelize_1.camelize(className));
                 if (item) {
                     props = item.getCssProperties();
                 }
@@ -61209,21 +61012,22 @@ class CssRepository {
         };
     }
 }
+exports.CssRepository = CssRepository;
 //# sourceMappingURL=CssRepository.js.map
 
 /***/ }),
 
-/***/ "../email-css/esm/CssTheme.js":
+/***/ "../email-css/cjs/CssTheme.js":
 /*!************************************!*\
-  !*** ../email-css/esm/CssTheme.js ***!
+  !*** ../email-css/cjs/CssTheme.js ***!
   \************************************/
-/*! exports provided: defaultTheme */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultTheme", function() { return defaultTheme; });
-const defaultTheme = {
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.defaultTheme = {
     name: "Ascendum",
     colors: {
         backgroundColor: "#f1f1f1",
@@ -61262,19 +61066,18 @@ const defaultTheme = {
 
 /***/ }),
 
-/***/ "../email-css/esm/enums/CssPseudos.js":
+/***/ "../email-css/cjs/enums/CssPseudos.js":
 /*!********************************************!*\
-  !*** ../email-css/esm/enums/CssPseudos.js ***!
+  !*** ../email-css/cjs/enums/CssPseudos.js ***!
   \********************************************/
-/*! exports provided: CssPseudoKind */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CssPseudoKind", function() { return CssPseudoKind; });
-/* harmony import */ var _utils_enums__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/enums */ "../email-css/esm/utils/enums.js");
 
-const CssPseudoKind = Object(_utils_enums__WEBPACK_IMPORTED_MODULE_0__["strEnum"])([
+Object.defineProperty(exports, "__esModule", { value: true });
+const enums_1 = __webpack_require__(/*! ../utils/enums */ "../email-css/cjs/utils/enums.js");
+exports.CssPseudoKind = enums_1.strEnum([
     "::after",
     "::backdrop",
     "::before",
@@ -61307,19 +61110,18 @@ const CssPseudoKind = Object(_utils_enums__WEBPACK_IMPORTED_MODULE_0__["strEnum"
 
 /***/ }),
 
-/***/ "../email-css/esm/enums/CssStyleableProperties.js":
+/***/ "../email-css/cjs/enums/CssStyleableProperties.js":
 /*!********************************************************!*\
-  !*** ../email-css/esm/enums/CssStyleableProperties.js ***!
+  !*** ../email-css/cjs/enums/CssStyleableProperties.js ***!
   \********************************************************/
-/*! exports provided: CssStyleablePropertiesKind */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CssStyleablePropertiesKind", function() { return CssStyleablePropertiesKind; });
-/* harmony import */ var _utils_enums__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/enums */ "../email-css/esm/utils/enums.js");
 
-const CssStyleablePropertiesKind = Object(_utils_enums__WEBPACK_IMPORTED_MODULE_0__["strEnum"])([
+Object.defineProperty(exports, "__esModule", { value: true });
+const enums_1 = __webpack_require__(/*! ../utils/enums */ "../email-css/cjs/utils/enums.js");
+exports.CssStyleablePropertiesKind = enums_1.strEnum([
     "align",
     "background",
     "bgcolor",
@@ -61347,83 +61149,72 @@ const CssStyleablePropertiesKind = Object(_utils_enums__WEBPACK_IMPORTED_MODULE_
 
 /***/ }),
 
-/***/ "../email-css/esm/enums/CssTarget.js":
+/***/ "../email-css/cjs/enums/CssTarget.js":
 /*!*******************************************!*\
-  !*** ../email-css/esm/enums/CssTarget.js ***!
+  !*** ../email-css/cjs/enums/CssTarget.js ***!
   \*******************************************/
-/*! exports provided: CssTargetKind */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CssTargetKind", function() { return CssTargetKind; });
-/* harmony import */ var _utils_enums__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/enums */ "../email-css/esm/utils/enums.js");
 
-const CssTargetKind = Object(_utils_enums__WEBPACK_IMPORTED_MODULE_0__["strEnum"])(["@global", "@tablet", "@phone"]);
+Object.defineProperty(exports, "__esModule", { value: true });
+const enums_1 = __webpack_require__(/*! ../utils/enums */ "../email-css/cjs/utils/enums.js");
+exports.CssTargetKind = enums_1.strEnum(["@global", "@tablet", "@phone"]);
 //# sourceMappingURL=CssTarget.js.map
 
 /***/ }),
 
-/***/ "../email-css/esm/enums/CssValidValue.js":
+/***/ "../email-css/cjs/enums/CssValidValue.js":
 /*!***********************************************!*\
-  !*** ../email-css/esm/enums/CssValidValue.js ***!
+  !*** ../email-css/cjs/enums/CssValidValue.js ***!
   \***********************************************/
-/*! exports provided: CssValidValueKind */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CssValidValueKind", function() { return CssValidValueKind; });
-/* harmony import */ var _utils_enums__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/enums */ "../email-css/esm/utils/enums.js");
 
-const CssValidValueKind = Object(_utils_enums__WEBPACK_IMPORTED_MODULE_0__["strEnum"])(["string", "number", "boolean", "symbol"]);
+Object.defineProperty(exports, "__esModule", { value: true });
+const enums_1 = __webpack_require__(/*! ../utils/enums */ "../email-css/cjs/utils/enums.js");
+exports.CssValidValueKind = enums_1.strEnum(["string", "number", "boolean", "symbol"]);
 //# sourceMappingURL=CssValidValue.js.map
 
 /***/ }),
 
-/***/ "../email-css/esm/index.js":
+/***/ "../email-css/cjs/index.js":
 /*!*********************************!*\
-  !*** ../email-css/esm/index.js ***!
+  !*** ../email-css/cjs/index.js ***!
   \*********************************/
-/*! exports provided: withCss, css, CssStyleProvider, useCssContext, defaultStyleContext, CssStyleContext */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _withCss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./withCss */ "../email-css/esm/withCss.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "withCss", function() { return _withCss__WEBPACK_IMPORTED_MODULE_0__["withCss"]; });
 
-/* harmony import */ var _Css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Css */ "../email-css/esm/Css.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "css", function() { return _Css__WEBPACK_IMPORTED_MODULE_1__["css"]; });
-
-/* harmony import */ var _CssContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CssContext */ "../email-css/esm/CssContext.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CssStyleProvider", function() { return _CssContext__WEBPACK_IMPORTED_MODULE_2__["CssStyleProvider"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useCssContext", function() { return _CssContext__WEBPACK_IMPORTED_MODULE_2__["useCssContext"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "defaultStyleContext", function() { return _CssContext__WEBPACK_IMPORTED_MODULE_2__["defaultStyleContext"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CssStyleContext", function() { return _CssContext__WEBPACK_IMPORTED_MODULE_2__["CssStyleContext"]; });
-
-
-
-
+Object.defineProperty(exports, "__esModule", { value: true });
+var withCss_1 = __webpack_require__(/*! ./withCss */ "../email-css/cjs/withCss.js");
+exports.withCss = withCss_1.withCss;
+var Css_1 = __webpack_require__(/*! ./Css */ "../email-css/cjs/Css.js");
+exports.css = Css_1.css;
+var CssContext_1 = __webpack_require__(/*! ./CssContext */ "../email-css/cjs/CssContext.js");
+exports.CssStyleProvider = CssContext_1.CssStyleProvider;
+exports.useCssContext = CssContext_1.useCssContext;
+exports.defaultStyleContext = CssContext_1.defaultStyleContext;
+exports.CssStyleContext = CssContext_1.CssStyleContext;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "../email-css/esm/utils/camelize.js":
+/***/ "../email-css/cjs/utils/camelize.js":
 /*!******************************************!*\
-  !*** ../email-css/esm/utils/camelize.js ***!
+  !*** ../email-css/cjs/utils/camelize.js ***!
   \******************************************/
-/*! exports provided: camelize, decamelize */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "camelize", function() { return camelize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "decamelize", function() { return decamelize; });
-const camelize = (str) => {
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.camelize = (str) => {
     return str.replace(/^([A-Z])|[\s-_]+(\w)/g, (match, p1, p2, offset) => {
         if (p2) {
             return p2.toUpperCase();
@@ -61431,7 +61222,7 @@ const camelize = (str) => {
         return p1.toLowerCase();
     });
 };
-const decamelize = (str) => {
+exports.decamelize = (str) => {
     const separator = "-";
     return str
         .replace(/([a-z\d])([A-Z])/g, "$1" + separator + "$2")
@@ -61442,37 +61233,38 @@ const decamelize = (str) => {
 
 /***/ }),
 
-/***/ "../email-css/esm/utils/enums.js":
+/***/ "../email-css/cjs/utils/enums.js":
 /*!***************************************!*\
-  !*** ../email-css/esm/utils/enums.js ***!
+  !*** ../email-css/cjs/utils/enums.js ***!
   \***************************************/
-/*! exports provided: strEnum */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strEnum", function() { return strEnum; });
+
+Object.defineProperty(exports, "__esModule", { value: true });
 function strEnum(o) {
     return o.reduce((res, key) => {
         res[key] = key;
         return res;
     }, Object.create(null));
 }
+exports.strEnum = strEnum;
 //# sourceMappingURL=enums.js.map
 
 /***/ }),
 
-/***/ "../email-css/esm/utils/stringHashId.js":
+/***/ "../email-css/cjs/utils/stringHashId.js":
 /*!**********************************************!*\
-  !*** ../email-css/esm/utils/stringHashId.js ***!
+  !*** ../email-css/cjs/utils/stringHashId.js ***!
   \**********************************************/
-/*! exports provided: stringHashId */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stringHashId", function() { return stringHashId; });
-const stringHashId = (str) => {
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.stringHashId = (str) => {
     let value = 5381;
     let len = str.length;
     while (len--)
@@ -61483,26 +61275,25 @@ const stringHashId = (str) => {
 
 /***/ }),
 
-/***/ "../email-css/esm/withCss.js":
+/***/ "../email-css/cjs/withCss.js":
 /*!***********************************!*\
-  !*** ../email-css/esm/withCss.js ***!
+  !*** ../email-css/cjs/withCss.js ***!
   \***********************************/
-/*! exports provided: withCss */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "withCss", function() { return withCss; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _CssContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CssContext */ "../email-css/esm/CssContext.js");
-/* harmony import */ var _enums_CssStyleableProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./enums/CssStyleableProperties */ "../email-css/esm/enums/CssStyleableProperties.js");
 
-
-
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(/*! react */ "../../node_modules/react/index.js"));
+const CssContext_1 = __webpack_require__(/*! ./CssContext */ "../email-css/cjs/CssContext.js");
+const CssStyleableProperties_1 = __webpack_require__(/*! ./enums/CssStyleableProperties */ "../email-css/cjs/enums/CssStyleableProperties.js");
 const withCss = (cssFragment) => (WrappedComponent) => (props) => {
     var _a;
-    const { repository } = Object(_CssContext__WEBPACK_IMPORTED_MODULE_1__["useCssContext"])();
+    const { repository } = CssContext_1.useCssContext();
     if (cssFragment) {
         repository.add(cssFragment.styles);
     }
@@ -61526,8 +61317,9 @@ const withCss = (cssFragment) => (WrappedComponent) => (props) => {
         style: styles,
         className: classNames,
     });
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WrappedComponent, Object.assign({}, mergedProps));
+    return react_1.default.createElement(WrappedComponent, Object.assign({}, mergedProps));
 };
+exports.withCss = withCss;
 const getInlineStyles = (className, repository) => {
     let inlinableStyles = {};
     if (className) {
@@ -61542,7 +61334,7 @@ const getStyleableProps = (props) => {
     if (props) {
         for (const key in props) {
             if (props.hasOwnProperty(key)) {
-                if (key in _enums_CssStyleableProperties__WEBPACK_IMPORTED_MODULE_2__["CssStyleablePropertiesKind"]) {
+                if (key in CssStyleableProperties_1.CssStyleablePropertiesKind) {
                     properties[key] = props[key];
                 }
             }
@@ -61550,167 +61342,163 @@ const getStyleableProps = (props) => {
     }
     return properties;
 };
-
 //# sourceMappingURL=withCss.js.map
 
 /***/ }),
 
-/***/ "../email-element/esm/A.js":
-/*!*********************************!*\
-  !*** ../email-element/esm/A.js ***!
-  \*********************************/
-/*! exports provided: A */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return A; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _email_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @email/css */ "../email-css/esm/index.js");
-/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles */ "../email-element/esm/styles.js");
-
-
-
-const styles = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["css"])({
-    ascA: {
-        ..._styles__WEBPACK_IMPORTED_MODULE_2__["commonFonts"],
-        fontSize: 13,
-    },
-});
-const AElement = (props) => {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", Object.assign({}, props));
-};
-AElement.defaultProps = {
-    className: styles.classNames.ascA,
-};
-const A = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["withCss"])(styles)(AElement);
-
-//# sourceMappingURL=A.js.map
-
-/***/ }),
-
-/***/ "../email-element/esm/Div.js":
+/***/ "../email-element/cjs/Div.js":
 /*!***********************************!*\
-  !*** ../email-element/esm/Div.js ***!
+  !*** ../email-element/cjs/Div.js ***!
   \***********************************/
-/*! exports provided: Div */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Div", function() { return Div; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _email_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @email/css */ "../email-css/esm/index.js");
-/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles */ "../email-element/esm/styles.js");
 
-
-
-const styles = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["css"])({
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(/*! react */ "../../node_modules/react/index.js"));
+const css_1 = __webpack_require__(/*! @email/css */ "../email-css/cjs/index.js");
+const styles_1 = __webpack_require__(/*! ./styles */ "../email-element/cjs/styles.js");
+const styles = css_1.css({
     ascDiv: {
-        ..._styles__WEBPACK_IMPORTED_MODULE_2__["commonFonts"],
+        ...styles_1.commonFonts,
         fontSize: 13,
     },
 });
 const DivElement = (props) => {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", Object.assign({}, props));
+    return react_1.default.createElement("div", Object.assign({}, props));
 };
 DivElement.defaultProps = {
     className: styles.classNames.ascDiv,
 };
-const Div = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["withCss"])(styles)(DivElement);
-
+const Div = css_1.withCss(styles)(DivElement);
+exports.Div = Div;
 //# sourceMappingURL=Div.js.map
 
 /***/ }),
 
-/***/ "../email-element/esm/Img.js":
+/***/ "../email-element/cjs/Img.js":
 /*!***********************************!*\
-  !*** ../email-element/esm/Img.js ***!
+  !*** ../email-element/cjs/Img.js ***!
   \***********************************/
-/*! exports provided: Img */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Img", function() { return Img; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _email_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @email/css */ "../email-css/esm/index.js");
 
-
-const styles = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["css"])({
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(/*! react */ "../../node_modules/react/index.js"));
+const css_1 = __webpack_require__(/*! @email/css */ "../email-css/cjs/index.js");
+const styles = css_1.css({
     ascImg: {},
 });
 const ImgElement = (props) => {
     // @ts-ignore
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", Object.assign({}, props));
+    return react_1.default.createElement("img", Object.assign({}, props));
 };
 ImgElement.defaultProps = {
     className: styles.classNames.ascImg,
 };
-const Img = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["withCss"])(styles)(ImgElement);
-
+const Img = css_1.withCss(styles)(ImgElement);
+exports.Img = Img;
 //# sourceMappingURL=Img.js.map
 
 /***/ }),
 
-/***/ "../email-element/esm/Span.js":
+/***/ "../email-element/cjs/Link.js":
 /*!************************************!*\
-  !*** ../email-element/esm/Span.js ***!
+  !*** ../email-element/cjs/Link.js ***!
   \************************************/
-/*! exports provided: Span */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Span", function() { return Span; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _email_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @email/css */ "../email-css/esm/index.js");
 
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(/*! react */ "../../node_modules/react/index.js"));
+const css_1 = __webpack_require__(/*! @email/css */ "../email-css/cjs/index.js");
+const styles_1 = __webpack_require__(/*! ./styles */ "../email-element/cjs/styles.js");
+const styles = css_1.css({
+    ascA: {
+        ...styles_1.commonFonts,
+        fontSize: 13,
+    },
+});
+const AElement = (props) => {
+    return react_1.default.createElement("a", Object.assign({}, props));
+};
+AElement.defaultProps = {
+    className: styles.classNames.ascA,
+};
+const Link = css_1.withCss(styles)(AElement);
+exports.Link = Link;
+//# sourceMappingURL=Link.js.map
 
-const styles = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["css"])({
+/***/ }),
+
+/***/ "../email-element/cjs/Span.js":
+/*!************************************!*\
+  !*** ../email-element/cjs/Span.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(/*! react */ "../../node_modules/react/index.js"));
+const css_1 = __webpack_require__(/*! @email/css */ "../email-css/cjs/index.js");
+const styles = css_1.css({
     ascSpan: {},
 });
 const SpanElement = (props) => {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", Object.assign({}, props));
+    return react_1.default.createElement("span", Object.assign({}, props));
 };
 SpanElement.defaultProps = {
     className: styles.classNames.ascSpan,
 };
-const Span = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["withCss"])(styles)(SpanElement);
-
+const Span = css_1.withCss(styles)(SpanElement);
+exports.Span = Span;
 //# sourceMappingURL=Span.js.map
 
 /***/ }),
 
-/***/ "../email-element/esm/Table.js":
+/***/ "../email-element/cjs/Table.js":
 /*!*************************************!*\
-  !*** ../email-element/esm/Table.js ***!
+  !*** ../email-element/cjs/Table.js ***!
   \*************************************/
-/*! exports provided: Table */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Table", function() { return Table; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _email_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @email/css */ "../email-css/esm/index.js");
-/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles */ "../email-element/esm/styles.js");
 
-
-
-const styles = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["css"])({
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(/*! react */ "../../node_modules/react/index.js"));
+const css_1 = __webpack_require__(/*! @email/css */ "../email-css/cjs/index.js");
+const styles_1 = __webpack_require__(/*! ./styles */ "../email-element/cjs/styles.js");
+const styles = css_1.css({
     ascTable: {
-        ..._styles__WEBPACK_IMPORTED_MODULE_2__["commonFonts"],
+        ...styles_1.commonFonts,
     },
 });
 const TableElement = (props) => {
-    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", Object.assign({}, props),
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, props.children)));
+    return (react_1.default.createElement("table", Object.assign({}, props),
+        react_1.default.createElement("tbody", null, props.children)));
 };
 TableElement.defaultProps = {
     className: styles.classNames.ascTable,
@@ -61719,133 +61507,112 @@ TableElement.defaultProps = {
     width: "100%",
     border: 0,
 };
-const Table = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["withCss"])(styles)(TableElement);
-
+const Table = css_1.withCss(styles)(TableElement);
+exports.Table = Table;
 //# sourceMappingURL=Table.js.map
 
 /***/ }),
 
-/***/ "../email-element/esm/Td.js":
+/***/ "../email-element/cjs/Td.js":
 /*!**********************************!*\
-  !*** ../email-element/esm/Td.js ***!
+  !*** ../email-element/cjs/Td.js ***!
   \**********************************/
-/*! exports provided: Td */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Td", function() { return Td; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _email_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @email/css */ "../email-css/esm/index.js");
-/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles */ "../email-element/esm/styles.js");
 
-
-
-const styles = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["css"])({
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(/*! react */ "../../node_modules/react/index.js"));
+const css_1 = __webpack_require__(/*! @email/css */ "../email-css/cjs/index.js");
+const styles_1 = __webpack_require__(/*! ./styles */ "../email-element/cjs/styles.js");
+const styles = css_1.css({
     ascTd: {
-        ..._styles__WEBPACK_IMPORTED_MODULE_2__["commonFonts"],
+        ...styles_1.commonFonts,
     },
 });
 const TdElement = (props) => {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", Object.assign({}, props));
+    return react_1.default.createElement("td", Object.assign({}, props));
 };
 TdElement.defaultProps = {
     className: styles.classNames.ascTd,
     align: "left",
 };
-const Td = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["withCss"])(styles)(TdElement);
-
+const Td = css_1.withCss(styles)(TdElement);
+exports.Td = Td;
 //# sourceMappingURL=Td.js.map
 
 /***/ }),
 
-/***/ "../email-element/esm/Tr.js":
+/***/ "../email-element/cjs/Tr.js":
 /*!**********************************!*\
-  !*** ../email-element/esm/Tr.js ***!
+  !*** ../email-element/cjs/Tr.js ***!
   \**********************************/
-/*! exports provided: Tr */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Tr", function() { return Tr; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _email_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @email/css */ "../email-css/esm/index.js");
 
-
-const styles = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["css"])({
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(/*! react */ "../../node_modules/react/index.js"));
+const css_1 = __webpack_require__(/*! @email/css */ "../email-css/cjs/index.js");
+const styles = css_1.css({
     ascTr: {},
 });
 const TrElement = (props) => {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", Object.assign({}, props));
+    return react_1.default.createElement("tr", Object.assign({}, props));
 };
 TrElement.defaultProps = {
     className: styles.classNames.ascTr,
 };
-const Tr = Object(_email_css__WEBPACK_IMPORTED_MODULE_1__["withCss"])(styles)(TrElement);
-
+const Tr = css_1.withCss(styles)(TrElement);
+exports.Tr = Tr;
 //# sourceMappingURL=Tr.js.map
 
 /***/ }),
 
-/***/ "../email-element/esm/index.js":
+/***/ "../email-element/cjs/index.js":
 /*!*************************************!*\
-  !*** ../email-element/esm/index.js ***!
+  !*** ../email-element/cjs/index.js ***!
   \*************************************/
-/*! exports provided: A, Div, Img, Span, commonFonts, Table, Td, Tr */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _A__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./A */ "../email-element/esm/A.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "A", function() { return _A__WEBPACK_IMPORTED_MODULE_0__["A"]; });
 
-/* harmony import */ var _Div__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Div */ "../email-element/esm/Div.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Div", function() { return _Div__WEBPACK_IMPORTED_MODULE_1__["Div"]; });
-
-/* harmony import */ var _Img__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Img */ "../email-element/esm/Img.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Img", function() { return _Img__WEBPACK_IMPORTED_MODULE_2__["Img"]; });
-
-/* harmony import */ var _Span__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Span */ "../email-element/esm/Span.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Span", function() { return _Span__WEBPACK_IMPORTED_MODULE_3__["Span"]; });
-
-/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./styles */ "../email-element/esm/styles.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "commonFonts", function() { return _styles__WEBPACK_IMPORTED_MODULE_4__["commonFonts"]; });
-
-/* harmony import */ var _Table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Table */ "../email-element/esm/Table.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Table", function() { return _Table__WEBPACK_IMPORTED_MODULE_5__["Table"]; });
-
-/* harmony import */ var _Td__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Td */ "../email-element/esm/Td.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Td", function() { return _Td__WEBPACK_IMPORTED_MODULE_6__["Td"]; });
-
-/* harmony import */ var _Tr__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Tr */ "../email-element/esm/Tr.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Tr", function() { return _Tr__WEBPACK_IMPORTED_MODULE_7__["Tr"]; });
-
-
-
-
-
-
-
-
-
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(/*! ./Link */ "../email-element/cjs/Link.js"));
+__export(__webpack_require__(/*! ./Div */ "../email-element/cjs/Div.js"));
+__export(__webpack_require__(/*! ./Img */ "../email-element/cjs/Img.js"));
+__export(__webpack_require__(/*! ./Span */ "../email-element/cjs/Span.js"));
+__export(__webpack_require__(/*! ./styles */ "../email-element/cjs/styles.js"));
+__export(__webpack_require__(/*! ./Table */ "../email-element/cjs/Table.js"));
+__export(__webpack_require__(/*! ./Td */ "../email-element/cjs/Td.js"));
+__export(__webpack_require__(/*! ./Tr */ "../email-element/cjs/Tr.js"));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "../email-element/esm/styles.js":
+/***/ "../email-element/cjs/styles.js":
 /*!**************************************!*\
-  !*** ../email-element/esm/styles.js ***!
+  !*** ../email-element/cjs/styles.js ***!
   \**************************************/
-/*! exports provided: commonFonts */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "commonFonts", function() { return commonFonts; });
-const commonFonts = {
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.commonFonts = {
     fontFamily: (theme) => theme.fonts.fontFamily,
     fontSize: (theme) => theme.fonts.fontDefaultSize,
     color: (theme) => theme.colors.darkFontColor,
@@ -61874,60 +61641,60 @@ module.exports = JSON.parse("{\"client\":{\"js\":\"http://localhost:3001/static/
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../../node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "../../node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "../../node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../../node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "../../node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Home */ "./src/pages/Home.tsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "../../node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Home */ "./src/pages/Home.tsx");
 
 
 
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-
-
-
-
-var App = /*#__PURE__*/function (_React$Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(App, _React$Component);
-
-  var _super = _createSuper(App);
-
-  function App() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, App);
-
-    return _super.apply(this, arguments);
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(App, [{
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
-        exact: true,
-        path: "/",
-        component: _pages_Home__WEBPACK_IMPORTED_MODULE_7__["default"]
-      }));
+class App extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+    render() {
+        return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null,
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], { exact: true, path: "/", component: _pages_Home__WEBPACK_IMPORTED_MODULE_2__["default"] })));
     }
-  }]);
-
-  return App;
-}(react__WEBPACK_IMPORTED_MODULE_5___default.a.Component);
-
+}
 /* harmony default export */ __webpack_exports__["default"] = (App);
+
+
+/***/ }),
+
+/***/ "./src/components/Signature.tsx":
+/*!**************************************!*\
+  !*** ./src/components/Signature.tsx ***!
+  \**************************************/
+/*! exports provided: Signature */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Signature", function() { return Signature; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _email_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @email/element */ "../email-element/cjs/index.js");
+/* harmony import */ var _email_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_email_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _email_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @email/css/ */ "../email-css/cjs/index.js");
+/* harmony import */ var _email_css___WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_email_css___WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+const styles = Object(_email_css___WEBPACK_IMPORTED_MODULE_2__["css"])({
+    myDiv: {
+        backgroundColor: "red",
+    },
+});
+const SignatureElement = (props) => {
+    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_email_element__WEBPACK_IMPORTED_MODULE_1__["Table"], null,
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_email_element__WEBPACK_IMPORTED_MODULE_1__["Tr"], null,
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_email_element__WEBPACK_IMPORTED_MODULE_1__["Td"], null,
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_email_element__WEBPACK_IMPORTED_MODULE_1__["Div"], { className: styles.classNames.myDiv }, "Hello"))),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_email_element__WEBPACK_IMPORTED_MODULE_1__["Tr"], null,
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_email_element__WEBPACK_IMPORTED_MODULE_1__["Td"], null,
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_email_element__WEBPACK_IMPORTED_MODULE_1__["Div"], { className: styles.classNames.myDiv }, "Hello")))));
+};
+const Signature = Object(_email_css___WEBPACK_IMPORTED_MODULE_2__["withCss"])(styles)(SignatureElement);
+
+
 
 /***/ }),
 
@@ -61942,35 +61709,33 @@ var App = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ "../../node_modules/express/index.js");
 /* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);
- // this require is necessary for server HMR to recover from error
+
+// this require is necessary for server HMR to recover from error
 // tslint:disable-next-line:no-var-requires
-
-var app = __webpack_require__(/*! ./server */ "./src/server.tsx")["default"];
-
+let app = __webpack_require__(/*! ./server */ "./src/server.tsx").default;
 if (true) {
-  module.hot.accept(/*! ./server */ "./src/server.tsx", function(__WEBPACK_OUTDATED_DEPENDENCIES__) { (function () {
-    console.log("🔁  HMR Reloading `./server`...");
-
-    try {
-      app = __webpack_require__(/*! ./server */ "./src/server.tsx")["default"];
-    } catch (error) {
-      console.error(error);
-    }
-  })(__WEBPACK_OUTDATED_DEPENDENCIES__); }.bind(this));
-  console.info("✅  Server-side HMR Enabled!");
+    module.hot.accept(/*! ./server */ "./src/server.tsx", function(__WEBPACK_OUTDATED_DEPENDENCIES__) { (() => {
+        console.log("🔁  HMR Reloading `./server`...");
+        try {
+            app = __webpack_require__(/*! ./server */ "./src/server.tsx").default;
+        }
+        catch (error) {
+            console.error(error);
+        }
+    })(__WEBPACK_OUTDATED_DEPENDENCIES__); }.bind(this));
+    console.info("✅  Server-side HMR Enabled!");
 }
-
-var port =  true ? parseInt("3000", 10) : undefined;
-/* harmony default export */ __webpack_exports__["default"] = (express__WEBPACK_IMPORTED_MODULE_0___default()().use(function (req, res) {
-  return app.handle(req, res);
-}).listen(port, function (err) {
-  if (err) {
-    console.error(err);
-    return;
-  }
-
-  console.log("> Started on port ".concat(port));
+const port =  true ? parseInt("3000", 10) : undefined;
+/* harmony default export */ __webpack_exports__["default"] = (express__WEBPACK_IMPORTED_MODULE_0___default()()
+    .use((req, res) => app.handle(req, res))
+    .listen(port, (err) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    console.log(`> Started on port ${port}`);
 }));
+
 
 /***/ }),
 
@@ -61983,54 +61748,18 @@ var port =  true ? parseInt("3000", 10) : undefined;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../../node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "../../node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "../../node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../../node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _email_element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @email/element */ "../email-element/esm/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../../node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Signature__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Signature */ "./src/components/Signature.tsx");
 
 
-
-
-
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function () { var Super = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-
-
-
-var Home = /*#__PURE__*/function (_React$Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(Home, _React$Component);
-
-  var _super = _createSuper(Home);
-
-  function Home() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Home);
-
-    return _super.apply(this, arguments);
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Home, [{
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_email_element__WEBPACK_IMPORTED_MODULE_6__["Div"], null, "Hello");
+class Home extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+    render() {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Signature__WEBPACK_IMPORTED_MODULE_1__["Signature"], null);
     }
-  }]);
-
-  return Home;
-}(react__WEBPACK_IMPORTED_MODULE_5___default.a.Component);
-
+}
 /* harmony default export */ __webpack_exports__["default"] = (Home);
+
 
 /***/ }),
 
@@ -62050,22 +61779,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom_server__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "../../node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App */ "./src/App.tsx");
-/* harmony import */ var _email_css___WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @email/css/ */ "../email-css/esm/index.js");
+/* harmony import */ var _email_css___WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @email/css/ */ "../email-css/cjs/index.js");
+/* harmony import */ var _email_css___WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_email_css___WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
 
+const renderer = (req, assets) => {
+    const context = {};
+    const markup = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_1__["renderToString"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["StaticRouter"], { context: context, location: req.url },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_email_css___WEBPACK_IMPORTED_MODULE_4__["CssStyleProvider"], { value: _email_css___WEBPACK_IMPORTED_MODULE_4__["defaultStyleContext"] },
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_3__["default"], null))));
+    return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+                <head>
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+                    <base target="_blank">
 
-var renderer = function renderer(req, assets) {
-  var context = {};
-  var markup = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_1__["renderToString"])(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["StaticRouter"], {
-    context: context,
-    location: req.url
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_email_css___WEBPACK_IMPORTED_MODULE_4__["CssStyleProvider"], {
-    value: _email_css___WEBPACK_IMPORTED_MODULE_4__["defaultStyleContext"]
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_3__["default"], null))));
-  return "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n            <html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n                <head>\n                    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n                    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n                    <meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0; maximum-scale=1.0;\">\n                    <base target=\"_blank\">\n\n                    <meta name=\"x-apple-disable-message-reformatting\"> \n                    <meta name=\"format-detection\" content=\"telephone=no,address=no,email=no,date=no,url=no\">\n                    <meta name=\"color-scheme\" content=\"light\">\n                    <meta name=\"supported-color-schemes\" content=\"light\">\n  \n                    \n                    <title>Ascendum Email</title>\n\n                    <meta sh-template-name=\"asc-email\">\n                   \n                    <style>".concat(_email_css___WEBPACK_IMPORTED_MODULE_4__["defaultStyleContext"].repository.stylesheet("@global"), "</style>\n                    <style>").concat(_email_css___WEBPACK_IMPORTED_MODULE_4__["defaultStyleContext"].repository.stylesheet("@tablet"), "</style>\n                    <style>").concat(_email_css___WEBPACK_IMPORTED_MODULE_4__["defaultStyleContext"].repository.stylesheet("@phone"), "</style>\n\n                    ").concat(assets.client.css ? "<link rel=\"stylesheet\" href=\"".concat(assets.client.css, "\">") : "", "\n                        ").concat( false ? undefined : "<script src=\"".concat(assets.client.js, "\" defer crossorigin></script>"), "\n                  \n                </head>\n                <body style=\"margin:0;padding:0;\">\n                    <div id=\"root\">").concat(markup, "</div>\n                </body>\n            </html>");
+                    <meta name="x-apple-disable-message-reformatting"> 
+                    <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no">
+                    <meta name="color-scheme" content="light">
+                    <meta name="supported-color-schemes" content="light">
+  
+                    
+                    <title>Ascendum Email</title>
+
+                    <meta sh-template-name="asc-email">
+                   
+                    <style>${_email_css___WEBPACK_IMPORTED_MODULE_4__["defaultStyleContext"].repository.stylesheet("@global")}</style>
+                    <style>${_email_css___WEBPACK_IMPORTED_MODULE_4__["defaultStyleContext"].repository.stylesheet("@tablet")}</style>
+                    <style>${_email_css___WEBPACK_IMPORTED_MODULE_4__["defaultStyleContext"].repository.stylesheet("@phone")}</style>
+
+                    ${assets.client.css ? `<link rel="stylesheet" href="${assets.client.css}">` : ""}
+                        ${ false
+        ? undefined
+        : `<script src="${assets.client.js}" defer crossorigin></script>`}
+                  
+                </head>
+                <body style="margin:0;padding:0;">
+                    <div id="root">${markup}</div>
+                </body>
+            </html>`;
 };
 
 
@@ -62086,17 +61843,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _renderer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderer */ "./src/renderer.tsx");
 
 
-var assets;
-
-var syncLoadAssets = function syncLoadAssets() {
-  assets = __webpack_require__(/*! ./build/assets.json */ "./build/assets.json");
+let assets;
+const syncLoadAssets = () => {
+    assets = __webpack_require__(/*! ./build/assets.json */ "./build/assets.json");
 };
-
 syncLoadAssets();
-var server = express__WEBPACK_IMPORTED_MODULE_0___default()().disable("x-powered-by").use(express__WEBPACK_IMPORTED_MODULE_0___default.a["static"]("/Users/ericsmith/Development/email/packages/email-client/public")).get("/*", function (req, res) {
-  res.send(Object(_renderer__WEBPACK_IMPORTED_MODULE_1__["renderer"])(req, assets));
+const server = express__WEBPACK_IMPORTED_MODULE_0___default()()
+    .disable("x-powered-by")
+    .use(express__WEBPACK_IMPORTED_MODULE_0___default.a.static("/Users/ericsmith/Development/email/packages/email-client/public"))
+    .get("/*", (req, res) => {
+    res.send(Object(_renderer__WEBPACK_IMPORTED_MODULE_1__["renderer"])(req, assets));
 });
 /* harmony default export */ __webpack_exports__["default"] = (server);
+
 
 /***/ }),
 

@@ -1,4 +1,3 @@
-export * from "./A";
 export * from "./Div";
 export * from "./Img";
 export * from "./Span";
