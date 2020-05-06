@@ -4,6 +4,7 @@ import { CssValidValueKind } from "./enums/CssValidValue";
 import { CssTargetKind } from "./enums/CssTarget";
 import { Dictionary } from "typescript-collections";
 import { CssTheme } from "./CssTheme";
+import { CssAttributesKind } from "./enums/CssAttributes";
 
 export type CssValue = keyof typeof CssValidValueKind;
 export type CssUnit = "px" | undefined;
@@ -13,7 +14,12 @@ export type CssDirtyValue = CssValue | Fn | string[] | number[] | Function;
 export type CssClasses = Dictionary<string, CssClass>;
 export interface CssDirtyProperty<T extends CSS.Properties<T> | CssPseudo> {}
 export type CssTarget = keyof typeof CssTargetKind;
+export type CssAttribute = keyof typeof CssAttributesKind;
 export type CssStyle = CssDirtyStyles;
+
+export type CssPropertyKeyValue = {
+    [K in keyof CSS.Properties<K>]?: CssValue;
+};
 
 export type CssDirtyStyles = {
     [K in keyof CssDirtyProperty<K>]?: CssDirtyValue | CssStyle;

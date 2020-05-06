@@ -14,7 +14,6 @@ export class CssClassProperty {
     _css: string;
     constructor(props: CssClassPropertyProps) {
         this._props = props;
-        this._css = propertyStringTemplate(props.name, props.value);
     }
 
     get key(): string {
@@ -34,7 +33,7 @@ export class CssClassProperty {
     }
 
     get css(): string {
-        return this._css;
+        return propertyStringTemplate(this.name, this.value);
     }
 }
 

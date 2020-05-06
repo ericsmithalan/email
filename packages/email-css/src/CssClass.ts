@@ -2,15 +2,16 @@ import { decamelize } from "./utils/camelize";
 import { CssPseudoKind } from "./enums/CssPseudos";
 import { CssClassProperty } from "./CssClassProperty";
 import { CSSProperties } from "react";
-import { CssValue, CssTarget } from "./types";
+import { CssValue, CssTarget, CssAttribute } from "./types";
 import { stringHashId } from "./utils/stringHashId";
-
-export type CssClassType = "pseudo" | "target" | undefined;
+import { Set } from "typescript-collections";
+import { CssCollection } from "./utils/CssCollection";
+import { CssAttributesKind } from "./enums/CssAttributes";
 
 export type CssClassProps = {
     key: string;
     className: string;
-    properties: CssClassProperty[];
+    properties: CssCollection<string, CssClassProperty>;
     target: CssTarget;
     css: string;
     isPseudo: boolean;
@@ -24,17 +25,6 @@ export class CssClass {
         this._props = props;
     }
 
-    getCssProperties(): CSSProperties {
-        const properties: CSSProperties = {};
-        if (!this.isPseudo && this.target === "@global") {
-            this.properties.forEach((prop) => {
-                properties[prop.key] = prop.value;
-            });
-        }
-
-        return properties;
-    }
-
     get key(): string {
         return this._props.key;
     }
@@ -43,40 +33,14 @@ export class CssClass {
         return this._props.className;
     }
 
-    updateProperties(value: CSSProperties) {
-        const combinedProperties = Object.assign({}, this.getCssProperties(), value);
-
-        for (const key in combinedProperties) {
-            if (combinedProperties.hasOwnProperty(key)) {
-                const property = new CssClassProperty({
-                    key: key,
-                    className: this.className,
-                    name: key,
-                    value: combinedProperties[key] as CssValue,
-                    css: "",
-                });
-
-                this._props.properties.push(property);
-            }
-
-            console.log(this._props.properties);
-        }
-
-        this._css = renderCss(this._props.className, this._props.key, this.properties);
-    }
-
-    get properties(): CssClassProperty[] {
+    get properties(): CssCollection<string, CssClassProperty> {
         return this._props.properties;
     }
 
     get css(): string {
-        if (!this._css) {
-            this._css = renderCss(this._props.className, this._props.key, this.properties);
-        }
+        this._css = renderCss(this._props.className, this._props.key, this.properties);
+
         return this._css;
-    }
-    get id(): string {
-        return stringHashId(this._props.target + this._props.key);
     }
 
     get isPseudo(): boolean {
@@ -86,15 +50,49 @@ export class CssClass {
     get target(): CssTarget {
         return this._props.target as CssTarget;
     }
+
+    getCssProperties(): CssCollection<string, CssValue> {
+        const properties = new CssCollection<string, CssValue>();
+
+        if (!this.isPseudo && this.target === "@global") {
+            this.properties.forEach((key: string, value: CssValue) => {
+                properties[key] = value;
+            });
+        }
+
+        return properties;
+    }
+
+    updateProperties(values: CssCollection<string, CssValue>) {
+        values.forEach((key: string, value: CssValue) => {
+            const attrKey = key;
+
+            if (key in CssAttributesKind) {
+                const property = new CssClassProperty({
+                    key: attrKey,
+                    className: this.className,
+                    name: attrKey,
+                    value: values[attrKey] as CssValue,
+                    css: "",
+                });
+
+                this._props.properties.add(attrKey, property);
+            } else {
+                console.error(`CssClass > updateProperties > ${key} is not a CssAttribute`);
+            }
+        });
+
+        this._css = renderCss(this._props.className, this._props.key, this.properties);
+    }
 }
 
-const renderCss = (className: string, key: string, properties: CssClassProperty[]): string => {
+const renderCss = (className: string, key: string, properties: CssCollection<string, CssClassProperty>): string => {
     const css: string[] = [];
 
     const clsName = classString(key, className);
 
-    properties.forEach((prop) => {
-        css.push(prop.css);
+    properties.forEach((key: string, value: CssClassProperty) => {
+        css.push(value.css);
     });
 
     return classStringTemplate(clsName, css.join(""));

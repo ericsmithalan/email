@@ -1,4 +1,4 @@
-import { CssDirtyStyles, CssClassNames, CssDirtyValue, CssValue, CssTarget, CssPseudo } from "./types";
+import { CssDirtyStyles, CssClassNames, CssDirtyValue, CssValue, CssTarget, CssPseudo, CssAttribute } from "./types";
 import { decamelize } from "./utils/camelize";
 import { CssTargetKind } from "./enums/CssTarget";
 import { CssValidValueKind } from "./enums/CssValidValue";
@@ -7,19 +7,22 @@ import { CssTheme } from "./CssTheme";
 import { CssClass } from "./CssClass";
 import { CssClassProperty } from "./CssClassProperty";
 import { CssPseudoKind } from "./enums/CssPseudos";
-
-export interface IStyle {
-    value: string;
-}
+import { Set } from "typescript-collections";
+import { CssCollection } from "./utils/CssCollection";
+import { CssAttributesKind } from "./enums/CssAttributes";
+import { CssClassCollection } from "./utils/CssClassCollection";
+import { CssPropertyCollection } from "./utils/CssPropertyCollection";
 
 export type ParseArgs = {
     value: CssDirtyStyles;
     target: CssTarget;
-    classes: CssClass[];
+    classes: CssCollection<string, CssClass>;
+    classes2: CssClassCollection;
     theme: CssTheme;
     classKey?: string | undefined;
     propertyKey?: string | undefined;
     pseudo?: CssPseudo | undefined;
+    properties: CssPropertyCollection;
 };
 
 export class CssFragment {
@@ -27,7 +30,9 @@ export class CssFragment {
         private readonly _dirtyStyles: CssDirtyStyles,
         private readonly _theme: CssTheme,
         public readonly classNames: CssClassNames = {},
-        public readonly styles: CssClass[] = [],
+        public readonly styles = new CssCollection<string, CssClass>(),
+        public readonly styles2 = new CssClassCollection(),
+        public readonly properties = new CssPropertyCollection(),
     ) {
         this._init();
     }
@@ -38,6 +43,8 @@ export class CssFragment {
             target: "@global",
             theme: this._theme,
             classes: this.styles,
+            classes2: this.styles2,
+            properties: this.properties,
         };
 
         for (const key of Object.keys(this._dirtyStyles)) {
@@ -48,6 +55,9 @@ export class CssFragment {
         }
 
         parseCss(parseArgs);
+
+        console.log("styles", this.styles2);
+        console.log("properties", this.properties);
     }
 
     // matches unhashed id with hashed id
@@ -56,8 +66,8 @@ export class CssFragment {
     };
 }
 
-const parseCss = (args: ParseArgs): CssClassProperty[] => {
-    const properties: CssClassProperty[] = [];
+const parseCss = (args: ParseArgs): CssCollection<string, CssClassProperty> => {
+    const properties = new CssCollection<string, CssClassProperty>();
 
     for (const key in args.value) {
         if (args.value.hasOwnProperty(key)) {
@@ -65,12 +75,21 @@ const parseCss = (args: ParseArgs): CssClassProperty[] => {
             let calculated = calculate(value, args.theme);
 
             if (typeof calculated in CssValidValueKind) {
-                const newArgs: ParseArgs = updateArgs(args, {
-                    value: calculated as CssValue,
-                    propertyKey: key,
-                });
+                if (key in CssAttributesKind) {
+                    const attrKey = key;
 
-                properties.push(createProperty(newArgs));
+                    const newArgs: ParseArgs = updateArgs(args, {
+                        value: calculated as CssValue,
+                        propertyKey: attrKey,
+                    });
+
+                    const property = createProperty(newArgs);
+
+                    properties.add(attrKey, property);
+                    args.properties.add(property.className, property);
+                } else {
+                    console.error(`${key} is not a CssAttribute`);
+                }
 
                 continue;
             }
@@ -81,7 +100,10 @@ const parseCss = (args: ParseArgs): CssClassProperty[] => {
                     target: key as CssTarget,
                 });
 
-                args.classes.push(createClass(key, newArgs));
+                args.classes.add(key, createClass(key, newArgs));
+
+                const cls = createClass(key, newArgs);
+                args.classes2.add(key as CssTarget, cls);
 
                 continue;
             }
@@ -92,7 +114,10 @@ const parseCss = (args: ParseArgs): CssClassProperty[] => {
                     pseudo: key as CssPseudo,
                 });
 
-                args.classes.push(createClass(key, newArgs));
+                args.classes.add(key, createClass(key, newArgs));
+
+                const cls = createClass(key, newArgs);
+                args.classes2.add(cls.target, cls);
 
                 continue;
             }
@@ -103,7 +128,10 @@ const parseCss = (args: ParseArgs): CssClassProperty[] => {
                     classKey: key,
                 });
 
-                args.classes.push(createClass(key, newArgs));
+                args.classes.add(key, createClass(key, newArgs));
+
+                const cls = createClass(key, newArgs);
+                args.classes2.add(cls.target, cls);
 
                 continue;
             }

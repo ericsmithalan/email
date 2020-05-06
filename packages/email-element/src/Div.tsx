@@ -7,7 +7,7 @@ export interface IDivElement extends React.HTMLProps<HTMLDivElement> {}
 const styles = css({
     ascDiv: {
         ...commonFonts,
-        fontSize: 13,
+        fontSize: 15,
     },
 });
 

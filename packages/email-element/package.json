@@ -9,8 +9,8 @@
         "clean": "rimraf ./cjs ./esm",
         "prebuild": "yarn clean",
         "build": "yarn build:cjs && yarn build:esm",
-        "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
-        "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
+        "build:cjs": "tsc-watch  -p tsconfig.build.json --module commonjs --outDir cjs",
+        "build:esm": "tsc-watch  -p tsconfig.build.json --module esnext --outDir esm",
         "prepack": "yarn build"
     },
     "files": [
@@ -22,12 +22,14 @@
         "react": ">=16"
     },
     "dependencies": {
-        "@email/css": "^1.0.0"
+        "@email/css": "^1.0.0",
+        "tsc-watch": "^4.2.3"
     },
     "publishConfig": {
         "access": "public"
     },
     "devDependencies": {
-        "fork-ts-checker-webpack-plugin": "^4.1.3"
+        "fork-ts-checker-webpack-plugin": "^4.1.3",
+        "tsc-watch": "^4.2.3"
     }
 }

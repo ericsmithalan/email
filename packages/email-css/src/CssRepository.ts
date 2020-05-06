@@ -1,53 +1,44 @@
-import { Dictionary } from "typescript-collections";
+import { Dictionary, Set } from "typescript-collections";
 import { CSSProperties } from "react";
 import { CssClass } from "./CssClass";
-import { CssTarget } from "./types";
+import { CssTarget, CssAttribute, CssValue } from "./types";
 import { camelize } from "./utils/camelize";
-
-interface CssResource {
-    index: number;
-    target: CssTarget;
-    className: string;
-    css: string;
-}
-
-interface CssResource2 {
-    target: string;
-    className: string;
-    css: string[];
-}
+import { CssCollection } from "./utils/CssCollection";
+import { CssClassCollection } from "./utils/CssClassCollection";
+import { CssPropertyCollection } from "./utils/CssPropertyCollection";
 
 export class CssRepository {
-    public sheets: CssResource2[] = [];
-    public readonly stylesheets: CssResource[] = [];
+    public readonly classes2 = new CssClassCollection();
+    public readonly properties = new CssPropertyCollection();
+    public readonly classes = new CssCollection<string, CssClass>();
 
-    public readonly classes = new Dictionary<string, CssClass>();
-
-    public add = (cssClasses: CssClass[] | undefined): void => {
+    public add = (cssClasses: CssCollection<string, CssClass> | undefined): void => {
         if (cssClasses) {
-            cssClasses.forEach((cssClass) => {
-                this.classes.setValue(cssClass.id, cssClass);
+            cssClasses.forEach((key: string, value: CssClass) => {
+                this.classes.add(key, value);
             });
         }
     };
 
-    public updateStyle = (className: string | undefined, styles: CSSProperties) => {
+    public updateStyle = (className: string | undefined, styles: CssCollection<string, CssValue>) => {
         if (className) {
-            const item = this.classes.values().find((item) => item.className === camelize(className));
+            const item: CssClass = this.classes.findIn("className", camelize(className)) as CssClass;
 
-            if (item) {
-                item.updateProperties(styles);
-            }
+            // if (item) {
+            //     item.updateProperties(styles);
+            // }
         }
     };
 
-    public getInlinableStyles = (className: string): CSSProperties => {
-        let props = {};
+    public getInlinableStyles = (className: string): CssCollection<string, CssValue> => {
+        let props = new CssCollection<string, CssValue>();
         if (className) {
-            const item = this.classes.values().find((item) => item.className === camelize(className));
+            const item = this.classes.findIn("className", camelize(className)) as CssClass;
 
             if (item) {
-                props = item.getCssProperties();
+                item.getCssProperties().forEach((key: string, value: CssValue) => {
+                    props.add(key as string, value);
+                });
             }
         }
 
@@ -57,7 +48,7 @@ export class CssRepository {
     public stylesheet = (type: CssTarget): string => {
         const css: string[] = [];
 
-        this.classes.forEach((key, cssClass) => {
+        this.classes.forEach((cssClass) => {
             if (cssClass.target === type) {
                 css.push(cssClass.css);
             }

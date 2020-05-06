@@ -9,8 +9,8 @@
         "clean": "rimraf ./cjs ./esm",
         "prebuild": "yarn clean",
         "build": "yarn build:cjs && yarn build:esm",
-        "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
-        "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
+        "build:cjs": "tsc-watch -p tsconfig.build.json --module commonjs --outDir cjs",
+        "build:esm": "tsc-watch -p tsconfig.build.json --module esnext --outDir esm",
         "test": "mocha \"test/**/*.spec.ts?(x)\"",
         "prepack": "yarn build"
     },
@@ -27,8 +27,5 @@
     },
     "publishConfig": {
         "access": "public"
-    },
-    "devDependencies": {
-        "fork-ts-checker-webpack-plugin": "^4.1.3"
     }
 }
