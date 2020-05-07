@@ -12,9 +12,5 @@ export type CssContextProperties = {
     theme: CssTheme;
 };
 
-export const useCssContext = () => {
-    return React.useContext(CssStyleContext);
-};
-
 export const CssStyleContext = React.createContext<CssContextProperties>(defaultStyleContext);
 export const CssStyleProvider = CssStyleContext.Provider;
