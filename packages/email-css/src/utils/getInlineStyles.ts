@@ -1,4 +1,4 @@
-import { CssGenericCollection } from "../CssGenericCollection";
+import { CssGenericCollection } from "../collections/CssGenericCollection";
 import { CssRepository } from "../CssRepository";
 import { CssPropertyDefinition } from "../types";
 

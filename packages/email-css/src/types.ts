@@ -1,11 +1,11 @@
 import CSS from "csstype";
-import { CssPseudoKind } from "./CssPseudoKind";
-import { CssValidValueKind } from "./CssValidValueKind";
-import { CssTargetKind } from "./CssTargetKind";
-import { CssTheme } from "./CssTheme";
-import { CssAttributesKind } from "./CssAttributesKind";
-import { CssPropertyCollection } from "./CssPropertyCollection";
-import { CssGenericCollection } from "./CssGenericCollection";
+import { CssPseudoKind } from "./enums/CssPseudoKind";
+import { CssValidValueKind } from "./enums/CssValidValueKind";
+import { CssTargetKind } from "./enums/CssTargetKind";
+import { CssTheme } from "./theme/CssTheme";
+import { CssAttributesKind } from "./enums/CssAttributesKind";
+import { CssPropertyCollection } from "./collections/CssPropertyCollection";
+import { CssGenericCollection } from "./collections/CssGenericCollection";
 
 export type CssUnit = "px" | undefined;
 

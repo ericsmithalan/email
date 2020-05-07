@@ -1,4 +1,4 @@
-import { CallbackFn, ClassCollectionTuple, Collectable } from "./types";
+import { CallbackFn, ClassCollectionTuple, Collectable } from "../types";
 import _ from "underscore";
 
 export class CssGenericCollection<K extends string, T extends Collectable> {

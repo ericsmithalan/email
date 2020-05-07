@@ -1,4 +1,4 @@
-import { CssPropertyCollection } from "../CssPropertyCollection";
+import { CssPropertyCollection } from "../collections/CssPropertyCollection";
 import { CssValue, CssClassDefinition } from "../types";
 
 const getCssProperties = (cssClass: CssClassDefinition): CssPropertyCollection => {

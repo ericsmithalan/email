@@ -8,17 +8,17 @@ import {
     PropertyCollection,
 } from "./types";
 import { decamelize } from "./utils/camelize";
-import { CssTargetKind } from "./CssTargetKind";
-import { CssValidValueKind } from "./CssValidValueKind";
+import { CssTargetKind } from "./enums/CssTargetKind";
+import { CssValidValueKind } from "./enums/CssValidValueKind";
 import _ from "underscore";
-import { CssTheme } from "./CssTheme";
-import { CssPseudoKind } from "./CssPseudoKind";
-import { CssClassCollection } from "./CssClassCollection";
-import { CssPropertyCollection } from "./CssPropertyCollection";
+import { CssTheme } from "./theme/CssTheme";
+import { CssPseudoKind } from "./enums/CssPseudoKind";
+import { CssClassCollection } from "./collections/CssClassCollection";
+import { CssPropertyCollection } from "./collections/CssPropertyCollection";
 import { createClass, createProperty } from "./utils/create";
 import { calculateValue } from "./utils/calculateValue";
 import { guardHasKey } from "./utils/typeGuards";
-import { CssGenericCollection } from "./CssGenericCollection";
+import { CssGenericCollection } from "./collections/CssGenericCollection";
 
 export class CssFragment {
     public readonly classList = new CssClassCollection();
@@ -39,6 +39,10 @@ export class CssFragment {
             },
             this.classList,
         );
+
+        if (this.classList.count() > 0) {
+            console.log(this.classList);
+        }
     }
 }
 
@@ -111,7 +115,7 @@ const parseCss = (
 
 const buildCssProperty = (args: Partial<CssParseArgs>, properties: PropertyCollection) => {
     const property = createProperty(args);
-    console.log(property);
+
     properties.add(property.className, property);
 };
 

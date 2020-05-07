@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
-import { CssGenericCollection } from "../CssGenericCollection";
+import { CssGenericCollection } from "../collections/CssGenericCollection";
 import { CssPropertyDefinition } from "../types";
-import { CssStyleablePropertiesKind } from "../CssStyleableProperties";
+import { CssStyleablePropertiesKind } from "../enums/CssStyleablePropertiesKind";
 
 export const getStyleableProps = (
     props: CSSProperties | undefined,

@@ -4,13 +4,13 @@ import {
     CallbackFn,
     CssPropertyDefinition,
     PropertyCollection,
-} from "./types";
+} from "../types";
 import _ from "underscore";
 import { CssGenericCollection } from "./CssGenericCollection";
-import { camelize } from "./utils/camelize";
-import { CssValue, CssUnit } from "./types";
-import { decamelize } from "./utils/camelize";
-import { CssValidValueKind } from "./CssValidValueKind";
+import { camelize } from "../utils/camelize";
+import { CssValue, CssUnit } from "../types";
+import { decamelize } from "../utils/camelize";
+import { CssValidValueKind } from "../enums/CssValidValueKind";
 import {
     guardClassName,
     guardAttributeName,
@@ -18,7 +18,7 @@ import {
     guardValue,
     guardTarget,
     guardPropertyDefinition,
-} from "./utils/typeGuards";
+} from "../utils/typeGuards";
 
 export class CssPropertyCollection {
     private _ids = new Map<string, string>();

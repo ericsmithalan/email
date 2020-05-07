@@ -1,9 +1,9 @@
 import React, { CSSProperties } from "react";
 import { CssFragment } from "./CssFragment";
-import { useCssContext } from "./CssContext";
+import { useCssContext } from "./context/CssContext";
 import { CssRepository } from "./CssRepository";
-import { CssStyleablePropertiesKind } from "./CssStyleableProperties";
-import { CssGenericCollection } from "./CssGenericCollection";
+import { CssStyleablePropertiesKind } from "./enums/CssStyleablePropertiesKind";
+import { CssGenericCollection } from "./collections/CssGenericCollection";
 import { CssValue } from "./types";
 import { getStyleableProps } from "./utils/getStyleableProps";
 import { getInlineStyles } from "./utils/getInlineStyles";

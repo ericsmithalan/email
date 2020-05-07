@@ -1,4 +1,4 @@
-import { defaultTheme, CssTheme } from "./CssTheme";
+import { defaultTheme, CssTheme } from "./theme/CssTheme";
 import { CssDirtyStyles } from "./types";
 import { CssFragment } from "./CssFragment";
 

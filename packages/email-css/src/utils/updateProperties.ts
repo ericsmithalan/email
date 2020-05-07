@@ -1,6 +1,6 @@
-import { CssPropertyCollection } from "../CssPropertyCollection";
+import { CssPropertyCollection } from "../collections/CssPropertyCollection";
 import { CssValue } from "../types";
-import { CssAttributesKind } from "../CssAttributesKind";
+import { CssAttributesKind } from "../enums/CssAttributesKind";
 import { renderCssClass } from "./htmlStrings";
 
 const updateProperties = (values: CssPropertyCollection) => {

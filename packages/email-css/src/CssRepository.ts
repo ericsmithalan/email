@@ -6,9 +6,9 @@ import {
     PropertyCollection,
 } from "./types";
 import { camelize } from "./utils/camelize";
-import { CssGenericCollection } from "./CssGenericCollection";
-import { CssClassCollection } from "./CssClassCollection";
-import { CssPropertyCollection } from "./CssPropertyCollection";
+import { CssGenericCollection } from "./collections/CssGenericCollection";
+import { CssClassCollection } from "./collections/CssClassCollection";
+import { CssPropertyCollection } from "./collections/CssPropertyCollection";
 import { getCssProperties } from "./utils/getCssProperties";
 import {
     guardClassName,

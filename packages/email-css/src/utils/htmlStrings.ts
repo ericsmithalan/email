@@ -1,5 +1,5 @@
-import { CssPropertyCollection } from "../CssPropertyCollection";
-import { CssPseudoKind } from "../CssPseudoKind";
+import { CssPropertyCollection } from "../collections/CssPropertyCollection";
+import { CssPseudoKind } from "../enums/CssPseudoKind";
 import { decamelize } from "./camelize";
 import { CssPropertyDefinition } from "../types";
 

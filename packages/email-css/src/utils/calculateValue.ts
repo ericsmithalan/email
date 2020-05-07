@@ -1,5 +1,5 @@
 import { CssDirtyValue, CssValue } from "../types";
-import { CssTheme } from "../CssTheme";
+import { CssTheme } from "../theme/CssTheme";
 import _ from "underscore";
 
 export const calculateValue = (

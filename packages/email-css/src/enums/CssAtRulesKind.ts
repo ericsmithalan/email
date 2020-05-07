@@ -1,4 +1,4 @@
-import { strEnum } from "./utils/strEnum";
+import { strEnum } from "../utils/strEnum";
 
 export const CssAtRulesKind = strEnum([
     "@charset",

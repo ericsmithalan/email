@@ -6,7 +6,7 @@ import {
     PropertyCollection,
 } from "../types";
 import { stringHashId } from "./stringHashId";
-import { CssPropertyCollection } from "../CssPropertyCollection";
+import { CssPropertyCollection } from "../collections/CssPropertyCollection";
 import {
     guardAttributeName,
     guardValue,

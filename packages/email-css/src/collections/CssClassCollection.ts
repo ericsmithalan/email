@@ -4,10 +4,10 @@ import {
     CallbackFn,
     CssClassDefinition,
     CssTarget,
-} from "./types";
+} from "../types";
 import _ from "underscore";
 import { CssGenericCollection } from "./CssGenericCollection";
-import { guardTarget, guardValue, guardCssClass, guardClassCollection } from "./utils/typeGuards";
+import { guardTarget, guardValue, guardCssClass, guardClassCollection } from "../utils/typeGuards";
 
 export class CssClassCollection {
     private _ids = new Map<string, string>();
