@@ -11,11 +11,17 @@ import { camelize } from "./utils/camelize";
 import { CssValue, CssUnit } from "./types";
 import { decamelize } from "./utils/camelize";
 import { CssValidValueKind } from "./CssValidValueKind";
+import { guardClassName, guardAttributeName, guardPseudo, guardValue } from "./utils/typeGuards";
 
 export class CssPropertyCollection {
-    private _items: ClassCollectionTuple<string, CssPropertyDefinition>[] = [];
+    // @ts-ignore
+    private _items: ClassCollectionTuple<string, CssPropertyDefinition> = {};
 
     add(className: string, property: CssPropertyDefinition): void {
+        guardClassName(className);
+        guardAttributeName(property.key);
+        guardValue(property.value);
+
         const camelizedName = camelize(className);
         const collection = this.getPropertyCollection(camelizedName);
 
@@ -117,46 +123,3 @@ const ensureUnit = (value: CssValue, unit: string): string => {
 
     return newValue;
 };
-//[Symbol.toStringTag]: string;
-// clear(): void {}
-
-//     delete(key1: CssTarget): boolean {}
-
-//     forEach(
-//         callbackfn: (
-//             value: CssCollection<string, CssClass>,
-//             key: CssTarget,
-//             map: Map<CssTarget, CssCollection<string, CssClass>>,
-//         ) => void,
-//         thisArg?: any,
-//     ): void {}
-
-//     get(key: "@global" | "@tablet" | "@phone"): CssCollection<string, CssClass> {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     has(key: "@global" | "@tablet" | "@phone"): boolean {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     set(key: "@global" | "@tablet" | "@phone", value: CssCollection<string, CssClass>): this {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     size: number;
-
-//     [Symbol.iterator](): IterableIterator<["@global" | "@tablet" | "@phone", CssCollection<string, CssClass>]> {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     entries(): IterableIterator<["@global" | "@tablet" | "@phone", CssCollection<string, CssClass>]> {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     keys(): IterableIterator<"@global" | "@tablet" | "@phone"> {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     values(): IterableIterator<CssCollection<string, CssClass>> {
-//         throw new Error("Method not implemented.");
-//     }

@@ -1,174 +1,131 @@
-import {
-    CssDirtyStyles,
-    CssPropertyDefinition,
-    CssClassNames,
-    CssDirtyValue,
-    CssValue,
-    CssTarget,
-    CssPseudo,
-    CssClassDefinition,
-} from "./types";
+import { CssDirtyStyles, CssClassNames, CssTarget, CssPseudo, CssParseArgs } from "./types";
 import { decamelize } from "./utils/camelize";
 import { CssTargetKind } from "./CssTargetKind";
 import { CssValidValueKind } from "./CssValidValueKind";
 import _ from "underscore";
 import { CssTheme } from "./CssTheme";
 import { CssPseudoKind } from "./CssPseudoKind";
-import { CssAttributesKind } from "./CssAttributesKind";
 import { CssClassCollection } from "./CssClassCollection";
 import { CssPropertyCollection } from "./CssPropertyCollection";
-
-export type ParseArgs = {
-    value: CssDirtyStyles;
-    target: CssTarget;
-    theme: CssTheme;
-    classKey?: string | undefined;
-    propertyKey?: string | undefined;
-    pseudo?: CssPseudo | undefined;
-};
+import { createClass, createProperty } from "./utils/create";
+import { calculateValue } from "./utils/calculateValue";
+import { guardHasKey } from "./utils/typeGuards";
 
 export class CssFragment {
-    constructor(
-        private readonly _dirtyStyles: CssDirtyStyles,
-        private readonly _theme: CssTheme,
-        public readonly classList = new CssClassCollection(),
-        public readonly propertyList = new CssPropertyCollection(),
-        public readonly classNames: CssClassNames = {},
-    ) {
+    public readonly classList = new CssClassCollection();
+    public readonly propertyList = new CssPropertyCollection();
+    public readonly classNames: CssClassNames = {};
+
+    constructor(private readonly _dirtyStyles: CssDirtyStyles, private readonly _theme: CssTheme) {
         for (const key of Object.keys(this._dirtyStyles)) {
             const cssClassName = decamelize(`${key}`);
             this.classNames[key] = cssClassName;
         }
-
         parseCss(
             {
                 value: this._dirtyStyles,
                 target: "@global",
                 theme: this._theme,
+                pseudo: "none",
             },
             this.classList,
         );
     }
 }
 
-const parseCss = (args: ParseArgs, classList: CssClassCollection): CssPropertyCollection => {
+const parseCss = (
+    args: Partial<CssParseArgs>,
+    classList: CssClassCollection,
+): CssPropertyCollection => {
     const properties = new CssPropertyCollection();
 
     for (const key in args.value) {
-        if (args.value.hasOwnProperty(key)) {
-            let value = args.value[key] as CssDirtyValue;
-            let calculated = calculate(value, args.theme);
+        guardHasKey(args.value, key);
 
-            if (typeof calculated in CssValidValueKind) {
-                if (key in CssAttributesKind) {
-                    const attrKey = key;
+        let value = args.value[key];
+        let calculated = calculateValue(value, args.theme);
 
-                    const newArgs: ParseArgs = updateArgs(args, {
-                        value: calculated as CssValue,
-                        propertyKey: attrKey,
-                    });
+        if (typeof calculated in CssValidValueKind) {
+            const attrKey = key;
 
-                    const property = createProperty(newArgs);
+            const newArgs: Partial<CssParseArgs> = updateArgs(args, {
+                value: calculated,
+                propertyKey: attrKey,
+            });
 
-                    properties.add(property.className, property);
-                } else {
-                    console.error(`${key} is not a CssAttribute`);
-                }
+            const property = createProperty(newArgs);
 
-                continue;
-            }
+            properties.add(property.className, property);
 
-            if (key in CssTargetKind) {
-                const newArgs: ParseArgs = updateArgs(args, {
+            // updateArgs(args, {
+            //     value: args.value,
+            //     target: "@global",
+            //     theme: args.theme,
+            //     pseudo: "none",
+            //     classKey: args.classKey,
+            //     propertyKey: args.propertyKey,
+            // });
+
+            continue;
+        }
+
+        if (key in CssTargetKind) {
+            buildCssClass<CssTarget>(
+                updateArgs(args, {
                     value: calculated,
-                    target: key as CssTarget,
-                });
+                    target: CssTargetKind[key],
+                }),
+                key as CssTarget,
+                classList,
+            );
 
-                const props: CssPropertyCollection = parseCss(newArgs, classList);
+            continue;
+        }
 
-                const cls = createClass(key, newArgs, props);
-                classList.add(key as CssTarget, cls);
-
-                continue;
-            }
-
-            if (key in CssPseudoKind) {
-                const newArgs: ParseArgs = updateArgs(args, {
+        if (key in CssPseudoKind) {
+            buildCssClass<CssPseudo>(
+                updateArgs(args, {
                     value: calculated,
-                    pseudo: key as CssPseudo,
-                });
+                    pseudo: CssPseudoKind[key],
+                }),
+                key as CssPseudo,
+                classList,
+            );
 
-                const props: CssPropertyCollection = parseCss(newArgs, classList);
-                const cls = createClass(key, newArgs, props);
-                classList.add(cls.target, cls);
+            continue;
+        }
 
-                continue;
-            }
-
-            if (_.isObject(calculated)) {
-                const newArgs: ParseArgs = updateArgs(args, {
+        if (_.isObject(calculated)) {
+            buildCssClass<string>(
+                updateArgs(args, {
                     value: calculated,
                     classKey: key,
-                });
+                }),
+                key,
+                classList,
+            );
 
-                const props: CssPropertyCollection = parseCss(newArgs, classList);
-                const cls = createClass(key, newArgs, props);
-                classList.add(cls.target, cls);
-
-                continue;
-            }
+            continue;
         }
     }
 
     return properties;
 };
 
-const createClass = (
-    key: string,
-    args: ParseArgs,
-    properties: CssPropertyCollection,
-): CssClassDefinition => {
-    return {
-        key: key,
-        target: args.target,
-        isPseudo: args.pseudo != undefined,
-        className: args.classKey || "",
-        properties: properties,
-        css: "",
-    };
+const buildCssClass = <T extends CssTarget | CssPseudo | string>(
+    args: Partial<CssParseArgs>,
+    key: T,
+    classList: CssClassCollection,
+) => {
+    const props: CssPropertyCollection = parseCss(args, classList);
+
+    const cls = createClass(key, args, props);
+    classList.add(cls.target, cls);
 };
 
-export const createProperty = (args: ParseArgs): CssPropertyDefinition => {
-    return {
-        key: args.propertyKey || "",
-        className: args.classKey,
-        name: args.propertyKey || "",
-        value: args.value as CssValue,
-        css: "",
-    };
-};
-
-const updateArgs = (oldArgs: ParseArgs, newArgs: Partial<ParseArgs>): ParseArgs => {
+const updateArgs = (
+    oldArgs: Partial<CssParseArgs>,
+    newArgs: Partial<CssParseArgs>,
+): Partial<CssParseArgs> => {
     return Object.assign({}, oldArgs, newArgs);
-};
-
-export const calculate = (value: CssDirtyValue, theme: CssTheme): CssDirtyValue | CssValue => {
-    let calculated = value;
-
-    if (_.isArray(calculated)) {
-        const arrayValue = calculated as string[];
-        if (arrayValue.length <= 2) {
-            calculated = arrayValue.join("!") as CssDirtyValue;
-        }
-        if (arrayValue.length > 2) {
-            calculated = arrayValue.join(",") as CssDirtyValue;
-        }
-    }
-
-    if (_.isFunction(calculated)) {
-        const fn = value as Function;
-        calculated = fn(theme);
-    }
-
-    return calculated;
 };

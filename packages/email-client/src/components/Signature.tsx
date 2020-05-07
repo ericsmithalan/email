@@ -8,6 +8,7 @@ const styles = css({
     signature: {
         backgroundColor: "red",
         fontWeight: "bold",
+
         fontSize: 30,
         ":hover": {
             backgroundColor: "blue",

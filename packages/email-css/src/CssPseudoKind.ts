@@ -27,4 +27,5 @@ export const CssPseudoKind = strEnum([
     ":scope",
     ":target",
     ":visited",
+    "none",
 ]);

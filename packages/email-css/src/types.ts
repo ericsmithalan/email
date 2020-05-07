@@ -19,7 +19,7 @@ export type CssAttribute = keyof typeof CssAttributesKind;
 
 export type Fn<R = CssValue> = (theme: CssTheme) => R;
 
-export type CssDirtyValue = CssValue | Fn | string[] | number[] | Function;
+export type CssDirtyValue = CssValue | Fn | string[] | number[] | Function | string;
 
 export interface CssDirtyProperty<T extends CSS.Properties<T> | CssPseudo> {}
 
@@ -31,26 +31,35 @@ export type CssClassNames = {
     [key: string]: string;
 };
 
-export type CssPropertyDefinition = {
+export interface CssPropertyDefinition extends Collectable {
     key: string;
-    className: string | undefined;
+    className: string;
     name: string;
     value: CssValue;
     css: string;
+}
+
+export type CssParseArgs = {
+    value: CssDirtyStyles;
+    target: CssTarget;
+    theme: CssTheme;
+    classKey: string;
+    propertyKey: string;
+    pseudo: CssPseudo;
 };
 
-export type CssClassDefinition = {
+export interface CssClassDefinition extends Collectable {
     key: string;
     className: string;
     target: CssTarget;
     css: string;
-    isPseudo: boolean;
+    psuedo: CssPseudo;
     properties: CssPropertyCollection;
-};
+}
 
 export type ClassCollection = CssCollection<string, CssClassDefinition>;
 
-export type GenericCollection<T> = CssCollection<string, T>;
+export type GenericCollection<T extends Collectable> = CssCollection<string, T>;
 
 export type PropertyCollection = CssCollection<string, CssPropertyDefinition>;
 

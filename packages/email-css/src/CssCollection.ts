@@ -1,10 +1,8 @@
-import CSS from "csstype";
-import { CallbackFn, ClassCollectionTuple } from "./types";
-import { CssAttributesKind } from "./CssAttributesKind";
-import { stringHashId } from "./utils/stringHashId";
+import { CallbackFn, ClassCollectionTuple, Collectable } from "./types";
 import _ from "underscore";
 
-export class CssCollection<K extends string, T> {
+export class CssCollection<K extends string, T extends Collectable> {
+    // @ts-ignore
     private _items: ClassCollectionTuple<K, T> = {};
     private _id = "";
 
@@ -21,7 +19,7 @@ export class CssCollection<K extends string, T> {
     public add(key: K, value: T) {
         if (!this.items.hasOwnProperty(key)) {
             this._count++;
-            this._items[key] = value;
+            this._items[value.id] = value;
         } else {
             console.warn(`CssCollection > Add > ${key}/${value} already added`);
         }
@@ -90,15 +88,15 @@ export class CssCollection<K extends string, T> {
         }
     }
 
-    public remove(key: K): T {
-        var val = this.items[key];
-        delete this._items[key];
+    public remove(id: string): T {
+        var val = this.items[id];
+        delete this._items[id];
         this._count--;
         return val;
     }
 
-    public get(key: K): T {
-        return this._items[key];
+    public get(id: string): T {
+        return this._items[id];
     }
 
     public keys(): K[] {
@@ -120,9 +118,9 @@ export class CssCollection<K extends string, T> {
     public values(): T[] {
         var values: T[] = [];
 
-        for (const prop in this._items) {
-            if (this._items.hasOwnProperty(prop)) {
-                values.push(this._items[prop]);
+        for (const key in this._items) {
+            if (this._items.hasOwnProperty(key)) {
+                values.push(this._items[key]);
             }
         }
 

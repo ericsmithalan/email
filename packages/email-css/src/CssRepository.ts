@@ -3,6 +3,7 @@ import { camelize } from "./utils/camelize";
 import { CssCollection } from "./CssCollection";
 import { CssClassCollection } from "./CssClassCollection";
 import { CssPropertyCollection } from "./CssPropertyCollection";
+import { getCssProperties } from "./utils/getCssProperties";
 
 export class CssRepository {
     public readonly properties = new CssPropertyCollection();
@@ -14,6 +15,8 @@ export class CssRepository {
                 this.classes.add(key, value);
             });
         }
+
+        console.log(this.classes, this.properties);
     };
 
     public addProperties = (properties: CssPropertyCollection | undefined): void => {
@@ -24,7 +27,10 @@ export class CssRepository {
         }
     };
 
-    public updateStyle = (className: string | undefined, styles: CssCollection<string, CssValue>) => {
+    public updateStyle = (
+        className: string | undefined,
+        styles: CssCollection<string, CssValue>,
+    ) => {
         if (className) {
             const item: CssClassDefinition = this.classes.findIn(
                 "className",
@@ -40,11 +46,14 @@ export class CssRepository {
     public getInlinableStyles = (className: string): CssPropertyCollection => {
         let props = new CssPropertyCollection();
         if (className) {
-            const item = this.classes.findIn("className", camelize(className)) as CssClassDefinition;
+            const item = this.classes.findIn(
+                "className",
+                camelize(className),
+            ) as CssClassDefinition;
 
             if (item) {
-                item.getCssProperties().forEach((key: string, value: CssPropertyDefinition) => {
-                    props.add(key as string, value);
+                getCssProperties(item).forEach((key: string, value: CssPropertyDefinition) => {
+                    props.add(key, value);
                 });
             }
         }

@@ -1,6 +1,4 @@
 import {
-    CssValue,
-    CssPropertyDefinition,
     ClassCollectionTuple,
     ClassCollection,
     CallbackFn,
@@ -10,25 +8,26 @@ import {
 import _ from "underscore";
 import { CssCollection } from "./CssCollection";
 import { camelize } from "./utils/camelize";
-import { decamelize } from "./utils/camelize";
-import { CssPseudoKind } from "./CssPseudoKind";
-import { CssAttributesKind } from "./CssAttributesKind";
-import { CssPropertyCollection } from "./CssPropertyCollection";
+import { guardTarget, guardValue } from "./utils/typeGuards";
 
 export class CssClassCollection {
-    private _items: ClassCollectionTuple<string, CssClassDefinition>[] = [];
+    //@ts-ignore
+    private _items: ClassCollectionTuple<string, CssClassDefinition> = {};
 
     add(target: CssTarget, cssClass: CssClassDefinition): void {
+        guardTarget(target);
+
         const collection = this.getTargetCollection(target);
 
-        if (!collection.containsKey(cssClass.key)) {
-            collection.add(cssClass.key, cssClass);
+        if (!collection.containsKey(cssClass.id)) {
+            collection.add(cssClass.id, cssClass);
         } else {
-            console.warn(`CssClassCollection > add > ${target} ${cssClass.key} already exists`);
+            console.warn(`CssClassCollection > add > ${target} ${cssClass.id} already exists`);
         }
     }
 
     getTargetCollection(target: CssTarget): ClassCollection {
+        guardTarget(target);
         if (this._items[target]) {
             return this._items[target][1];
         } else {
@@ -41,8 +40,12 @@ export class CssClassCollection {
     }
 
     getClass(className: string, target: CssTarget): CssClassDefinition | null {
+        guardTarget(target);
+        guardValue(className);
+
         const camelizedName = camelize(className);
         const collection = this.getTargetCollection(target);
+
         if (collection.containsKey(camelizedName)) {
             collection.get(camelizedName);
         } else {
@@ -76,113 +79,3 @@ export class CssClassCollection {
         }
     }
 }
-
-const getCssProperties = (): CssPropertyCollection => {
-    const properties = new CssPropertyCollection();
-
-    if (!this.isPseudo && this.target === "@global") {
-        this.properties.forEach((key: string, value: CssValue) => {
-            properties[key] = value;
-        });
-    }
-
-    return properties;
-};
-
-//renderCss(this._props.className, this._props.key, this.properties);
-
-const updateProperties = (values: CssPropertyCollection) => {
-    values.forEach((key: string, value: CssValue) => {
-        const attrKey = key;
-
-        if (key in CssAttributesKind) {
-            const property = {
-                key: attrKey,
-                className: this.className,
-                name: attrKey,
-                value: values[attrKey] as CssValue,
-                css: "",
-            };
-
-            this._props.properties.add(attrKey, property);
-        } else {
-            console.error(`CssClassDefinition > updateProperties > ${key} is not a CssAttribute`);
-        }
-    });
-
-    this._css = renderCss(this._props.className, this._props.key, this.properties);
-};
-
-const renderCss = (className: string, key: string, properties: CssPropertyCollection): string => {
-    const css: string[] = [];
-
-    const clsName = classString(key, className);
-
-    properties.forEach((key: string, value: CssPropertyDefinition) => {
-        css.push(value.css);
-    });
-
-    return classStringTemplate(clsName, css.join(""));
-};
-
-const classString = (key: string, className: string): string => {
-    let name = key;
-
-    if (key in CssPseudoKind) {
-        if (className) {
-            name = `${decamelize(className)}${decamelize(key)}`;
-        }
-    } else {
-        name = `${decamelize(className)}`;
-    }
-
-    return name;
-};
-
-const classStringTemplate = (className: string, properties: string): string => {
-    return `.${className}{${properties}}`;
-};
-
-//[Symbol.toStringTag]: string;
-// clear(): void {}
-
-//     delete(key1: CssTarget): boolean {}
-
-//     forEach(
-//         callbackfn: (
-//             value: CssCollection<string, CssClass>,
-//             key: CssTarget,
-//             map: Map<CssTarget, CssCollection<string, CssClass>>,
-//         ) => void,
-//         thisArg?: any,
-//     ): void {}
-
-//     get(key: "@global" | "@tablet" | "@phone"): CssCollection<string, CssClass> {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     has(key: "@global" | "@tablet" | "@phone"): boolean {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     set(key: "@global" | "@tablet" | "@phone", value: CssCollection<string, CssClass>): this {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     size: number;
-
-//     [Symbol.iterator](): IterableIterator<["@global" | "@tablet" | "@phone", CssCollection<string, CssClass>]> {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     entries(): IterableIterator<["@global" | "@tablet" | "@phone", CssCollection<string, CssClass>]> {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     keys(): IterableIterator<"@global" | "@tablet" | "@phone"> {
-//         throw new Error("Method not implemented.");
-//     }
-
-//     values(): IterableIterator<CssCollection<string, CssClass>> {
-//         throw new Error("Method not implemented.");
-//     }
