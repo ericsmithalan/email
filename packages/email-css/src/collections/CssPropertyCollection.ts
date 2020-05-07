@@ -3,10 +3,10 @@ import {
     ClassCollectionTuple,
     CallbackFn,
     CssPropertyDefinition,
-    PropertyCollection,
+    PropertyCollectionType,
 } from "../types";
 import _ from "underscore";
-import { CssGenericCollection } from "./CssGenericCollection";
+import { GenericCollection } from "./GenericCollection";
 import { camelize } from "../utils/camelize";
 import { CssValue, CssUnit } from "../types";
 import { decamelize } from "../utils/camelize";
@@ -21,9 +21,9 @@ import {
 } from "../utils/guards";
 
 export class CssPropertyCollection {
-    private _ids = new Map<string, string>();
+    private _ids = new GenericCollection<string>();
     // @ts-ignore
-    private _items: ClassCollectionTuple<string, PropertyCollection> = {};
+    private _items: ClassCollectionTuple<string, PropertyCollectionType> = {};
     private _count: number = 0;
 
     public count(): number {
@@ -42,9 +42,9 @@ export class CssPropertyCollection {
 
         guardPropertyCollection(collection, "CssPropertyCollection > add");
 
-        if (!collection.containsKey(property.id)) {
+        if (!collection.has(property.id)) {
             this._count++;
-            collection.add(property.id, property);
+            collection.set(property.id, property);
         } else {
             console.warn(
                 `CssPropertyCollection > add > ${className} ${property.id} already exists`,
@@ -52,7 +52,7 @@ export class CssPropertyCollection {
         }
     }
 
-    getPropertyCollection(className: string): PropertyCollection {
+    getPropertyCollection(className: string): PropertyCollectionType {
         guardClassName(className);
 
         const id = this._ids.get(className);
@@ -61,7 +61,7 @@ export class CssPropertyCollection {
             return this._items[id][1];
         } else {
             this._items[id] = {
-                1: new CssGenericCollection<string, CssPropertyDefinition>(),
+                1: new GenericCollection<CssPropertyDefinition>(),
             };
 
             return this._items[id][1];
@@ -76,7 +76,7 @@ export class CssPropertyCollection {
         const collection = this.getPropertyCollection(id);
         guardPropertyCollection(collection, "CssPropertyCollection > getProperty");
 
-        if (collection.containsKey(id)) {
+        if (collection.has(id)) {
             collection.get(id);
         } else {
             console.warn(`CssPropertyCollection > getClass > ${className} was not found`);
@@ -92,10 +92,10 @@ export class CssPropertyCollection {
         guardPropertyCollection(collection, "CssPropertyCollection > update");
 
         //todo: figure out how to place it
-        if (collection.containsKey(property.key)) {
+        if (collection.has(property.key)) {
             const location = collection.getIndex(property.key);
-            collection.remove(property.key);
-            collection.add(property.key, property);
+            collection.delete(property.key);
+            collection.set(property.key, property);
         } else {
             console.warn(`CssPropertyCollection > add > ${target} ${property.key} already exists`);
         }

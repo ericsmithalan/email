@@ -1,12 +1,12 @@
-import { CssGenericCollection } from "../collections/CssGenericCollection";
+import { GenericCollection } from "../collections/GenericCollection";
 import { CssRepository } from "../CssRepository";
 import { CssPropertyDefinition } from "../types";
 
 export const getInlineStyles = (
     className: string | undefined,
     repository: CssRepository,
-): CssGenericCollection<string, CssPropertyDefinition> => {
-    let inlinableStyles = new CssGenericCollection<string, CssPropertyDefinition>();
+): GenericCollection<CssPropertyDefinition> => {
+    let inlinableStyles = new GenericCollection<CssPropertyDefinition>();
     if (className) {
         // repository.getInlinableStyles(className);
         // inlinableStyles.add();

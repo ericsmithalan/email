@@ -5,14 +5,14 @@ import { CssValidValueKind } from "../enums/CssValidValueKind";
 import {
     CssDirtyStyles,
     CssClassDefinition,
-    ClassCollection,
-    PropertyCollection,
+    ClassCollectionType,
+    PropertyCollectionType,
     CssPropertyDefinition,
     Collectable,
 } from "../types";
-import { CssClassCollection } from "../collections/CssClassCollection";
+import { KeyArrayCollection } from "../collections/KeyArrayCollection";
 import { CssPropertyCollection } from "../collections/CssPropertyCollection";
-import { CssGenericCollection } from "../collections/CssGenericCollection";
+import { GenericCollection } from "../collections/GenericCollection";
 
 const isGuardOn = false;
 
@@ -36,7 +36,10 @@ export const guardCssClass = (obj: CssClassDefinition, message: any = "") => {
     }
 };
 
-export const guardCssClassCollection = (obj: CssClassCollection, message: any = "") => {
+export const guardCssClassCollection = <T extends Collectable>(
+    obj: KeyArrayCollection<T>,
+    message: any = "",
+) => {
     if (obj && typeof obj === "object" && obj.count() > 0) {
         return true;
     } else {
@@ -46,8 +49,8 @@ export const guardCssClassCollection = (obj: CssClassCollection, message: any = 
     }
 };
 
-export const guardClassCollection = (obj: ClassCollection, message: any = "") => {
-    if (obj && typeof obj === "object" && obj.count() > 0) {
+export const guardClassCollection = (obj: ClassCollectionType, message: any = "") => {
+    if (obj && typeof obj === "object" && obj.size > 0) {
         return true;
     } else {
         if (isGuardOn) {
@@ -56,11 +59,11 @@ export const guardClassCollection = (obj: ClassCollection, message: any = "") =>
     }
 };
 
-export const guardGenericCollection = <K extends string, T extends Collectable>(
-    obj: CssGenericCollection<K, T>,
+export const guardGenericCollection = <T extends Collectable>(
+    obj: GenericCollection<T>,
     message: any = "",
 ) => {
-    if (obj && typeof obj === "object" && obj.count() > 0) {
+    if (obj && typeof obj === "object" && obj.size > 0) {
         return true;
     } else {
         if (isGuardOn) {
@@ -79,8 +82,8 @@ export const guardPropertyDefinition = (obj: CssPropertyDefinition, message: any
     }
 };
 
-export const guardPropertyCollection = (obj: PropertyCollection, message: any = "") => {
-    if (obj && typeof obj === "object" && obj.count() > 0) {
+export const guardPropertyCollection = (obj: PropertyCollectionType, message: any = "") => {
+    if (obj && typeof obj === "object" && obj.size > 0) {
         return true;
     } else {
         if (isGuardOn) {
@@ -90,7 +93,7 @@ export const guardPropertyCollection = (obj: PropertyCollection, message: any = 
 };
 
 export const guardCssPropertyCollection = (obj: CssPropertyCollection, message: any = "") => {
-    if (obj && typeof obj === "object" && obj.count() > 0) {
+    if (obj && typeof obj === "object") {
         return true;
     } else {
         if (isGuardOn) {

@@ -5,7 +5,7 @@ import { CssTargetKind } from "./enums/CssTargetKind";
 import { CssTheme } from "./theme/CssTheme";
 import { CssAttributesKind } from "./enums/CssAttributesKind";
 import { CssPropertyCollection } from "./collections/CssPropertyCollection";
-import { CssGenericCollection } from "./collections/CssGenericCollection";
+import { GenericCollection } from "./collections/GenericCollection";
 
 export type CssUnit = "px" | undefined;
 
@@ -33,13 +33,25 @@ export type CssClassNames = {
     [key: string]: string;
 };
 
+export interface Collectable {
+    id: string;
+    className: string;
+}
+
 export interface CssPropertyDefinition extends Collectable {
     key: string;
+    classId: string;
     className: string;
     name: string;
     value: CssValue;
     css: string;
+}
+
+export interface CssClassDefinition extends Collectable {
+    key: string;
+    className: string;
     target: CssTarget;
+    css: string;
     psuedo: CssPseudo;
 }
 
@@ -48,24 +60,16 @@ export type CssParseArgs = {
     target: CssTarget;
     theme: CssTheme;
     classKey: string;
+    classId: string;
     propertyKey: string;
     pseudo: CssPseudo;
 };
 
-export interface CssClassDefinition extends Collectable {
-    key: string;
-    className: string;
-    target: CssTarget;
-    css: string;
-    psuedo: CssPseudo;
-    properties: PropertyCollection;
-}
+export type ClassCollectionType = GenericCollection<CssClassDefinition>;
 
-export type ClassCollection = CssGenericCollection<string, CssClassDefinition>;
+export type GenericCollectionType<T extends Collectable> = GenericCollection<T>;
 
-export type GenericCollection<T extends Collectable> = CssGenericCollection<string, T>;
-
-export type PropertyCollection = CssGenericCollection<string, CssPropertyDefinition>;
+export type PropertyCollectionType = GenericCollection<CssPropertyDefinition>;
 
 export interface ClassCollectionTuple<K extends string, T> {
     0: K;
@@ -74,8 +78,4 @@ export interface ClassCollectionTuple<K extends string, T> {
 
 export interface CallbackFn<K extends string, T> {
     (key: K, value: T): T;
-}
-
-export interface Collectable {
-    id: string;
 }

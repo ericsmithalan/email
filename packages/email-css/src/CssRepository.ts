@@ -1,10 +1,11 @@
 import {
     CssTarget,
     CssPropertyDefinition,
-    PropertyCollection,
+    PropertyCollectionType,
+    CssClassDefinition,
 } from "./types";
-import { CssGenericCollection } from "./collections/CssGenericCollection";
-import { CssClassCollection } from "./collections/CssClassCollection";
+import { GenericCollection } from "./collections/GenericCollection";
+import { KeyArrayCollection } from "./collections/KeyArrayCollection";
 import { CssPropertyCollection } from "./collections/CssPropertyCollection";
 import {
     guardClassName,
@@ -14,10 +15,10 @@ import {
 } from "./utils/guards";
 
 export class CssRepository {
-    public readonly properties = new CssPropertyCollection();
-    public readonly classes = new CssClassCollection();
+    public readonly properties = new KeyArrayCollection<CssPropertyDefinition>();
+    public readonly classes = new KeyArrayCollection<CssClassDefinition>();
 
-    public addClasses = (cssClasses: CssClassCollection): void => {
+    public addClasses = (cssClasses: KeyArrayCollection<CssClassDefinition>): void => {
         guardCssClassCollection(cssClasses);
         // cssClasses.forEach((key: string, value: CssClassDefinition) => {
         //     this.classes.add(value.target, value);
@@ -33,7 +34,7 @@ export class CssRepository {
         // }
     };
 
-    public updateStyle = (className: string | undefined, styles: PropertyCollection) => {
+    public updateStyle = (className: string | undefined, styles: PropertyCollectionType) => {
         guardClassName(className);
 
         if (className) {
@@ -47,10 +48,10 @@ export class CssRepository {
         }
     };
 
-    public getInlinableStyles = (className: string): PropertyCollection => {
+    public getInlinableStyles = (className: string): PropertyCollectionType => {
         guardClassName(className);
 
-        let props = new CssGenericCollection<string, CssPropertyDefinition>();
+        let props = new GenericCollection<CssPropertyDefinition>();
         if (className) {
             // const item = this.classes.findIn(
             //     "className",
@@ -71,9 +72,9 @@ export class CssRepository {
 
         const css: string[] = [];
         this.classes.forEach((key, cssClass) => {
-            if (cssClass.target === type) {
-                css.push(cssClass.css);
-            }
+            // if (cssClass.target === type) {
+            //     css.push(cssClass.css);
+            // }
         });
 
         return css.join("");

@@ -1,12 +1,12 @@
 import { CSSProperties } from "react";
-import { CssGenericCollection } from "../collections/CssGenericCollection";
+import { GenericCollection } from "../collections/GenericCollection";
 import { CssPropertyDefinition } from "../types";
 import { CssStyleablePropertiesKind } from "../enums/CssStyleablePropertiesKind";
 
 export const getStyleableProps = (
     props: CSSProperties | undefined,
-): CssGenericCollection<string, CssPropertyDefinition> => {
-    const properties = new CssGenericCollection<string, CssPropertyDefinition>();
+): GenericCollection<CssPropertyDefinition> => {
+    const properties = new GenericCollection<CssPropertyDefinition>();
 
     if (props) {
         for (const key in props) {
