@@ -8,18 +8,26 @@ import {
 import _ from "underscore";
 import { CssCollection } from "./CssCollection";
 import { camelize } from "./utils/camelize";
-import { guardTarget, guardValue } from "./utils/typeGuards";
+import { guardTarget, guardValue, guardCssClass, guardClassCollection } from "./utils/typeGuards";
 
 export class CssClassCollection {
     //@ts-ignore
-    private _items: ClassCollectionTuple<string, CssClassDefinition> = {};
+    private _items: ClassCollectionTuple<string, ClassCollection> = {};
+    private _count: number = 0;
+
+    public count(): number {
+        return this._count;
+    }
 
     add(target: CssTarget, cssClass: CssClassDefinition): void {
         guardTarget(target);
+        guardCssClass(cssClass);
 
         const collection = this.getTargetCollection(target);
+        guardClassCollection(collection);
 
         if (!collection.containsKey(cssClass.id)) {
+            this._count++;
             collection.add(cssClass.id, cssClass);
         } else {
             console.warn(`CssClassCollection > add > ${target} ${cssClass.id} already exists`);
@@ -28,6 +36,7 @@ export class CssClassCollection {
 
     getTargetCollection(target: CssTarget): ClassCollection {
         guardTarget(target);
+
         if (this._items[target]) {
             return this._items[target][1];
         } else {
@@ -45,6 +54,7 @@ export class CssClassCollection {
 
         const camelizedName = camelize(className);
         const collection = this.getTargetCollection(target);
+        guardClassCollection(collection);
 
         if (collection.containsKey(camelizedName)) {
             collection.get(camelizedName);
@@ -55,7 +65,11 @@ export class CssClassCollection {
     }
 
     update(target: CssTarget, cssClass: CssClassDefinition): void {
+        guardTarget(target);
+        guardCssClass(cssClass);
+
         const collection = this.getTargetCollection(target);
+        guardClassCollection(collection);
 
         //todo: figure out how to place it
         if (collection.containsKey(cssClass.key)) {

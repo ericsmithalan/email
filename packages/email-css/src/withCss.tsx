@@ -5,6 +5,8 @@ import { CssRepository } from "./CssRepository";
 import { CssStyleablePropertiesKind } from "./CssStyleableProperties";
 import { CssCollection } from "./CssCollection";
 import { CssValue } from "./types";
+import { getStyleableProps } from "./utils/getStyleableProps";
+import { getInlineStyles } from "./utils/getInlineStyles";
 
 const withCss = (cssFragment: CssFragment) => <P extends object>(
     WrappedComponent: React.ComponentType<React.HTMLProps<P>>,
@@ -45,33 +47,6 @@ const withCss = (cssFragment: CssFragment) => <P extends object>(
     });
 
     return <WrappedComponent {...mergedProps} />;
-};
-
-const getInlineStyles = (className: string | undefined, repository: CssRepository): CssCollection<string, CssValue> => {
-    let inlinableStyles = new CssCollection<string, CssValue>();
-    if (className) {
-        if (className) {
-            // repository.getInlinableStyles(className);
-            // inlinableStyles.add();
-        }
-    }
-    return inlinableStyles;
-};
-
-const getStyleableProps = (props: CSSProperties | undefined): CssCollection<string, CssValue> => {
-    const properties = new CssCollection<string, CssValue>();
-
-    if (props) {
-        for (const key in props) {
-            if (props.hasOwnProperty(key)) {
-                if (key in CssStyleablePropertiesKind) {
-                    properties[key] = props[key];
-                }
-            }
-        }
-    }
-
-    return properties;
 };
 
 export { withCss };

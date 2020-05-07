@@ -1,9 +1,9 @@
 import {
     CssTarget,
     ClassCollectionTuple,
-    PropertyCollection,
     CallbackFn,
     CssPropertyDefinition,
+    PropertyCollection,
 } from "./types";
 import _ from "underscore";
 import { CssCollection } from "./CssCollection";
@@ -11,11 +11,18 @@ import { camelize } from "./utils/camelize";
 import { CssValue, CssUnit } from "./types";
 import { decamelize } from "./utils/camelize";
 import { CssValidValueKind } from "./CssValidValueKind";
-import { guardClassName, guardAttributeName, guardPseudo, guardValue } from "./utils/typeGuards";
+import {
+    guardClassName,
+    guardAttributeName,
+    guardPropertyCollection,
+    guardValue,
+    guardTarget,
+    guardPropertyDefinition,
+} from "./utils/typeGuards";
 
 export class CssPropertyCollection {
     // @ts-ignore
-    private _items: ClassCollectionTuple<string, CssPropertyDefinition> = {};
+    private _items: ClassCollectionTuple<string, PropertyCollection> = {};
 
     add(className: string, property: CssPropertyDefinition): void {
         guardClassName(className);
@@ -24,6 +31,8 @@ export class CssPropertyCollection {
 
         const camelizedName = camelize(className);
         const collection = this.getPropertyCollection(camelizedName);
+
+        guardPropertyCollection(collection);
 
         if (!collection.containsKey(property.key)) {
             collection.add(property.key, property);
@@ -47,8 +56,12 @@ export class CssPropertyCollection {
     }
 
     getProperty(className: string): CssPropertyDefinition | null {
+        guardClassName(className);
+
         const camelizedName = camelize(className);
         const collection = this.getPropertyCollection(className);
+        guardPropertyCollection(collection);
+
         if (collection.containsKey(camelizedName)) {
             collection.get(camelizedName);
         } else {
@@ -58,7 +71,11 @@ export class CssPropertyCollection {
     }
 
     update(target: CssTarget, property: CssPropertyDefinition): void {
+        guardTarget(target);
+        guardPropertyDefinition(property);
+
         const collection = this.getPropertyCollection(target);
+        guardPropertyCollection(collection);
 
         //todo: figure out how to place it
         if (collection.containsKey(property.key)) {
