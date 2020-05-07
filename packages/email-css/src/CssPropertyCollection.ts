@@ -6,7 +6,7 @@ import {
     PropertyCollection,
 } from "./types";
 import _ from "underscore";
-import { CssCollection } from "./CssCollection";
+import { CssGenericCollection } from "./CssGenericCollection";
 import { camelize } from "./utils/camelize";
 import { CssValue, CssUnit } from "./types";
 import { decamelize } from "./utils/camelize";
@@ -21,49 +21,63 @@ import {
 } from "./utils/typeGuards";
 
 export class CssPropertyCollection {
+    private _ids = new Map<string, string>();
     // @ts-ignore
     private _items: ClassCollectionTuple<string, PropertyCollection> = {};
+    private _count: number = 0;
+
+    public count(): number {
+        return this._count;
+    }
 
     add(className: string, property: CssPropertyDefinition): void {
-        guardClassName(className);
-        guardAttributeName(property.key);
-        guardValue(property.value);
+        guardClassName(className, "CssPropertyCollection > add");
+        guardAttributeName(property.key, "CssPropertyCollection > add");
+        guardValue(property.value, "CssPropertyCollection > add");
+
+        this._ids.set(className, property.id);
 
         const camelizedName = camelize(className);
         const collection = this.getPropertyCollection(camelizedName);
 
-        guardPropertyCollection(collection);
+        guardPropertyCollection(collection, "CssPropertyCollection > add");
 
-        if (!collection.containsKey(property.key)) {
-            collection.add(property.key, property);
+        if (!collection.containsKey(property.id)) {
+            this._count++;
+            collection.add(property.id, property);
         } else {
             console.warn(
-                `CssPropertyCollection > add > ${className} ${property.key} already exists`,
+                `CssPropertyCollection > add > ${className} ${property.id} already exists`,
             );
         }
     }
 
     getPropertyCollection(className: string): PropertyCollection {
-        if (this._items[className]) {
-            return this._items[className][1];
+        guardClassName(className);
+
+        const id = this._ids.get(className);
+
+        if (this._items[id]) {
+            return this._items[id][1];
         } else {
-            this._items[className] = {
-                1: new CssCollection<string, CssPropertyDefinition>(),
+            this._items[id] = {
+                1: new CssGenericCollection<string, CssPropertyDefinition>(),
             };
 
-            return this._items[className][1];
+            return this._items[id][1];
         }
     }
 
     getProperty(className: string): CssPropertyDefinition | null {
-        guardClassName(className);
+        guardClassName(className, "CssPropertyCollection > getProperty");
 
-        const camelizedName = camelize(className);
-        const collection = this.getPropertyCollection(className);
-        guardPropertyCollection(collection);
+        const id = this._ids.get(className);
 
-        if (collection.containsKey(camelizedName)) {
-            collection.get(camelizedName);
+        const collection = this.getPropertyCollection(id);
+        guardPropertyCollection(collection, "CssPropertyCollection > getProperty");
+
+        if (collection.containsKey(id)) {
+            collection.get(id);
         } else {
             console.warn(`CssPropertyCollection > getClass > ${className} was not found`);
             return null;
@@ -71,11 +85,11 @@ export class CssPropertyCollection {
     }
 
     update(target: CssTarget, property: CssPropertyDefinition): void {
-        guardTarget(target);
-        guardPropertyDefinition(property);
+        guardTarget(target, "CssPropertyCollection > update");
+        guardPropertyDefinition(property, "CssPropertyCollection > update");
 
         const collection = this.getPropertyCollection(target);
-        guardPropertyCollection(collection);
+        guardPropertyCollection(collection, "CssPropertyCollection > update");
 
         //todo: figure out how to place it
         if (collection.containsKey(property.key)) {

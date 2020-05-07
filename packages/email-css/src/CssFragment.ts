@@ -1,4 +1,12 @@
-import { CssDirtyStyles, CssClassNames, CssTarget, CssPseudo, CssParseArgs } from "./types";
+import {
+    CssDirtyStyles,
+    CssClassNames,
+    CssTarget,
+    CssPseudo,
+    CssParseArgs,
+    CssPropertyDefinition,
+    PropertyCollection,
+} from "./types";
 import { decamelize } from "./utils/camelize";
 import { CssTargetKind } from "./CssTargetKind";
 import { CssValidValueKind } from "./CssValidValueKind";
@@ -10,6 +18,7 @@ import { CssPropertyCollection } from "./CssPropertyCollection";
 import { createClass, createProperty } from "./utils/create";
 import { calculateValue } from "./utils/calculateValue";
 import { guardHasKey } from "./utils/typeGuards";
+import { CssGenericCollection } from "./CssGenericCollection";
 
 export class CssFragment {
     public readonly classList = new CssClassCollection();
@@ -36,8 +45,8 @@ export class CssFragment {
 const parseCss = (
     args: Partial<CssParseArgs>,
     classList: CssClassCollection,
-): CssPropertyCollection => {
-    const properties = new CssPropertyCollection();
+): PropertyCollection => {
+    const properties = new CssGenericCollection<string, CssPropertyDefinition>();
 
     for (const key in args.value) {
         guardHasKey(args.value, key);
@@ -46,25 +55,13 @@ const parseCss = (
         let calculated = calculateValue(value, args.theme);
 
         if (typeof calculated in CssValidValueKind) {
-            const attrKey = key;
-
-            const newArgs: Partial<CssParseArgs> = updateArgs(args, {
-                value: calculated,
-                propertyKey: attrKey,
-            });
-
-            const property = createProperty(newArgs);
-
-            properties.add(property.className, property);
-
-            // updateArgs(args, {
-            //     value: args.value,
-            //     target: "@global",
-            //     theme: args.theme,
-            //     pseudo: "none",
-            //     classKey: args.classKey,
-            //     propertyKey: args.propertyKey,
-            // });
+            buildCssProperty(
+                updateArgs(args, {
+                    value: calculated,
+                    propertyKey: key,
+                }),
+                properties,
+            );
 
             continue;
         }
@@ -112,15 +109,23 @@ const parseCss = (
     return properties;
 };
 
+const buildCssProperty = (args: Partial<CssParseArgs>, properties: PropertyCollection) => {
+    const property = createProperty(args);
+    console.log(property);
+    properties.add(property.className, property);
+};
+
 const buildCssClass = <T extends CssTarget | CssPseudo | string>(
     args: Partial<CssParseArgs>,
     key: T,
     classList: CssClassCollection,
 ) => {
-    const props: CssPropertyCollection = parseCss(args, classList);
+    const props: PropertyCollection = parseCss(args, classList);
 
-    const cls = createClass(key, args, props);
-    classList.add(cls.target, cls);
+    if (props.count() > 0) {
+        const cls = createClass(key, args, props);
+        classList.add(cls.target, cls);
+    }
 };
 
 const updateArgs = (

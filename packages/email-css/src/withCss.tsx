@@ -3,7 +3,7 @@ import { CssFragment } from "./CssFragment";
 import { useCssContext } from "./CssContext";
 import { CssRepository } from "./CssRepository";
 import { CssStyleablePropertiesKind } from "./CssStyleableProperties";
-import { CssCollection } from "./CssCollection";
+import { CssGenericCollection } from "./CssGenericCollection";
 import { CssValue } from "./types";
 import { getStyleableProps } from "./utils/getStyleableProps";
 import { getInlineStyles } from "./utils/getInlineStyles";
@@ -13,40 +13,40 @@ const withCss = (cssFragment: CssFragment) => <P extends object>(
 ) => <T extends React.HTMLProps<P>>(props: T) => {
     const { repository } = useCssContext();
 
-    if (cssFragment) {
-        repository.addClasses(cssFragment.classList);
-        repository.addProperties(cssFragment.propertyList);
-    }
+    // if (cssFragment) {
+    //     repository.addClasses(cssFragment.classList);
+    //     repository.addProperties(cssFragment.propertyList);
+    // }
 
-    const defaultClassName = WrappedComponent.defaultProps?.className || undefined;
-    const innerClassName = props.className || "";
+    // const defaultClassName = WrappedComponent.defaultProps?.className || undefined;
+    // const innerClassName = props.className || "";
 
-    const defaultProps = WrappedComponent.defaultProps;
-    const innerProps = props;
+    // const defaultProps = WrappedComponent.defaultProps;
+    // const innerProps = props;
 
-    // any properties that can be added to inline styles and stylesheet
-    const styleableProps = getStyleableProps(WrappedComponent.defaultProps);
-    const innerStyleableProps = getStyleableProps(props);
+    // // any properties that can be added to inline styles and stylesheet
+    // const styleableProps = getStyleableProps(WrappedComponent.defaultProps);
+    // const innerStyleableProps = getStyleableProps(props);
 
-    // add stylable properties to stylesheets
-    repository.updateStyle(defaultClassName, styleableProps);
-    repository.updateStyle(innerClassName, innerStyleableProps);
+    // // add stylable properties to stylesheets
+    // repository.updateStyle(defaultClassName, styleableProps);
+    // repository.updateStyle(innerClassName, innerStyleableProps);
 
-    // add stylesheet styles as inline styles
-    const inlineables = getInlineStyles(defaultClassName, repository);
-    const innerInlineables = getInlineStyles(innerClassName, repository);
+    // // add stylesheet styles as inline styles
+    // const inlineables = getInlineStyles(defaultClassName, repository);
+    // const innerInlineables = getInlineStyles(innerClassName, repository);
 
-    // combine styles and classNames
-    inlineables.merge(innerStyleableProps, styleableProps, innerInlineables);
+    // // combine styles and classNames
+    // inlineables.merge(innerStyleableProps, styleableProps, innerInlineables);
 
-    const classNames = `${defaultClassName} ${innerClassName}`.trim();
+    // const classNames = `${defaultClassName} ${innerClassName}`.trim();
 
-    const mergedProps = Object.assign({}, defaultProps, innerProps, {
-        style: inlineables.items,
-        className: classNames,
-    });
+    // const mergedProps = Object.assign({}, defaultProps, innerProps, {
+    //     style: inlineables.items,
+    //     className: classNames,
+    // });
 
-    return <WrappedComponent {...mergedProps} />;
+    return <WrappedComponent {...props} />;
 };
 
 export { withCss };

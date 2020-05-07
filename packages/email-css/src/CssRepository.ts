@@ -1,33 +1,43 @@
-import { CssTarget, CssPropertyDefinition, CssClassDefinition, CssValue } from "./types";
+import {
+    CssTarget,
+    CssPropertyDefinition,
+    CssClassDefinition,
+    CssValue,
+    PropertyCollection,
+} from "./types";
 import { camelize } from "./utils/camelize";
-import { CssCollection } from "./CssCollection";
+import { CssGenericCollection } from "./CssGenericCollection";
 import { CssClassCollection } from "./CssClassCollection";
 import { CssPropertyCollection } from "./CssPropertyCollection";
 import { getCssProperties } from "./utils/getCssProperties";
-import { guardClassName, guardTarget } from "./utils/typeGuards";
+import {
+    guardClassName,
+    guardTarget,
+    guardCssClassCollection,
+    guardCssPropertyCollection,
+} from "./utils/typeGuards";
 
 export class CssRepository {
     public readonly properties = new CssPropertyCollection();
     public readonly classes = new CssClassCollection();
 
     public addClasses = (cssClasses: CssClassCollection): void => {
-        cssClasses.forEach((key: string, value: CssClassDefinition) => {
-            this.classes.add(value.target, value);
-        });
+        guardCssClassCollection(cssClasses);
+        // cssClasses.forEach((key: string, value: CssClassDefinition) => {
+        //     this.classes.add(value.target, value);
+        // });
     };
 
     public addProperties = (properties: CssPropertyCollection): void => {
-        if (properties) {
-            properties.forEach((key: string, value: CssPropertyDefinition) => {
-                this.properties.add(key, value);
-            });
-        }
+        guardCssPropertyCollection(properties);
+        // if (properties) {
+        //     properties.forEach((key: string, value: CssPropertyDefinition) => {
+        //         this.properties.add(key, value);
+        //     });
+        // }
     };
 
-    public updateStyle = (
-        className: string | undefined,
-        styles: CssCollection<string, CssPropertyDefinition>,
-    ) => {
+    public updateStyle = (className: string | undefined, styles: PropertyCollection) => {
         guardClassName(className);
 
         if (className) {
@@ -41,8 +51,10 @@ export class CssRepository {
         }
     };
 
-    public getInlinableStyles = (className: string): CssPropertyCollection => {
-        let props = new CssPropertyCollection();
+    public getInlinableStyles = (className: string): PropertyCollection => {
+        guardClassName(className);
+
+        let props = new CssGenericCollection<string, CssPropertyDefinition>();
         if (className) {
             // const item = this.classes.findIn(
             //     "className",

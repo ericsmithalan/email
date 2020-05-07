@@ -5,7 +5,7 @@ import { CssTargetKind } from "./CssTargetKind";
 import { CssTheme } from "./CssTheme";
 import { CssAttributesKind } from "./CssAttributesKind";
 import { CssPropertyCollection } from "./CssPropertyCollection";
-import { CssCollection } from "./CssCollection";
+import { CssGenericCollection } from "./CssGenericCollection";
 
 export type CssUnit = "px" | undefined;
 
@@ -39,6 +39,8 @@ export interface CssPropertyDefinition extends Collectable {
     name: string;
     value: CssValue;
     css: string;
+    target: CssTarget;
+    psuedo: CssPseudo;
 }
 
 export type CssParseArgs = {
@@ -56,14 +58,14 @@ export interface CssClassDefinition extends Collectable {
     target: CssTarget;
     css: string;
     psuedo: CssPseudo;
-    properties: CssPropertyCollection;
+    properties: PropertyCollection;
 }
 
-export type ClassCollection = CssCollection<string, CssClassDefinition>;
+export type ClassCollection = CssGenericCollection<string, CssClassDefinition>;
 
-export type GenericCollection<T extends Collectable> = CssCollection<string, T>;
+export type GenericCollection<T extends Collectable> = CssGenericCollection<string, T>;
 
-export type PropertyCollection = CssCollection<string, CssPropertyDefinition>;
+export type PropertyCollection = CssGenericCollection<string, CssPropertyDefinition>;
 
 export interface ClassCollectionTuple<K extends string, T> {
     0: K;

@@ -1,7 +1,7 @@
 import { CallbackFn, ClassCollectionTuple, Collectable } from "./types";
 import _ from "underscore";
 
-export class CssCollection<K extends string, T extends Collectable> {
+export class CssGenericCollection<K extends string, T extends Collectable> {
     // @ts-ignore
     private _items: ClassCollectionTuple<K, T> = {};
     private _id = "";
@@ -72,7 +72,7 @@ export class CssCollection<K extends string, T extends Collectable> {
         return result;
     }
 
-    public merge(...collection: CssCollection<K, T>[]): CssCollection<K, T> {
+    public merge(...collection: CssGenericCollection<K, T>[]): CssGenericCollection<K, T> {
         return Object.assign({}, this.items, ...collection);
     }
 

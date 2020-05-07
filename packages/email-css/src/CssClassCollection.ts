@@ -6,11 +6,11 @@ import {
     CssTarget,
 } from "./types";
 import _ from "underscore";
-import { CssCollection } from "./CssCollection";
-import { camelize } from "./utils/camelize";
+import { CssGenericCollection } from "./CssGenericCollection";
 import { guardTarget, guardValue, guardCssClass, guardClassCollection } from "./utils/typeGuards";
 
 export class CssClassCollection {
+    private _ids = new Map<string, string>();
     //@ts-ignore
     private _items: ClassCollectionTuple<string, ClassCollection> = {};
     private _count: number = 0;
@@ -20,11 +20,13 @@ export class CssClassCollection {
     }
 
     add(target: CssTarget, cssClass: CssClassDefinition): void {
-        guardTarget(target);
-        guardCssClass(cssClass);
+        guardTarget(target, "CssClassCollection > add");
+        guardCssClass(cssClass, "CssClassCollection > add");
 
         const collection = this.getTargetCollection(target);
-        guardClassCollection(collection);
+        guardClassCollection(collection, "CssClassCollection > add");
+
+        this._ids.set(cssClass.className, cssClass.id);
 
         if (!collection.containsKey(cssClass.id)) {
             this._count++;
@@ -34,14 +36,14 @@ export class CssClassCollection {
         }
     }
 
-    getTargetCollection(target: CssTarget): ClassCollection {
+    getTargetCollection(target: CssTarget): CssGenericCollection<string, CssClassDefinition> {
         guardTarget(target);
 
         if (this._items[target]) {
             return this._items[target][1];
         } else {
             this._items[target] = {
-                1: new CssCollection<string, CssClassDefinition>(),
+                1: new CssGenericCollection<string, CssClassDefinition>(),
             };
 
             return this._items[target][1];
@@ -49,27 +51,28 @@ export class CssClassCollection {
     }
 
     getClass(className: string, target: CssTarget): CssClassDefinition | null {
-        guardTarget(target);
-        guardValue(className);
+        guardTarget(target, "CssClassCollection > getClass");
+        guardValue(className, "CssClassCollection > getClass");
 
-        const camelizedName = camelize(className);
         const collection = this.getTargetCollection(target);
-        guardClassCollection(collection);
+        guardClassCollection(collection, "CssClassCollection > getClass");
 
-        if (collection.containsKey(camelizedName)) {
-            collection.get(camelizedName);
+        const id = this._ids.get(className);
+
+        if (collection.containsKey(id)) {
+            collection.get(id);
         } else {
-            console.warn(`CssClassCollection > getClass > ${className} was not found`);
+            console.warn(`CssClassCollection > getClass > ${id} was not found`);
             return null;
         }
     }
 
     update(target: CssTarget, cssClass: CssClassDefinition): void {
-        guardTarget(target);
-        guardCssClass(cssClass);
+        guardTarget(target, "CssClassCollection > update");
+        guardCssClass(cssClass, "CssClassCollection > update");
 
         const collection = this.getTargetCollection(target);
-        guardClassCollection(collection);
+        guardClassCollection(collection, "CssClassCollection > update");
 
         //todo: figure out how to place it
         if (collection.containsKey(cssClass.key)) {
