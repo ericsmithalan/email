@@ -36,10 +36,21 @@ const isValidCssAttribute = (value: any): boolean => {
     return false;
 };
 
-const isValidClassName = (value: any): boolean => {
-    if (!value || value in CssAttributesKind || value in CssTargetKind || value in CssPseudoKind) {
+const isValidClassName = (value: string): boolean => {
+    if (value === undefined) {
         return false;
     }
+
+    if (value in CssAttributesKind) {
+        return false;
+    }
+    if (value in CssTargetKind) {
+        return false;
+    }
+    if (value in CssPseudoKind) {
+        return false;
+    }
+
     return true;
 };
 

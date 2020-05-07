@@ -40,23 +40,13 @@ export class CssStyle {
         };
 
         this.parseCss(defaultParseArgs);
-
-        if (this.classes.count() > 0) {
-            // console.log(this.classes);
-            // validateCssClasses(this.classes);
-        }
-
-        if (this.properties.count() > 0) {
-            console.log(this.properties);
-            validateCssProperties(this.properties);
-        }
     }
 
     public get classNames(): CssClassNames {
         if (!this._classNames) {
             this._classNames = {};
-            this.classes.forEach((value) => {
-                // this._classNames[camelize(value.className)] = value.className;
+            this.classes.get("@global").forEach((value) => {
+                this._classNames[camelize(value.className)] = value.className;
             });
         }
 
