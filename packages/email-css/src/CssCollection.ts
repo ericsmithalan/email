@@ -1,6 +1,6 @@
 import CSS from "csstype";
 import { CallbackFn, ClassCollectionTuple } from "./types";
-import { CssAttributesKind } from "./CssAttributes";
+import { CssAttributesKind } from "./CssAttributesKind";
 import { stringHashId } from "./utils/stringHashId";
 import _ from "underscore";
 

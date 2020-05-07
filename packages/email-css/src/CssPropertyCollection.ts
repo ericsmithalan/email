@@ -10,7 +10,7 @@ import { CssCollection } from "./CssCollection";
 import { camelize } from "./utils/camelize";
 import { CssValue, CssUnit } from "./types";
 import { decamelize } from "./utils/camelize";
-import { CssValidValueKind } from "./CssValidValue";
+import { CssValidValueKind } from "./CssValidValueKind";
 
 export class CssPropertyCollection {
     private _items: ClassCollectionTuple<string, CssPropertyDefinition>[] = [];

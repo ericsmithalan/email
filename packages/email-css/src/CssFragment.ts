@@ -9,12 +9,12 @@ import {
     CssClassDefinition,
 } from "./types";
 import { decamelize } from "./utils/camelize";
-import { CssTargetKind } from "./CssTarget";
-import { CssValidValueKind } from "./CssValidValue";
+import { CssTargetKind } from "./CssTargetKind";
+import { CssValidValueKind } from "./CssValidValueKind";
 import _ from "underscore";
 import { CssTheme } from "./CssTheme";
-import { CssPseudoKind } from "./CssPseudos";
-import { CssAttributesKind } from "./CssAttributes";
+import { CssPseudoKind } from "./CssPseudoKind";
+import { CssAttributesKind } from "./CssAttributesKind";
 import { CssClassCollection } from "./CssClassCollection";
 import { CssPropertyCollection } from "./CssPropertyCollection";
 
@@ -123,7 +123,11 @@ const parseCss = (args: ParseArgs, classList: CssClassCollection): CssPropertyCo
     return properties;
 };
 
-const createClass = (key: string, args: ParseArgs, properties: CssPropertyCollection): CssClassDefinition => {
+const createClass = (
+    key: string,
+    args: ParseArgs,
+    properties: CssPropertyCollection,
+): CssClassDefinition => {
     return {
         key: key,
         target: args.target,

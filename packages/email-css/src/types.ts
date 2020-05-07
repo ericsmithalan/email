@@ -1,9 +1,9 @@
 import CSS from "csstype";
-import { CssPseudoKind } from "./CssPseudos";
-import { CssValidValueKind } from "./CssValidValue";
-import { CssTargetKind } from "./CssTarget";
+import { CssPseudoKind } from "./CssPseudoKind";
+import { CssValidValueKind } from "./CssValidValueKind";
+import { CssTargetKind } from "./CssTargetKind";
 import { CssTheme } from "./CssTheme";
-import { CssAttributesKind } from "./CssAttributes";
+import { CssAttributesKind } from "./CssAttributesKind";
 import { CssPropertyCollection } from "./CssPropertyCollection";
 import { CssCollection } from "./CssCollection";
 

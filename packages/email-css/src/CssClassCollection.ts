@@ -11,8 +11,8 @@ import _ from "underscore";
 import { CssCollection } from "./CssCollection";
 import { camelize } from "./utils/camelize";
 import { decamelize } from "./utils/camelize";
-import { CssPseudoKind } from "./CssPseudos";
-import { CssAttributesKind } from "./CssAttributes";
+import { CssPseudoKind } from "./CssPseudoKind";
+import { CssAttributesKind } from "./CssAttributesKind";
 import { CssPropertyCollection } from "./CssPropertyCollection";
 
 export class CssClassCollection {
