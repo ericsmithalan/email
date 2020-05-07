@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
 
-import { DepricatedTdAttributes } from "./types";
+import { DepricatedTdAttributes } from "../types";
 
 export interface ITrElement extends React.HTMLProps<HTMLTableRowElement>, DepricatedTdAttributes {}
 

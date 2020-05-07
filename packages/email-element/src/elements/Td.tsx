@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
-import { DepricatedTdAttributes } from "./types";
-import { commonFonts } from "./styles";
+import { DepricatedTdAttributes } from "../types";
+import { commonFonts } from "../styles/common";
 
 export interface ITdElement extends React.HTMLProps<HTMLTableCellElement>, DepricatedTdAttributes {}
 

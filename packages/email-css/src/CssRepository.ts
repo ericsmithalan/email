@@ -1,21 +1,17 @@
 import {
     CssTarget,
     CssPropertyDefinition,
-    CssClassDefinition,
-    CssValue,
     PropertyCollection,
 } from "./types";
-import { camelize } from "./utils/camelize";
 import { CssGenericCollection } from "./collections/CssGenericCollection";
 import { CssClassCollection } from "./collections/CssClassCollection";
 import { CssPropertyCollection } from "./collections/CssPropertyCollection";
-import { getCssProperties } from "./utils/getCssProperties";
 import {
     guardClassName,
     guardTarget,
     guardCssClassCollection,
     guardCssPropertyCollection,
-} from "./utils/typeGuards";
+} from "./utils/guards";
 
 export class CssRepository {
     public readonly properties = new CssPropertyCollection();

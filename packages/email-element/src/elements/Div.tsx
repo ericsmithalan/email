@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
-import { commonFonts } from "./styles";
+import { commonFonts } from "../styles/common";
 
 export interface IDivElement extends React.HTMLProps<HTMLDivElement> {}
 

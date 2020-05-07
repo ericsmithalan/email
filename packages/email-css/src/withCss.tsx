@@ -1,15 +1,15 @@
 import React, { CSSProperties } from "react";
-import { CssFragment } from "./CssFragment";
+import { CssStyle } from "./CssStyle";
 import { useCssContext } from "./hooks/useCssContext";
 
-const withCss = (cssFragment: CssFragment) => <P extends object>(
+const withCss = (cssStyle: CssStyle) => <P extends object>(
     WrappedComponent: React.ComponentType<React.HTMLProps<P>>,
 ) => <T extends React.HTMLProps<P>>(props: T) => {
     const { repository } = useCssContext();
 
     // if (cssFragment) {
-    //     repository.addClasses(cssFragment.classList);
-    //     repository.addProperties(cssFragment.propertyList);
+    //     repository.addClasses(CssStyle.classList);
+    //     repository.addProperties(CssStyle.propertyList);
     // }
 
     // const defaultClassName = WrappedComponent.defaultProps?.className || undefined;

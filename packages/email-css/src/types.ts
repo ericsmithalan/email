@@ -19,7 +19,7 @@ export type CssAttribute = keyof typeof CssAttributesKind;
 
 export type Fn<R = CssValue> = (theme: CssTheme) => R;
 
-export type CssStyle = CssDirtyStyles;
+export type CssStyleFragment = CssDirtyStyles;
 
 export type CssDirtyValue = CssValue | Fn | string[] | number[] | Function | string;
 

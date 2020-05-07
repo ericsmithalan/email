@@ -18,7 +18,7 @@ import {
     guardValue,
     guardTarget,
     guardPropertyDefinition,
-} from "../utils/typeGuards";
+} from "../utils/guards";
 
 export class CssPropertyCollection {
     private _ids = new Map<string, string>();

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
-import { DepricatedBodyAttributes } from "./types";
+import { DepricatedBodyAttributes } from "../types";
 
 export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}
 

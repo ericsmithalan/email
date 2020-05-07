@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
-import { DepricatedImageAttributes } from "./types";
+import { DepricatedImageAttributes } from "../types";
 
 export interface IImgElement extends React.HTMLProps<HTMLImageElement>, DepricatedImageAttributes {}
 

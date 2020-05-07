@@ -7,7 +7,7 @@ import {
 } from "../types";
 import _ from "underscore";
 import { CssGenericCollection } from "./CssGenericCollection";
-import { guardTarget, guardValue, guardCssClass, guardClassCollection } from "../utils/typeGuards";
+import { guardTarget, guardValue, guardCssClass, guardClassCollection } from "../utils/guards";
 
 export class CssClassCollection {
     private _ids = new Map<string, string>();
