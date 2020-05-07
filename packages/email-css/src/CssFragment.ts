@@ -1,11 +1,18 @@
-import { CssDirtyStyles, CssClassNames, CssDirtyValue, CssValue, CssTarget, CssPseudo } from "./types";
+import {
+    CssDirtyStyles,
+    CssPropertyDefinition,
+    CssClassNames,
+    CssDirtyValue,
+    CssValue,
+    CssTarget,
+    CssPseudo,
+    CssClassDefinition,
+} from "./types";
 import { decamelize } from "./utils/camelize";
 import { CssTargetKind } from "./CssTarget";
 import { CssValidValueKind } from "./CssValidValue";
 import _ from "underscore";
 import { CssTheme } from "./CssTheme";
-import { CssClass } from "./CssClass";
-import { CssClassProperty } from "./CssClassProperty";
 import { CssPseudoKind } from "./CssPseudos";
 import { CssAttributesKind } from "./CssAttributes";
 import { CssClassCollection } from "./CssClassCollection";
@@ -116,25 +123,25 @@ const parseCss = (args: ParseArgs, classList: CssClassCollection): CssPropertyCo
     return properties;
 };
 
-const createClass = (key: string, args: ParseArgs, properties: CssPropertyCollection): CssClass => {
-    return new CssClass({
+const createClass = (key: string, args: ParseArgs, properties: CssPropertyCollection): CssClassDefinition => {
+    return {
         key: key,
         target: args.target,
         isPseudo: args.pseudo != undefined,
         className: args.classKey || "",
         properties: properties,
         css: "",
-    });
+    };
 };
 
-export const createProperty = (args: ParseArgs): CssClassProperty => {
-    return new CssClassProperty({
+export const createProperty = (args: ParseArgs): CssPropertyDefinition => {
+    return {
         key: args.propertyKey || "",
         className: args.classKey,
         name: args.propertyKey || "",
         value: args.value as CssValue,
         css: "",
-    });
+    };
 };
 
 const updateArgs = (oldArgs: ParseArgs, newArgs: Partial<ParseArgs>): ParseArgs => {

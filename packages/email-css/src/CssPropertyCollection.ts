@@ -1,38 +1,30 @@
-import { CssValue, CssTarget } from "./types";
+import {
+    CssTarget,
+    ClassCollectionTuple,
+    PropertyCollection,
+    CallbackFn,
+    CssPropertyDefinition,
+} from "./types";
 import _ from "underscore";
 import { CssCollection } from "./CssCollection";
 import { camelize } from "./utils/camelize";
-import { CssClassProperty } from "./CssClassProperty";
-
-interface ICallback<K extends string, CssClass> {
-    (key: any, value: any): CssClass;
-}
-
-interface IPropertyCollectionTuple {
-    0: string;
-    1: CssClassProperty;
-}
-
-export type CssPropertyType = {
-    key: string;
-    className: string;
-    name: string;
-    value: CssValue;
-};
-
-type PropertyCollection = CssCollection<string, CssClassProperty>;
+import { CssValue, CssUnit } from "./types";
+import { decamelize } from "./utils/camelize";
+import { CssValidValueKind } from "./CssValidValue";
 
 export class CssPropertyCollection {
-    private _items: IPropertyCollectionTuple[] = [];
+    private _items: ClassCollectionTuple<string, CssPropertyDefinition>[] = [];
 
-    add(className: string, property: CssClassProperty): void {
+    add(className: string, property: CssPropertyDefinition): void {
         const camelizedName = camelize(className);
         const collection = this.getPropertyCollection(camelizedName);
 
         if (!collection.containsKey(property.key)) {
             collection.add(property.key, property);
         } else {
-            console.warn(`CssPropertyCollection > add > ${className} ${property.key} already exists`);
+            console.warn(
+                `CssPropertyCollection > add > ${className} ${property.key} already exists`,
+            );
         }
     }
 
@@ -41,14 +33,14 @@ export class CssPropertyCollection {
             return this._items[className][1];
         } else {
             this._items[className] = {
-                1: new CssCollection<string, CssClassProperty>(),
+                1: new CssCollection<string, CssPropertyDefinition>(),
             };
 
             return this._items[className][1];
         }
     }
 
-    getProperty(className: string): CssClassProperty | null {
+    getProperty(className: string): CssPropertyDefinition | null {
         const camelizedName = camelize(className);
         const collection = this.getPropertyCollection(className);
         if (collection.containsKey(camelizedName)) {
@@ -59,7 +51,7 @@ export class CssPropertyCollection {
         }
     }
 
-    update(target: CssTarget, property: CssClassProperty): void {
+    update(target: CssTarget, property: CssPropertyDefinition): void {
         const collection = this.getPropertyCollection(target);
 
         //todo: figure out how to place it
@@ -72,7 +64,7 @@ export class CssPropertyCollection {
         }
     }
 
-    public forEach(callback: ICallback<string, any>): void {
+    public forEach(callback: CallbackFn<string, any>): void {
         for (const key in this._items) {
             if (this._items.hasOwnProperty(key)) {
                 const pair = this._items[key];
@@ -85,6 +77,46 @@ export class CssPropertyCollection {
     }
 }
 
+// return propertyStringTemplate(this.name, this.value, this._defaultUnit);
+const propertyStringTemplate = (name: string, value: string, unit: CssUnit): string => {
+    return `${decamelize(name)}:${ensureUnit(value as CssValue, unit)};`;
+};
+
+const ensureUnit = (value: CssValue, unit: string): string => {
+    let newValue = value;
+
+    if (value.toString() === "0") {
+        return "0";
+    }
+
+    if (value && typeof value in CssValidValueKind) {
+        if (typeof value === "number") {
+            newValue = `${value}${unit}` as CssValue;
+        }
+        if (typeof value === "string") {
+            if (value.split(",").length > 0) {
+                const values = value.split(",");
+                let val = "";
+
+                values.forEach((item) => {
+                    if (parseInt(item) || item === "0") {
+                        val += `${item}${unit} `;
+                    }
+                });
+
+                newValue = val.trim() as CssValue;
+            } else if (parseInt(value)) {
+                newValue = `${value}${unit}` as CssValue;
+            }
+
+            return value;
+        }
+    } else {
+        throw new Error(`Invalid value ${value} ${unit}`);
+    }
+
+    return newValue;
+};
 //[Symbol.toStringTag]: string;
 // clear(): void {}
 

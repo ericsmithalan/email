@@ -1,31 +1,11 @@
 import CSS from "csstype";
-import { CssValue, CssAttribute } from "./types";
+import { CallbackFn, ClassCollectionTuple } from "./types";
 import { CssAttributesKind } from "./CssAttributes";
 import { stringHashId } from "./utils/stringHashId";
 import _ from "underscore";
 
-interface ICallback<K extends string, T> {
-    (key: any, value: any): T;
-}
-
-type CssCollectionKeyValue<T> = { [key: string]: T };
-
-export interface ICssCollection<K extends string, T> {
-    add: (key: K, value: T) => void;
-    containsKey: (key: K) => boolean;
-    count: () => number;
-    forEach: (callback: ICallback<string, T>) => void;
-    findIn: (key: K, match: T) => T;
-    get: (key: K) => T;
-    keys: () => K[];
-    remove: (key: K) => T;
-    getIndex: (key: K) => number;
-    values: () => T[];
-    items: CssCollectionKeyValue<T>;
-}
-
-export class CssCollection<K extends string, T> implements ICssCollection<K, T> {
-    private _items: CssCollectionKeyValue<T> = {};
+export class CssCollection<K extends string, T> {
+    private _items: ClassCollectionTuple<K, T> = {};
     private _id = "";
 
     private _count: number = 0;
@@ -98,7 +78,7 @@ export class CssCollection<K extends string, T> implements ICssCollection<K, T> 
         return Object.assign({}, this.items, ...collection);
     }
 
-    public forEach(callback: ICallback<string, any>): void {
+    public forEach(callback: CallbackFn<string, any>): void {
         for (const itemKey in this.items) {
             if (this.items.hasOwnProperty(itemKey)) {
                 const pair = this.items[itemKey];
@@ -133,7 +113,7 @@ export class CssCollection<K extends string, T> implements ICssCollection<K, T> 
         return keySet;
     }
 
-    public get items(): CssCollectionKeyValue<T> {
+    public get items(): ClassCollectionTuple<K, T> {
         return this._items;
     }
 

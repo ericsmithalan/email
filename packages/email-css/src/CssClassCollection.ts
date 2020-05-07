@@ -1,28 +1,24 @@
-import CSS from "csstype";
-import { CssValue, CssAttribute, CssTarget } from "./types";
-import { CssAttributesKind } from "./CssAttributes";
-import { stringHashId } from "./utils/stringHashId";
-import { CssClass } from "./CssClass";
-
+import {
+    CssValue,
+    CssPropertyDefinition,
+    ClassCollectionTuple,
+    ClassCollection,
+    CallbackFn,
+    CssClassDefinition,
+    CssTarget,
+} from "./types";
 import _ from "underscore";
-import { CssCollection, ICssCollection } from "./CssCollection";
+import { CssCollection } from "./CssCollection";
 import { camelize } from "./utils/camelize";
-
-interface ICallback<K extends string, CssClass> {
-    (key: any, value: any): CssClass;
-}
-
-interface IClassCollectionTuple {
-    0: CssTarget;
-    1: ClassCollection;
-}
-
-type ClassCollection = CssCollection<string, CssClass>;
+import { decamelize } from "./utils/camelize";
+import { CssPseudoKind } from "./CssPseudos";
+import { CssAttributesKind } from "./CssAttributes";
+import { CssPropertyCollection } from "./CssPropertyCollection";
 
 export class CssClassCollection {
-    private _items: IClassCollectionTuple[] = [];
+    private _items: ClassCollectionTuple<string, CssClassDefinition>[] = [];
 
-    add(target: CssTarget, cssClass: CssClass): void {
+    add(target: CssTarget, cssClass: CssClassDefinition): void {
         const collection = this.getTargetCollection(target);
 
         if (!collection.containsKey(cssClass.key)) {
@@ -37,14 +33,14 @@ export class CssClassCollection {
             return this._items[target][1];
         } else {
             this._items[target] = {
-                1: new CssCollection<string, CssClass>(),
+                1: new CssCollection<string, CssClassDefinition>(),
             };
 
             return this._items[target][1];
         }
     }
 
-    getClass(className: string, target: CssTarget): CssClass | null {
+    getClass(className: string, target: CssTarget): CssClassDefinition | null {
         const camelizedName = camelize(className);
         const collection = this.getTargetCollection(target);
         if (collection.containsKey(camelizedName)) {
@@ -55,7 +51,7 @@ export class CssClassCollection {
         }
     }
 
-    update(target: CssTarget, cssClass: CssClass): void {
+    update(target: CssTarget, cssClass: CssClassDefinition): void {
         const collection = this.getTargetCollection(target);
 
         //todo: figure out how to place it
@@ -68,7 +64,7 @@ export class CssClassCollection {
         }
     }
 
-    public forEach(callback: ICallback<string, any>): void {
+    public forEach(callback: CallbackFn<string, any>): void {
         for (const key in this._items) {
             if (this._items.hasOwnProperty(key)) {
                 const pair = this._items[key];
@@ -80,6 +76,72 @@ export class CssClassCollection {
         }
     }
 }
+
+const getCssProperties = (): CssPropertyCollection => {
+    const properties = new CssPropertyCollection();
+
+    if (!this.isPseudo && this.target === "@global") {
+        this.properties.forEach((key: string, value: CssValue) => {
+            properties[key] = value;
+        });
+    }
+
+    return properties;
+};
+
+//renderCss(this._props.className, this._props.key, this.properties);
+
+const updateProperties = (values: CssPropertyCollection) => {
+    values.forEach((key: string, value: CssValue) => {
+        const attrKey = key;
+
+        if (key in CssAttributesKind) {
+            const property = {
+                key: attrKey,
+                className: this.className,
+                name: attrKey,
+                value: values[attrKey] as CssValue,
+                css: "",
+            };
+
+            this._props.properties.add(attrKey, property);
+        } else {
+            console.error(`CssClassDefinition > updateProperties > ${key} is not a CssAttribute`);
+        }
+    });
+
+    this._css = renderCss(this._props.className, this._props.key, this.properties);
+};
+
+const renderCss = (className: string, key: string, properties: CssPropertyCollection): string => {
+    const css: string[] = [];
+
+    const clsName = classString(key, className);
+
+    properties.forEach((key: string, value: CssPropertyDefinition) => {
+        css.push(value.css);
+    });
+
+    return classStringTemplate(clsName, css.join(""));
+};
+
+const classString = (key: string, className: string): string => {
+    let name = key;
+
+    if (key in CssPseudoKind) {
+        if (className) {
+            name = `${decamelize(className)}${decamelize(key)}`;
+        }
+    } else {
+        name = `${decamelize(className)}`;
+    }
+
+    return name;
+};
+
+const classStringTemplate = (className: string, properties: string): string => {
+    return `.${className}{${properties}}`;
+};
 
 //[Symbol.toStringTag]: string;
 // clear(): void {}
