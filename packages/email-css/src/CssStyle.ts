@@ -12,23 +12,14 @@ import {
 import { decamelize, camelize } from "./utils/camelize";
 import _ from "underscore";
 import { CssTheme } from "./theme/CssTheme";
-import { KeyArrayCollection } from "./collections/KeyArrayCollection";
-import { CssPropertyCollection } from "./collections/CssPropertyCollection";
-import { guardHasKey } from "./utils/guards";
+import { CssCollection } from "./collections/CssCollection";
 import { calculateValue } from "./utils/calculateValue";
-import { CssValidValueKind } from "./enums/CssValidValueKind";
-import { CssTargetKind } from "./enums/CssTargetKind";
-import { CssPseudoKind } from "./enums/CssPseudoKind";
-import { GenericCollection } from "./collections/GenericCollection";
 import { stringHashId } from "./utils/stringHashId";
 import { CssHelpers } from "./helpers/CssHelpers";
-import { validateCssClasses } from "./utils/validateClasses";
-import { validateCssProperties } from "./utils/validateProperties";
-import { Pseudos } from "csstype";
 
 export class CssStyle {
-    public readonly classes = new KeyArrayCollection<CssClassDefinition>();
-    public readonly properties = new KeyArrayCollection<CssPropertyDefinition>();
+    public readonly classes = new CssCollection<CssClassDefinition>();
+    public readonly properties = new CssCollection<CssPropertyDefinition>();
     private _classNames: CssClassNames;
 
     constructor(private readonly _dirtyStyles: CssDirtyStyles, private readonly _theme: CssTheme) {
@@ -78,7 +69,7 @@ export class CssStyle {
 
                     this.parseCss(updateArgs(newArgs, { classId: cls.id }));
 
-                    this.classes.addCollection(cls.target, cls);
+                    this.classes.set(cls.target, cls.id, cls);
 
                     continue;
                 }
@@ -92,7 +83,7 @@ export class CssStyle {
                     });
 
                     const property: CssPropertyDefinition = {
-                        id: stringHashId(newArgs.classKey, newArgs.propertyKey),
+                        id: key,
                         classId: newArgs.classId,
                         key: newArgs.propertyKey,
                         className: decamelize(newArgs.classKey),
@@ -101,8 +92,7 @@ export class CssStyle {
                         css: "",
                     };
 
-                    this.properties.addCollection(property.className, property);
-
+                    this.properties.set(property.classId, property.id, property);
                     continue;
                 }
             }

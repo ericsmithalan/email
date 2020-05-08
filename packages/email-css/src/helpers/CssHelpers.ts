@@ -2,6 +2,7 @@ import { CssValidValueKind } from "../enums/CssValidValueKind";
 import { CssTargetKind } from "../enums/CssTargetKind";
 import { CssPseudoKind } from "../enums/CssPseudoKind";
 import { CssAttributesKind } from "../enums/CssAttributesKind";
+import { CssStyleablePropertiesKind } from "../enums/CssStyleablePropertiesKind";
 
 const isValueValid = (value: any): boolean => {
     if (value) {
@@ -17,6 +18,13 @@ const isValueValid = (value: any): boolean => {
 
 const isPseudo = (value: any): boolean => {
     if (value && value in CssPseudoKind) {
+        return true;
+    }
+    return false;
+};
+
+const isStyleableProperty = (value: any): boolean => {
+    if (value && value in CssStyleablePropertiesKind) {
         return true;
     }
     return false;
@@ -60,4 +68,5 @@ export const CssHelpers = {
     isPseudo,
     isValidCssAttribute,
     isValidClassName,
+    isStyleableProperty,
 };

@@ -23,6 +23,8 @@
     },
     "dependencies": {
         "@email/css": "^1.0.0",
+        "@types/immutable": "^3.8.7",
+        "immutable": "^4.0.0-rc.12",
         "tsc-watch": "^4.2.3"
     },
     "publishConfig": {

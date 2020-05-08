@@ -65,6 +65,8 @@ export type CssParseArgs = {
     pseudo: CssPseudo;
 };
 
+export type CollectionMap<T extends Collectable> = Map<string, Map<string, T>>;
+
 export type ClassCollectionType = GenericCollection<CssClassDefinition>;
 
 export type GenericCollectionType<T extends Collectable> = GenericCollection<T>;

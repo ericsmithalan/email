@@ -23,7 +23,9 @@
         "react": ">=16"
     },
     "dependencies": {
-        "@types/express": "^4.17.6"
+        "@types/express": "^4.17.6",
+        "@types/immutable": "^3.8.7",
+        "immutable": "^4.0.0-rc.12"
     },
     "publishConfig": {
         "access": "public"

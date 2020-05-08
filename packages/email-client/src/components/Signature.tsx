@@ -16,6 +16,7 @@ const styles = css({
     },
     myDivOne: {
         backgroundColor: "red",
+        fontSize: 15,
         "@phone": {
             backgroundColor: "purple",
         },
