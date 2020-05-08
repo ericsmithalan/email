@@ -2,7 +2,13 @@ import { CssDirtyValue, CssValue } from "../types";
 import { CssTheme } from "../theme/CssTheme";
 import _ from "underscore";
 
-export const calculateValue = (
+/**
+ * executes functions and parses arrays to return
+ * a usable value
+ * @param property
+ * @param log
+ */
+const calculateValue = (
     value: CssDirtyValue & CssValue,
     theme: CssTheme,
 ): CssDirtyValue | CssValue => {
@@ -28,4 +34,8 @@ export const calculateValue = (
     }
 
     return calculated;
+};
+
+export const CssParserHelpers = {
+    calculateValue,
 };

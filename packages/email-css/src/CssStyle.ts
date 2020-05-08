@@ -9,13 +9,11 @@ import {
     CssClassDefinition,
     CssValue,
 } from "./types";
-import { decamelize, camelize } from "./utils/camelize";
 import _ from "underscore";
 import { CssTheme } from "./theme/CssTheme";
 import { CssCollection } from "./collections/CssCollection";
-import { calculateValue } from "./utils/calculateValue";
-import { stringHashId } from "./utils/stringHashId";
 import { CssHelpers } from "./helpers/CssHelpers";
+import { CssParserHelpers } from "./helpers/CssParserHelpers";
 
 export class CssStyle {
     public readonly classes = new CssCollection<CssClassDefinition>();
@@ -35,7 +33,7 @@ export class CssStyle {
         if (!this._classNames) {
             this._classNames = {};
             this.classes.get("@global").forEach((value) => {
-                this._classNames[camelize(value.className)] = value.className;
+                this._classNames[CssHelpers.camelize(value.className)] = value.className;
             });
         }
 
@@ -46,7 +44,7 @@ export class CssStyle {
         for (const key in args.value) {
             if (args.value.hasOwnProperty(key)) {
                 let value = args.value[key];
-                let calculated = calculateValue(value, args.theme);
+                let calculated = CssParserHelpers.calculateValue(value, args.theme);
 
                 if (_.isObject(calculated)) {
                     const newArgs = updateArgs(args, {
@@ -57,19 +55,24 @@ export class CssStyle {
                     });
 
                     const cls: CssClassDefinition = {
-                        id: stringHashId(key, newArgs.target, newArgs.pseudo, newArgs.classKey),
+                        id: CssHelpers.stringHashId(
+                            key,
+                            newArgs.target,
+                            newArgs.pseudo,
+                            newArgs.classKey,
+                        ),
                         key: key,
                         target: newArgs.target,
                         psuedo: newArgs.pseudo,
-                        className: decamelize(newArgs.classKey),
+                        className: CssHelpers.decamelize(newArgs.classKey),
                         css: "",
                     };
 
                     this.parseCss(updateArgs(newArgs, { classId: cls.id }));
 
-                    this.classes.set(cls.target, cls.id, cls);
-
-                    continue;
+                    if (CssHelpers.isClassDefinitionValid(cls, true)) {
+                        this.classes.set(cls.target, cls.id, cls);
+                    }
                 }
 
                 if (CssHelpers.isValueValid(calculated)) {
@@ -84,13 +87,16 @@ export class CssStyle {
                         id: key,
                         classId: newArgs.classId,
                         key: newArgs.propertyKey,
-                        className: decamelize(newArgs.classKey),
-                        name: decamelize(newArgs.propertyKey),
+                        className: CssHelpers.decamelize(newArgs.classKey),
+                        name: CssHelpers.decamelize(newArgs.propertyKey),
                         value: newArgs.value as CssValue,
                         css: "",
                     };
 
-                    this.properties.set(property.classId, property.id, property);
+                    if ((CssHelpers.isPropertyDefinitionValid(property), true)) {
+                        this.properties.set(property.classId, property.id, property);
+                    }
+
                     continue;
                 }
             }
