@@ -1,17 +1,22 @@
+import React from "react";
 import { CssValidValueKind } from "../enums/CssValidValueKind";
 import { CssTargetKind } from "../enums/CssTargetKind";
 import { CssPseudoKind } from "../enums/CssPseudoKind";
 import { CssAttributesKind } from "../enums/CssAttributesKind";
 import { CssStyleablePropertiesKind } from "../enums/CssStyleablePropertiesKind";
 import { CSSProperties } from "react";
-import { CssPropertyDefinition, CssValue, CssClassDefinition } from "../types";
+import {
+    CssPropertyDefinition,
+    CssValue,
+    CssClassDefinition,
+    GenericCollectionValues,
+} from "../types";
 import { CssCollection } from "../collections/CssCollection";
-import { CssPropertyCollection } from "../collections/CssPropertyCollection";
 import _ from "underscore";
+import { GenericCollection } from "../collections/GenericCollection";
 
 /**
  * typeof value has to be in CssValidValueKind
- * @param value
  */
 const isValueValid = (value: any): boolean => {
     if (value) {
@@ -27,7 +32,6 @@ const isValueValid = (value: any): boolean => {
 
 /**
  * value has to be in CssPseudoKind
- * @param value
  */
 const isPseudo = (value: any): boolean => {
     if (value && value in CssPseudoKind) {
@@ -38,7 +42,6 @@ const isPseudo = (value: any): boolean => {
 
 /**
  * value has to be in CssStyleablePropertiesKind
- * @param value
  */
 const isStyleableProperty = (value: any): boolean => {
     if (value && value in CssStyleablePropertiesKind) {
@@ -49,7 +52,6 @@ const isStyleableProperty = (value: any): boolean => {
 
 /**
  * value has to be in CssTargetKind
- * @param value
  */
 const isTarget = (value: any): boolean => {
     if (value && value in CssTargetKind) {
@@ -60,7 +62,6 @@ const isTarget = (value: any): boolean => {
 
 /**
  * value has to be in CssAttributesKind
- * @param value
  */
 const isValidCssAttribute = (value: any): boolean => {
     if (value && value in CssAttributesKind) {
@@ -71,7 +72,6 @@ const isValidCssAttribute = (value: any): boolean => {
 
 /**
  * value cannot be Target, CssAttribute, or Pseudo
- * @param value
  */
 const isValidClassName = (value: string): boolean => {
     if (value === undefined) {
@@ -94,7 +94,6 @@ const isValidClassName = (value: string): boolean => {
 /**
  * used to extract items where the key matches CssAttributes
  * in CssStyleablePropertiesKind
- * @param props
  */
 const findStyleableProps = (props: object): CSSProperties => {
     const results = {};
@@ -112,14 +111,13 @@ const findStyleableProps = (props: object): CSSProperties => {
 /**
  * converts CSSProperties to Property Definitions
  * in CssStyleablePropertiesKind
- * @param props
  */
 const toCssPropertyDefinition = (
     classId: string,
     className: string,
     ...styleableProps: CSSProperties[]
-) => {
-    const definitions = new CssCollection<CssPropertyDefinition>();
+): GenericCollectionValues<CssPropertyDefinition> => {
+    const definitions = new GenericCollection<CssPropertyDefinition>();
 
     styleableProps.forEach((obj) => {
         if (obj && Object.keys(obj)) {
@@ -138,20 +136,18 @@ const toCssPropertyDefinition = (
                     };
 
                     if (isPropertyDefinitionValid(property, true)) {
-                        definitions.set(classId, property.id, property);
+                        definitions.set(property.id, property);
                     }
                 }
             }
         }
     });
 
-    return definitions;
+    return definitions.values;
 };
 
 /**
  * validates PropertyDefinition
- * @param property
- * @param log
  */
 const isPropertyDefinitionValid = (
     property: CssPropertyDefinition,
@@ -159,18 +155,22 @@ const isPropertyDefinitionValid = (
 ): boolean => {
     const results: string[] = [];
     let isValid = true;
+
     for (const key in property) {
         if (property.hasOwnProperty(key)) {
             const value = property[key];
-            if (!value && key != "css") {
-                results.push(key);
-                isValid = false;
+            if (!value && typeof value in CssValidValueKind && key != "css") {
+                // 0 is not a valid number type
+                if (value !== "0" && value !== 0) {
+                    results.push(key);
+                    isValid = false;
+                }
             }
         }
     }
 
     if (log && results.length > 0) {
-        console.error(`invalid property ${results.join(",")}`);
+        console.error(`invalid property ${results.join(",")} ${property.value}`);
     }
 
     return isValid;
@@ -185,7 +185,7 @@ const isClassDefinitionValid = (property: CssClassDefinition, log: boolean = fal
     for (const key in property) {
         if (property.hasOwnProperty(key)) {
             const value = property[key];
-            if (!value && key != "css") {
+            if (!value && typeof value === "object" && key !== "css") {
                 results.push(key);
                 isValid = false;
             }
@@ -202,20 +202,36 @@ const isClassDefinitionValid = (property: CssClassDefinition, log: boolean = fal
 /**
  * renders css Class
  */
-const renderCssClass = (
-    className: string,
-    key: string,
-    properties: CssPropertyCollection,
-): string => {
+const renderCssClass = (className: string, key: string, properties: object): string => {
     const css: string[] = [];
 
     const clsName = classNameToString(key, className);
 
-    properties.forEach((key: string, value: CssPropertyDefinition) => {
-        css.push(value.css);
-    });
+    // properties.forEach((key: string, value: CssPropertyDefinition) => {
+    //     css.push(value.css);
+    // });
 
     return classStringTemplate(clsName, css.join(""));
+};
+
+/**
+ * convert CssProperties to
+ */
+const toGenericCollection = <T>(...obj: T[]): GenericCollectionValues<T> => {
+    const results: GenericCollectionValues<T> = {};
+
+    const merged = { ...obj };
+    for (const key in merged) {
+        if (merged.hasOwnProperty(key)) {
+            const value = merged[key];
+
+            if (CssHelpers.isValueValid(value)) {
+                results[key] = value;
+            }
+        }
+    }
+
+    return results;
 };
 
 /**
@@ -282,6 +298,23 @@ const stringHashId = (...str: string[]): string => {
     return (value >>> 0).toString(36);
 };
 
+/**
+ * looks for key in object
+ */
+const hasKey = (obj: object, key: string): boolean => {
+    return _.has(obj, key);
+};
+
+const combineClassNames = (
+    defaultProps: React.HTMLProps<any> | undefined,
+    props: React.HTMLProps<any> | undefined,
+) => {
+    const class1 = defaultProps?.className || "";
+    const class2 = props.className || "";
+
+    return `${class1} ${class2}`.trim();
+};
+
 export const CssHelpers = {
     isValueValid,
     isTarget,
@@ -296,4 +329,8 @@ export const CssHelpers = {
     decamelize,
     stringHashId,
     isClassDefinitionValid,
+    renderCssClass,
+    hasKey,
+    toGenericCollection,
+    combineClassNames,
 };

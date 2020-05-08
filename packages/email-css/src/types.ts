@@ -4,7 +4,6 @@ import { CssValidValueKind } from "./enums/CssValidValueKind";
 import { CssTargetKind } from "./enums/CssTargetKind";
 import { CssTheme } from "./theme/CssTheme";
 import { CssAttributesKind } from "./enums/CssAttributesKind";
-import { CssPropertyCollection } from "./collections/CssPropertyCollection";
 import { GenericCollection } from "./collections/GenericCollection";
 
 export type CssUnit = "px" | undefined;
@@ -64,6 +63,19 @@ export type CssParseArgs = {
     propertyKey: string;
     pseudo: CssPseudo;
 };
+
+export type ClassRecord<K extends string, T extends Collectable> = {
+    [P in K]: GenericRecord<K, T>;
+};
+
+export type GenericRecord<K extends string, T> = {
+    [P in K]: T;
+};
+
+export type ClassCollectionValues<T extends Collectable> = ClassRecord<string, T>;
+export type GenericCollectionValues<T> = GenericRecord<string, T>;
+
+//////
 
 export type CollectionMap<T extends Collectable> = Map<string, Map<string, T>>;
 

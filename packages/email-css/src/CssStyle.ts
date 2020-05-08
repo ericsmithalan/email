@@ -8,17 +8,19 @@ import {
     CssPseudo,
     CssClassDefinition,
     CssValue,
+    GenericCollectionValues,
 } from "./types";
 import _ from "underscore";
 import { CssTheme } from "./theme/CssTheme";
 import { CssCollection } from "./collections/CssCollection";
 import { CssHelpers } from "./helpers/CssHelpers";
 import { CssParserHelpers } from "./helpers/CssParserHelpers";
+import { GenericCollection } from "./collections/GenericCollection";
 
 export class CssStyle {
     public readonly classes = new CssCollection<CssClassDefinition>();
     public readonly properties = new CssCollection<CssPropertyDefinition>();
-    private _classNames: CssClassNames;
+    private _classNames = new GenericCollection<string>();
 
     constructor(private readonly _dirtyStyles: CssDirtyStyles, private readonly _theme: CssTheme) {
         this.parseCss({
@@ -29,15 +31,22 @@ export class CssStyle {
         });
     }
 
-    public get classNames(): CssClassNames {
-        if (!this._classNames) {
-            this._classNames = {};
-            this.classes.get("@global").forEach((value) => {
-                this._classNames[CssHelpers.camelize(value.className)] = value.className;
-            });
+    public get classNames(): GenericCollectionValues<string> {
+        if (this._classNames.isEmpty()) {
+            const collection = this.classes.get("@global");
+
+            for (const key in collection) {
+                if (collection.hasOwnProperty(key)) {
+                    const value = collection[key];
+
+                    if (!this._classNames.has(value.className)) {
+                        this._classNames.set(CssHelpers.camelize(value.className), value.className);
+                    }
+                }
+            }
         }
 
-        return this._classNames;
+        return this._classNames.values;
     }
 
     parseCss = (args: Partial<CssParseArgs>): void => {

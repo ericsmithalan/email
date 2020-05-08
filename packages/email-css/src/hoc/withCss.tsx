@@ -12,29 +12,17 @@ const withCss = (cssStyle: CssStyle) => <P extends object>(
     WrappedComponent: React.ComponentType<React.HTMLProps<P>>,
 ) => <T extends React.HTMLProps<P>>(props: T) => {
     const repository = useRepository();
-    const defaultProps = WrappedComponent.defaultProps;
+    const defaultProps = WrappedComponent?.defaultProps;
 
-    const combineProps = Object.assign({}, defaultProps, props, {
-        className: getClassNames(defaultProps, props),
-    });
+    const styles = repository.register(cssStyle.classes, cssStyle.properties, defaultProps, props);
 
-    const inlineables = repository.register(cssStyle.classes, cssStyle.properties, combineProps);
-
-    const mergedProps = Object.assign({}, combineProps, {
-        style: inlineables,
-    });
-
-    return <WrappedComponent {...mergedProps} />;
-};
-
-const getClassNames = (
-    defaultProps: React.HTMLProps<any> | undefined,
-    props: React.HTMLProps<any> | undefined,
-) => {
-    const class1 = defaultProps?.className || "";
-    const class2 = props.className || "";
-
-    return `${class1} ${class2}`.trim();
+    return (
+        <WrappedComponent
+            {...props}
+            className={CssHelpers.combineClassNames(defaultProps, props)}
+            style={styles}
+        />
+    );
 };
 
 export { withCss };

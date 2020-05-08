@@ -1,60 +1,57 @@
-import { Collectable, CssClassDefinition, CollectionMap } from "../types";
+import { Collectable, ClassCollectionValues, GenericCollectionValues } from "../types";
 import _ from "underscore";
-import { CssHelpers } from "../helpers/CssHelpers";
-import { Assert } from "../helpers/Assert";
 
 export class CssCollection<T extends Collectable> {
-    public values: CollectionMap<T> = new Map<string, Map<string, T>>();
+    constructor(public values: ClassCollectionValues<T> = {}) {}
 
     set(id: string, key: string, value: T) {
-        const map = this._getMap(id);
-        Assert.nullOrUndefined(map, "set()");
-        if (!map.has(key)) {
-            map.set(key, value);
-        }
+        const newValue = {};
+        newValue[key] = value;
+        this.values[id] = newValue;
     }
 
-    get(id: string): Map<string, T> {
-        const map = this._getMap(id);
-        return map;
+    get(id: string): GenericCollectionValues<T> {
+        return this.values[id];
     }
 
     getItem(id: string, key: string): T {
-        const map = this._getMap(id);
-        return map.get(key);
-    }
-
-    merge(values: CollectionMap<T>) {
-        if (!this.isEqualTo(values)) {
-            this.values = new Map([
-                ...Array.from(this.values.entries()),
-                ...Array.from(values.entries()),
-            ]);
+        const collection = this.values[id];
+        if (collection) {
+            return collection[key];
         }
+        return undefined;
     }
 
-    isEqualTo(map: Map<string, Map<string, T>>) {
-        let testVal;
-        if (this.values.size !== map.size) {
+    has(id: string): boolean {
+        if (this.values[id]) {
+            return true;
+        }
+        return false;
+    }
+
+    hasItem(id: string, key: string): boolean {
+        if (this.values[id] && this.values[id][key]) {
+            return true;
+        }
+        return false;
+    }
+
+    merge(values: ClassCollectionValues<T>) {
+        this.values = Object.assign({}, this.values, values);
+    }
+
+    count(): number {
+        return Object.keys(this.values).length;
+    }
+
+    isEmpty(): boolean {
+        if (Object.keys(this.values).length > 0) {
             return false;
-        }
-        for (var [key, val] of this.values) {
-            testVal = map.get(key);
-            if (testVal !== val || (testVal === undefined && !map.has(key))) {
-                return false;
-            }
         }
         return true;
     }
 
-    private _getMap(id: string) {
-        Assert.nullOrUndefined(id, "_getMap()");
-
-        if (this.values.has(id)) {
-            return this.values.get(id);
-        } else {
-            this.values.set(id, new Map<string, T>());
-            return this.values.get(id);
-        }
+    clear() {
+        this.values = {};
     }
 }
