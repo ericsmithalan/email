@@ -23,14 +23,12 @@ export class CssStyle {
     private _classNames: CssClassNames;
 
     constructor(private readonly _dirtyStyles: CssDirtyStyles, private readonly _theme: CssTheme) {
-        const defaultParseArgs: Partial<CssParseArgs> = {
+        this.parseCss({
             value: this._dirtyStyles,
             target: "@global",
             theme: this._theme,
             pseudo: "none",
-        };
-
-        this.parseCss(defaultParseArgs);
+        });
     }
 
     public get classNames(): CssClassNames {
