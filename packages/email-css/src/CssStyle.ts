@@ -70,6 +70,8 @@ export class CssStyle {
                         target.push(newObjet);
                     }
 
+                    console.log(newArgs.classKey);
+
                     this._classNames[newArgs.classKey] = CssHelpers.decamelize(newArgs.classKey);
 
                     continue;
@@ -91,12 +93,13 @@ export class CssStyle {
 
 const getClassName = (args: Partial<CssParseArgs>, key: string): string => {
     const className = CssHelpers.isValidClassName(key) ? key : args.classKey;
+    let pseudo = "";
 
-    if (CssHelpers.isPseudo(className)) {
-        return `${className}${args.pseudo}`;
+    if (CssHelpers.isPseudo(key)) {
+        pseudo = key;
     }
 
-    return className;
+    return `${className}${pseudo}`.trim();
 };
 
 const has = (

@@ -9,6 +9,7 @@ export interface IDivElement extends React.HTMLProps<HTMLDivElement> {
 
 const styles = css({
     ascDiv: {
+        backgroundColor: "orange",
         fontSize: 40,
         ":hover": {
             backgroundColor: "yellow",

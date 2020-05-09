@@ -8,7 +8,6 @@ import { CSSProperties } from "react";
 
 import _ from "underscore";
 
-
 /**
  * typeof value has to be in CssValidValueKind
  */
@@ -102,7 +101,6 @@ const getStyleableProps = <T>(props: React.HTMLProps<T>): CSSProperties => {
     return results;
 };
 
-
 /**
  * camelizes string
  * a usable value
@@ -125,11 +123,13 @@ const camelize = (str: string): string => {
  * a usable value
  */
 const decamelize = (str: string) => {
-    const separator = "-";
-    return str
-        .replace(/([a-z\d])([A-Z])/g, "$1" + separator + "$2")
-        .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, "$1" + separator + "$2")
-        .toLowerCase();
+    if (str) {
+        const separator = "-";
+        return str
+            .replace(/([a-z\d])([A-Z])/g, "$1" + separator + "$2")
+            .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, "$1" + separator + "$2")
+            .toLowerCase();
+    }
 };
 
 /**
@@ -164,6 +164,20 @@ const uniqueId = (): string => {
     return Math.random().toString(36).slice(2);
 };
 
+const cleanCssStringValue = (value: string): string => {
+    if (value) {
+        console.log(value);
+        // let str = value;
+        // if (value) {
+        //     str.replace("px", "");
+        // }
+
+        // return str;
+    }
+
+    return undefined;
+};
+
 export const CssHelpers = {
     isValueValid,
     isTarget,
@@ -178,4 +192,5 @@ export const CssHelpers = {
     hasKey,
     combineClassNames,
     uniqueId,
+    cleanCssStringValue,
 };
