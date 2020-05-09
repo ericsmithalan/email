@@ -18,7 +18,7 @@ const TrElement: FC<ITrElement> = (props: ITrElement) => {
 
 TrElement.defaultProps = {
     cssid: CssHelpers.uniqueId(),
-    className: styles.classNames.ascTr,
+    className: styles.classNames().ascTr,
 };
 
 const Tr = withCss(styles)(TrElement);

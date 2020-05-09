@@ -17,7 +17,7 @@ export type CssAttribute = keyof typeof CssAttributesKind;
 
 export type Fn<R = CssValue> = (theme: CssTheme) => R;
 
-export type CssStyleFragment = CssDirtyStyles;
+export type Css = CssDirtyStyles;
 
 export type CssDirtyValue = CssValue | Fn | string[] | number[] | Function | string;
 
@@ -32,17 +32,11 @@ export type CssClassNames = {
 };
 
 export interface CssPropertyDefinition {
-    id: string;
-    classId: string;
-    name: string;
-    value: CssValue;
+    [key: string]: CssValue;
 }
 
 export interface CssClassDefinition {
-    id: string;
-    className: string;
-    target: CssTarget;
-    psuedo: CssPseudo;
+    [key: string]: CssPropertyDefinition[];
 }
 
 export type CssParseArgs = {
@@ -50,19 +44,31 @@ export type CssParseArgs = {
     target: CssTarget;
     theme: CssTheme;
     classKey: string;
-    classId: string;
-    propertyKey: string;
     pseudo: CssPseudo;
 };
 
-export type PropertyRepository = CssRecord<string, PropertyRecord[]>;
-export type ClassRepository = CssRecord<string, ClassRecord[]>;
+export type CssRepositoryList = {
+    [K in CssTarget]: CssClassDefinition[];
+};
 
-export type PropertyRecord = CssRecord<string, CssPropertyDefinition>;
-export type ClassRecord = CssRecord<string, CssClassDefinition>;
+export type CssClassList = {
+    [K in string]: CssPropertyDefinition[];
+};
 
-export type GenericRecord<T> = CssRecord<string, T>;
+export type CssPropertyListItem = {
+    [K in string]: CssValue;
+};
 
-export type CssRecord<K extends string, T> = {
+export type CssClassRecord<
+    K,
+    T extends CssPropertyRecord<keyof React.CSSProperties, CssPropertyDefinition[]>
+> = {
+    [K in string]: T;
+};
+
+export type CssPropertyRecord<
+    K extends keyof React.CSSProperties,
+    T extends CssPropertyDefinition[]
+> = {
     [P in K]: T;
 };

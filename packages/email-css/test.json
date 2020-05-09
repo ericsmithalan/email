@@ -1,142 +1,112 @@
-classList {
-    "values": {
-        "@global": {
-            "uo8d4lqno9i": {
-                "id": "uo8d4lqno9i",
-                "key": "ascDiv",
-                "target": "@global",
-                "psuedo": "none",
-                "className": "asc-div",
-                "css": ""
-            }
+{ _dirtyStyles: { ascDiv: { fontSize: 40,
+         ':hover': [Object
+            ],
+         '@phone': [Object
+            ],
+         '@tablet': [Object
+            ]
         }
-    }
-}
-propertyList {
-    "values": {
-        "ysdpmmm794": {
-            "wrpd85tmso": {
-                "id": "wrpd85tmso",
-                "classId": "ysdpmmm794",
-                "key": "backgroundColor",
-                "className": "signature",
-                "name": "background-color",
-                "value": "red",
-                "css": ""
-            }
+    },
+   _theme: { name: 'Ascendum',
+      colors: { backgroundColor: '#f1f1f1',
+         contentBackgroundColor: '#ffffff',
+         darkFontColor: '#2C2C2C',
+         lightFontColor: '#BBB581',
+         orangeColor: '#ff9900',
+         blueColor: '#89cff0',
+         purpleColor: '#ca86ff',
+         linkColor: '#ff9900',
+         hoverColor: '#ff9900',
+         white: '#fff'
         },
-        "oy06w1hgmeg": {
-            "1ajdh5dj8kg": {
-                "id": "1ajdh5dj8kg",
-                "classId": "oy06w1hgmeg",
-                "key": "backgroundColor",
-                "className": "my-div-one",
-                "name": "background-color",
-                "value": "red",
-                "css": ""
-            }
+      fonts: { fontFamily: '\'Barlow Semi Condensed\', Arial, sans-serif',
+         fontHeaderSize: 26,
+         fontSubHeaderSize: 24,
+         fontTitleSize: 20,
+         fontSubTitleSize: 17,
+         fontDefaultSize: 15,
+         fontSmallSize: 12
         },
-        "d31c4mte85c": {
-            "jj3byx6chfh": {
-                "id": "jj3byx6chfh",
-                "classId": "d31c4mte85c",
-                "key": "backgroundColor",
-                "className": "my-div-two",
-                "name": "background-color",
-                "value": "green",
-                "css": ""
-            }
+      spacing: { xsm: 4, sm: 8, m: 15, lg: 20, xlg: 30
         },
-        "uo8d4lqno9i": {
-            "xuc5pf50txe": {
-                "id": "xuc5pf50txe",
-                "classId": "uo8d4lqno9i",
-                "key": "fontSize",
-                "className": "asc-div",
-                "name": "font-size",
-                "value": 15,
-                "css": ""
-            }
+      breakpoints: { phone: 400, tablet: 700
         }
-    }
+    },
+   classes: { '@global': [
+            [Object
+            ],
+            [Object
+            ]
+        ],
+      '@phone': [
+            [Object
+            ]
+        ],
+      '@tablet': [
+            [Object
+            ]
+        ]
+    },
+   _classNames: { ascDiv: 'asc-div'
+    },
+   parseCss: [Function
+    ],
+   _parseCss: [Function
+    ]
 }
-ids {
-    "values": {
-        "myDivTwo": "d31c4mte85c",
-        "ascTable": "hxa4m5zcoj9",
-        "ascTr": "nqgbcm8loi",
-        "ascTd": "jdz85yi6i",
-        "ascDiv": "uo8d4lqno9i"
-    }
-}
-classList {
-    "values": {
-        "@global": {
-            "uo8d4lqno9i": {
-                "id": "uo8d4lqno9i",
-                "key": "ascDiv",
-                "target": "@global",
-                "psuedo": "none",
-                "className": "asc-div",
-                "css": ""
-            }
+ classes { _dirtyStyles: { ascDiv: { fontSize: 40,
+         ':hover': [Object
+            ],
+         '@phone': [Object
+            ],
+         '@tablet': [Object
+            ]
         }
-    }
-}
-propertyList {
-    "values": {
-        "ysdpmmm794": {
-            "wrpd85tmso": {
-                "id": "wrpd85tmso",
-                "classId": "ysdpmmm794",
-                "key": "backgroundColor",
-                "className": "signature",
-                "name": "background-color",
-                "value": "red",
-                "css": ""
-            }
+    },
+   _theme: { name: 'Ascendum',
+      colors: { backgroundColor: '#f1f1f1',
+         contentBackgroundColor: '#ffffff',
+         darkFontColor: '#2C2C2C',
+         lightFontColor: '#BBB581',
+         orangeColor: '#ff9900',
+         blueColor: '#89cff0',
+         purpleColor: '#ca86ff',
+         linkColor: '#ff9900',
+         hoverColor: '#ff9900',
+         white: '#fff'
         },
-        "oy06w1hgmeg": {
-            "1ajdh5dj8kg": {
-                "id": "1ajdh5dj8kg",
-                "classId": "oy06w1hgmeg",
-                "key": "backgroundColor",
-                "className": "my-div-one",
-                "name": "background-color",
-                "value": "red",
-                "css": ""
-            }
+      fonts: { fontFamily: '\'Barlow Semi Condensed\', Arial, sans-serif',
+         fontHeaderSize: 26,
+         fontSubHeaderSize: 24,
+         fontTitleSize: 20,
+         fontSubTitleSize: 17,
+         fontDefaultSize: 15,
+         fontSmallSize: 12
         },
-        "d31c4mte85c": {
-            "jj3byx6chfh": {
-                "id": "jj3byx6chfh",
-                "classId": "d31c4mte85c",
-                "key": "backgroundColor",
-                "className": "my-div-two",
-                "name": "background-color",
-                "value": "green",
-                "css": ""
-            }
+      spacing: { xsm: 4, sm: 8, m: 15, lg: 20, xlg: 30
         },
-        "uo8d4lqno9i": {
-            "xuc5pf50txe": {
-                "id": "xuc5pf50txe",
-                "classId": "uo8d4lqno9i",
-                "key": "fontSize",
-                "className": "asc-div",
-                "name": "font-size",
-                "value": 15,
-                "css": ""
-            }
+      breakpoints: { phone: 400, tablet: 700
         }
-    }
-}
-ids {
-    "values": {
-        "myDivTwo": "d31c4mte85c",
-        "ascTable": "hxa4m5zcoj9",
-        "ascTr": "nqgbcm8loi",
-        "ascTd": "jdz85yi6i",
-        "ascDiv": "uo8d4lqno9i"
-    }
+    },
+   classes: { '@global': [
+            [Object
+            ],
+            [Object
+            ]
+        ],
+      '@phone': [
+            [Object
+            ]
+        ],
+      '@tablet': [
+            [Object
+            ]
+        ]
+    },
+   _classNames: { ascDiv: 'asc-div'
+    },
+   parseCss: [Function
+    ],
+   _parseCss: [Function
+    ]
 }

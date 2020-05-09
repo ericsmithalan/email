@@ -2,125 +2,103 @@ import {
     CssTarget,
     CssPropertyDefinition,
     CssClassDefinition,
-    PropertyRepository,
-    GenericRecord,
-    ClassRepository,
-    ClassRecord,
-    PropertyRecord,
     CssValue,
+    CssClassRecord,
+    CssRepositoryList,
 } from "./types";
 import { CSSProperties } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
-
-// 1. get styles from propertiesList to add to element style tag
-// 2. extract styles from  element inline props (width, height, align...)
-// 3. extract style property from element
-// 4. add styles from propertyList to element style tag
-// 5. add extracted styles to propertiesList
-// 6. return styles to be added to element style tag
+import _ from "underscore";
+import fs from "fs";
 
 export class CssRepository {
-    private readonly classIdMapper: GenericRecord<string> = {};
+    private classes: CssRepositoryList | {} = {
+        "@global": [],
+        "@phone": [],
+        "@tablet": [],
+    };
 
-    private readonly propertiesList: PropertyRepository = {};
-    private readonly classList: ClassRepository = {};
+    public registerStyles = (records: CssRepositoryList | {}): void => {
+        for (const key in records) {
+            if (records.hasOwnProperty(key)) {
+                for (const key in records) {
+                    const recordTarget = records[key];
+                    const classRecord = this.classes[key];
 
-    public registerStyles = (cssClasses: ClassRecord, properties: PropertyRecord): void => {
-        for (const key in cssClasses) {
-            if (cssClasses.hasOwnProperty(key)) {
-                const value = cssClasses[key] as CssClassDefinition;
+                    recordTarget.forEach((record: CssClassDefinition) => {
+                        const classKey = Object.keys(record)[0];
 
-                if (!this.classList[value.target]) {
-                    this.classList[value.target] = [];
-                }
+                        const keys = this.classKeys(classRecord);
 
-                const collection = this.classList[value.target];
-
-                if (!collection[value.id]) {
-                    const newValue = {};
-                    newValue[value.id] = value;
-
-                    collection.push(newValue);
-                    this.classIdMapper[value.className] = value.id;
-                }
-            }
-        }
-
-        for (const key in properties) {
-            if (properties.hasOwnProperty(key)) {
-                const value = properties[key] as CssPropertyDefinition;
-
-                if (!this.propertiesList[value.classId]) {
-                    this.propertiesList[value.classId] = [];
-                }
-
-                const collection = this.propertiesList[value.classId];
-
-                if (!collection[value.id]) {
-                    const newValue = {};
-                    newValue[value.id] = value;
-
-                    collection.push(newValue);
+                        console.log(record);
+                        if (!keys.includes(classKey)) {
+                            this.classes[key].push(record);
+                        }
+                    });
                 }
             }
         }
     };
 
+    classKeys(obj: CssClassDefinition[]) {
+        return obj.map((item) => Object.keys(item)[0]);
+    }
+
+    propertyKeys(obj: CssPropertyDefinition[]) {
+        return obj.map((item) => Object.keys(item)[0]);
+    }
+
     public getInlineableStyles = <P>(props: React.HTMLProps<P>): CSSProperties => {
         let results = {};
-        console.log(props);
 
         if (props) {
             const elementStyles = this.getElementStyles(props);
-            const cssStyles = this.getCssStyles(props);
+
             if (props.className) {
                 this.updateCssStyles(props.className, elementStyles);
             }
 
-            results = Object.assign({}, cssStyles, elementStyles);
+            return this.getCssStyles(props);
         }
 
         return results;
     };
 
     private updateCssStyles = (className: string, elementStyles: CSSProperties) => {
-        const classId = this.getId(className);
-        const cssStyles = this.propertiesList[classId];
-
-        for (const key in elementStyles) {
-            if (elementStyles.hasOwnProperty(key)) {
-                const item = elementStyles[key];
-
-                if (cssStyles[key]) {
-                    if (item.value === cssStyles[key]) {
-                        console.log("same value");
-                    } else {
-                        console.log("divverent value");
-                    }
-                } else {
-                    cssStyles[key] = {
-                        id: CssHelpers.stringHashId(classId, key),
-                        classId: classId,
-                        name: key,
-                        value: item as CssValue,
-                    };
-                }
-            }
-        }
+        // const classId = this.getId(CssHelpers.camelize(className));
+        // for (const key in elementStyles) {
+        //     if (elementStyles.hasOwnProperty(key)) {
+        //         const item = elementStyles[key];
+        //         const matched = this.propertiesList[classId];
+        //         if (matched && !matched[key]) {
+        //             this.propertiesList[classId][key] = {
+        //                 id: CssHelpers.stringHashId(classId, key),
+        //                 classId: classId,
+        //                 name: key,
+        //                 value: item as CssValue,
+        //             };
+        //             console.log(this.propertiesList);
+        //         }
+        //     }
+        // }
     };
 
     private getCssStyles = (props: React.HTMLProps<any>): CSSProperties => {
         let results: CSSProperties = {};
 
-        const classId = this.getId(props.className);
-        const cssStyles = this.propertiesList[classId];
+        // const classId = this.getId(CssHelpers.camelize(props.className));
+        // const cssStyles = this.propertiesList[classId];
 
-        if (cssStyles) {
-            cssStyles.forEach((record, index) => {
-                const item = record[index] as CssPropertyDefinition;
-                results[item.name] = item.value;
-            });
-        }
+        // if (cssStyles) {
+        //     for (const key in cssStyles) {
+        //         if (cssStyles.hasOwnProperty(key)) {
+        //             const item = cssStyles[key] as CssPropertyDefinition;
+        //             if (item) {
+        //                 results[item.name] = item.value;
+        //             }
+        //         }
+        //     }
+        // }
 
         return results;
     };
@@ -132,28 +110,8 @@ export class CssRepository {
         return Object.assign({}, styleableProps, elementStyle);
     };
 
-    private getId(className: string): string {
-        const id = this.classIdMapper[className];
-        return id;
-    }
-
-    private registerClassIds() {
-        const collection = this.classList["@global"];
-
-        collection.forEach((record, index) => {
-            const item = record[index];
-
-            this.classIdMapper[item.className] = item.id;
-        });
-    }
-
     public writeFiles = () => {
-        // console.log("classList", JSON.stringify(this.classList));
-        // console.log("propertyList", JSON.stringify(this.propertiesList));
-        // console.log("ids", JSON.stringify(this.ids));
-        // fs.appendFile("classList.json", JSON.stringify(this.classList.values), () => {});
-        // fs.appendFile("propertyList.json", JSON.stringify(this.propertiesList.values), () => {});
-        // fs.appendFile("ids.json", JSON.stringify(this.ids.values), () => {});
+        fs.writeFileSync("test.json", JSON.stringify(this.classes));
     };
     public stylesheet = (target: CssTarget) => {
         return "";

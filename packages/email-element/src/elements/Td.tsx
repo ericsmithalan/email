@@ -20,7 +20,7 @@ const TdElement: FC<ITdElement> = (props: ITdElement) => {
 
 TdElement.defaultProps = {
     cssid: CssHelpers.uniqueId(),
-    className: styles.classNames.ascTd,
+    className: styles.classNames().ascTd,
     align: "left",
 };
 

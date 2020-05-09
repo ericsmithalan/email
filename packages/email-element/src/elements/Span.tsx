@@ -16,7 +16,7 @@ const SpanElement: FC<SpanElement> = (props: SpanElement) => {
 
 SpanElement.defaultProps = {
     cssid: CssHelpers.uniqueId(),
-    className: styles.classNames.ascSpan,
+    className: styles.classNames().ascSpan,
 };
 
 const Span = withCss(styles)(SpanElement);

@@ -5,22 +5,25 @@ import { CssHelpers } from "../helpers/CssHelpers";
 
 const withCss = (css: CssStyle) => <P extends object>(
     WrappedComponent: React.ComponentType<React.HTMLProps<P>>,
-) => <T extends React.HTMLProps<P>>(props: T) => {
-    const repository = useRepository();
-    const defaultProps = WrappedComponent?.defaultProps;
+) => {
+    const component = <T extends React.HTMLProps<P>>(props: T) => {
+        const repository = useRepository(css.classes);
 
-    repository.registerStyles(css.classes, css.properties);
+        const defaultProps = WrappedComponent?.defaultProps;
 
-    const outerStyles = repository.getInlineableStyles(defaultProps);
-    const innerStyles = repository.getInlineableStyles(props);
+        const outerStyles = repository.getInlineableStyles(defaultProps);
+        const innerStyles = repository.getInlineableStyles(props);
 
-    return (
-        <WrappedComponent
-            {...Object.assign({}, defaultProps, props)}
-            className={CssHelpers.combineClassNames(defaultProps, props)}
-            style={{ ...Object.assign({}, outerStyles, innerStyles) }}
-        />
-    );
+        return (
+            <WrappedComponent
+                {...Object.assign({}, defaultProps, props)}
+                className={CssHelpers.combineClassNames(defaultProps, props)}
+                style={{ ...Object.assign({}, outerStyles, innerStyles) }}
+            />
+        );
+    };
+
+    return component;
 };
 
 export { withCss };

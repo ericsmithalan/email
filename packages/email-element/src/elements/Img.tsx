@@ -18,7 +18,7 @@ const ImgElement: FC<IImgElement> = (props: IImgElement) => {
 
 ImgElement.defaultProps = {
     cssid: CssHelpers.uniqueId(),
-    className: styles.classNames.ascImg,
+    className: styles.classNames().ascImg,
 };
 
 const Img = withCss(styles)(ImgElement);

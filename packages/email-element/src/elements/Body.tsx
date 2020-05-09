@@ -19,7 +19,7 @@ const BodyElement: FC<IBodyElement> = (props: IBodyElement) => {
 
 BodyElement.defaultProps = {
     cssid: CssHelpers.uniqueId(),
-    className: styles.classNames.ascBody,
+    className: styles.classNames().ascBody,
 };
 
 const A = withCss(styles)(BodyElement);

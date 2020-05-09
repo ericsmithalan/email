@@ -10,6 +10,15 @@ export interface IDivElement extends React.HTMLProps<HTMLDivElement> {
 const styles = css({
     ascDiv: {
         fontSize: 40,
+        ":hover": {
+            backgroundColor: "yellow",
+        },
+        "@phone": {
+            backgroundColor: "red",
+        },
+        "@tablet": {
+            backgroundColor: "blue",
+        },
     },
 });
 
@@ -19,7 +28,7 @@ const DivElement: FC<IDivElement> = (props: IDivElement) => {
 
 DivElement.defaultProps = {
     cssid: CssHelpers.uniqueId(),
-    className: styles.classNames.ascDiv,
+    className: styles.classNames().ascDiv,
     width: 200,
 };
 

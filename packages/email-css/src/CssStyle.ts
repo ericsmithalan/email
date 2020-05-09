@@ -3,8 +3,13 @@ import {
     CssClassNames,
     CssParseArgs,
     CssValue,
-    ClassRecord,
-    PropertyRecord,
+    CssPropertyDefinition,
+    CssPropertyRecord,
+    CssTarget,
+    CssClassRecord,
+    CssPseudo,
+    CssClassList,
+    CssRepositoryList,
 } from "./types";
 import _ from "underscore";
 import { CssTheme } from "./theme/CssTheme";
@@ -13,39 +18,35 @@ import { CssParserHelpers } from "./helpers/CssParserHelpers";
 import { CssTargetKind } from "./enums/CssTargetKind";
 
 export class CssStyle {
-    public readonly classes: ClassRecord = {};
-    public readonly properties: PropertyRecord = {};
+    public classes: CssRepositoryList | {} = {};
     private _classNames: CssClassNames = {};
 
     constructor(private readonly _dirtyStyles: CssDirtyStyles, private readonly _theme: CssTheme) {
-        this.parseCss({
+        this.classes = {
+            "@global": [],
+            "@phone": [],
+            "@tablet": [],
+        };
+
+        this.parseCss();
+    }
+
+    public classNames(): CssClassNames {
+        return this._classNames;
+    }
+
+    public parseCss = (): void => {
+        this._parseCss({
             value: this._dirtyStyles,
             target: "@global",
             theme: this._theme,
             pseudo: "none",
         });
+    };
 
-        this.buildClassNames();
-    }
+    private _parseCss = (args: Partial<CssParseArgs>) => {
+        const css: CssPropertyDefinition[] = [];
 
-    private buildClassNames(): void {
-        const collection = this.classes[CssTargetKind["@global"]];
-
-        if (collection) {
-            for (const key in collection) {
-                if (collection.hasOwnProperty(key)) {
-                    const value = collection[key];
-                    this._classNames[CssHelpers.camelize(value.className)] = value.className;
-                }
-            }
-        }
-    }
-
-    public get classNames(): CssClassNames {
-        return this._classNames;
-    }
-
-    parseCss = (args: Partial<CssParseArgs>): void => {
         for (const key in args.value) {
             if (args.value.hasOwnProperty(key)) {
                 let value = args.value[key];
@@ -54,41 +55,66 @@ export class CssStyle {
                 if (_.isObject(calculated)) {
                     const newArgs = updateArgs(args, {
                         value: calculated,
-                        classKey: CssHelpers.isValidClassName(key) ? key : args.classKey,
+                        classKey: getClassName(args, key),
+                        target: CssHelpers.isTarget(key) ? (key as CssTarget) : args.target,
+                        pseudo: CssHelpers.isTarget(key) ? (key as CssPseudo) : args.pseudo,
                     });
 
-                    const id = CssHelpers.stringHashId(
-                        newArgs.classKey,
-                        newArgs.target,
-                        newArgs.pseudo,
-                    );
+                    const target = this.classes[newArgs.target];
 
-                    this.classes[id] = {
-                        id: id,
-                        target: newArgs.target,
-                        psuedo: newArgs.pseudo,
-                        className: newArgs.classKey,
-                    };
+                    if (!has(target, newArgs.classKey)) {
+                        const newObjet = {};
 
-                    this.parseCss(updateArgs(newArgs, { classId: id }));
+                        newObjet[newArgs.classKey] = this._parseCss(newArgs);
+
+                        target.push(newObjet);
+                    }
+
+                    this._classNames[newArgs.classKey] = CssHelpers.decamelize(newArgs.classKey);
+
+                    continue;
                 }
 
                 if (CssHelpers.isValueValid(calculated)) {
-                    const id = CssHelpers.stringHashId(args.classId, key);
-
-                    this.properties[id] = {
-                        id: id,
-                        classId: args.classId,
-                        name: key,
-                        value: calculated as CssValue,
-                    };
+                    const newValue = {};
+                    newValue[key] = calculated as CssValue;
+                    css.push(newValue as CssPropertyDefinition);
 
                     continue;
                 }
             }
         }
+
+        return css;
     };
 }
+
+const getClassName = (args: Partial<CssParseArgs>, key: string): string => {
+    const className = CssHelpers.isValidClassName(key) ? key : args.classKey;
+
+    if (CssHelpers.isPseudo(className)) {
+        return `${className}${args.pseudo}`;
+    }
+
+    return className;
+};
+
+const has = (
+    arr: CssClassRecord<
+        string,
+        CssPropertyRecord<keyof React.CSSProperties, CssPropertyDefinition[]>
+    >[],
+    key: string,
+): boolean => {
+    arr.forEach((item) => {
+        const itemKey = Object.keys(item)[0];
+        if (itemKey === key) {
+            return true;
+        }
+    });
+
+    return false;
+};
 
 const updateArgs = (
     oldArgs: Partial<CssParseArgs>,

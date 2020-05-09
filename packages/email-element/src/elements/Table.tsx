@@ -26,7 +26,7 @@ const TableElement: FC<ITableElement> = (props: ITableElement) => {
 
 TableElement.defaultProps = {
     cssid: CssHelpers.uniqueId(),
-    className: styles.classNames.ascTable,
+    className: styles.classNames().ascTable,
     cellPadding: 0,
     cellSpacing: 0,
     width: "100%",
