@@ -1,13 +1,15 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
 import { commonFonts } from "../styles/common";
+import { CssHelpers } from "@email/css";
 
-export interface IDivElement extends React.HTMLProps<HTMLDivElement> {}
+export interface IDivElement extends React.HTMLProps<HTMLDivElement> {
+    cssid: string;
+}
 
 const styles = css({
     ascDiv: {
-        ...commonFonts,
-        fontSize: 15,
+        fontSize: 40,
     },
 });
 
@@ -16,6 +18,7 @@ const DivElement: FC<IDivElement> = (props: IDivElement) => {
 };
 
 DivElement.defaultProps = {
+    cssid: CssHelpers.uniqueId(),
     className: styles.classNames.ascDiv,
     width: 200,
 };

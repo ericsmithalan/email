@@ -2,10 +2,13 @@ import React, { FC } from "react";
 import { css, withCss } from "@email/css";
 import { DepricatedTableAttributes } from "../types";
 import { commonFonts } from "../styles/common";
+import { CssHelpers } from "@email/css";
 
 export interface ITableElement
     extends React.HTMLProps<HTMLTableElement>,
-        DepricatedTableAttributes {}
+        DepricatedTableAttributes {
+    cssid: string;
+}
 
 const styles = css({
     ascTable: {
@@ -22,6 +25,7 @@ const TableElement: FC<ITableElement> = (props: ITableElement) => {
 };
 
 TableElement.defaultProps = {
+    cssid: CssHelpers.uniqueId(),
     className: styles.classNames.ascTable,
     cellPadding: 0,
     cellSpacing: 0,

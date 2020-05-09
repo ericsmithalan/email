@@ -7,41 +7,23 @@ export type SignatureElementProps = {};
 const styles = css({
     signature: {
         backgroundColor: "red",
-        fontWeight: "bold",
-
-        fontSize: 30,
-        ":hover": {
-            backgroundColor: "blue",
-        },
     },
     myDivOne: {
         backgroundColor: "red",
-        fontSize: 15,
-        "@phone": {
-            backgroundColor: "purple",
-        },
-        "@tablet": {
-            backgroundColor: "orange",
-        },
     },
     myDivTwo: {
-        backgroundColor: "red",
-        "@phone": {
-            backgroundColor: "purple",
-        },
-        "@tablet": {
-            backgroundColor: "orange",
-        },
+        backgroundColor: "green",
     },
 });
 
 const SignatureElement = (props: SignatureElementProps) => {
+    const classes = styles.classNames;
     return (
-        <Table className={styles.classNames.signature}>
+        <Table className={classes.signature}>
             <Tr>
                 <Td>
                     <Div
-                        className={styles.classNames.myDivOne}
+                        className={classes.myDivOne}
                         style={{
                             fontSize: 200,
                         }}
@@ -52,7 +34,7 @@ const SignatureElement = (props: SignatureElementProps) => {
             </Tr>
             <Tr>
                 <Td>
-                    <Div className={styles.classNames.myDivTwo}>Hello</Div>
+                    <Div className={classes.myDivTwo}>Hello</Div>
                 </Td>
             </Tr>
         </Table>

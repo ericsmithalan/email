@@ -4,7 +4,6 @@ import { CssValidValueKind } from "./enums/CssValidValueKind";
 import { CssTargetKind } from "./enums/CssTargetKind";
 import { CssTheme } from "./theme/CssTheme";
 import { CssAttributesKind } from "./enums/CssAttributesKind";
-import { GenericCollection } from "./collections/GenericCollection";
 
 export type CssUnit = "px" | undefined;
 
@@ -32,25 +31,17 @@ export type CssClassNames = {
     [key: string]: string;
 };
 
-export interface Collectable {
+export interface CssPropertyDefinition {
     id: string;
-    className: string;
-}
-
-export interface CssPropertyDefinition extends Collectable {
-    key: string;
     classId: string;
-    className: string;
     name: string;
     value: CssValue;
-    css: string;
 }
 
-export interface CssClassDefinition extends Collectable {
-    key: string;
+export interface CssClassDefinition {
+    id: string;
     className: string;
     target: CssTarget;
-    css: string;
     psuedo: CssPseudo;
 }
 
@@ -64,32 +55,14 @@ export type CssParseArgs = {
     pseudo: CssPseudo;
 };
 
-export type ClassRecord<K extends string, T extends Collectable> = {
-    [P in K]: GenericRecord<K, T>;
-};
+export type PropertyRepository = CssRecord<string, PropertyRecord[]>;
+export type ClassRepository = CssRecord<string, ClassRecord[]>;
 
-export type GenericRecord<K extends string, T> = {
+export type PropertyRecord = CssRecord<string, CssPropertyDefinition>;
+export type ClassRecord = CssRecord<string, CssClassDefinition>;
+
+export type GenericRecord<T> = CssRecord<string, T>;
+
+export type CssRecord<K extends string, T> = {
     [P in K]: T;
 };
-
-export type ClassCollectionValues<T extends Collectable> = ClassRecord<string, T>;
-export type GenericCollectionValues<T> = GenericRecord<string, T>;
-
-//////
-
-export type CollectionMap<T extends Collectable> = Map<string, Map<string, T>>;
-
-export type ClassCollectionType = GenericCollection<CssClassDefinition>;
-
-export type GenericCollectionType<T extends Collectable> = GenericCollection<T>;
-
-export type PropertyCollectionType = GenericCollection<CssPropertyDefinition>;
-
-export interface ClassCollectionTuple<K extends string, T> {
-    0: K;
-    1: T;
-}
-
-export interface CallbackFn<K extends string, T> {
-    (key: K, value: T): T;
-}

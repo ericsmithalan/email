@@ -37,7 +37,11 @@ const renderer = (req: Request, assets: any) => {
                     <style>${defaultStyleContext.repository.stylesheet("@tablet")}</style>
                     <style>${defaultStyleContext.repository.stylesheet("@phone")}</style>
 
-                    ${assets.client.css ? `<link rel="stylesheet" href="${assets.client.css}">` : ""}
+                    ${
+                        assets.client.css
+                            ? `<link rel="stylesheet" href="${assets.client.css}">`
+                            : ""
+                    }
                         ${
                             process.env.NODE_ENV === "production"
                                 ? `<script src="${assets.client.js}" defer></script>`
@@ -48,7 +52,7 @@ const renderer = (req: Request, assets: any) => {
                 <body style="margin:0;padding:0;">
                     <div id="root">${markup}</div>
                 </body>
-            </html>`;
+            </html>${defaultStyleContext.repository.writeFiles()}`;
 };
 
 export { renderer };

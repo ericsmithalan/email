@@ -1,8 +1,11 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
 import { DepricatedBodyAttributes } from "../types";
+import { CssHelpers } from "@email/css";
 
-export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}
+export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {
+    cssid: string;
+}
 
 const styles = css({
     ascBody: {
@@ -15,6 +18,7 @@ const BodyElement: FC<IBodyElement> = (props: IBodyElement) => {
 };
 
 BodyElement.defaultProps = {
+    cssid: CssHelpers.uniqueId(),
     className: styles.classNames.ascBody,
 };
 

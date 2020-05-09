@@ -1,26 +1,24 @@
 import React, { CSSProperties } from "react";
 import { CssStyle } from "../CssStyle";
 import { useRepository } from "../hooks/useRepository";
-import { CssStyleablePropertiesKind } from "../enums/CssStyleablePropertiesKind";
 import { CssHelpers } from "../helpers/CssHelpers";
 
-export interface WithCssProps {
-    classId: string;
-}
-
-const withCss = (cssStyle: CssStyle) => <P extends object>(
+const withCss = (css: CssStyle) => <P extends object>(
     WrappedComponent: React.ComponentType<React.HTMLProps<P>>,
 ) => <T extends React.HTMLProps<P>>(props: T) => {
     const repository = useRepository();
     const defaultProps = WrappedComponent?.defaultProps;
 
-    const styles = repository.register(cssStyle.classes, cssStyle.properties, defaultProps, props);
+    repository.registerStyles(css.classes, css.properties);
+
+    const outerStyles = repository.getInlineableStyles(defaultProps);
+    const innerStyles = repository.getInlineableStyles(props);
 
     return (
         <WrappedComponent
-            {...props}
+            {...Object.assign({}, defaultProps, props)}
             className={CssHelpers.combineClassNames(defaultProps, props)}
-            style={styles}
+            style={{ ...Object.assign({}, outerStyles, innerStyles) }}
         />
     );
 };

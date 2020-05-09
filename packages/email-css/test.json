@@ -1,0 +1,142 @@
+classList {
+    "values": {
+        "@global": {
+            "uo8d4lqno9i": {
+                "id": "uo8d4lqno9i",
+                "key": "ascDiv",
+                "target": "@global",
+                "psuedo": "none",
+                "className": "asc-div",
+                "css": ""
+            }
+        }
+    }
+}
+propertyList {
+    "values": {
+        "ysdpmmm794": {
+            "wrpd85tmso": {
+                "id": "wrpd85tmso",
+                "classId": "ysdpmmm794",
+                "key": "backgroundColor",
+                "className": "signature",
+                "name": "background-color",
+                "value": "red",
+                "css": ""
+            }
+        },
+        "oy06w1hgmeg": {
+            "1ajdh5dj8kg": {
+                "id": "1ajdh5dj8kg",
+                "classId": "oy06w1hgmeg",
+                "key": "backgroundColor",
+                "className": "my-div-one",
+                "name": "background-color",
+                "value": "red",
+                "css": ""
+            }
+        },
+        "d31c4mte85c": {
+            "jj3byx6chfh": {
+                "id": "jj3byx6chfh",
+                "classId": "d31c4mte85c",
+                "key": "backgroundColor",
+                "className": "my-div-two",
+                "name": "background-color",
+                "value": "green",
+                "css": ""
+            }
+        },
+        "uo8d4lqno9i": {
+            "xuc5pf50txe": {
+                "id": "xuc5pf50txe",
+                "classId": "uo8d4lqno9i",
+                "key": "fontSize",
+                "className": "asc-div",
+                "name": "font-size",
+                "value": 15,
+                "css": ""
+            }
+        }
+    }
+}
+ids {
+    "values": {
+        "myDivTwo": "d31c4mte85c",
+        "ascTable": "hxa4m5zcoj9",
+        "ascTr": "nqgbcm8loi",
+        "ascTd": "jdz85yi6i",
+        "ascDiv": "uo8d4lqno9i"
+    }
+}
+classList {
+    "values": {
+        "@global": {
+            "uo8d4lqno9i": {
+                "id": "uo8d4lqno9i",
+                "key": "ascDiv",
+                "target": "@global",
+                "psuedo": "none",
+                "className": "asc-div",
+                "css": ""
+            }
+        }
+    }
+}
+propertyList {
+    "values": {
+        "ysdpmmm794": {
+            "wrpd85tmso": {
+                "id": "wrpd85tmso",
+                "classId": "ysdpmmm794",
+                "key": "backgroundColor",
+                "className": "signature",
+                "name": "background-color",
+                "value": "red",
+                "css": ""
+            }
+        },
+        "oy06w1hgmeg": {
+            "1ajdh5dj8kg": {
+                "id": "1ajdh5dj8kg",
+                "classId": "oy06w1hgmeg",
+                "key": "backgroundColor",
+                "className": "my-div-one",
+                "name": "background-color",
+                "value": "red",
+                "css": ""
+            }
+        },
+        "d31c4mte85c": {
+            "jj3byx6chfh": {
+                "id": "jj3byx6chfh",
+                "classId": "d31c4mte85c",
+                "key": "backgroundColor",
+                "className": "my-div-two",
+                "name": "background-color",
+                "value": "green",
+                "css": ""
+            }
+        },
+        "uo8d4lqno9i": {
+            "xuc5pf50txe": {
+                "id": "xuc5pf50txe",
+                "classId": "uo8d4lqno9i",
+                "key": "fontSize",
+                "className": "asc-div",
+                "name": "font-size",
+                "value": 15,
+                "css": ""
+            }
+        }
+    }
+}
+ids {
+    "values": {
+        "myDivTwo": "d31c4mte85c",
+        "ascTable": "hxa4m5zcoj9",
+        "ascTr": "nqgbcm8loi",
+        "ascTd": "jdz85yi6i",
+        "ascDiv": "uo8d4lqno9i"
+    }
+}

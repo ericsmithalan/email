@@ -1,5 +1,5 @@
 import { defaultTheme, CssTheme } from "./theme/CssTheme";
-import { CssDirtyStyles } from "./types";
+import { CssDirtyStyles, CssClassNames } from "./types";
 import { CssStyle } from "./CssStyle";
 
 export const css = (styles: CssDirtyStyles, theme: CssTheme = defaultTheme): CssStyle => {
