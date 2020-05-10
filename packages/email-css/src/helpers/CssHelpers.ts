@@ -150,18 +150,6 @@ const uniqueId = (): string => {
     return Math.random().toString(36).slice(2);
 };
 
-const cleanCssStringValue = (value: string): string => {
-    if (value) {
-        // let str = value;
-        // if (value) {
-        //     str.replace("px", "");
-        // }
-        // return str;
-    }
-
-    return undefined;
-};
-
 export const CssHelpers = {
     isValueValid,
     isTarget,
@@ -175,5 +163,4 @@ export const CssHelpers = {
     hasKey,
     combineClassNames,
     uniqueId,
-    cleanCssStringValue,
 };

@@ -1,4 +1,4 @@
-import { CssTheme, Css } from "@email/css";
+import { CssTheme, Css } from "packages/email-element/src/primitives/node_modules/@email/css";
 
 export const commonFonts: Css = {
     fontFamily: (theme: CssTheme) => theme.fonts.fontFamily,

@@ -11,11 +11,11 @@ import {
     CssClassList,
     CssRepositoryList,
     CssPropertyListItem,
+    CssDirtyValue,
 } from "./types";
 import _ from "underscore";
 import { CssTheme } from "./theme/CssTheme";
 import { CssHelpers } from "./helpers/CssHelpers";
-import { CssParserHelpers } from "./helpers/CssParserHelpers";
 import { CssTargetKind } from "./enums/CssTargetKind";
 
 export class CssStyle {
@@ -51,7 +51,7 @@ export class CssStyle {
         for (const key in args.value) {
             if (args.value.hasOwnProperty(key)) {
                 let value = args.value[key];
-                let calculated = CssParserHelpers.calculateValue(value, args.theme);
+                let calculated = calculateValue(value, args.theme);
 
                 if (_.isObject(calculated)) {
                     const newArgs = updateArgs(args, {
@@ -82,6 +82,22 @@ export class CssStyle {
     };
 }
 
+const calculateValue = (
+    value: CssDirtyValue & CssValue,
+    theme: CssTheme,
+): CssDirtyValue | CssValue => {
+    let calculated;
+
+    if (_.isFunction(value)) {
+        const fn = value as Function;
+        calculated = fn(theme);
+    } else {
+        calculated = value;
+    }
+
+    return calculated;
+};
+
 const getClassName = (args: Partial<CssParseArgs>, key: string): string => {
     const className = CssHelpers.isValidClassName(key) ? key : args.classKey;
     let pseudo = "";
@@ -91,6 +107,18 @@ const getClassName = (args: Partial<CssParseArgs>, key: string): string => {
     }
 
     return CssHelpers.camelize(`${className}${pseudo}`).trim();
+};
+
+const cleanCssStringValue = (value: string): string => {
+    if (value) {
+        // let str = value;
+        // if (value) {
+        //     str.replace("px", "");
+        // }
+        // return str;
+    }
+
+    return undefined;
 };
 
 const updateArgs = (

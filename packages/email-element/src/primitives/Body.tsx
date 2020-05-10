@@ -2,11 +2,13 @@ import React, { FC } from "react";
 import { css, withCss } from "@email/css";
 import { DepricatedBodyAttributes } from "../types";
 import { CssHelpers } from "@email/css";
+import { commonFonts } from "../styles/common";
 
 export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}
 
 const styles = css({
     ascBody: {
+        ...commonFonts,
         fontSize: 13,
     },
 });

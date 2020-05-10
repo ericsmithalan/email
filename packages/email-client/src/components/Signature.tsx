@@ -11,7 +11,7 @@ const styles = css({
         fontSize: 30,
     },
     myDivOne: {
-        backgroundColor: "red",
+        fontSize: 50,
     },
     myDivTwo: {
         backgroundColor: "green",
@@ -23,14 +23,7 @@ const SignatureElement = (props: SignatureElementProps) => {
         <Table className={styles.classNames().signature}>
             <Tr>
                 <Td>
-                    <Div
-                        className={styles.classNames().myDivOne}
-                        style={{
-                            fontSize: 200,
-                        }}
-                    >
-                        Hello
-                    </Div>
+                    <Div className={styles.classNames().myDivOne}>Hello</Div>
                 </Td>
             </Tr>
             <Tr>
