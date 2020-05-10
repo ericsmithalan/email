@@ -21,6 +21,7 @@
         "@babel/core": "^7.9.6",
         "@babel/preset-react": "^7.9.4",
         "@email/css": "^1.0.0",
+        "@email/theme": "^1.0.0",
         "@email/element": "^1.0.0",
         "@types/deepmerge": "^2.2.0",
         "@types/immutable": "^3.8.7",

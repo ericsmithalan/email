@@ -1,7 +1,6 @@
 import React from "react";
 import { Div, Table, Tr, Td } from "@email/element";
 import { withCss, css } from "@email/css/";
-import { useCssContext, useRepository } from "@email/css/src";
 
 export type SignatureElementProps = {};
 

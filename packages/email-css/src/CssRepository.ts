@@ -1,4 +1,4 @@
-import { CssTarget, CssPropertyDefinition, CssClassDefinition, CssRepositoryList } from "./types";
+import { CssTarget, CssRepositoryList } from "./types";
 import { CSSProperties } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
 import _ from "underscore";
@@ -61,9 +61,6 @@ export class CssRepository {
         this.repository[target][className] = merged;
     };
 
-    public test = () => {
-        // fs.writeFileSync("test.json", JSON.stringify(this.repository));
-    };
     public stylesheet = (target: CssTarget) => {
         return "";
     };

@@ -1,12 +1,10 @@
-import { CssTheme } from "./theme/CssTheme";
+import { Theme } from "@email/theme";
 
 export interface ICssSettings {
     create: () => void;
 }
 
 export class CssSettings {
-    private _theme: CssTheme;
-
     constructor() {}
 
     public create() {

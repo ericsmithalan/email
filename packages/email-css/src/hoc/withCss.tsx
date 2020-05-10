@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import { CssStyle } from "../CssStyle";
 import { useRepository } from "../hooks/useRepository";
 import { CssHelpers } from "../helpers/CssHelpers";

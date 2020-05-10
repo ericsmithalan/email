@@ -4,7 +4,6 @@ import { CssTargetKind } from "../enums/CssTargetKind";
 import { CssPseudoKind } from "../enums/CssPseudoKind";
 import { CssAttributesKind } from "../enums/CssAttributesKind";
 import { CssStyleablePropertiesKind } from "../enums/CssStyleablePropertiesKind";
-import { CSSProperties } from "react";
 
 import _ from "underscore";
 

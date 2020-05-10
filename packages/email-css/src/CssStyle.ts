@@ -3,20 +3,15 @@ import {
     CssClassNames,
     CssParseArgs,
     CssValue,
-    CssPropertyDefinition,
-    CssPropertyRecord,
     CssTarget,
-    CssClassRecord,
     CssPseudo,
-    CssClassList,
     CssRepositoryList,
     CssPropertyListItem,
     CssDirtyValue,
 } from "./types";
 import _ from "underscore";
-import { CssTheme } from "./theme/CssTheme";
+import { CssTheme } from "./types";
 import { CssHelpers } from "./helpers/CssHelpers";
-import { CssTargetKind } from "./enums/CssTargetKind";
 
 export class CssStyle {
     public classes: CssRepositoryList | {} = {};
