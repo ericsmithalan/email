@@ -1,5 +1,6 @@
 import React from "react";
-import { defaultTheme, CssTheme } from "../theme/CssTheme";
+import { CssTheme } from "../theme/CssTheme";
+import { defaultTheme } from "../theme/defaultTheme";
 import { CssRepository } from "../CssRepository";
 
 export const defaultStyleContext = {

@@ -6,3 +6,4 @@ export * from "./primitives/Table";
 export * from "./primitives/Td";
 export * from "./primitives/Tr";
 export * from "./types";
+export { Text } from "./Text";
