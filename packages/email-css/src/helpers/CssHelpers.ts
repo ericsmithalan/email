@@ -98,7 +98,7 @@ const camelize = (str: string): string => {
             })
             .replace(":", "_");
     } else {
-        console.error(`camelize could not parse str: ${str}`);
+        throw new Error(`camelize could not parse str: ${str}`);
     }
 };
 
@@ -114,6 +114,8 @@ const decamelize = (str: string) => {
             .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, "$1" + separator + "$2")
             .toLowerCase()
             .replace("_", ":");
+    } else {
+        throw new Error(`camelize could not parse str: ${str}`);
     }
 };
 
@@ -136,11 +138,11 @@ const hasKey = (obj: object, key: string): boolean => {
 };
 
 const combineClassNames = (
-    defaultProps: React.HTMLProps<any> | undefined,
-    props: React.HTMLProps<any> | undefined,
+    defaultProps: React.HTMLProps<unknown>,
+    props: React.HTMLProps<unknown>,
 ) => {
-    const class1 = defaultProps?.className || "";
-    const class2 = props.className || "";
+    const class1 = defaultProps.className ? defaultProps.className : "";
+    const class2 = props.className ? props.className : "";
 
     return `${class1} ${class2}`.trim();
 };

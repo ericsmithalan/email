@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss } from "@email/css";
+import { css, withCss } from "@email/css/src";
 import { DepricatedLinkAttributes } from "../types";
 
 export interface IAElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes {}

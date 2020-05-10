@@ -33,7 +33,7 @@ export class CssRepository {
             return this.get("@global", className);
         }
 
-        return undefined;
+        return {};
     };
 
     private registerElementProps = (props: React.HTMLProps<any>, className: string): void => {

@@ -1,25 +1,24 @@
 {
     "compilerOptions": {
         "baseUrl": "./",
-        "moduleResolution": "node",
+        "target": "ES5",
+        "module": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "noEmit": true,
+        "allowJs": true,
+        "strict": true,
         "esModuleInterop": true,
+        "skipLibCheck": true,
+        "moduleResolution": "node",
         "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,
-        "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        // "strict": true,
-        "declarationMap": true,
-        "noImplicitReturns": false,
-        "noImplicitAny": false,
-        "sourceMap": true,
         "jsx": "react",
-        "declaration": true,
-        "target": "es2016",
-        "module": "esnext",
-        "lib": ["es6", "es2015", "es2017", "dom"],
-        "noFallthroughCasesInSwitch": true,
+        "pretty": true,
+        "suppressImplicitAnyIndexErrors": true,
         "paths": {
-            "@email/*": ["packages/*/src"]
+            "@email/*": ["packages/*/src"],
+            "*": ["node_modules", "packages"]
         }
     },
     "include": ["packages"],

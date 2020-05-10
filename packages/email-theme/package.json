@@ -8,6 +8,7 @@
     "scripts": {
         "clean": "rimraf ./cjs ./esm",
         "prebuild": "yarn clean",
+        "lint": "eslint . --ext .js,.ts,.tsx -f codeframe",
         "build": "yarn build:cjs && yarn build:esm",
         "build:cjs": "tsc-watch  -p tsconfig.build.json --module commonjs --outDir cjs",
         "build:esm": "tsc-watch  -p tsconfig.build.json --module esnext --outDir esm",
@@ -19,16 +20,13 @@
         "src"
     ],
     "peerDependencies": {
-        "react": ">=16"
-    },
-    "dependencies": {
-        "tsc-watch": "^4.2.3"
-    },
-    "publishConfig": {
-        "access": "public"
+        "react": ">=16",
+        "react-dom": ">=16",
+        "tsc-watch": ">=4",
+        "typescript": ">=3",
+        "underscore": ">=1"
     },
     "devDependencies": {
-        "fork-ts-checker-webpack-plugin": "^4.1.3",
-        "tsc-watch": "^4.2.3"
+        "ts-node": "^8.10.1"
     }
 }

@@ -8,10 +8,14 @@ const withCss = (css: CssStyle) => <P extends object>(
 ) => {
     const component = <T extends React.HTMLProps<P>>(props: T) => {
         const repository = useRepository(css.classes);
+        let outerStyles = {};
+        let defaultProps = {};
 
-        const defaultProps = WrappedComponent?.defaultProps;
+        if (WrappedComponent && WrappedComponent.defaultProps) {
+            defaultProps = WrappedComponent.defaultProps;
+            outerStyles = repository.registerPropStyles(defaultProps);
+        }
 
-        const outerStyles = repository.registerPropStyles(defaultProps);
         const innerStyles = repository.registerPropStyles(props);
 
         return (

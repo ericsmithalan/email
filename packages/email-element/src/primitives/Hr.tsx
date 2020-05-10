@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss } from "@email/css";
+import { css, withCss } from "@email/css/src";
 
 export interface IHrElement extends React.HTMLProps<HTMLHRElement> {}
 

@@ -2,7 +2,6 @@ import CSS from "csstype";
 import { CssPseudoKind } from "./enums/CssPseudoKind";
 import { CssValidValueKind } from "./enums/CssValidValueKind";
 import { CssTargetKind } from "./enums/CssTargetKind";
-import { CssAttributesKind } from "./enums/CssAttributesKind";
 
 export interface CssTheme {
     fontFamily: string;

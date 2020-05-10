@@ -2,69 +2,85 @@
     "name": "@email/client",
     "version": "1.0.0",
     "private": true,
-    "main": "cjs/index.js",
-    "types": "cjs/index.d.ts",
     "scripts": {
-        "clean": "rimraf ./cjs",
-        "prebuild": "yarn clean",
-        "start": "razzle start",
-        "build:dev": "razzle build",
-        "test": "razzle test --env=jsdom",
-        "start:prod": "NODE_ENV=production node cjs/server.js"
-    },
-    "files": [
-        "cjs",
-        "umd",
-        "src"
-    ],
-    "dependencies": {
-        "@babel/core": "^7.9.6",
-        "@babel/preset-react": "^7.9.4",
-        "@email/css": "^1.0.0",
-        "@email/theme": "^1.0.0",
-        "@email/element": "^1.0.0",
-        "@types/deepmerge": "^2.2.0",
-        "@types/immutable": "^3.8.7",
-        "@types/jest": "^25.2.1",
-        "@types/react-router-dom": "^5.1.5",
-        "@types/webpack-env": "^1.15.2",
-        "deepmerge": "^4.2.2",
-        "immutable": "^4.0.0-rc.12",
-        "razzle": "^3.1.0",
-        "razzle-plugin-react": "^3.1.0",
-        "razzle-plugin-typescript": "^3.1.0",
-        "react-router-dom": "^5.1.2",
-        "ts-jest": "^25.4.0",
-        "tsc-watch": "^4.2.3",
-        "tslint": "^6.1.2",
-        "tslint-react": "^5.0.0"
+        "clean": "rimraf dist",
+        "lint": "eslint . --ext .js,.ts,.tsx -f codeframe",
+        "dev:server": "cross-env PORT=3000 TS_NODE_PROJECT=tsconfig.webpack.json DEBUG=server:*,shared:* webpack --env.target=server",
+        "dev:client": "cross-env PORT=3030 TS_NODE_PROJECT=tsconfig.webpack.json webpack-dev-server --env.target=client",
+        "build:server": "cross-env TS_NODE_PROJECT=tsconfig.webpack.json NODE_ENV=production webpack --env.target=server",
+        "build:client": "cross-env TS_NODE_PROJECT=tsconfig.webpack.json NODE_ENV=production webpack --env.target=client",
+        "build": "npm-run-all clean type-check --parallel build:server build:client",
+        "start": "npm-run-all --silent clean --parallel dev:server dev:client",
+        "prod": "cross-env NODE_ENV=production node dist/server.js",
+        "test:ci": "cross-env BABEL_ENV=test jest --ci",
+        "tsc": "tsc -P ./tsconfig.build.json"
     },
     "peerDependencies": {
         "react": ">=16",
-        "react-dom": ">=16"
-    },
-    "jest": {
-        "transform": {
-            "\\.(ts|tsx)$": "ts-jest",
-            "\\.css$": "<rootDir>/node_modules/razzle/config/jest/cssTransform.js",
-            "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/node_modules/razzle/config/jest/fileTransform.js"
-        },
-        "testMatch": [
-            "<rootDir>/src/**/__tests__/**/*.(ts|js)?(x)",
-            "<rootDir>/src/**/?(*.)(spec|test).(ts|js)?(x)"
-        ],
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js",
-            "json"
-        ],
-        "collectCoverageFrom": [
-            "src/**/*.{js,jsx,ts,tsx}"
-        ]
+        "react-dom": ">=16",
+        "tsc-watch": ">=4",
+        "typescript": ">=3",
+        "underscore": ">=1"
     },
     "devDependencies": {
+        "@babel/core": "^7.9.6",
+        "@babel/preset-env": "^7.9.6",
+        "@babel/preset-react": "^7.9.4",
+        "@babel/preset-typescript": "^7.9.0",
+        "@loadable/babel-plugin": "^5.12.0",
+        "@loadable/webpack-plugin": "^5.12.0",
+        "@types/compression": "^1.7.0",
+        "@types/debug": "^4.1.5",
+        "@types/express": "^4.17.6",
+        "@types/loadable__component": "^5.10.0",
+        "@types/loadable__server": "^5.12.1",
+        "@types/loadable__webpack-plugin": "^5.7.0",
+        "@types/start-server-webpack-plugin": "^2.2.0",
+        "@types/terser-webpack-plugin": "^2.2.0",
+        "@types/webpack": "^4.41.12",
+        "@types/webpack-dev-server": "^3.10.1",
+        "@types/webpack-env": "^1.15.2",
+        "@types/webpack-merge": "^4.1.5",
+        "@types/webpack-node-externals": "^1.7.1",
+        "@typescript-eslint/eslint-plugin": "^2.31.0",
+        "@typescript-eslint/parser": "^2.31.0",
+        "babel-loader": "^8.1.0",
+        "core-js": "^3.6.5",
+        "cross-env": "^7.0.2",
+        "css-loader": "^3.5.3",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-prettier": "^3.1.3",
+        "eslint-plugin-react": "^7.19.0",
+        "eslint-plugin-react-hooks": "^4.0.0",
         "fork-ts-checker-webpack-plugin": "^4.1.3",
-        "tsc-watch": "^4.2.3"
+        "npm-run-all": "^4.1.5",
+        "null-loader": "^4.0.0",
+        "prettier": "^2.0.5",
+        "source-map-support": "^0.5.19",
+        "start-server-webpack-plugin": "^2.2.5",
+        "style-loader": "^1.2.1",
+        "terser-webpack-plugin": "^3.0.1",
+        "ts-node": "^8.10.1",
+        "typescript-plugin-css-modules": "^2.3.0",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.11",
+        "webpack-dev-server": "^3.11.0",
+        "webpack-merge": "^4.2.2",
+        "webpack-node-externals": "^1.7.2"
+    },
+    "dependencies": {
+        "@email/element": "^1.0.0",
+        "@email/theme": "^1.0.0",
+        "@hot-loader/react-dom": "^16.13.0",
+        "@loadable/component": "^5.12.0",
+        "@loadable/server": "^5.12.0",
+        "@loadable/webpack-plugin": "^5.12.0",
+        "@types/helmet": "^0.0.46",
+        "@types/react-helmet": "^5.0.15",
+        "debug": "^4.1.1",
+        "express": "^4.17.1",
+        "helmet": "^3.22.0",
+        "react-helmet": "^6.0.0",
+        "react-hot-loader": "^4.12.21"
     }
 }

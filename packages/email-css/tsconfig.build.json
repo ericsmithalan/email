@@ -2,7 +2,8 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "paths": {
-            "@email/*": ["node_modules/@email/*/src"]
+            "@email/*": ["node_modules/@email/*/src"],
+            "*": ["node_modules", "packages"]
         }
     },
     "include": ["src"]

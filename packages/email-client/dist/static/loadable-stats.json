@@ -1,0 +1,58 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.43.0",
+  "hash": "e4f295431cbd0e438495",
+  "publicPath": "http://localhost:3030/static/",
+  "outputPath": "/Users/ericsmith/Development/email/packages/email-client/dist/static",
+  "assetsByChunkName": {
+    "app": "app.js"
+  },
+  "assets": [
+    {
+      "name": "app.js",
+      "size": 3519952,
+      "chunks": [
+        "app"
+      ],
+      "chunkNames": [
+        "app"
+      ],
+      "info": {},
+      "emitted": false
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "app": {
+      "chunks": [
+        "app"
+      ],
+      "assets": [
+        "app.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "app": {
+      "chunks": [
+        "app"
+      ],
+      "assets": [
+        "app.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [],
+      "filteredEntries": 2,
+      "debug": false
+    }
+  },
+  "children": []
+}

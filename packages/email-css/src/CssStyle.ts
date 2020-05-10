@@ -8,9 +8,9 @@ import {
     CssRepositoryList,
     CssPropertyListItem,
     CssDirtyValue,
+    CssTheme,
 } from "./types";
 import _ from "underscore";
-import { CssTheme } from "./types";
 import { CssHelpers } from "./helpers/CssHelpers";
 
 export class CssStyle {
@@ -37,10 +37,11 @@ export class CssStyle {
             target: "@global",
             theme: this._theme,
             pseudo: "none",
+            classKey: "",
         });
     };
 
-    private _parseCss = (args: Partial<CssParseArgs>) => {
+    private _parseCss = (args: CssParseArgs) => {
         const css: CssPropertyListItem = {};
 
         for (const key in args.value) {
@@ -104,21 +105,9 @@ const getClassName = (args: Partial<CssParseArgs>, key: string): string => {
     return CssHelpers.camelize(`${className}${pseudo}`).trim();
 };
 
-const cleanCssStringValue = (value: string): string => {
-    if (value) {
-        // let str = value;
-        // if (value) {
-        //     str.replace("px", "");
-        // }
-        // return str;
-    }
-
-    return undefined;
-};
-
 const updateArgs = (
     oldArgs: Partial<CssParseArgs>,
     newArgs: Partial<CssParseArgs>,
-): Partial<CssParseArgs> => {
-    return Object.assign({}, oldArgs, newArgs);
+): CssParseArgs => {
+    return Object.assign({}, oldArgs, newArgs) as CssParseArgs;
 };
