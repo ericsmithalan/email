@@ -107,12 +107,14 @@ const getStyleableProps = <T>(props: React.HTMLProps<T>): CSSProperties => {
  */
 const camelize = (str: string): string => {
     if (str) {
-        return str.replace(/^([A-Z])|[\s-_]+(\w)/g, (match, p1, p2, offset) => {
-            if (p2) {
-                return p2.toUpperCase();
-            }
-            return p1.toLowerCase();
-        });
+        return str
+            .replace(/^([A-Z])|[\s-_]+(\w)/g, (match, p1, p2, offset) => {
+                if (p2) {
+                    return p2.toUpperCase();
+                }
+                return p1.toLowerCase();
+            })
+            .replace(":", "_");
     } else {
         console.error(`camelize could not parse str: ${str}`);
     }
@@ -128,7 +130,8 @@ const decamelize = (str: string) => {
         return str
             .replace(/([a-z\d])([A-Z])/g, "$1" + separator + "$2")
             .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, "$1" + separator + "$2")
-            .toLowerCase();
+            .toLowerCase()
+            .replace("_", ":");
     }
 };
 
@@ -166,12 +169,10 @@ const uniqueId = (): string => {
 
 const cleanCssStringValue = (value: string): string => {
     if (value) {
-        console.log(value);
         // let str = value;
         // if (value) {
         //     str.replace("px", "");
         // }
-
         // return str;
     }
 

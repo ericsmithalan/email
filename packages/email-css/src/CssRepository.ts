@@ -1,11 +1,4 @@
-import {
-    CssTarget,
-    CssPropertyDefinition,
-    CssClassDefinition,
-    CssValue,
-    CssClassRecord,
-    CssRepositoryList,
-} from "./types";
+import { CssTarget, CssPropertyDefinition, CssClassDefinition, CssRepositoryList } from "./types";
 import { CSSProperties } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
 import _ from "underscore";
@@ -29,13 +22,13 @@ export class CssRepository {
                     const recordClassKey = Object.keys(record)[0];
 
                     if (!keys.includes(recordClassKey)) {
-                        if (Object.values(record)[0].length > 0) {
-                            this.repository[key].push(record);
-                        }
+                        this.repository[key].push(record);
                     }
                 });
             }
         }
+
+        // console.log(this.repository);
     };
 
     public registerPropStyles = <P>(props: React.HTMLProps<P>): CSSProperties => {
@@ -46,6 +39,8 @@ export class CssRepository {
             this.registerExtractedStyles(props.className, elementStyles);
 
             results = this.getStylesFromRegistry(props.className);
+
+            console.log(results);
         }
 
         return results;
@@ -60,22 +55,23 @@ export class CssRepository {
 
             if (repositoryClassValue && repositoryClassValue.length > 0) {
                 const merged = _.union(repositoryClassValue, _.toArray(elementStyles));
-                this.repository["@global"][className] = merged;
+
+                this.repository["@global"][0][className] = merged;
             }
         }
     };
 
     private getStylesFromRegistry = (className: string): CSSProperties => {
         let results: CSSProperties = {};
+        const repositoryClass = this.getClass("@global", className);
 
-        const repositoryClassValue = this.getClass("@global", className);
+        if (repositoryClass) {
+            for (const key in repositoryClass) {
+                if (repositoryClass.hasOwnProperty(key)) {
+                    const item = repositoryClass[key];
 
-        if (repositoryClassValue) {
-            for (const key in repositoryClassValue) {
-                if (repositoryClassValue.hasOwnProperty(key)) {
-                    const item = repositoryClassValue[key] as CssPropertyDefinition;
                     if (item) {
-                        results[item.name] = item.value;
+                        results[Object.keys(item)[0]] = Object.values(item)[0];
                     }
                 }
             }
@@ -105,7 +101,15 @@ export class CssRepository {
     }
 
     private getClass(target: CssTarget, className: string): CssPropertyDefinition[] {
-        return this.repository[target][CssHelpers.camelize(className)];
+        const targetItem = this.repository[target];
+
+        for (const item of targetItem) {
+            if (Object.keys(item)[0] === className) {
+                return item;
+            }
+        }
+
+        return undefined;
     }
 
     private getTarget(target: CssTarget): CssClassDefinition[] {

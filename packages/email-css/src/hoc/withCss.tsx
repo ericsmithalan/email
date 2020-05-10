@@ -18,7 +18,7 @@ const withCss = (css: CssStyle) => <P extends object>(
             <WrappedComponent
                 {...Object.assign({}, defaultProps, props)}
                 className={CssHelpers.combineClassNames(defaultProps, props)}
-                style={{ ...Object.assign({}, outerStyles, innerStyles) }}
+                style={{ ...outerStyles, ...innerStyles }}
             />
         );
     };
