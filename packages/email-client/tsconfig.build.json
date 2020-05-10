@@ -4,10 +4,18 @@
         "allowJs": true,
         "allowUnreachableCode": false,
         "paths": {
-            "@email/*": ["node_modules/@email/*/src"]
+            "@email/*": ["node_modules/@email/src"]
         }
     },
     "include": ["src"],
-    "exclude": ["node_modules", "build", "scripts", "acceptance-tests", "webpack", "jest", "razzle.config.js"],
+    "exclude": [
+        "node_modules",
+        "build",
+        "scripts",
+        "acceptance-tests",
+        "webpack",
+        "jest",
+        "razzle.config.js"
+    ],
     "types": ["typePatches", "node", "webpack-env"]
 }

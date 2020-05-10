@@ -3,7 +3,8 @@ import React, { useLayoutEffect, useEffect } from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 import App from "./App";
-import { CssProvider, useCss } from "@email/css";
+import { CssProvider } from "@email/css";
+import { ThemeProvider } from "@email/theme";
 
 type MarkupProps = {
     req: Request;
@@ -19,6 +20,23 @@ type HtmlProps = {
 <style>${cssContext.repository.stylesheet("@tablet")}</style>
 <style>${cssContext.repository.stylesheet("@phone")}</style> */
 }
+
+const serverElements = (props: MarkupProps) => {
+    return renderToString(
+        <StaticRouter context={{}} location={props.req.url}>
+            <ThemeProvider>
+                <CssProvider>
+                    <App />
+                </CssProvider>
+            </ThemeProvider>
+        </StaticRouter>,
+    );
+};
+
+const renderer = (req: Request, assets: any) => {
+    const markup = serverElements({ req: req });
+    return html({ assets: assets, markup: markup });
+};
 
 const html = (props: HtmlProps) => {
     // const cssContext = useCss();
@@ -62,21 +80,6 @@ const html = (props: HtmlProps) => {
             <div id="root">${props.markup}</div>
         </body>
     </html>`;
-};
-
-const serverElements = (props: MarkupProps) => {
-    return renderToString(
-        <StaticRouter context={{}} location={props.req.url}>
-            <CssProvider>
-                <App />
-            </CssProvider>
-        </StaticRouter>,
-    );
-};
-
-const renderer = (req: Request, assets: any) => {
-    const markup = serverElements({ req: req });
-    return html({ assets: assets, markup: markup });
 };
 
 export { renderer };
