@@ -1,11 +1,12 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
-import { CssHelpers } from "@email/css";
 
 export interface SpanElement extends React.HTMLProps<HTMLSpanElement> {}
 
 const styles = css({
-    ascSpan: {},
+    ascSpan: {
+        fontSize: 13,
+    },
 });
 
 const SpanElement: FC<SpanElement> = (props: SpanElement) => {

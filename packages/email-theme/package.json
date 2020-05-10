@@ -1,5 +1,5 @@
 {
-    "name": "@email/element",
+    "name": "@email/theme",
     "version": "1.0.0",
     "private": true,
     "main": "cjs/index.js",
@@ -22,12 +22,6 @@
         "react": ">=16"
     },
     "dependencies": {
-        "@email/theme": "^1.0.0",
-        "@email/css": "^1.0.0",
-        "@types/deepmerge": "^2.2.0",
-        "@types/immutable": "^3.8.7",
-        "deepmerge": "^4.2.2",
-        "immutable": "^4.0.0-rc.12",
         "tsc-watch": "^4.2.3"
     },
     "publishConfig": {

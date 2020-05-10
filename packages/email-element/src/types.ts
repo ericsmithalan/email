@@ -13,6 +13,10 @@ export type DepricatedTableAttributes = {
     border?: number | string;
 } & DepricatedElementAttributes;
 
+export type DepricatedLinkAttributes = {
+    border?: number | string;
+} & DepricatedElementAttributes;
+
 export type DepricatedImageAttributes = {
     align?: DepricatedAlign;
     border?: number | string;

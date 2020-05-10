@@ -1,14 +1,12 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
 import { DepricatedTdAttributes } from "../types";
-import { commonFonts } from "../styles/common";
-import { CssHelpers } from "@email/css";
 
 export interface ITdElement extends React.HTMLProps<HTMLTableCellElement>, DepricatedTdAttributes {}
 
 const styles = css({
     ascTd: {
-        ...commonFonts,
+        fontSize: 13,
     },
 });
 

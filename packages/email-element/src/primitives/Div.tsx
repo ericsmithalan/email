@@ -1,23 +1,12 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
-import { commonFonts } from "../styles/common";
 import { CssHelpers } from "@email/css";
 
 export interface IDivElement extends React.HTMLProps<HTMLDivElement> {}
 
 const styles = css({
     ascDiv: {
-        backgroundColor: "orange",
-        fontSize: 40,
-        ":hover": {
-            backgroundColor: "yellow",
-        },
-        "@phone": {
-            backgroundColor: "red",
-        },
-        "@tablet": {
-            backgroundColor: "blue",
-        },
+        fontSize: 13,
     },
 });
 
@@ -27,7 +16,6 @@ const DivElement: FC<IDivElement> = (props: IDivElement) => {
 
 DivElement.defaultProps = {
     className: styles.classNames().ascDiv,
-    width: 200,
 };
 
 const Div = withCss(styles)(DivElement);

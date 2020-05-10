@@ -1,8 +1,6 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
 import { DepricatedTableAttributes } from "../types";
-import { commonFonts } from "../styles/common";
-import { CssHelpers } from "@email/css";
 
 export interface ITableElement
     extends React.HTMLProps<HTMLTableElement>,
@@ -10,7 +8,7 @@ export interface ITableElement
 
 const styles = css({
     ascTable: {
-        ...commonFonts,
+        fontSize: 13,
     },
 });
 

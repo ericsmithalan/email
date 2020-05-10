@@ -1,8 +1,8 @@
-export interface ICssElementSettings {
+export interface IElementSettings {
     create: () => void;
 }
 
-export class CssElementSettings {
+export class ElementSettings {
     constructor() {}
 
     public create() {

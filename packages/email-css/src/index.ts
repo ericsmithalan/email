@@ -12,3 +12,5 @@ export { useRepository } from "./hooks/useRepository";
 export { useTheme } from "./hooks/useTheme";
 
 const settings = new CssSettings();
+
+export { settings };

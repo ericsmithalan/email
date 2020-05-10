@@ -1,4 +1,5 @@
 import express from "express";
+import { Settings } from "@email/element";
 
 // this require is necessary for server HMR to recover from error
 // tslint:disable-next-line:no-var-requires
@@ -17,6 +18,8 @@ if (module.hot) {
 }
 
 const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+
+Settings.create();
 
 export default express()
     .use((req, res) => app.handle(req, res))

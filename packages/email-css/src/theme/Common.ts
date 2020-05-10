@@ -1,4 +1,5 @@
-import { CssTheme, Css } from "/@email/css";
+import { Css } from "../types";
+import { CssTheme } from "./CssTheme";
 
 export const commonFonts: Css = {
     fontFamily: (theme: CssTheme) => theme.fonts.fontFamily,
