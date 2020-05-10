@@ -3,9 +3,7 @@ import { css, withCss } from "@email/css";
 import { commonFonts } from "../styles/common";
 import { CssHelpers } from "@email/css";
 
-export interface IDivElement extends React.HTMLProps<HTMLDivElement> {
-    cssid: string;
-}
+export interface IDivElement extends React.HTMLProps<HTMLDivElement> {}
 
 const styles = css({
     ascDiv: {
@@ -28,7 +26,6 @@ const DivElement: FC<IDivElement> = (props: IDivElement) => {
 };
 
 DivElement.defaultProps = {
-    cssid: CssHelpers.uniqueId(),
     className: styles.classNames().ascDiv,
     width: 200,
 };

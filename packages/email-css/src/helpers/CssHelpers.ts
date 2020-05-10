@@ -85,23 +85,6 @@ const isValidClassName = (value: string): boolean => {
 };
 
 /**
- * value cannot be Target, CssAttribute, or Pseudo
- */
-const getStyleableProps = <T>(props: React.HTMLProps<T>): CSSProperties => {
-    const results = {};
-    for (const key in props) {
-        if (props.hasOwnProperty(key)) {
-            if (isStyleableProperty(key)) {
-                const value = props[key];
-                results[key] = value;
-            }
-        }
-    }
-
-    return results;
-};
-
-/**
  * camelizes string
  * a usable value
  */
@@ -186,7 +169,6 @@ export const CssHelpers = {
     isValidCssAttribute,
     isValidClassName,
     isStyleableProperty,
-    getStyleableProps,
     camelize,
     decamelize,
     stringHashId,

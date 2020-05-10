@@ -48,11 +48,11 @@ export type CssParseArgs = {
 };
 
 export type CssRepositoryList = {
-    [K in CssTarget]: CssClassDefinition[];
+    [K in CssTarget]: CssClassList;
 };
 
 export type CssClassList = {
-    [K in string]: CssPropertyDefinition[];
+    [K in string]: CssPropertyListItem;
 };
 
 export type CssPropertyListItem = {

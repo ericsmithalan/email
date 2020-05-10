@@ -10,6 +10,7 @@ import {
     CssPseudo,
     CssClassList,
     CssRepositoryList,
+    CssPropertyListItem,
 } from "./types";
 import _ from "underscore";
 import { CssTheme } from "./theme/CssTheme";
@@ -23,9 +24,9 @@ export class CssStyle {
 
     constructor(private readonly _dirtyStyles: CssDirtyStyles, private readonly _theme: CssTheme) {
         this.classes = {
-            "@global": [],
-            "@phone": [],
-            "@tablet": [],
+            "@global": {},
+            "@phone": {},
+            "@tablet": {},
         };
 
         this.parseCss();
@@ -45,7 +46,7 @@ export class CssStyle {
     };
 
     private _parseCss = (args: Partial<CssParseArgs>) => {
-        const css: CssPropertyDefinition[] = [];
+        const css: CssPropertyListItem = {};
 
         for (const key in args.value) {
             if (args.value.hasOwnProperty(key)) {
@@ -62,13 +63,7 @@ export class CssStyle {
 
                     const target = this.classes[newArgs.target];
 
-                    if (!has(target, newArgs.classKey)) {
-                        const newObjet = {};
-
-                        newObjet[newArgs.classKey] = this._parseCss(newArgs);
-
-                        target.push(newObjet);
-                    }
+                    target[newArgs.classKey] = this._parseCss(newArgs);
 
                     this._classNames[newArgs.classKey] = CssHelpers.decamelize(newArgs.classKey);
 
@@ -76,9 +71,7 @@ export class CssStyle {
                 }
 
                 if (CssHelpers.isValueValid(calculated)) {
-                    const newValue = {};
-                    newValue[key] = calculated as CssValue;
-                    css.push(newValue as CssPropertyDefinition);
+                    css[key] = calculated as CssValue;
 
                     continue;
                 }
@@ -98,23 +91,6 @@ const getClassName = (args: Partial<CssParseArgs>, key: string): string => {
     }
 
     return CssHelpers.camelize(`${className}${pseudo}`).trim();
-};
-
-const has = (
-    arr: CssClassRecord<
-        string,
-        CssPropertyRecord<keyof React.CSSProperties, CssPropertyDefinition[]>
-    >[],
-    key: string,
-): boolean => {
-    arr.forEach((item) => {
-        const itemKey = Object.keys(item)[0];
-        if (itemKey === key) {
-            return true;
-        }
-    });
-
-    return false;
 };
 
 const updateArgs = (

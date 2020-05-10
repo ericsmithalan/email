@@ -18,9 +18,13 @@ const renderer = (req: Request, assets: any) => {
     return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
             <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
                 <head>
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-                    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+                    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+                    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+                    <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
+                    <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no">
+                    <meta name="color-scheme" content="light">
+                    <meta name="supported-color-schemes" content="light">
                     <base target="_blank">
 
                     <meta name="x-apple-disable-message-reformatting"> 
@@ -52,7 +56,7 @@ const renderer = (req: Request, assets: any) => {
                 <body style="margin:0;padding:0;">
                     <div id="root">${markup}</div>
                 </body>
-            </html>${defaultStyleContext.repository.writeFiles()}`;
+            </html>${defaultStyleContext.repository.test()}`;
 };
 
 export { renderer };

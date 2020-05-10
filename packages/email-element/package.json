@@ -23,7 +23,9 @@
     },
     "dependencies": {
         "@email/css": "^1.0.0",
+        "@types/deepmerge": "^2.2.0",
         "@types/immutable": "^3.8.7",
+        "deepmerge": "^4.2.2",
         "immutable": "^4.0.0-rc.12",
         "tsc-watch": "^4.2.3"
     },

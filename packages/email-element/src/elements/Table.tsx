@@ -6,9 +6,7 @@ import { CssHelpers } from "@email/css";
 
 export interface ITableElement
     extends React.HTMLProps<HTMLTableElement>,
-        DepricatedTableAttributes {
-    cssid: string;
-}
+        DepricatedTableAttributes {}
 
 const styles = css({
     ascTable: {
@@ -25,7 +23,6 @@ const TableElement: FC<ITableElement> = (props: ITableElement) => {
 };
 
 TableElement.defaultProps = {
-    cssid: CssHelpers.uniqueId(),
     className: styles.classNames().ascTable,
     cellPadding: 0,
     cellSpacing: 0,

@@ -5,3 +5,5 @@ export { Css } from "./types";
 export { CssHelpers } from "./helpers/CssHelpers";
 export { CssStyleProvider, defaultStyleContext, CssStyleContext } from "./context/CssContext";
 export { useCssContext } from "./hooks/useCssContext";
+export { useRepository } from "./hooks/useRepository";
+export { useTheme } from "./hooks/useTheme";

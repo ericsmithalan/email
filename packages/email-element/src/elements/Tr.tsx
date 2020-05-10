@@ -4,9 +4,7 @@ import { CssHelpers } from "@email/css";
 
 import { DepricatedTdAttributes } from "../types";
 
-export interface ITrElement extends React.HTMLProps<HTMLTableRowElement>, DepricatedTdAttributes {
-    cssid: string;
-}
+export interface ITrElement extends React.HTMLProps<HTMLTableRowElement>, DepricatedTdAttributes {}
 
 const styles = css({
     ascTr: {},
@@ -17,7 +15,6 @@ const TrElement: FC<ITrElement> = (props: ITrElement) => {
 };
 
 TrElement.defaultProps = {
-    cssid: CssHelpers.uniqueId(),
     className: styles.classNames().ascTr,
 };
 

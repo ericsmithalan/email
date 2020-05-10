@@ -2,9 +2,7 @@ import React, { FC } from "react";
 import { css, withCss } from "@email/css";
 import { CssHelpers } from "@email/css";
 
-export interface SpanElement extends React.HTMLProps<HTMLSpanElement> {
-    cssid: string;
-}
+export interface SpanElement extends React.HTMLProps<HTMLSpanElement> {}
 
 const styles = css({
     ascSpan: {},
@@ -15,7 +13,6 @@ const SpanElement: FC<SpanElement> = (props: SpanElement) => {
 };
 
 SpanElement.defaultProps = {
-    cssid: CssHelpers.uniqueId(),
     className: styles.classNames().ascSpan,
 };
 
