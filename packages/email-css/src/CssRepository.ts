@@ -29,7 +29,9 @@ export class CssRepository {
                     const recordClassKey = Object.keys(record)[0];
 
                     if (!keys.includes(recordClassKey)) {
-                        this.repository[key].push(record);
+                        if (Object.values(record)[0].length > 0) {
+                            this.repository[key].push(record);
+                        }
                     }
                 });
             }
