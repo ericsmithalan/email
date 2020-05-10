@@ -23,7 +23,7 @@ export class CssRepository {
             const recordTarget = records[key];
             if (records.hasOwnProperty(key)) {
                 recordTarget.forEach((record: CssClassDefinition) => {
-                    const repositoryClass = this.repository[key];
+                    const repositoryClass = this.getTarget(key as CssTarget);
                     const keys = this.classKeys(repositoryClass);
 
                     const recordClassKey = Object.keys(record)[0];
@@ -38,98 +38,53 @@ export class CssRepository {
         }
     };
 
-    classKeys(obj: CssClassDefinition[]) {
-        if (obj) {
-            return obj.map((item) => Object.keys(item)[0]);
-        }
-    }
-
-    propertyKeys(obj: CssPropertyDefinition[]) {
-        if (obj) {
-            return obj.map((item) => Object.keys(item)[0]);
-        }
-    }
-
-    get(name: string, arr: object[]) {
-        if (arr && name) {
-            const item = _.find(arr, (item) => _.has(item, name));
-            // 0 removes array created from _.find
-            return Object.values(item)[0];
-        }
-        return undefined;
-    }
-
-    public getInlineableStyles = <P>(props: React.HTMLProps<P>): CSSProperties => {
+    public registerPropStyles = <P>(props: React.HTMLProps<P>): CSSProperties => {
         let results = {};
 
-        if (props) {
-            const elementStyles = this.getElementStyles(props);
+        if (props && props.className) {
+            const elementStyles = this.extractElementStyles(props);
+            this.registerExtractedStyles(props.className, elementStyles);
 
-            if (props.className) {
-                this.updateCssStyles(props.className, elementStyles);
-            }
-
-            return this.getCssStyles(props);
+            results = this.getStylesFromRegistry(props.className);
         }
 
         return results;
     };
 
-    private updateCssStyles = (className: string, elementStyles: CSSProperties) => {
-        const camelizedClass = CssHelpers.camelize(className);
-        const repositoryTarget = this.repository["@global"] as CssClassDefinition[];
+    private registerExtractedStyles = (className: string, elementStyles: CSSProperties) => {
+        const repositoryTarget = this.getTarget("@global");
         const repositoryTargetKeys = this.classKeys(repositoryTarget);
 
-        if (repositoryTargetKeys.includes(camelizedClass)) {
-            const repositoryClassValue = this.get(camelizedClass, repositoryTarget);
+        if (repositoryTargetKeys.includes(CssHelpers.camelize(className))) {
+            const repositoryClassValue = this.getClass("@global", className);
 
             if (repositoryClassValue && repositoryClassValue.length > 0) {
-                const repositoryPropertyKeys = this.propertyKeys(repositoryClassValue);
                 const merged = _.union(repositoryClassValue, _.toArray(elementStyles));
                 this.repository["@global"][className] = merged;
-
-                // for (const key in elementStyles) {
-                //     if (elementStyles.hasOwnProperty(key)) {
-                //         if (!repositoryPropertyKeys.includes(key)) {
-                //             const camelizedKey = CssHelpers.camelize(key);
-
-                //             const newProp = {};
-
-                //             const cssClass = this.get(camelizedClass, repositoryTarget);
-
-                //             console.log(repositoryClassValue);
-                //             newProp[key] = elementStyles[key];
-                //             cssClass.push(newProp);
-                //         }
-                //     }
-                // }
-
-                console.log(this.get(camelizedClass, repositoryTarget));
             }
         }
     };
 
-    private getCssStyles = (props: React.HTMLProps<any>): CSSProperties => {
+    private getStylesFromRegistry = (className: string): CSSProperties => {
         let results: CSSProperties = {};
 
-        // const classId = this.getId(CssHelpers.camelize(props.className));
-        // const cssStyles = this.propertiesList[classId];
+        const repositoryClassValue = this.getClass("@global", className);
 
-        // if (cssStyles) {
-        //     for (const key in cssStyles) {
-        //         if (cssStyles.hasOwnProperty(key)) {
-        //             const item = cssStyles[key] as CssPropertyDefinition;
-        //             if (item) {
-        //                 results[item.name] = item.value;
-        //             }
-        //         }
-        //     }
-        // }
+        if (repositoryClassValue) {
+            for (const key in repositoryClassValue) {
+                if (repositoryClassValue.hasOwnProperty(key)) {
+                    const item = repositoryClassValue[key] as CssPropertyDefinition;
+                    if (item) {
+                        results[item.name] = item.value;
+                    }
+                }
+            }
+        }
 
         return results;
     };
 
-    private getElementStyles = (props: React.HTMLProps<any>): CSSProperties => {
+    private extractElementStyles = (props: React.HTMLProps<any>): CSSProperties => {
         const styleableProps = CssHelpers.getStyleableProps(props);
         const elementStyle = CssHelpers.hasKey(props, "style") ? props["style"] : {};
 
@@ -137,9 +92,23 @@ export class CssRepository {
     };
 
     public writeFiles = () => {
-        fs.writeFileSync("test.json", JSON.stringify(this.repository));
+        // fs.writeFileSync("test.json", JSON.stringify(this.repository));
     };
     public stylesheet = (target: CssTarget) => {
         return "";
     };
+
+    private classKeys(obj: CssClassDefinition[]) {
+        if (obj) {
+            return obj.map((item) => Object.keys(item)[0]);
+        }
+    }
+
+    private getClass(target: CssTarget, className: string): CssPropertyDefinition[] {
+        return this.repository[target][CssHelpers.camelize(className)];
+    }
+
+    private getTarget(target: CssTarget): CssClassDefinition[] {
+        return this.repository[target];
+    }
 }

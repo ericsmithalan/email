@@ -11,8 +11,8 @@ const withCss = (css: CssStyle) => <P extends object>(
 
         const defaultProps = WrappedComponent?.defaultProps;
 
-        const outerStyles = repository.getInlineableStyles(defaultProps);
-        const innerStyles = repository.getInlineableStyles(props);
+        const outerStyles = repository.registerPropStyles(defaultProps);
+        const innerStyles = repository.registerPropStyles(props);
 
         return (
             <WrappedComponent
