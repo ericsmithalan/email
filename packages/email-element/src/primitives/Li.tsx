@@ -15,6 +15,6 @@ LiElement.defaultProps = {
     className: styles.classNames().ascLi,
 };
 
-const Ol = withCss(styles)(LiElement);
+const Li = withCss(styles)(LiElement);
 
-export { Ol };
+export { Li };

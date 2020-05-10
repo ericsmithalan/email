@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
 import { DepricatedBodyAttributes } from "../types";
-import { CssHelpers } from "@email/css";
 
 export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}
 
@@ -19,6 +18,6 @@ BodyElement.defaultProps = {
     className: styles.classNames().ascBody,
 };
 
-const A = withCss(styles)(BodyElement);
+const Body = withCss(styles)(BodyElement);
 
-export { A };
+export { Body };

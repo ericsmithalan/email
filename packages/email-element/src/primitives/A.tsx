@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { css, withCss } from "@email/css";
-import { CssHelpers } from "@email/css";
 import { DepricatedLinkAttributes } from "../types";
+
 export interface IAElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes {}
 
 const styles = css({
@@ -19,6 +19,6 @@ AElement.defaultProps = {
     target: "_blank",
 };
 
-const Div = withCss(styles)(AElement);
+const A = withCss(styles)(AElement);
 
-export { Div };
+export { A };

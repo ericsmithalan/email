@@ -4,7 +4,7 @@
         "allowJs": true,
         "allowUnreachableCode": false,
         "paths": {
-            "@email/*": ["node_modules/@email/src"]
+            "@email/*": ["node_modules/@email/*/src"]
         }
     },
     "include": ["src"],
