@@ -23,4 +23,8 @@ export const CssStyleablePropertiesKind = strEnum([
     "nowrap",
     "size",
     "vspace",
+    "maxWidth",
+    "minWidth",
+    "maxHeight",
+    "minHeight",
 ]);

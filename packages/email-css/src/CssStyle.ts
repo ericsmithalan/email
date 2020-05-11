@@ -9,6 +9,7 @@ import {
     CssPropertyListItem,
     CssDirtyValue,
     CssTheme,
+    CssStyleableComponent,
 } from "./types";
 import _ from "underscore";
 import { CssHelpers } from "./helpers/CssHelpers";
@@ -17,27 +18,29 @@ export class CssStyle {
     public classes: CssRepositoryList | {} = {};
     private _classNames: CssClassNames = {};
 
-    constructor(private readonly _dirtyStyles: CssDirtyStyles, private readonly _theme: CssTheme) {
+    constructor(private readonly _dirtyStyles: CssDirtyStyles) {
         this.classes = {
             "@global": {},
             "@phone": {},
             "@tablet": {},
         };
-
-        this.parseCss();
     }
 
     public classNames(): CssClassNames {
         return this._classNames;
     }
 
-    public parseCss = (): void => {
+    public parseCss = <P extends CssStyleableComponent>(
+        props: P | undefined = undefined,
+        theme: CssTheme,
+    ): void => {
         this._parseCss({
             value: this._dirtyStyles,
             target: "@global",
-            theme: this._theme,
+            theme: theme,
             pseudo: "none",
             classKey: "",
+            props: props,
         });
     };
 
@@ -47,7 +50,7 @@ export class CssStyle {
         for (const key in args.value) {
             if (args.value.hasOwnProperty(key)) {
                 let value = args.value[key];
-                let calculated = calculateValue(value, args.theme);
+                let calculated = calculateValue(value, args);
 
                 if (_.isObject(calculated)) {
                     const newArgs = updateArgs(args, {
@@ -80,13 +83,13 @@ export class CssStyle {
 
 const calculateValue = (
     value: CssDirtyValue & CssValue,
-    theme: CssTheme,
+    args: CssParseArgs,
 ): CssDirtyValue | CssValue => {
     let calculated;
 
     if (_.isFunction(value)) {
         const fn = value as Function;
-        calculated = fn(theme);
+        calculated = fn({ theme: args.theme, props: args.props });
     } else {
         calculated = value;
     }

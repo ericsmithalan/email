@@ -4,12 +4,8 @@ import { Div, ThreeColLayout } from "@email/element/src";
 
 function App(): JSX.Element {
     return (
-        <ThreeColLayout>
-            {{
-                leftCol: "left",
-                centerCol: "center",
-                rightCol: "right",
-            }}
+        <ThreeColLayout maxWidth={900}>
+            <Div>hello</Div>
         </ThreeColLayout>
     );
 }
