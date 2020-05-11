@@ -2,23 +2,40 @@
   "errors": [],
   "warnings": [],
   "version": "4.43.0",
-  "hash": "e4f295431cbd0e438495",
-  "publicPath": "http://localhost:3030/static/",
+  "hash": "484afd0698335be6c122",
+  "publicPath": "/static/",
   "outputPath": "/Users/ericsmith/Development/email/packages/email-client/dist/static",
   "assetsByChunkName": {
-    "app": "app.js"
+    "app": [
+      "app.js",
+      "app.js.map"
+    ]
   },
   "assets": [
     {
       "name": "app.js",
-      "size": 3519952,
+      "size": 139970,
       "chunks": [
-        "app"
+        0
       ],
       "chunkNames": [
         "app"
       ],
       "info": {},
+      "emitted": false
+    },
+    {
+      "name": "app.js.map",
+      "size": 353403,
+      "chunks": [
+        0
+      ],
+      "chunkNames": [
+        "app"
+      ],
+      "info": {
+        "development": true
+      },
       "emitted": false
     }
   ],
@@ -26,10 +43,11 @@
   "entrypoints": {
     "app": {
       "chunks": [
-        "app"
+        0
       ],
       "assets": [
-        "app.js"
+        "app.js",
+        "app.js.map"
       ],
       "children": {},
       "childAssets": {}
@@ -38,10 +56,11 @@
   "namedChunkGroups": {
     "app": {
       "chunks": [
-        "app"
+        0
       ],
       "assets": [
-        "app.js"
+        "app.js",
+        "app.js.map"
       ],
       "children": {},
       "childAssets": {}

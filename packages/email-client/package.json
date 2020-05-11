@@ -9,7 +9,7 @@
         "dev:client": "cross-env PORT=3030 TS_NODE_PROJECT=tsconfig.webpack.json webpack-dev-server --env.target=client",
         "build:server": "cross-env TS_NODE_PROJECT=tsconfig.webpack.json NODE_ENV=production webpack --env.target=server",
         "build:client": "cross-env TS_NODE_PROJECT=tsconfig.webpack.json NODE_ENV=production webpack --env.target=client",
-        "build": "npm-run-all clean type-check --parallel build:server build:client",
+        "build": "npm-run-all clean tsc --parallel build:server build:client",
         "start": "npm-run-all --silent clean --parallel dev:server dev:client",
         "prod": "cross-env NODE_ENV=production node dist/server.js",
         "test:ci": "cross-env BABEL_ENV=test jest --ci",
