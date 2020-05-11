@@ -12,6 +12,7 @@
 /build
 /cjs
 /esm
+/dist
 
 # misc
 .DS_Store
