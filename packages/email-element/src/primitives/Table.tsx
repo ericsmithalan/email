@@ -1,10 +1,11 @@
 import React, { FC } from "react";
-import { css, withCss } from "@email/css/src";
+import { css, withCss, CssStyleableComponent } from "@email/css/src";
 import { DepricatedTableAttributes } from "../types";
 
 export interface ITableElement
     extends React.HTMLProps<HTMLTableElement>,
-        DepricatedTableAttributes {}
+        DepricatedTableAttributes,
+        CssStyleableComponent {}
 
 const styles = css({
     ascTable: {

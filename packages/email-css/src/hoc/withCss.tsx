@@ -2,11 +2,12 @@ import React from "react";
 import { CssStyle } from "../CssStyle";
 import { useRepository } from "../hooks/useRepository";
 import { CssHelpers } from "../helpers/CssHelpers";
+import { CssStyleableComponent } from "../types";
 
-const withCss = (css: CssStyle) => <P extends object>(
-    WrappedComponent: React.ComponentType<React.HTMLProps<P>>,
+const withCss = (css: CssStyle) => <P extends CssStyleableComponent>(
+    WrappedComponent: React.ComponentType<P>,
 ) => {
-    const component = <T extends React.HTMLProps<P>>(props: T) => {
+    const component = <T extends P>(props: T) => {
         const repository = useRepository(css.classes);
         let outerStyles = {};
         let defaultProps = {};

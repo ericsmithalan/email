@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { css, withCss } from "@email/css/src";
+import { css, withCss, CssStyleableComponent } from "@email/css/src";
 
-export interface IDivElement extends React.HTMLProps<HTMLDivElement> {}
+export interface IDivElement extends React.HTMLProps<HTMLDivElement>, CssStyleableComponent {}
 
 const styles = css({
     ascDiv: {

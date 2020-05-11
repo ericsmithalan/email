@@ -11,6 +11,6 @@ export { Td } from "./primitives/Td";
 export { Tr } from "./primitives/Tr";
 export { Ul } from "./primitives/Ul";
 export { Label } from "./Label";
-export { ThreeColLayout, IThreeColLayout } from "./layouts/ThreeCol";
+export { ThreeColLayout } from "./layouts/ThreeCol";
 
 export * from "./types";

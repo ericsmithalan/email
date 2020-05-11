@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { css, withCss } from "@email/css/src";
+import { css, withCss, CssStyleableComponent } from "@email/css/src";
 
-export interface ISpanElement extends React.HTMLProps<HTMLSpanElement> {}
+export interface ISpanElement extends React.HTMLProps<HTMLSpanElement>, CssStyleableComponent {}
 
 const styles = css({
     ascSpan: {

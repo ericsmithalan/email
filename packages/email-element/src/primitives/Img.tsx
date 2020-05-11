@@ -1,8 +1,11 @@
 import React, { FC } from "react";
-import { css, withCss } from "@email/css/src";
+import { css, withCss, CssStyleableComponent } from "@email/css/src";
 import { DepricatedImageAttributes } from "../types";
 
-export interface IImgElement extends React.HTMLProps<HTMLImageElement>, DepricatedImageAttributes {}
+export interface IImgElement
+    extends React.HTMLProps<HTMLImageElement>,
+        DepricatedImageAttributes,
+        CssStyleableComponent {}
 
 const styles = css({
     ascImg: {},

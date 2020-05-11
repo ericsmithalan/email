@@ -1,8 +1,11 @@
 import React, { FC } from "react";
-import { css, withCss } from "@email/css/src";
+import { css, withCss, CssStyleableComponent } from "@email/css/src";
 import { DepricatedBodyAttributes } from "../types";
 
-export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}
+export interface IBodyElement
+    extends React.HTMLProps<HTMLBodyElement>,
+        DepricatedBodyAttributes,
+        CssStyleableComponent {}
 
 const styles = css({
     ascBody: {

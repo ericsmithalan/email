@@ -1,32 +1,43 @@
-import React, { FC } from "react";
-import { css, withCss } from "@email/css/src";
-import { DepricatedLinkAttributes } from "../types";
+import React, { FC, ReactNode } from "react";
+import { css, withCss, CssStyleableComponent } from "@email/css/src";
 import { Table } from "../primitives/Table";
 import { Tr } from "../primitives/Tr";
 import { Td } from "../primitives/Td";
 
-export interface IThreeColLayout {}
+export interface ThreeColLayoutProps extends CssStyleableComponent {
+    children: {
+        leftCol: ReactNode;
+        centerCol: ReactNode;
+        rightCol: ReactNode;
+    };
+}
 
 const styles = css({
     ascThreeCol: {
         fontSize: 13,
     },
+    ascThreeColLeft: {
+        fontSize: 13,
+    },
+    ascThreeColCenter: {
+        fontSize: 13,
+    },
+    ascThreeColRight: {
+        fontSize: 13,
+    },
 });
 
-const ThreeColLayoutElement: FC<IThreeColLayout> = (props: IThreeColLayout) => {
+const ThreeColLayoutElement: FC<ThreeColLayoutProps> = (props: ThreeColLayoutProps) => {
+    const { leftCol, centerCol, rightCol } = props.children;
     return (
-        <Table>
+        <Table className={styles.classNames().ascThreeCol}>
             <Tr>
-                <Td></Td>
-                <Td></Td>
-                <Td></Td>
+                <Td className={styles.classNames().ascThreeColLeft}>{leftCol}</Td>
+                <Td className={styles.classNames().ascThreeColCenter}>{centerCol}</Td>
+                <Td className={styles.classNames().ascThreeColRight}>{rightCol}</Td>
             </Tr>
         </Table>
     );
-};
-
-ThreeColLayoutElement.defaultProps = {
-    className: styles.classNames().ascThreeCol,
 };
 
 const ThreeColLayout = withCss(styles)(ThreeColLayoutElement);

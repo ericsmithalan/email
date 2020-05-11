@@ -2,10 +2,16 @@ import CSS from "csstype";
 import { CssPseudoKind } from "./enums/CssPseudoKind";
 import { CssValidValueKind } from "./enums/CssValidValueKind";
 import { CssTargetKind } from "./enums/CssTargetKind";
+import { CSSProperties } from "react";
 
 export interface CssTheme {
     fontFamily: string;
     fontSize: string | number;
+}
+
+export interface CssStyleableComponent {
+    className?: string;
+    style?: CSSProperties;
 }
 
 export type CssValue = keyof typeof CssValidValueKind;

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { css, withCss } from "@email/css/src";
+import { css, withCss, CssStyleableComponent } from "@email/css/src";
 
-export interface IUlElement extends React.HTMLProps<HTMLUListElement> {}
+export interface IUlElement extends React.HTMLProps<HTMLUListElement>, CssStyleableComponent {}
 
 const styles = css({
     ascUl: {},

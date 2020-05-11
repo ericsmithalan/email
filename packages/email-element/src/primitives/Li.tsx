@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { css, withCss } from "@email/css/src";
+import { css, withCss, CssStyleableComponent } from "@email/css/src";
 
-export interface ILilElement extends React.HTMLProps<HTMLLIElement> {}
+export interface ILilElement extends React.HTMLProps<HTMLLIElement>, CssStyleableComponent {}
 
 const styles = css({
     ascLi: {},

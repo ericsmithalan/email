@@ -1,8 +1,11 @@
 import React, { FC } from "react";
-import { css, withCss } from "@email/css/src";
+import { css, withCss, CssStyleableComponent } from "@email/css/src";
 import { DepricatedTdAttributes } from "../types";
 
-export interface ITrElement extends React.HTMLProps<HTMLTableRowElement>, DepricatedTdAttributes {}
+export interface ITrElement
+    extends React.HTMLProps<HTMLTableRowElement>,
+        DepricatedTdAttributes,
+        CssStyleableComponent {}
 
 const styles = css({
     ascTr: {},

@@ -1,8 +1,11 @@
 import React, { FC } from "react";
-import { css, withCss } from "@email/css/src";
+import { css, withCss, CssStyleableComponent } from "@email/css/src";
 import { DepricatedLinkAttributes } from "../types";
 
-export interface IAElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes {}
+export interface IAElement
+    extends React.HTMLProps<HTMLAnchorElement>,
+        DepricatedLinkAttributes,
+        CssStyleableComponent {}
 
 const styles = css({
     ascA: {

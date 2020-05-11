@@ -1,4 +1,4 @@
-import { CssTarget, CssRepositoryList } from "./types";
+import { CssTarget, CssRepositoryList, CssStyleableComponent } from "./types";
 import { CSSProperties } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
 import _ from "underscore";
@@ -20,7 +20,7 @@ export class CssRepository {
         this._repository = merge.all([this.repository, records], {});
     };
 
-    public registerPropStyles = <P>(props: React.HTMLProps<P>): CSSProperties => {
+    public registerPropStyles = <P>(props: CssStyleableComponent): CSSProperties => {
         if (props && props.className) {
             const className = CssHelpers.camelize(props.className);
 
@@ -36,7 +36,7 @@ export class CssRepository {
         return {};
     };
 
-    private registerElementProps = (props: React.HTMLProps<any>, className: string): void => {
+    private registerElementProps = (props: CssStyleableComponent, className: string): void => {
         const results = {};
         for (const key in props) {
             if (props.hasOwnProperty(key)) {
