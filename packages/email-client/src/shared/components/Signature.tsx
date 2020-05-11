@@ -19,15 +19,15 @@ const styles = css({
 
 const SignatureElement = (props: SignatureElementProps) => {
     return (
-        <Table className={styles.classNames().signature}>
+        <Table className={styles.classNames.signature}>
             <Tr>
                 <Td>
-                    <Div className={styles.classNames().myDivOne}>Hello</Div>
+                    <Div className={styles.classNames.myDivOne}>Hello</Div>
                 </Td>
             </Tr>
             <Tr>
                 <Td>
-                    <Div className={styles.classNames().myDivTwo}>Hello</Div>
+                    <Div className={styles.classNames.myDivTwo}>Hello</Div>
                 </Td>
             </Tr>
         </Table>

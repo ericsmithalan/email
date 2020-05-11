@@ -12,7 +12,7 @@ const LiElement: FC<ILilElement> = (props: ILilElement) => {
 };
 
 LiElement.defaultProps = {
-    className: styles.classNames().ascLi,
+    className: styles.classNames.ascLi,
 };
 
 const Li = withCss(styles)(LiElement);

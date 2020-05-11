@@ -18,7 +18,7 @@ const BodyElement: FC<IBodyElement> = (props: IBodyElement) => {
 };
 
 BodyElement.defaultProps = {
-    className: styles.classNames().ascBody,
+    className: styles.classNames.ascBody,
 };
 
 const Body = withCss(styles)(BodyElement);

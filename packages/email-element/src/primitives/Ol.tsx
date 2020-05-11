@@ -13,7 +13,7 @@ const OlElement: FC<IOlElement> = (props: IOlElement) => {
 };
 
 OlElement.defaultProps = {
-    className: styles.classNames().ascOl,
+    className: styles.classNames.ascOl,
 };
 
 const Ol = withCss(styles)(OlElement);

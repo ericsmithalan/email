@@ -16,7 +16,7 @@ const TrElement: FC<ITrElement> = (props: ITrElement) => {
 };
 
 TrElement.defaultProps = {
-    className: styles.classNames().ascTr,
+    className: styles.classNames.ascTr,
 };
 
 const Tr = withCss(styles)(TrElement);

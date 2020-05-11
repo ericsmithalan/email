@@ -12,7 +12,7 @@ const HrElement: FC<IHrElement> = (props: IHrElement) => {
 };
 
 HrElement.defaultProps = {
-    className: styles.classNames().ascHr,
+    className: styles.classNames.ascHr,
 };
 
 const Hr = withCss(styles)(HrElement);

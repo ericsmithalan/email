@@ -17,7 +17,7 @@ const ImgElement: FC<IImgElement> = (props: IImgElement) => {
 };
 
 ImgElement.defaultProps = {
-    className: styles.classNames().ascImg,
+    className: styles.classNames.ascImg,
 };
 
 const Img = withCss(styles)(ImgElement);

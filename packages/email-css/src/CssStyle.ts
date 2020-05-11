@@ -26,7 +26,7 @@ export class CssStyle {
         };
     }
 
-    public classNames(): CssClassNames {
+    public get classNames(): CssClassNames {
         return this._classNames;
     }
 

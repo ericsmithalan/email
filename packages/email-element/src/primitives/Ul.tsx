@@ -12,7 +12,7 @@ const UlElement: FC<IUlElement> = (props: IUlElement) => {
 };
 
 UlElement.defaultProps = {
-    className: styles.classNames().ascUl,
+    className: styles.classNames.ascUl,
 };
 
 const Ul = withCss(styles)(UlElement);

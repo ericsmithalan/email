@@ -29,11 +29,11 @@ const styles = css({
 
 const ThreeColLayoutElement: FC<ThreeColLayoutProps> = (props: ThreeColLayoutProps) => {
     return (
-        <Table className={styles.classNames().ascThreeCol}>
+        <Table className={styles.classNames.ascThreeCol}>
             <Tr>
-                <Td className={styles.classNames().ascThreeColLeftGutter}></Td>
-                <Td className={styles.classNames().ascThreeColCenter}>{props.children}</Td>
-                <Td className={styles.classNames().ascThreeColRightGutter}></Td>
+                <Td className={styles.classNames.ascThreeColLeftGutter}></Td>
+                <Td className={styles.classNames.ascThreeColCenter}>{props.children}</Td>
+                <Td className={styles.classNames.ascThreeColRightGutter}></Td>
             </Tr>
         </Table>
     );

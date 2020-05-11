@@ -18,7 +18,7 @@ const AElement: FC<IAElement> = (props: IAElement) => {
 };
 
 AElement.defaultProps = {
-    className: styles.classNames().ascA,
+    className: styles.classNames.ascA,
     target: "_blank",
 };
 

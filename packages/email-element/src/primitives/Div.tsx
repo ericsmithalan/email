@@ -14,7 +14,7 @@ const DivElement: FC<IDivElement> = (props: IDivElement) => {
 };
 
 DivElement.defaultProps = {
-    className: styles.classNames().ascDiv,
+    className: styles.classNames.ascDiv,
 };
 
 const Div = withCss(styles)(DivElement);

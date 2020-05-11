@@ -18,7 +18,7 @@ const TdElement: FC<ITdElement> = (props: ITdElement) => {
 };
 
 TdElement.defaultProps = {
-    className: styles.classNames().ascTd,
+    className: styles.classNames.ascTd,
     align: "left",
 };
 
