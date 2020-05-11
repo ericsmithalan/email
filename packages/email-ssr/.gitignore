@@ -13,6 +13,7 @@
 /cjs
 /esm
 /dist
+/cache
 
 # misc
 .DS_Store
