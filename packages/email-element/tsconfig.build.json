@@ -1,10 +1,14 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "lib": ["dom", "es2018"],
+        "outDir": "dist",
         "paths": {
-            "@email/*": ["node_modules/@email/*/src"],
-            "*": ["node_modules", "packages"]
+            "@email/*": ["node_modules/@email/*/src"]
         }
     },
-    "include": ["src"]
+
+    "exclude": ["node_modules", "webpack", "dist"]
 }
