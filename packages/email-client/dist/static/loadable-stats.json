@@ -2,7 +2,7 @@
   "errors": [],
   "warnings": [],
   "version": "4.43.0",
-  "hash": "6395b2f512a4e3454ae2",
+  "hash": "fc9f97b1b43b15ba925b",
   "publicPath": "http://localhost:3030/static/",
   "outputPath": "/Users/ericsmith/Development/email/packages/email-client/dist/static",
   "assetsByChunkName": {
@@ -11,7 +11,7 @@
   "assets": [
     {
       "name": "app.js",
-      "size": 3519361,
+      "size": 3519376,
       "chunks": [
         "app"
       ],

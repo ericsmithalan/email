@@ -6,6 +6,7 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { Helmet } from "react-helmet";
 import { ThemeProvider } from "@email/theme/src";
+import { CssProvider } from "@email/css/src";
 
 const DEV = process.env.NODE_ENV !== "production";
 const publicPath = DEV ? "http://localhost:3001/static/" : "/static/";
@@ -38,19 +39,14 @@ export default function renderToHTML<P>({
     props,
 }: RenderOptions<P>): RenderResult {
     const status = 200;
-    const extractor = new ChunkExtractor({
-        statsFile,
-        entrypoints,
-        publicPath,
-    });
 
     debug("start renderToString");
     const markup = renderToString(
-        <ChunkExtractorManager extractor={extractor}>
-            <ThemeProvider>
+        <ThemeProvider>
+            <CssProvider>
                 <Component {...props} />
-            </ThemeProvider>
-        </ChunkExtractorManager>,
+            </CssProvider>
+        </ThemeProvider>,
     );
     debug("end renderToString");
     const helmet = Helmet.renderStatic();
@@ -62,12 +58,11 @@ export default function renderToHTML<P>({
     ${helmet.title.toString()}
     ${helmet.meta.toString()}
     ${helmet.link.toString()}
-    ${extractor.getLinkTags(attrs)}
-    ${extractor.getStyleTags(attrs)}
+  
   </head>
   <body ${helmet.bodyAttributes.toString()}>
     <div id="app">${markup}</div>
-    ${extractor.getScriptTags(attrs)}
+   
   </body>
   </html>
   `;
