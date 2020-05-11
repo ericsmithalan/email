@@ -6,6 +6,7 @@ import { defaultTheme } from "./defaultTheme";
 
 export type CssProviderProps = {
     theme?: CssTheme;
+    repository: CssRepository;
 };
 
 export type CssProviderState = {
@@ -19,6 +20,7 @@ export class CssProvider extends React.Component<CssProviderProps, CssProviderSt
         this.setState({
             setTheme: this.setTheme.bind(this),
             theme: this.props.theme ? this.props.theme : defaultTheme,
+            repository: this.props.repository ? this.props.repository : new CssRepository(),
         });
     }
 
@@ -30,7 +32,7 @@ export class CssProvider extends React.Component<CssProviderProps, CssProviderSt
         return (
             <CssContext.Provider
                 value={{
-                    repository: new CssRepository(),
+                    repository: this.state.repository,
                     theme: this.state.theme,
                 }}
             >

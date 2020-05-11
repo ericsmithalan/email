@@ -61,7 +61,15 @@ export class CssRepository {
         this.repository[target][className] = merged;
     };
 
-    public stylesheet = (target: CssTarget) => {
-        return "";
+    public toString = (target: CssTarget) => {
+        const css: string[] = [];
+        const results = this.repository[target];
+
+        if (results) {
+            for (const key in results) {
+                if (results.hasOwnProperty(key)) {
+                }
+            }
+        }
     };
 }

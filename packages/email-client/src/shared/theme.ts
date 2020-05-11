@@ -1,7 +1,7 @@
-import { CssTheme } from "./types";
+import { Theme } from "@email/theme/src";
 
-export const defaultTheme: CssTheme = {
-    name: "Default",
+export const theme: Theme = {
+    name: "Ascendum",
     colors: {
         backgroundColor: "#f1f1f1",
         contentBackgroundColor: "#ffffff",

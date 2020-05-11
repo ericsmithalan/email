@@ -4,11 +4,6 @@ import { CssValidValueKind } from "./enums/CssValidValueKind";
 import { CssTargetKind } from "./enums/CssTargetKind";
 import { CSSProperties, ReactNode } from "react";
 
-export interface CssTheme {
-    fontFamily: string;
-    fontSize: string | number;
-}
-
 export interface CssStyleableComponent {
     className?: string;
     style?: CSSProperties;
@@ -58,3 +53,43 @@ export type CssClassList = {
 export type CssPropertyListItem = {
     [K in string]: CssValue;
 };
+
+export type Breakpoint = {
+    phone: number;
+    tablet: number;
+};
+
+export type Spaceing = {
+    xsm: number;
+    sm: number;
+    m: number;
+    lg: number;
+    xlg: number;
+};
+
+export interface CssTheme {
+    name: string;
+    colors: {
+        backgroundColor: string;
+        contentBackgroundColor: string;
+        darkFontColor: string;
+        lightFontColor: string;
+        orangeColor: string;
+        blueColor: string;
+        purpleColor: string;
+        linkColor: string;
+        hoverColor: string;
+        white: string;
+    };
+    fonts: {
+        fontFamily: string;
+        fontHeaderSize: number;
+        fontSubHeaderSize: number;
+        fontTitleSize: number;
+        fontSubTitleSize: number;
+        fontDefaultSize: number;
+        fontSmallSize: number;
+    };
+    spacing: Spaceing;
+    breakpoints: Breakpoint;
+}

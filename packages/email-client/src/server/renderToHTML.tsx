@@ -7,6 +7,8 @@ import { renderToString } from "react-dom/server";
 import { Helmet } from "react-helmet";
 import { ThemeProvider } from "@email/theme/src";
 import { CssProvider } from "@email/css/src";
+import { theme } from "../shared/theme";
+import { CssRepository } from "@email/css/src/CssRepository";
 
 const DEV = process.env.NODE_ENV !== "production";
 const publicPath = DEV ? "http://localhost:3001/static/" : "/static/";
@@ -39,16 +41,14 @@ export default function renderToHTML<P>({
     props,
 }: RenderOptions<P>): RenderResult {
     const status = 200;
+    const repository = new CssRepository();
 
-    debug("start renderToString");
     const markup = renderToString(
-        <ThemeProvider>
-            <CssProvider>
-                <Component {...props} />
-            </CssProvider>
-        </ThemeProvider>,
+        <CssProvider theme={theme} repository={repository}>
+            <Component {...props} />
+        </CssProvider>,
     );
-    debug("end renderToString");
+
     const helmet = Helmet.renderStatic();
 
     const html = `
