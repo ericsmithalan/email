@@ -10,12 +10,25 @@
         "lint": "eslint . --ext .js,.ts,.tsx -f codeframe",
         "pretest": "yarn typecheck && yarn lint",
         "test": "yarn test:unit",
-        "start": "yarn start:ssr",
-        "start:ssr": "yarn workspace @email/ssr start",
+        "test:unit": "mocha \"packages/**/test/**/*.spec.ts?(x)\"",
+        "start": "yarn start:client",
+        "start:client": "yarn workspace @sample/app start",
+        "start:server": "yarn workspace @sample/server start",
         "typecheck": "tsc --noEmit",
         "prettify": "npx prettier \"./**/*.{js,ts,tsx}\" --write"
     },
     "devDependencies": {
-        "lerna": "^3.20.2"
+        "@types/node": "^13.13.5",
+        "@types/react": "^16.9.34",
+        "@types/react-dom": "^16.9.7",
+        "@types/underscore": "^1.10.0",
+        "lerna": "^3.20.2",
+        "rimraf": "^3.0.2",
+        "ts-node": "^8.10.1",
+        "tsc-watch": "^4.2.3",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "typescript": "^3.8.3",
+        "underscore": "^1.10.2"
     }
 }

@@ -8,10 +8,10 @@
     "scripts": {
         "clean": "rimraf ./cjs ./esm",
         "prebuild": "yarn clean",
-        "lint": "eslint . --ext .js,.ts,.tsx -f codeframe",
         "build": "yarn build:cjs && yarn build:esm",
-        "build:cjs": "tsc-watch  -p tsconfig.build.json --module commonjs --outDir cjs",
-        "build:esm": "tsc-watch  -p tsconfig.build.json --module esnext --outDir esm",
+        "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
+        "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
+        "test": "mocha \"test/**/*.spec.ts?(x)\"",
         "prepack": "yarn build"
     },
     "files": [
@@ -19,24 +19,16 @@
         "umd",
         "src"
     ],
-    "dependencies": {
-        "@email/css": "^1.0.0",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "typescript": "^3.8.3",
-        "underscore": "^1.10.2"
+    "peerDependencies": {
+        "react": ">=16",
+        "react-dom": ">=16",
+        "typescript": ">=3",
+        "underscore": ">=1"
     },
-    "devDependencies": {
-        "rimraf": "^3.0.2",
-        "tslint": "^6.1.2",
-        "tslint-react": "^5.0.0",
-        "@types/node": "^13.13.5",
-        "@types/react": "^16.9.34",
-        "@types/react-dom": "^16.9.7",
-        "@types/underscore": "^1.10.0",
-        "ts-node": "^8.10.1",
-        "tsc-watch": "^4.2.3",
-        "tsconfig-paths": "^3.9.0",
-        "tsconfig-paths-webpack-plugin": "^3.2.0"
+    "dependencies": {
+        "@email/css": "1.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

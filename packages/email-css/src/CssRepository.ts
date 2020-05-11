@@ -2,7 +2,6 @@ import { CssTarget, CssRepositoryList, CssStyleableComponent } from "./types";
 import { CSSProperties } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
 import _ from "underscore";
-import fs from "fs";
 import merge from "deepmerge";
 
 export class CssRepository {
