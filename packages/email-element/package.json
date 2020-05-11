@@ -21,7 +21,6 @@
     ],
     "dependencies": {
         "@email/css": "^1.0.0",
-        "@email/theme": "^1.0.0",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "typescript": "^3.8.3",

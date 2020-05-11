@@ -1,23 +1,31 @@
 const webpack = require("webpack");
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
-
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 var config = {
     mode: "development",
-    plugins: [new webpack.HotModuleReplacementPlugin()],
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
                 use: "ts-loader",
-                exclude: /node_modules/
-            }
-        ]
+                exclude: /node_modules/,
+            },
+        ],
     },
     resolve: {
         extensions: [".tsx", ".ts", ".js"],
-        modules: ["src", "node_modules"]
-    }
+        modules: ["src", "node_modules"],
+        plugins: [
+            new TsconfigPathsPlugin({
+                configFile: path.resolve(__dirname, "tsconfig.build.json"),
+                logLevel: "info",
+                logInfoToStdOut: true,
+                extensions: [".ts", ".tsx"],
+            }),
+        ],
+    },
+    plugins: [new webpack.HotModuleReplacementPlugin()],
 };
 
 var client = Object.assign({}, config, {
@@ -26,8 +34,8 @@ var client = Object.assign({}, config, {
     entry: path.resolve(__dirname, "src/client/index.tsx"),
     output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname, "build")
-    }
+        path: path.resolve(__dirname, "build"),
+    },
 });
 
 var server = Object.assign({}, config, {
@@ -37,8 +45,8 @@ var server = Object.assign({}, config, {
     entry: path.resolve(__dirname, "src/server/index.tsx"),
     output: {
         filename: "server.js",
-        path: path.resolve(__dirname, "build")
-    }
+        path: path.resolve(__dirname, "build"),
+    },
 });
 
 module.exports = [client, server];

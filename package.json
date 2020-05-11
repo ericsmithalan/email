@@ -10,8 +10,8 @@
         "lint": "eslint . --ext .js,.ts,.tsx -f codeframe",
         "pretest": "yarn typecheck && yarn lint",
         "test": "yarn test:unit",
-        "start": "yarn start:client",
-        "start:client": "yarn workspace @email/client start",
+        "start": "yarn start:ssr",
+        "start:ssr": "yarn workspace @email/ssr start",
         "typecheck": "tsc --noEmit",
         "prettify": "npx prettier \"./**/*.{js,ts,tsx}\" --write"
     },

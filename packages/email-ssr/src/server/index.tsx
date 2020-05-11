@@ -1,16 +1,14 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/server";
-import * as Express from "express";
+import e from "express";
 import { StaticRouter as Router } from "react-router-dom";
-import App from "common/App";
-
-declare const module: any;
+import App from "../common/App";
 
 function main() {
-    const express = Express();
+    const express = e();
     const port = 8080;
 
-    express.use(Express.static("build"));
+    express.use(e.static("build"));
 
     express.get("/*", (req, res, next) => {
         const appHTML = ReactDOM.renderToString(
