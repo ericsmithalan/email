@@ -18,14 +18,15 @@ module.exports = {
                     : undefined,
             },
         ],
-        "@babel/preset-typescript",
-        [
-            "@babel/preset-react",
-            {
-                useBuiltIns: true,
-                development: isDevelopment,
-            },
-        ],
+        ["@babel/preset-typescript", { onlyRemoveTypeImports: true }],
+        "@babel/preset-react",
     ],
-    plugins: ["@loadable/babel-plugin", "react-hot-loader/babel"],
+    plugins: [
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-transform-typescript",
+        "@loadable/babel-plugin",
+        "react-hot-loader/babel",
+    ],
 };
