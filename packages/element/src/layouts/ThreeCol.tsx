@@ -1,9 +1,9 @@
 import React, { FC, ReactNode } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css/src";
+import { css, withCss, CssStyleableComponent } from "@email/css";
 import { Table } from "../primitives/Table";
 import { Tr } from "../primitives/Tr";
 import { Td } from "../primitives/Td";
-import { CssArgs } from "@email/css/src/types";
+import { CssArgs } from "@email/css";
 
 export interface ThreeColLayoutProps extends CssStyleableComponent {
     maxGutterWidth?: number | string;

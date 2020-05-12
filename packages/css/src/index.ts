@@ -1,7 +1,7 @@
 export { withCss } from "./hoc/withCss";
 export { css } from "./Css";
 export { defaultTheme } from "./defaultTheme";
-export { Css, CssTheme, CssStyleableComponent } from "./types";
+export { Css, CssTheme, CssStyleableComponent, CssArgs } from "./types";
 export { CssHelpers } from "./helpers/CssHelpers";
 export { CssContext } from "./context/CssContext";
 export { CssProvider } from "./CssProvider";

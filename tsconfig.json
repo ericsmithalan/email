@@ -1,28 +1,22 @@
 {
     "compilerOptions": {
-        "jsx": "react",
-        "lib": ["es2018", "dom"],
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "outDir": "dist",
-        "rootDir": "./",
-        "noEmit": false,
-        "emitDeclarationOnly": true,
-        "allowSyntheticDefaultImports": true,
-        "isolatedModules": false,
-        "sourceMap": true,
-        "declarationMap": true,
-        "baseUrl": "./",
+        "baseUrl": ".",
         "declaration": true,
-        "resolveJsonModule": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "strict": true,
+        "module": "CommonJS",
+        "moduleResolution": "Node",
+        "target": "es6",
+        "jsx": "preserve",
+        "lib": ["es6", "DOM"],
+        "noImplicitAny": false,
         "forceConsistentCasingInFileNames": true,
-        "target": "es5",
         "paths": {
-            "@email/*": ["./node_modules/@email/*/src"]
+            "@email/*": ["packages/*/src"]
         }
     },
-    "files": [],
-    "references": [{ "path": "./packages/email-css" }, { "path": "./packages/email-element" }],
-    "include": ["packages", "dist"],
-    "exclude": ["node_modules", "dist"]
+    "include": ["packages"],
+    "exclude": ["packages/*/cjs", "packages/*/esm", "packages/*/dist"]
 }

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css/src";
+import { css, withCss, CssStyleableComponent } from "@email/css";
 import { DepricatedLinkAttributes } from "../types";
 
 export interface IAElement
