@@ -19,10 +19,10 @@
     },
     "references": [
         { "path": "packages/css" },
-        { "path": "packages/element" },
-        { "path": "packages/component" },
+        { "path": "packages/elements" },
+        { "path": "packages/components" },
         { "path": "packages/client" }
     ],
-    "include": ["packages"],
+    "include": ["packages", "packages/client/.next/defaultTheme.ts"],
     "exclude": ["packages/*/dist"]
 }

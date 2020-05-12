@@ -6,3 +6,5 @@ export { CssContext } from "./context/CssContext";
 export { CssProvider } from "./CssProvider";
 export { useCss } from "./hooks/useCss";
 export { CssStyle } from "./CssStyle";
+export { CssRepository } from "./CssRepository";
+export { useStyle } from "./hooks/useRepository";

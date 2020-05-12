@@ -11,7 +11,7 @@
         "remove:all": "yarn clean:node & yarn clean",
         "clean:node": "rimraf ./node_modules",
         "clean": "rimraf ./dist",
-        "build:lib": "microbundle --jsx React.createElement --watch",
+        "build:lib": "microbundle --jsx React.createElement --name=css --watch",
         "dev": "microbundle watch"
     },
     "files": [

@@ -1,22 +1,27 @@
-import Document from "next/document";
-import { NextPageContext } from "next";
+import Document, { DocumentContext } from "next/document";
+import { CssProvider, CssRepository } from "@email/css";
+import { ascendumTheme } from "../theme/defaultTheme";
+import App from "next/app";
 
 class MyDocument extends Document {
-    static async getInitialProps(ctx) {
+    static async getInitialProps(ctx: DocumentContext) {
+        const css = new CssRepository();
         const originalRenderPage = ctx.renderPage;
 
         ctx.renderPage = () =>
             originalRenderPage({
-                // useful for wrapping the whole react tree
-                enhanceApp: (App) => App,
-                // useful for wrapping in a per-page basis
-                enhanceComponent: (Component) => Component,
+                enhanceApp: (App) => (props) => (
+                    <CssProvider repository={css} theme={ascendumTheme}>
+                        <App {...props} />
+                    </CssProvider>
+                ),
             });
 
-        // Run the parent `getInitialProps`, it now includes the custom `renderPage`
         const initialProps = await Document.getInitialProps(ctx);
-
-        return initialProps;
+        return {
+            ...initialProps,
+            styles: <>{initialProps.styles}</>,
+        };
     }
 }
 
