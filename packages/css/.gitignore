@@ -9,9 +9,7 @@
 /coverage
 
 # production
-/build
-/cjs
-/esm
+/dist
 
 # misc
 .DS_Store
