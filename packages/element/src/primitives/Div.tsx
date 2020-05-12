@@ -18,6 +18,4 @@ Div.defaultProps = {
     className: styles.classNames.ascDiv,
 };
 
-// const Div = withCss(styles)(DivElement);
-
 export { Div };

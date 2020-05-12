@@ -1,0 +1,17 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "./",
+        "paths": {
+            "@email/*": ["node_modules/@email/*/src"]
+        },
+        "allowJs": true,
+        "skipLibCheck": true,
+        "noEmit": true,
+        "resolveJsonModule": true,
+        "strict": false,
+        "isolatedModules": true
+    },
+    "exclude": ["node_modules"],
+    "include": ["**/*.ts", "**/*.tsx"]
+}

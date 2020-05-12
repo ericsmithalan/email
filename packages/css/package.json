@@ -2,22 +2,20 @@
     "name": "@email/css",
     "version": "1.0.0",
     "private": true,
-    "main": "cjs/index.js",
-    "module": "esm/index.js",
-    "types": "esm/index.d.ts",
+    "main": "dist/index.js",
+    "module": "dist/index.module.js",
+    "types": "dist/index.d.ts",
+    "source": "src/index.ts",
+    "unpkg": "dist/index.umd.js",
     "scripts": {
-        "clean": "rimraf ./cjs ./esm",
-        "prebuild": "yarn clean",
-        "build-lib": "yarn build:cjs && yarn build:esm",
-        "build:cjs": "ts-watch -p tsconfig.build.json --module commonjs --outDir cjs",
-        "build:esm": "ts-watch -p tsconfig.build.json --module esnext --outDir esm",
-        "test": "mocha \"test/**/*.spec.ts?(x)\"",
-        "prepack": "yarn build"
+        "remove:all": "yarn clean:node & yarn clean",
+        "clean:node": "rimraf ./node_modules",
+        "clean": "rimraf ./dist",
+        "build:lib": "microbundle --jsx React.createElement --watch",
+        "dev": "microbundle watch"
     },
     "files": [
-        "cjs",
-        "umd",
-        "src"
+        "dist"
     ],
     "publishConfig": {
         "access": "public"
@@ -34,8 +32,8 @@
         "csstype": "^2.6.10",
         "deepmerge": "^4.2.2"
     },
-    "sideEffects": false,
     "devDependencies": {
+        "microbundle": "^0.12.0",
         "ts-watch": "^1.0.8"
     }
 }

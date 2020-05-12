@@ -19,14 +19,14 @@ export class CssRepository {
         this._repository = merge.all([this.repository, records], {});
     };
 
-    public registerPropStyles = <P>(props: CssStyleableComponent): CSSProperties => {
-        if (props && props.className) {
-            const className = CssHelpers.camelize(props.className);
+    public registerPropStyles = <P>(component: CssStyleableComponent): CSSProperties => {
+        if (component && component.className) {
+            const className = CssHelpers.camelize(component.className);
 
-            this.registerElementProps(props, className);
+            this.registerElementProps(component.props, className);
 
-            if (props.style) {
-                this.set("@global", className, props.style);
+            if (component.style) {
+                this.set("@global", className, component.style);
             }
 
             return this.get("@global", className);
@@ -35,15 +35,20 @@ export class CssRepository {
         return {};
     };
 
-    private registerElementProps = (props: CssStyleableComponent, className: string): void => {
+    private registerElementProps = (component: CssStyleableComponent, className: string): void => {
         const results = {};
-        for (const key in props) {
-            if (props.hasOwnProperty(key)) {
-                if (CssHelpers.isStyleableProperty(key)) {
-                    const value = props[key];
-                    results[key] = value;
+        if (component && component.props) {
+            for (const key in component.props) {
+                if (component.props.hasOwnProperty(key)) {
+                    console.log(key);
+                    if (CssHelpers.isStyleableProperty(key)) {
+                        const value = component.props[key];
+                        results[key] = value;
+                    }
                 }
             }
+        } else {
+            throw new Error(`component and props are unassigned`);
         }
 
         this.set("@global", className, results);

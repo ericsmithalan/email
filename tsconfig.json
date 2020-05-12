@@ -5,18 +5,24 @@
         "declarationMap": true,
         "sourceMap": true,
         "esModuleInterop": true,
-        "strict": true,
-        "module": "CommonJS",
-        "moduleResolution": "Node",
-        "target": "es6",
+        "target": "esnext",
+        "module": "esnext",
+        "preserveSymlinks": true,
         "jsx": "preserve",
-        "lib": ["es6", "DOM"],
+        "lib": ["dom", "es2017", "DOM.Iterable", "ES2019"],
+        "moduleResolution": "node",
         "noImplicitAny": false,
         "forceConsistentCasingInFileNames": true,
         "paths": {
             "@email/*": ["packages/*/src"]
         }
     },
+    "references": [
+        { "path": "packages/css" },
+        { "path": "packages/element" },
+        { "path": "packages/component" },
+        { "path": "packages/client" }
+    ],
     "include": ["packages"],
-    "exclude": ["packages/*/cjs", "packages/*/esm", "packages/*/dist"]
+    "exclude": ["packages/*/dist"]
 }

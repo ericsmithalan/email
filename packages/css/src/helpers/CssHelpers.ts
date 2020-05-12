@@ -6,6 +6,7 @@ import { CssAttributesKind } from "../enums/CssAttributesKind";
 import { CssStyleablePropertiesKind } from "../enums/CssStyleablePropertiesKind";
 
 import _ from "underscore";
+import { CssStyleableComponent } from "../types";
 
 /**
  * typeof value has to be in CssValidValueKind
@@ -138,25 +139,25 @@ const hasKey = (obj: object, key: string): boolean => {
 };
 
 const combineClassNames = (
-    defaultProps: React.HTMLProps<unknown>,
-    props: React.HTMLProps<unknown>,
+    defaultComponent: CssStyleableComponent,
+    component: CssStyleableComponent,
 ) => {
     const dirty: string[] = [];
     const clean: string[] = [];
 
-    if (defaultProps && defaultProps.className) {
-        if (defaultProps.className.split(" ").length > 1) {
-            dirty.concat(defaultProps.className.split(" "));
+    if (component && component.className) {
+        if (component.className.split(" ").length > 1) {
+            dirty.concat(component.className.split(" "));
         } else {
-            dirty.push(defaultProps.className);
+            dirty.push(component.className);
         }
     }
 
-    if (props && props.className) {
-        if (props.className.split(" ").length > 1) {
-            dirty.concat(props.className.split(" "));
+    if (defaultComponent && defaultComponent.className) {
+        if (defaultComponent.className.split(" ").length > 1) {
+            dirty.concat(defaultComponent.className.split(" "));
         } else {
-            dirty.push(props.className);
+            dirty.push(defaultComponent.className);
         }
     }
 

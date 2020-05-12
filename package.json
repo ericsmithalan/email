@@ -5,12 +5,12 @@
         "packages/*"
     ],
     "scripts": {
+        "remove:all": "yarn clean:node & lerna run remove:all --stream --parallel",
+        "clean:node": "rimraf ./node_modules",
         "clean": "lerna run clean --stream --parallel",
-        "build-lib": "lerna run build-lib --stream --parallel",
-        "lint": "eslint . --ext .js,.ts,.tsx -f codeframe",
-        "pretest": "yarn typecheck && yarn lint",
-        "start": "yarn start:client",
-        "start:client": "yarn workspace @email/app start",
+        "build:lib": "lerna run build:lib --stream --parallel",
+        "build:client": "yarn workspace @email/client build-client",
+        "start": "yarn workspace @email/client start",
         "typecheck": "tsc --noEmit",
         "prettify": "npx prettier \"./**/*.{js,ts,tsx}\" --write"
     },

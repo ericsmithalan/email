@@ -6,22 +6,22 @@ import { CssHelpers } from "../helpers/CssHelpers";
 
 export const useCss = (
     css: CssStyle,
-    props: CssStyleableComponent,
-    defaultProps: CssStyleableComponent,
+    component: CssStyleableComponent,
+    defaultComponent: CssStyleableComponent,
 ) => {
     const context = React.useContext(CssContext);
-    css.parseCss(Object.assign({}, defaultProps || {}, props), context.theme);
+    css.parseCss(Object.assign({}, defaultComponent || {}, component.props), context.theme);
 
     let defaultStyles = {};
 
-    if (defaultProps) {
-        defaultStyles = context.repository.registerPropStyles(defaultProps);
+    if (defaultComponent) {
+        defaultStyles = context.repository.registerPropStyles(defaultComponent);
     }
 
-    const propStyles = context.repository.registerPropStyles(props);
+    const propStyles = context.repository.registerPropStyles(component);
 
-    const mergedProps = Object.assign({}, defaultProps, props, {
-        className: CssHelpers.combineClassNames(defaultProps, props),
+    const mergedProps = Object.assign({}, defaultComponent, component.props, {
+        className: CssHelpers.combineClassNames(defaultComponent, component.props),
         style: Object.assign({}, defaultStyles, propStyles),
     });
 
