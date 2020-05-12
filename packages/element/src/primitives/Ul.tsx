@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss } from "@email/css";
 
 export interface IUlElement extends React.HTMLProps<HTMLUListElement>, CssStyleableComponent {}
 
@@ -7,14 +7,13 @@ const styles = css({
     ascUl: {},
 });
 
-const UlElement: FC<IUlElement> = (props: IUlElement) => {
-    return <ul {...(props as IUlElement)} />;
+const Ul: FC<IUlElement> = (props: IUlElement) => {
+    const newProps = useCss(styles, Ul.defaultProps || {}, props);
+    return <ul {...(newProps as IUlElement)} />;
 };
 
-UlElement.defaultProps = {
+Ul.defaultProps = {
     className: styles.classNames.ascUl,
 };
-
-const Ul = withCss(styles)(UlElement);
 
 export { Ul };

@@ -6,12 +6,11 @@
     ],
     "scripts": {
         "clean": "lerna run clean --stream --parallel",
-        "build": "lerna run build --stream --parallel",
+        "build-lib": "lerna run build-lib --stream --parallel",
         "lint": "eslint . --ext .js,.ts,.tsx -f codeframe",
         "pretest": "yarn typecheck && yarn lint",
         "start": "yarn start:client",
-        "start:client": "yarn workspace @sample/app start",
-        "start:server": "yarn workspace @sample/server start",
+        "start:client": "yarn workspace @email/app start",
         "typecheck": "tsc --noEmit",
         "prettify": "npx prettier \"./**/*.{js,ts,tsx}\" --write"
     },

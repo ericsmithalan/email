@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss } from "@email/css";
 import { DepricatedBodyAttributes } from "../types";
 
 export interface IBodyElement
@@ -13,14 +13,13 @@ const styles = css({
     },
 });
 
-const BodyElement: FC<IBodyElement> = (props: IBodyElement) => {
-    return <body {...(props as IBodyElement)} />;
+const Body: FC<IBodyElement> = (props: IBodyElement) => {
+    const newProps = useCss(styles, Body.defaultProps || {}, props);
+    return <body {...(newProps as IBodyElement)} />;
 };
 
-BodyElement.defaultProps = {
+Body.defaultProps = {
     className: styles.classNames.ascBody,
 };
-
-const Body = withCss(styles)(BodyElement);
 
 export { Body };

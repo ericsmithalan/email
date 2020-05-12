@@ -8,6 +8,7 @@ export interface CssStyleableComponent {
     className?: string;
     style?: CSSProperties;
     children?: ReactNode;
+    props?: any;
 }
 
 export type CssValue = keyof typeof CssValidValueKind;

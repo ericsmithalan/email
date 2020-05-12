@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss } from "@email/css";
 import { DepricatedImageAttributes } from "../types";
 
 export interface IImgElement
@@ -11,15 +11,14 @@ const styles = css({
     ascImg: {},
 });
 
-const ImgElement: FC<IImgElement> = (props: IImgElement) => {
+const Img: FC<IImgElement> = (props: IImgElement) => {
+    const newProps = useCss(styles, Img.defaultProps || {}, props);
     // @ts-ignore
-    return <img {...(props as IImgElement)} />;
+    return <img {...(newProps as IImgElement)} />;
 };
 
-ImgElement.defaultProps = {
+Img.defaultProps = {
     className: styles.classNames.ascImg,
 };
-
-const Img = withCss(styles)(ImgElement);
 
 export { Img };

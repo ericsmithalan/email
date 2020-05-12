@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss } from "@email/css";
 
 export interface IHrElement extends React.HTMLProps<HTMLHRElement>, CssStyleableComponent {}
 
@@ -7,14 +7,13 @@ const styles = css({
     ascHr: {},
 });
 
-const HrElement: FC<IHrElement> = (props: IHrElement) => {
-    return <hr {...(props as IHrElement)} />;
+const Hr: FC<IHrElement> = (props: IHrElement) => {
+    const newProps = useCss(styles, Hr.defaultProps || {}, props);
+    return <hr {...(newProps as IHrElement)} />;
 };
 
-HrElement.defaultProps = {
+Hr.defaultProps = {
     className: styles.classNames.ascHr,
 };
-
-const Hr = withCss(styles)(HrElement);
 
 export { Hr };

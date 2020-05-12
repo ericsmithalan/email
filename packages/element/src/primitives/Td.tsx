@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss } from "@email/css";
 import { DepricatedTdAttributes } from "../types";
 
 export interface ITdElement
@@ -13,15 +13,14 @@ const styles = css({
     },
 });
 
-const TdElement: FC<ITdElement> = (props: ITdElement) => {
-    return <td {...(props as ITdElement)} />;
+const Td: FC<ITdElement> = (props: ITdElement) => {
+    const newProps = useCss(styles, Td.defaultProps || {}, props);
+    return <td {...(newProps as ITdElement)} />;
 };
 
-TdElement.defaultProps = {
+Td.defaultProps = {
     className: styles.classNames.ascTd,
     align: "left",
 };
-
-const Td = withCss(styles)(TdElement);
 
 export { Td };

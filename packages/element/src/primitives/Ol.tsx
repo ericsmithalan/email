@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss } from "@email/css";
 
 export interface IOlElement extends React.HTMLProps<HTMLOListElement>, CssStyleableComponent {}
 
@@ -7,15 +7,14 @@ const styles = css({
     ascOl: {},
 });
 
-const OlElement: FC<IOlElement> = (props: IOlElement) => {
+const Ol: FC<IOlElement> = (props: IOlElement) => {
+    const newProps = useCss(styles, Ol.defaultProps || {}, props);
     // @ts-ignore
-    return <ol {...(props as IOlElement)} />;
+    return <ol {...(newProps as IOlElement)} />;
 };
 
-OlElement.defaultProps = {
+Ol.defaultProps = {
     className: styles.classNames.ascOl,
 };
-
-const Ol = withCss(styles)(OlElement);
 
 export { Ol };

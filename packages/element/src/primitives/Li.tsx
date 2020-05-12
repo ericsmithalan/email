@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss } from "@email/css";
 
 export interface ILilElement extends React.HTMLProps<HTMLLIElement>, CssStyleableComponent {}
 
@@ -7,14 +7,13 @@ const styles = css({
     ascLi: {},
 });
 
-const LiElement: FC<ILilElement> = (props: ILilElement) => {
-    return <li {...(props as ILilElement)} />;
+const Li: FC<ILilElement> = (props: ILilElement) => {
+    const newProps = useCss(styles, Li.defaultProps || {}, props);
+    return <li {...(newProps as ILilElement)} />;
 };
 
-LiElement.defaultProps = {
+Li.defaultProps = {
     className: styles.classNames.ascLi,
 };
-
-const Li = withCss(styles)(LiElement);
 
 export { Li };

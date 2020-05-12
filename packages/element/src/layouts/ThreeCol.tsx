@@ -1,9 +1,8 @@
 import React, { FC, ReactNode } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss, CssArgs } from "@email/css";
 import { Table } from "../primitives/Table";
 import { Tr } from "../primitives/Tr";
 import { Td } from "../primitives/Td";
-import { CssArgs } from "@email/css";
 
 export interface ThreeColLayoutProps extends CssStyleableComponent {
     maxGutterWidth?: number | string;
@@ -27,9 +26,10 @@ const styles = css({
     ascThreeColRightGutter: {},
 });
 
-const ThreeColLayoutElement: FC<ThreeColLayoutProps> = (props: ThreeColLayoutProps) => {
+const ThreeColLayout: FC<ThreeColLayoutProps> = (props: ThreeColLayoutProps) => {
+    const newProps = useCss(styles, ThreeColLayout.defaultProps || {}, props);
     return (
-        <Table className={styles.classNames.ascThreeCol}>
+        <Table {...newProps} className={styles.classNames.ascThreeCol}>
             <Tr>
                 <Td className={styles.classNames.ascThreeColLeftGutter}></Td>
                 <Td className={styles.classNames.ascThreeColCenter}>{props.children}</Td>
@@ -39,7 +39,7 @@ const ThreeColLayoutElement: FC<ThreeColLayoutProps> = (props: ThreeColLayoutPro
     );
 };
 
-ThreeColLayoutElement.defaultProps = {
+ThreeColLayout.defaultProps = {
     maxGutterWidth: 200,
     minGutterWidth: 50,
     minContentWidth: 200,
@@ -48,7 +48,5 @@ ThreeColLayoutElement.defaultProps = {
     maxHeight: "auto",
     minHeight: "auto",
 };
-
-const ThreeColLayout = withCss(styles)(ThreeColLayoutElement);
 
 export { ThreeColLayout };

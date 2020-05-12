@@ -141,10 +141,32 @@ const combineClassNames = (
     defaultProps: React.HTMLProps<unknown>,
     props: React.HTMLProps<unknown>,
 ) => {
-    const class1 = defaultProps.className ? defaultProps.className : "";
-    const class2 = props.className ? props.className : "";
+    const dirty: string[] = [];
+    const clean: string[] = [];
 
-    return `${class1} ${class2}`.trim();
+    if (defaultProps && defaultProps.className) {
+        if (defaultProps.className.split(" ").length > 1) {
+            dirty.concat(defaultProps.className.split(" "));
+        } else {
+            dirty.push(defaultProps.className);
+        }
+    }
+
+    if (props && props.className) {
+        if (props.className.split(" ").length > 1) {
+            dirty.concat(props.className.split(" "));
+        } else {
+            dirty.push(props.className);
+        }
+    }
+
+    dirty.forEach((item) => {
+        if (!clean.includes(item)) {
+            clean.push(item);
+        }
+    });
+
+    return clean.join(" ");
 };
 
 const uniqueId = (): string => {

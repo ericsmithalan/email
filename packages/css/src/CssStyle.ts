@@ -13,6 +13,8 @@ import {
 } from "./types";
 import _ from "underscore";
 import { CssHelpers } from "./helpers/CssHelpers";
+import { defaultTheme } from "./defaultTheme";
+import { css } from "./Css";
 
 export class CssStyle {
     public classes: CssRepositoryList | {} = {};
@@ -24,6 +26,9 @@ export class CssStyle {
             "@phone": {},
             "@tablet": {},
         };
+
+        // render to get classNames
+        this.parseCss({}, defaultTheme);
     }
 
     public get classNames(): CssClassNames {

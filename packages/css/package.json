@@ -8,9 +8,9 @@
     "scripts": {
         "clean": "rimraf ./cjs ./esm",
         "prebuild": "yarn clean",
-        "build": "yarn build:cjs && yarn build:esm",
-        "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir cjs",
-        "build:esm": "tsc -p tsconfig.build.json --module esnext --outDir esm",
+        "build-lib": "yarn build:cjs && yarn build:esm",
+        "build:cjs": "ts-watch -p tsconfig.build.json --module commonjs --outDir cjs",
+        "build:esm": "ts-watch -p tsconfig.build.json --module esnext --outDir esm",
         "test": "mocha \"test/**/*.spec.ts?(x)\"",
         "prepack": "yarn build"
     },
@@ -25,13 +25,17 @@
     "peerDependencies": {
         "react": ">=16",
         "react-dom": ">=16",
+        "tsc-watch": ">=4",
         "typescript": ">=3",
         "underscore": ">=1"
     },
     "dependencies": {
         "@types/deepmerge": "^2.2.0",
-        "deepmerge": "^4.2.2",
-        "csstype": "^2.6.10"
+        "csstype": "^2.6.10",
+        "deepmerge": "^4.2.2"
     },
-    "sideEffects": false
+    "sideEffects": false,
+    "devDependencies": {
+        "ts-watch": "^1.0.8"
+    }
 }

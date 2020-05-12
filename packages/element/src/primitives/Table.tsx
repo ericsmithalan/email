@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss } from "@email/css";
 import { DepricatedTableAttributes } from "../types";
 
 export interface ITableElement
@@ -13,22 +13,21 @@ const styles = css({
     },
 });
 
-const TableElement: FC<ITableElement> = (props: ITableElement) => {
+const Table: FC<ITableElement> = (props: ITableElement) => {
+    const newProps = useCss(styles, Table.defaultProps || {}, props);
     return (
-        <table {...(props as ITableElement)}>
+        <table {...(newProps as ITableElement)}>
             <tbody>{props.children}</tbody>
         </table>
     );
 };
 
-TableElement.defaultProps = {
+Table.defaultProps = {
     className: styles.classNames.ascTable,
     cellPadding: 0,
     cellSpacing: 0,
     width: "100%",
     border: 0,
 };
-
-const Table = withCss(styles)(TableElement);
 
 export { Table };

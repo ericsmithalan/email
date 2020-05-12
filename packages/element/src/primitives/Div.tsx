@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss, CssStyle } from "@email/css";
 
 export interface IDivElement extends React.HTMLProps<HTMLDivElement>, CssStyleableComponent {}
 
@@ -9,14 +9,15 @@ const styles = css({
     },
 });
 
-const DivElement: FC<IDivElement> = (props: IDivElement) => {
-    return <div {...(props as IDivElement)} />;
+const Div: FC<IDivElement> = (props: IDivElement) => {
+    const newProps = useCss(styles, Div.defaultProps || {}, props);
+    return <div {...(newProps as IDivElement)} />;
 };
 
-DivElement.defaultProps = {
+Div.defaultProps = {
     className: styles.classNames.ascDiv,
 };
 
-const Div = withCss(styles)(DivElement);
+// const Div = withCss(styles)(DivElement);
 
 export { Div };

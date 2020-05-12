@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss } from "@email/css";
 import { DepricatedLinkAttributes } from "../types";
 
 export interface IAElement
@@ -13,15 +13,14 @@ const styles = css({
     },
 });
 
-const AElement: FC<IAElement> = (props: IAElement) => {
-    return <a {...(props as IAElement)} />;
+const A: FC<IAElement> = (props: IAElement) => {
+    const newProps = useCss(styles, A.defaultProps || {}, props);
+    return <a {...(newProps as IAElement)} />;
 };
 
-AElement.defaultProps = {
+A.defaultProps = {
     className: styles.classNames.ascA,
     target: "_blank",
 };
-
-const A = withCss(styles)(AElement);
 
 export { A };

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, withCss, CssStyleableComponent } from "@email/css";
+import { css, CssStyleableComponent, useCss } from "@email/css";
 import { DepricatedTdAttributes } from "../types";
 
 export interface ITrElement
@@ -11,14 +11,13 @@ const styles = css({
     ascTr: {},
 });
 
-const TrElement: FC<ITrElement> = (props: ITrElement) => {
-    return <tr {...(props as ITrElement)} />;
+const Tr: FC<ITrElement> = (props: ITrElement) => {
+    const newProps = useCss(styles, Tr.defaultProps || {}, props);
+    return <tr {...(newProps as ITrElement)} />;
 };
 
-TrElement.defaultProps = {
+Tr.defaultProps = {
     className: styles.classNames.ascTr,
 };
-
-const Tr = withCss(styles)(TrElement);
 
 export { Tr };
