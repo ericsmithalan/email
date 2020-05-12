@@ -9,10 +9,11 @@ import {
     CssPropertyListItem,
     CssDirtyValue,
     CssTheme,
-    CssArg,
 } from "./types";
 import _ from "underscore";
 import { CssHelpers } from "./helpers/CssHelpers";
+import { defaultTheme } from "./defaultTheme";
+import { css } from "./Css";
 
 export class CssStyle {
     public classes: CssRepositoryList | {} = {};
@@ -43,17 +44,15 @@ export class CssStyle {
         }
     }
 
-    public parseCss = (props: object | undefined = undefined, theme: CssTheme): void => {
-        if (props) {
-            this._parseCss({
-                value: this._dirtyStyles,
-                target: "@global",
-                theme: theme,
-                pseudo: "none",
-                classKey: "",
-                props: props,
-            });
-        }
+    public parseCss = (props: any | undefined = undefined, theme: CssTheme): void => {
+        this._parseCss({
+            value: this._dirtyStyles,
+            target: "@global",
+            theme: theme,
+            pseudo: "none",
+            classKey: "",
+            props: props,
+        });
     };
 
     private _parseCss = (args: CssParseArgs) => {
@@ -95,7 +94,7 @@ export class CssStyle {
 
 const calculateValue = (
     value: CssDirtyValue & CssValue,
-    args: CssArg,
+    args: CssParseArgs,
 ): CssDirtyValue | CssValue => {
     let calculated;
 

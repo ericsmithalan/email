@@ -19,9 +19,7 @@ export class CssRepository {
         this._repository = merge.all([this.repository, records], {});
     };
 
-    public registerPropStyles = <P>(
-        props: object & { className: string; style: CSSProperties },
-    ): CSSProperties => {
+    public registerPropStyles = <P>(props: any): CSSProperties => {
         if (props && props.className) {
             const className = CssHelpers.camelize(props.className);
 
@@ -30,12 +28,12 @@ export class CssRepository {
 
             // adds all styles under element style property
             if (props.style) {
-                console.log(props.style);
                 this.set("@global", className, props.style);
             }
 
             const styles = this.get("@global", className);
 
+            console.log(styles);
             // returns new styles
             return styles;
         }
@@ -43,9 +41,9 @@ export class CssRepository {
         return {};
     };
 
-    private registerElementProps = (props: object, className: string): void => {
+    private registerElementProps = (props: any, className: string): void => {
         const results = {};
-        if (props && className) {
+        if (props) {
             for (const key in props) {
                 if (props.hasOwnProperty(key)) {
                     if (CssHelpers.isStyleableProperty(key)) {

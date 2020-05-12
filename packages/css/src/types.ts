@@ -9,8 +9,8 @@ export type CssPseudo = keyof typeof CssPseudoKind;
 
 export type CssTarget = keyof typeof CssTargetKind;
 
-export type CssArg = { theme: CssTheme; props: object };
-export type Fn<R = CssValue> = (args: CssArg) => R;
+export type CssArgs<T extends any> = { theme: CssTheme; props: T };
+export type Fn<R = CssValue> = (args: CssArgs<any>) => R;
 
 export type Css = CssDirtyStyles;
 

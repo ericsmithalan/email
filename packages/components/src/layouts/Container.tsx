@@ -18,23 +18,19 @@ const styles = css({
         maxWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
     },
     containerContent: {
-        fontSize: 200,
-        maxWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        minWidth: "auto",
     },
 });
 
 const Container: FC<ContainerProps> = (props: ContainerProps) => {
-    useCss(styles, props, {});
-
-    const { gutter, children } = props;
-    const { containerGutterLeft, containerContent, containerGutterRight } = styles.classNames;
+    // const context = useCss(styles, props, {});
 
     return (
         <Table>
             <Tr>
-                {gutter && <Td className={containerGutterLeft}></Td>}
-                <Td className={containerContent}>{children}</Td>
-                {gutter && <Td className={containerGutterRight}></Td>}
+                {props.gutter && <Td className={styles.classNames.containerGutterLeft}></Td>}
+                <Td className={styles.classNames.containerContent}>{props.children}</Td>
+                {props.gutter && <Td className={styles.classNames.containerGutterRight}></Td>}
             </Tr>
         </Table>
     );

@@ -1,15 +1,10 @@
 import App, { AppProps } from "next/app";
-import { DebugJSONView } from "../components/DebugJSONView";
-import { useStyle } from "@email/css";
 
 function MyApp({ Component, pageProps }) {
-    const styles = useStyle();
-    return (
-        <>
-            <Component {...pageProps} />
-            <DebugJSONView json={styles.repository.repository} />
-        </>
-    );
+    return <Component {...pageProps} />;
 }
 
+MyApp.getInitialProps = async ({ Component, pageProps }: AppProps) => {
+    return <Component {...pageProps} />;
+};
 export default MyApp;

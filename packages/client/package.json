@@ -11,9 +11,9 @@
     "start": "next dev"
   },
   "dependencies": {
-    "@email/components": "1.0.0",
+    "@email/component": "1.0.0",
     "@email/css": "1.0.0",
-    "@email/elements": "1.0.0",
+    "@email/element": "1.0.0",
     "next": "9.4.0"
   },
   "peerDependencies": {
