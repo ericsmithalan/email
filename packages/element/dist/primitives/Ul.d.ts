@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-import { CssStyleableComponent } from "@email/css";
-export interface IUlElement extends React.HTMLProps<HTMLUListElement>, CssStyleableComponent {
+export interface IUlElement extends React.HTMLProps<HTMLUListElement> {
 }
 declare const Ul: FC<IUlElement>;
 export { Ul };

@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import { CssStyleableComponent } from "@email/css";
 import { DepricatedLinkAttributes } from "../types";
-export interface IAElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes, CssStyleableComponent {
+export interface IAElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes {
 }
 declare const A: FC<IAElement>;
 export { A };

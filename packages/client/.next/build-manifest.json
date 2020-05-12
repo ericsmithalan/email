@@ -1,8 +1,8 @@
 {
   "devFiles": [
     "static/runtime/react-refresh.js",
-    "static/development/dll/dll_85e0f28fb0c71a6498e5.js",
-    "static/development/dll/dll_85e0f28fb0c71a6498e5.js.map"
+    "static/development/dll/dll_13660e7b65ed5cc729f6.js",
+    "static/development/dll/dll_13660e7b65ed5cc729f6.js.map"
   ],
   "lowPriorityFiles": [
     "static/development/_buildManifest.js",
@@ -27,10 +27,6 @@
       "static/runtime/polyfills.js"
     ],
     "/index": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/next/dist/pages/_error": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

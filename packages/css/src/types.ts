@@ -2,14 +2,6 @@ import CSS from "csstype";
 import { CssPseudoKind } from "./enums/CssPseudoKind";
 import { CssValidValueKind } from "./enums/CssValidValueKind";
 import { CssTargetKind } from "./enums/CssTargetKind";
-import { CSSProperties, ReactNode } from "react";
-
-export interface CssStyleableComponent {
-    className?: string;
-    style?: CSSProperties;
-    children?: ReactNode;
-    props?: any;
-}
 
 export type CssValue = keyof typeof CssValidValueKind;
 
@@ -17,7 +9,7 @@ export type CssPseudo = keyof typeof CssPseudoKind;
 
 export type CssTarget = keyof typeof CssTargetKind;
 
-export type CssArgs<T extends CssStyleableComponent> = { theme: CssTheme; props: T };
+export type CssArgs<T extends any> = { theme: CssTheme; props: T };
 export type Fn<R = CssValue> = (args: CssArgs<any>) => R;
 
 export type Css = CssDirtyStyles;
@@ -40,7 +32,7 @@ export type CssParseArgs = {
     theme: CssTheme;
     classKey: string;
     pseudo: CssPseudo;
-    props: CssStyleableComponent | undefined;
+    props: any | undefined;
 };
 
 export type CssRepositoryList = {

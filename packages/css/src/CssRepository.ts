@@ -1,4 +1,4 @@
-import { CssTarget, CssRepositoryList, CssStyleableComponent } from "./types";
+import { CssTarget, CssRepositoryList } from "./types";
 import { CSSProperties } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
 import _ from "underscore";
@@ -19,39 +19,42 @@ export class CssRepository {
         this._repository = merge.all([this.repository, records], {});
     };
 
-    public registerPropStyles = <P>(component: CssStyleableComponent): CSSProperties => {
-        if (component && component.className) {
-            const className = CssHelpers.camelize(component.className);
+    public registerPropStyles = <P>(props: any): CSSProperties => {
+        if (props && props.className) {
+            const className = CssHelpers.camelize(props.className);
 
-            this.registerElementProps(component.props, className);
+            // adds any element property that can be added to stylesheet
+            this.registerElementProps(props, className);
 
-            if (component.style) {
-                this.set("@global", className, component.style);
+            // adds all styles under element style property
+            if (props.style) {
+                this.set("@global", className, props.style);
             }
 
-            return this.get("@global", className);
+            const styles = this.get("@global", className);
+
+            console.log(styles);
+            // returns new styles
+            return styles;
         }
 
         return {};
     };
 
-    private registerElementProps = (component: CssStyleableComponent, className: string): void => {
+    private registerElementProps = (props: any, className: string): void => {
         const results = {};
-        if (component && component.props) {
-            for (const key in component.props) {
-                if (component.props.hasOwnProperty(key)) {
-                    console.log(key);
+        if (props) {
+            for (const key in props) {
+                if (props.hasOwnProperty(key)) {
                     if (CssHelpers.isStyleableProperty(key)) {
-                        const value = component.props[key];
+                        const value = props[key];
                         results[key] = value;
                     }
                 }
             }
-        } else {
-            throw new Error(`component and props are unassigned`);
-        }
 
-        this.set("@global", className, results);
+            this.set("@global", className, results);
+        }
     };
 
     private get = (target: CssTarget, className: string): CSSProperties => {

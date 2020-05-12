@@ -1,14 +1,14 @@
 import React, { FC } from "react";
-import { css, CssStyleableComponent, useCss } from "@email/css";
+import { css, useCss } from "@email/css";
 
-export interface ILilElement extends React.HTMLProps<HTMLLIElement>, CssStyleableComponent {}
+export interface ILilElement extends React.HTMLProps<HTMLLIElement> {}
 
 const styles = css({
     ascLi: {},
 });
 
 const Li: FC<ILilElement> = (props: ILilElement) => {
-    const newProps = useCss(styles, Li.defaultProps || {}, props);
+    const newProps = useCss(styles, props, Li.defaultProps || {});
     return <li {...(newProps as ILilElement)} />;
 };
 

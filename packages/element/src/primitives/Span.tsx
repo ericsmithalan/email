@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { css, CssStyleableComponent, useCss } from "@email/css";
+import { css, useCss } from "@email/css";
 
-export interface ISpanElement extends React.HTMLProps<HTMLSpanElement>, CssStyleableComponent {}
+export interface ISpanElement extends React.HTMLProps<HTMLSpanElement> {}
 
 const styles = css({
     ascSpan: {
@@ -10,7 +10,7 @@ const styles = css({
 });
 
 const Span: FC<ISpanElement> = (props: ISpanElement) => {
-    const newProps = useCss(styles, Span.defaultProps || {}, props);
+    const newProps = useCss(styles, props, Span.defaultProps || {});
     return <span {...(newProps as ISpanElement)} />;
 };
 

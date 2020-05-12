@@ -1,14 +1,14 @@
 import React, { FC } from "react";
-import { css, CssStyleableComponent, useCss } from "@email/css";
+import { css, useCss } from "@email/css";
 
-export interface IHrElement extends React.HTMLProps<HTMLHRElement>, CssStyleableComponent {}
+export interface IHrElement extends React.HTMLProps<HTMLHRElement> {}
 
 const styles = css({
     ascHr: {},
 });
 
 const Hr: FC<IHrElement> = (props: IHrElement) => {
-    const newProps = useCss(styles, Hr.defaultProps || {}, props);
+    const newProps = useCss(styles, props, Hr.defaultProps || {});
     return <hr {...(newProps as IHrElement)} />;
 };
 

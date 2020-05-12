@@ -1,11 +1,8 @@
 import React, { FC } from "react";
-import { css, CssStyleableComponent, useCss } from "@email/css";
+import { css, useCss } from "@email/css";
 import { DepricatedTdAttributes } from "../types";
 
-export interface ITdElement
-    extends React.HTMLProps<HTMLTableCellElement>,
-        DepricatedTdAttributes,
-        CssStyleableComponent {}
+export interface ITdElement extends React.HTMLProps<HTMLTableCellElement>, DepricatedTdAttributes {}
 
 const styles = css({
     ascTd: {
@@ -14,7 +11,7 @@ const styles = css({
 });
 
 const Td: FC<ITdElement> = (props: ITdElement) => {
-    const newProps = useCss(styles, Td.defaultProps || {}, props);
+    const newProps = useCss(styles, props, Td.defaultProps || {});
     return <td {...(newProps as ITdElement)} />;
 };
 

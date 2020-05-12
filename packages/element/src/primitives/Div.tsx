@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { css, CssStyleableComponent, useCss, CssStyle } from "@email/css";
+import { css, useCss, CssStyle } from "@email/css";
 
-export interface IDivElement extends React.HTMLProps<HTMLDivElement>, CssStyleableComponent {}
+export interface IDivElement extends React.HTMLProps<HTMLDivElement> {}
 
 const styles = css({
     ascDiv: {
@@ -10,7 +10,7 @@ const styles = css({
 });
 
 const Div: FC<IDivElement> = (props: IDivElement) => {
-    const newProps = useCss(styles, Div.defaultProps || {}, props);
+    const newProps = useCss(styles, props, Div.defaultProps || {});
     return <div {...(newProps as IDivElement)} />;
 };
 

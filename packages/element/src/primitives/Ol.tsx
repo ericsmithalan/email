@@ -1,14 +1,14 @@
 import React, { FC } from "react";
-import { css, CssStyleableComponent, useCss } from "@email/css";
+import { css, useCss } from "@email/css";
 
-export interface IOlElement extends React.HTMLProps<HTMLOListElement>, CssStyleableComponent {}
+export interface IOlElement extends React.HTMLProps<HTMLOListElement> {}
 
 const styles = css({
     ascOl: {},
 });
 
 const Ol: FC<IOlElement> = (props: IOlElement) => {
-    const newProps = useCss(styles, Ol.defaultProps || {}, props);
+    const newProps = useCss(styles, props, Ol.defaultProps || {});
     // @ts-ignore
     return <ol {...(newProps as IOlElement)} />;
 };

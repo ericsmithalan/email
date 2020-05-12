@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import { CssStyleableComponent } from "@email/css";
 import { DepricatedImageAttributes } from "../types";
-export interface IImgElement extends React.HTMLProps<HTMLImageElement>, DepricatedImageAttributes, CssStyleableComponent {
+export interface IImgElement extends React.HTMLProps<HTMLImageElement>, DepricatedImageAttributes {
 }
 declare const Img: FC<IImgElement>;
 export { Img };

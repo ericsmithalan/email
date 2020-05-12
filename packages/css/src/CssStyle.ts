@@ -9,7 +9,6 @@ import {
     CssPropertyListItem,
     CssDirtyValue,
     CssTheme,
-    CssStyleableComponent,
 } from "./types";
 import _ from "underscore";
 import { CssHelpers } from "./helpers/CssHelpers";
@@ -28,17 +27,24 @@ export class CssStyle {
         };
 
         // render to get classNames
-        this.parseCss({}, defaultTheme);
+        this.setClassNames(_dirtyStyles);
     }
 
     public get classNames(): CssClassNames {
         return this._classNames;
     }
 
-    public parseCss = <P extends CssStyleableComponent>(
-        props: P | undefined = undefined,
-        theme: CssTheme,
-    ): void => {
+    private setClassNames(props: any) {
+        for (const key in props) {
+            if (props.hasOwnProperty(key)) {
+                if (CssHelpers.isValidClassName(key)) {
+                    this._classNames[key] = CssHelpers.decamelize(key);
+                }
+            }
+        }
+    }
+
+    public parseCss = (props: any | undefined = undefined, theme: CssTheme): void => {
         this._parseCss({
             value: this._dirtyStyles,
             target: "@global",

@@ -1,11 +1,10 @@
 import React, { FC } from "react";
-import { css, CssStyleableComponent, useCss } from "@email/css";
+import { css, useCss } from "@email/css";
 import { DepricatedTableAttributes } from "../types";
 
 export interface ITableElement
     extends React.HTMLProps<HTMLTableElement>,
-        DepricatedTableAttributes,
-        CssStyleableComponent {}
+        DepricatedTableAttributes {}
 
 const styles = css({
     ascTable: {
@@ -14,7 +13,7 @@ const styles = css({
 });
 
 const Table: FC<ITableElement> = (props: ITableElement) => {
-    const newProps = useCss(styles, Table.defaultProps || {}, props);
+    const newProps = useCss(styles, props, Table.defaultProps || {});
     return (
         <table {...(newProps as ITableElement)}>
             <tbody>{props.children}</tbody>

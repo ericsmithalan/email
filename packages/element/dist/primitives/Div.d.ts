@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-import { CssStyleableComponent } from "@email/css";
-export interface IDivElement extends React.HTMLProps<HTMLDivElement>, CssStyleableComponent {
+export interface IDivElement extends React.HTMLProps<HTMLDivElement> {
 }
 declare const Div: FC<IDivElement>;
 export { Div };

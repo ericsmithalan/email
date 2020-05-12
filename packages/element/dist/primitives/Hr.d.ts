@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-import { CssStyleableComponent } from "@email/css";
-export interface IHrElement extends React.HTMLProps<HTMLHRElement>, CssStyleableComponent {
+export interface IHrElement extends React.HTMLProps<HTMLHRElement> {
 }
 declare const Hr: FC<IHrElement>;
 export { Hr };

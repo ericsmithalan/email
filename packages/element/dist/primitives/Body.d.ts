@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import { CssStyleableComponent } from "@email/css";
 import { DepricatedBodyAttributes } from "../types";
-export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes, CssStyleableComponent {
+export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {
 }
 declare const Body: FC<IBodyElement>;
 export { Body };

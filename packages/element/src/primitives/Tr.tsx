@@ -1,18 +1,15 @@
 import React, { FC } from "react";
-import { css, CssStyleableComponent, useCss } from "@email/css";
+import { css, useCss } from "@email/css";
 import { DepricatedTdAttributes } from "../types";
 
-export interface ITrElement
-    extends React.HTMLProps<HTMLTableRowElement>,
-        DepricatedTdAttributes,
-        CssStyleableComponent {}
+export interface ITrElement extends React.HTMLProps<HTMLTableRowElement>, DepricatedTdAttributes {}
 
 const styles = css({
     ascTr: {},
 });
 
 const Tr: FC<ITrElement> = (props: ITrElement) => {
-    const newProps = useCss(styles, Tr.defaultProps || {}, props);
+    const newProps = useCss(styles, props, Tr.defaultProps || {});
     return <tr {...(newProps as ITrElement)} />;
 };
 

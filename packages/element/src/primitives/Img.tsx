@@ -1,18 +1,15 @@
 import React, { FC } from "react";
-import { css, CssStyleableComponent, useCss } from "@email/css";
+import { css, useCss } from "@email/css";
 import { DepricatedImageAttributes } from "../types";
 
-export interface IImgElement
-    extends React.HTMLProps<HTMLImageElement>,
-        DepricatedImageAttributes,
-        CssStyleableComponent {}
+export interface IImgElement extends React.HTMLProps<HTMLImageElement>, DepricatedImageAttributes {}
 
 const styles = css({
     ascImg: {},
 });
 
 const Img: FC<IImgElement> = (props: IImgElement) => {
-    const newProps = useCss(styles, Img.defaultProps || {}, props);
+    const newProps = useCss(styles, props, Img.defaultProps || {});
     // @ts-ignore
     return <img {...(newProps as IImgElement)} />;
 };
