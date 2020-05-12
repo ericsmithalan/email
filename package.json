@@ -5,8 +5,7 @@
         "packages/*"
     ],
     "scripts": {
-        "remove:all": "yarn clean:node & lerna run remove:all --stream --parallel",
-        "clean:node": "rimraf ./node_modules",
+        "remove:all": "lerna run remove:all --stream --parallel",
         "clean": "lerna run clean --stream --parallel",
         "build:lib": "lerna run build:lib --stream --parallel",
         "build:client": "yarn workspace @email/client build-client",

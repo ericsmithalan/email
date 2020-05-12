@@ -27,12 +27,13 @@
         "typescript": ">=3"
     },
     "dependencies": {
-        "@email/element": "1.0.0",
-        "@email/css": "1.0.0"
+        "@email/css": "1.0.0",
+        "@email/element": "1.0.0"
     },
     "sideEffects": false,
     "devDependencies": {
-        "ts-watch": "^1.0.8",
-        "microbundle": "^0.12.0"
+        "microbundle": "^0.12.0",
+        "rimraf": "^3.0.2",
+        "ts-watch": "^1.0.8"
     }
 }
