@@ -40,6 +40,9 @@ const styles = css({
         "@phone": {
             fontSize: 9,
         },
+        ":hover": {
+            backgroundColor: "blue",
+        },
     },
 });
 
