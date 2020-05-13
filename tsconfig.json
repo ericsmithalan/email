@@ -1,29 +1,37 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "rootDir": "./packages",
-        "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true,
-        "esModuleInterop": true,
-        "target": "esnext",
-        "module": "esnext",
-        "preserveSymlinks": true,
-        "jsx": "preserve",
-        "lib": ["dom", "es2017", "DOM.Iterable", "ES2019"],
-        "moduleResolution": "node",
-        "noImplicitAny": false,
-        "forceConsistentCasingInFileNames": true,
-        "paths": {
-            "@email/*": ["packages/*/src"]
-        }
-    },
-    "references": [
-        { "path": "packages/css" },
-        { "path": "packages/elemens" },
-        { "path": "packages/components" },
-        { "path": "packages/client" }
+  "compilerOptions": {
+    "rootDir": "./src",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "target": "esnext",
+    "module": "esnext",
+    "preserveSymlinks": true,
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "es2017",
+      "DOM.Iterable",
+      "ES2019"
     ],
-    "include": ["packages"],
-    "exclude": ["packages/*/dist"]
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "isolatedModules": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "../next-env.d.ts"
+  ]
 }

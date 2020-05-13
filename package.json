@@ -5,15 +5,16 @@
         "packages/*"
     ],
     "scripts": {
-        "remove:all": "lerna run remove:all --stream --parallel",
-        "clean": "lerna run clean --stream --parallel",
-        "build:lib": "lerna run build:lib --stream --parallel",
-        "build:client": "yarn workspace @email/client build-client",
-        "start": "yarn workspace @email/client start",
-        "typecheck": "tsc --noEmit",
-        "prettify": "npx prettier \"./**/*.{js,ts,tsx}\" --write"
+        "dev": "next",
+        "build": "next build",
+        "start": "next start",
+        "type-check": "tsc"
     },
     "devDependencies": {
+        "@next/bundle-analyzer": "^9.4.0",
+        "@types/jsdom": "^16.2.1",
+        "jsdom": "^16.2.2",
+        "next": "9.4.0",
         "@types/node": "^13.13.5",
         "@types/react": "^16.9.34",
         "@types/react-dom": "^16.9.7",
@@ -25,6 +26,10 @@
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "typescript": "^3.8.3",
-        "underscore": "^1.10.2"
+        "underscore": "^1.10.2",
+        "microbundle": "^0.12.0",
+        "ts-watch": "^1.0.8",
+        "csstype": "^2.6.10",
+        "deepmerge": "^4.2.2"
     }
 }
