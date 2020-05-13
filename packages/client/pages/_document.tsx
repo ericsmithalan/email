@@ -1,7 +1,7 @@
 import Document, { DocumentContext } from "next/document";
 import { CssProvider, CssRepository, defaultTheme } from "@email/css";
 
-class MyDocument extends Document {
+export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
         const css = new CssRepository();
         const originalRenderPage = ctx.renderPage;
@@ -22,5 +22,3 @@ class MyDocument extends Document {
         };
     }
 }
-
-export default MyDocument;

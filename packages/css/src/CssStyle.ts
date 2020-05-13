@@ -16,7 +16,7 @@ import { defaultTheme } from "./defaultTheme";
 import { css } from "./Css";
 
 export class CssStyle {
-    public classes: CssRepositoryList | {} = {};
+    public classes: CssRepositoryList;
     private _classNames: CssClassNames = {};
 
     constructor(private readonly _dirtyStyles: CssDirtyStyles) {

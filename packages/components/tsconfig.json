@@ -1,12 +1,7 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "composite": true,
-        "outDir": "dist",
-        "rootDir": "src",
-        "paths": {
-            "@email/*": ["node_modules/@email/*/src"]
-        }
+        "outDir": "dist"
     },
     "include": ["src"]
 }

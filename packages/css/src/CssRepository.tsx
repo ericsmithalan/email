@@ -1,3 +1,4 @@
+import React from "react";
 import { CssTarget, CssRepositoryList } from "./types";
 import { CSSProperties, Props } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
@@ -16,9 +17,11 @@ export class CssRepository {
     }
 
     public registerStyles = (records: CssRepositoryList): void => {
+        console.log("records1", records);
         if (records) {
             this._repository = merge.all([this.repository, records]);
         }
+        console.log("records2", this._repository);
     };
 
     public registerPropStyles = (props: any): CSSProperties => {
@@ -70,31 +73,41 @@ export class CssRepository {
         this.repository[target][className] = merged;
     };
 
-    public jsonToHTML = (obj: object | undefined) => {
+    public jsonToHTML = (obj: object | undefined): JSX.Element[] => {
         const data = obj ? obj : this._repository;
-        const str: string[] = [];
+        const str: JSX.Element[] = [];
 
+        console.log(data);
         for (const key in data) {
             if (data.hasOwnProperty(key)) {
                 const value = data[key];
-
-                if (typeof value === "object") {
-                    str.push(`<div>
-                                <div>${key}</div>
-                                <div>${this.jsonToHTML(value)}</div>
-                            </div>`);
-                }
+                console.log(typeof value);
 
                 if (typeof value === "string" || typeof value === "number") {
-                    str.push(`
+                    str.push(
                         <div>
-                            <div>${key}</div>
-                            <div>${value}</div>
-                        </div>
-                    `);
+                            <div>{key}</div>
+                            <div>{value}</div>
+                        </div>,
+                    );
+
+                    continue;
+                }
+
+                if (typeof value === "object") {
+                    str.push(
+                        <div key={key}>
+                            <div>{key}</div>
+                            <div>{...this.jsonToHTML(value)}</div>
+                        </div>,
+                    );
+
+                    continue;
                 }
             }
         }
+
+        return str;
     };
 
     public toString = (target: CssTarget) => {

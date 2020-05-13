@@ -14,6 +14,8 @@ export const useMergedProps = (css: CssStyle, props: any, defaultProps: any) => 
         context.theme,
     );
 
+    context.repository.registerStyles(css.classes);
+
     let defaultStyles = {};
 
     if (defaultProps) {

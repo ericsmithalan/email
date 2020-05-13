@@ -6,6 +6,7 @@ import { CssClassNames } from "../types";
 export const useStyled = (css: CssStyle, props: object): CssClassNames => {
     const context = React.useContext(CssContext);
     css.parseCss(props, context.theme);
+    context.repository.registerStyles(css.classes);
 
     context.repository.registerPropStyles(props);
 

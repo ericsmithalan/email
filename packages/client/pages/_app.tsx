@@ -1,5 +1,6 @@
 import App, { AppProps } from "next/app";
 import { useCssRepository, CssRepository } from "@email/css";
+import { JSDOM } from "jsdom";
 
 function MyApp({ Component, pageProps }) {
     const context: CssRepository = useCssRepository();
@@ -8,7 +9,7 @@ function MyApp({ Component, pageProps }) {
         <>
             <Component {...pageProps} />
 
-            {JSON.stringify(context.jsonToHTML())}
+            {context.jsonToHTML()}
         </>
     );
 }

@@ -9,3 +9,4 @@ export { CssStyle } from "./CssStyle";
 export { useStyled } from "./hooks/useStyled";
 export { CssRepository } from "./CssRepository";
 export { useCssRepository } from "./hooks/useCssRepository";
+export { withStyles } from "./hoc/withStyles";
