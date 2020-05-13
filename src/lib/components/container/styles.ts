@@ -1,16 +1,7 @@
-import React, { FC, ReactNode, ComponentProps } from "react";
-import { Table, Tr, Td } from "../primitives";
-import { Style, CssArgs, useStyled } from "../css-js";
+import { Style, CssArgs } from "src/lib/css-js";
+import { ContainerProps } from "./Container";
 
-type Layout<T> = {
-    children: ReactNode;
-};
-
-interface ContainerProps extends Layout<ContainerProps> {
-    gutter: number;
-}
-
-const styles = Style({
+export default Style({
     containerGutterLeft: {
         backgroundColor: "red",
         maxWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
@@ -65,43 +56,3 @@ const styles = Style({
         },
     },
 });
-
-const Container: FC<ContainerProps> = (props: ContainerProps) => {
-    const {
-        containerGutterLeft,
-        containerContent,
-        containerGutterRight,
-        containerGutterTop,
-        containerGutterBottom,
-    } = useStyled(styles, props);
-
-    return (
-        <Table align="center">
-            {props.gutter && (
-                <Tr>
-                    <Td colSpan={3} align="center" className={containerGutterTop}>
-                        &nbsp;
-                    </Td>
-                </Tr>
-            )}
-            <Tr>
-                {props.gutter && (
-                    <Td align="center" className={containerGutterLeft}>
-                        &nbsp;
-                    </Td>
-                )}
-                <Td className={containerContent}>{props.children}</Td>
-                {props.gutter && <Td className={containerGutterRight}>&nbsp;</Td>}
-            </Tr>
-            {props.gutter && (
-                <Tr>
-                    <Td colSpan={3} align="center" className={containerGutterBottom}>
-                        &nbsp;
-                    </Td>
-                </Tr>
-            )}
-        </Table>
-    );
-};
-
-export { Container };

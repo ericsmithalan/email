@@ -2,7 +2,7 @@ import * as React from "react";
 import { StylesContext } from "./context/StylesContext";
 import { StyleSheets } from "./StyleSheets";
 import { Theme } from "./types";
-import { defaultTheme } from "./defaultTheme";
+import { defaultTheme } from "../defaultTheme";
 
 export type CssProviderProps = {
     theme?: Theme;

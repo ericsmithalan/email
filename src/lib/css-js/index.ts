@@ -1,5 +1,4 @@
 export { Style } from "./Style";
-export { defaultTheme } from "./defaultTheme";
 export * from "./types";
 export { CssHelpers } from "./helpers/CssHelpers";
 export { StylesContext } from "./context/StylesContext";

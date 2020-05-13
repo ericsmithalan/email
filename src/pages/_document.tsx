@@ -1,5 +1,5 @@
 import Document, { DocumentContext } from "next/document";
-import { StylesProvider, StyleSheets, defaultTheme } from "../lib/css-js";
+import { StylesProvider, StyleSheets, defaultTheme } from "../lib";
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {

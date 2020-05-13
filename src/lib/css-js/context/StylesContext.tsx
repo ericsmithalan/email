@@ -1,6 +1,6 @@
 import React from "react";
 import { Theme } from "../types";
-import { defaultTheme } from "../defaultTheme";
+import { defaultTheme } from "../../defaultTheme";
 import { StyleSheets } from "../StyleSheets";
 
 export type StylesContextProps = {
