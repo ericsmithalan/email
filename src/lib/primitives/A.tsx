@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { css, useMergedProps } from "../css-js";
+import { Style, useMergedProps } from "../css-js";
 import { DepricatedLinkAttributes } from "./types";
 
 export interface AElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes {}
 
-const styles = css({
+const styles = Style({
     ascA: {
         fontSize: 13,
     },

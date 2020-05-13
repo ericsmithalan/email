@@ -1,6 +1,6 @@
-import { strEnum } from "../utils/strEnum";
+import { toEnum } from "../utils/toEnum";
 
-export const CssAtRulesKind = strEnum([
+export const CssAtRulesKind = toEnum([
     "@charset",
     "@document",
     "@font-face",

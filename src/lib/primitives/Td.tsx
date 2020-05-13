@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { css, useMergedProps } from "../css-js";
+import { Style, useMergedProps } from "../css-js";
 import { DepricatedTdAttributes } from "./types";
 
 export interface TdElement extends React.HTMLProps<HTMLTableCellElement>, DepricatedTdAttributes {}
 
-const styles = css({
+const styles = Style({
     ascTd: {
         fontSize: 13,
     },

@@ -3,13 +3,13 @@ import { StylesProvider, StyleSheets, defaultTheme } from "../lib/css-js";
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
-        const css = new StyleSheets(defaultTheme);
+        const styles = new StyleSheets();
         const originalRenderPage = ctx.renderPage;
 
         ctx.renderPage = () =>
             originalRenderPage({
                 enhanceApp: (App) => (props) => (
-                    <StylesProvider theme={defaultTheme} repository={css}>
+                    <StylesProvider theme={defaultTheme} repository={styles}>
                         <App {...props} />
                     </StylesProvider>
                 ),
@@ -23,19 +23,19 @@ export default class MyDocument extends Document {
                     {initialProps.styles}
                     <style
                         id="css_base"
-                        dangerouslySetInnerHTML={{ __html: css.toString("@base") }}
+                        dangerouslySetInnerHTML={{ __html: styles.toString("@base") }}
                     ></style>
                     <style
                         id="css_global"
-                        dangerouslySetInnerHTML={{ __html: css.toString("@global") }}
+                        dangerouslySetInnerHTML={{ __html: styles.toString("@global") }}
                     ></style>
                     <style
                         id="css_tablet"
-                        dangerouslySetInnerHTML={{ __html: css.toString("@tablet") }}
+                        dangerouslySetInnerHTML={{ __html: styles.toString("@tablet") }}
                     ></style>
                     <style
                         id="css_phone"
-                        dangerouslySetInnerHTML={{ __html: css.toString("@phone") }}
+                        dangerouslySetInnerHTML={{ __html: styles.toString("@phone") }}
                     ></style>
                 </>
             ),

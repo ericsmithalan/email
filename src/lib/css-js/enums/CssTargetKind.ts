@@ -1,2 +1,2 @@
-import { strEnum } from "../utils/strEnum";
-export const CssTargetKind = strEnum(["@global", "@tablet", "@phone", "@base"]);
+import { toEnum } from "../utils/toEnum";
+export const CssTargetKind = toEnum(["@global", "@tablet", "@phone", "@base"]);

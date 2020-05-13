@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { css, useMergedProps } from "../css-js";
+import { Style, useMergedProps } from "../css-js";
 
 export interface SpanElement extends React.HTMLProps<HTMLSpanElement> {}
 
-const styles = css({
+const styles = Style({
     ascSpan: {
         fontSize: 13,
     },

@@ -2,16 +2,11 @@ import React from "react";
 import { CssTarget, StyleSheet, Theme } from "./types";
 import { CSSProperties, Props } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
-import { cssBase } from "./CssBase";
 import _ from "underscore";
 import merge from "deepmerge";
 
 export class StyleSheets {
-    constructor(theme: Theme) {
-        cssBase.parse({}, theme);
-
-        this.registerStyles(cssBase.styles);
-    }
+    constructor() {}
 
     private _repository: StyleSheet | {} = {
         "@base": {},
@@ -108,6 +103,7 @@ export class StyleSheets {
             css.push(`@media only screen and (max-width: 479px) {`);
             important = "!important";
         }
+
         if (trg === "@tablet") {
             css.push(`@media only screen and (max-width: 800px) {`);
             important = "!important";

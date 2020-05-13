@@ -1,6 +1,6 @@
-import { strEnum } from "../utils/strEnum";
+import { toEnum } from "../utils/toEnum";
 
-export const CssElementKind = strEnum([
+export const CssElementKind = toEnum([
     "a",
     "table",
     "body",

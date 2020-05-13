@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { css, useMergedProps, CssStyle } from "../css-js";
+import { Style, useMergedProps } from "../css-js";
 
 export interface DivElement extends React.HTMLProps<HTMLDivElement> {}
 
-const styles = css({
+const styles = Style({
     ascDiv: {
         fontSize: 13,
     },

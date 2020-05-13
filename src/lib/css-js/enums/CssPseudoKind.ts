@@ -1,5 +1,5 @@
-import { strEnum } from "../utils/strEnum";
-export const CssPseudoKind = strEnum([
+import { toEnum } from "../utils/toEnum";
+export const CssPseudoKind = toEnum([
     "::after",
     "::backdrop",
     "::before",

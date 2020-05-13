@@ -1,11 +1,11 @@
-export { css } from "./Css";
+export { Style } from "./Style";
 export { defaultTheme } from "./defaultTheme";
 export * from "./types";
 export { CssHelpers } from "./helpers/CssHelpers";
-export { StylesContext as CssContext } from "./context/StylesContext";
+export { StylesContext } from "./context/StylesContext";
 export { StylesProvider } from "./StylesProvider";
 export { useMergedProps } from "./hooks/useMergedProps";
-export { Parser as CssStyle } from "./Parser";
+export { Parser } from "./Parser";
 export { useStyled } from "./hooks/useStyled";
 export { StyleSheets } from "./StyleSheets";
 export { useCssRepository } from "./hooks/useCssRepository";

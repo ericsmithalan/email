@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { css, useMergedProps, CssArgs } from "../css-js";
+import { Style, useMergedProps, CssArgs } from "../css-js";
 import { DepricatedBodyAttributes } from "./types";
 
 export interface BodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}
 
-const styles = css({
+const styles = Style({
     ascBody: {
         fontSize: (args: CssArgs<any>) => args.theme.fonts.fontDefaultSize,
         width: "100%",

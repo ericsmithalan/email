@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, ComponentProps } from "react";
 import { Table, Tr, Td } from "../primitives";
-import { css, CssArgs, useStyled } from "../css-js";
+import { Style, CssArgs, useStyled } from "../css-js";
 
 type Layout<T> = {
     children: ReactNode;
@@ -10,7 +10,7 @@ interface ContainerProps extends Layout<ContainerProps> {
     gutter: number;
 }
 
-const styles = css({
+const styles = Style({
     containerGutterLeft: {
         backgroundColor: "red",
         maxWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,

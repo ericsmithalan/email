@@ -9,6 +9,6 @@ export type StylesContextProps = {
 };
 
 export const StylesContext = React.createContext<StylesContextProps>({
-    repository: new StyleSheets(defaultTheme),
+    repository: new StyleSheets(),
     theme: defaultTheme,
 });

@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { css, useMergedProps } from "../css-js";
+import { Style, useMergedProps } from "../css-js";
 
 export interface UlElement extends React.HTMLProps<HTMLUListElement> {}
 
-const styles = css({
+const styles = Style({
     ascUl: {},
 });
 

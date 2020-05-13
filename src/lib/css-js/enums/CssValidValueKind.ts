@@ -1,2 +1,2 @@
-import { strEnum } from "../utils/strEnum";
-export const CssValidValueKind = strEnum(["string", "number", "boolean", "symbol"]);
+import { toEnum } from "../utils/toEnum";
+export const CssValidValueKind = toEnum(["string", "number", "boolean", "symbol"]);

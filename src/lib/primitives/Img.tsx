@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { css, useMergedProps } from "../css-js";
+import { Style, useMergedProps } from "../css-js";
 import { DepricatedImageAttributes } from "./types";
 
 export interface ImgElement extends React.HTMLProps<HTMLImageElement>, DepricatedImageAttributes {}
 
-const styles = css({
+const styles = Style({
     ascImg: {},
 });
 

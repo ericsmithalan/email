@@ -1,12 +1,12 @@
 import React, { FC } from "react";
-import { css, useMergedProps } from "../css-js";
+import { Style, useMergedProps } from "../css-js";
 import { DepricatedTableAttributes } from "./types";
 
 export interface TableElement
     extends React.HTMLProps<HTMLTableElement>,
         DepricatedTableAttributes {}
 
-const styles = css({
+const styles = Style({
     ascTable: {
         fontSize: 13,
     },
