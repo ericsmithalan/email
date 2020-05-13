@@ -1,6 +1,4 @@
-import Head from "next/head";
-import { Div } from "@email/element";
-import { Container } from "@email/component";
+import { Container } from "@email/components";
 
 export default function Home() {
     return <Container gutter={20}>Hello</Container>;

@@ -4,9 +4,15 @@ import { CssRepositoryList } from "../types";
 import { CssStyle } from "../CssStyle";
 import { CssHelpers } from "../helpers/CssHelpers";
 
-export const useCss = (css: CssStyle, props: Props<any>, defaultProps: any) => {
+export const useMergedProps = (css: CssStyle, props: any, defaultProps: any) => {
     const context = React.useContext(CssContext);
-    css.parseCss(Object.assign({}, defaultProps || {}, props), context.theme);
+
+    css.parseCss(
+        Object.assign({}, defaultProps, props, {
+            className: CssHelpers.combineClassNames(defaultProps, props),
+        }),
+        context.theme,
+    );
 
     let defaultStyles = {};
 

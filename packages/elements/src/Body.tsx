@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useCss } from "@email/css";
+import { css, useMergedProps } from "@email/css";
 import { DepricatedBodyAttributes } from "./types";
 
 export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}
@@ -11,7 +11,7 @@ const styles = css({
 });
 
 const Body: FC<IBodyElement> = (props: IBodyElement) => {
-    const newProps = useCss(styles, props, Body.defaultProps || {});
+    const newProps = useMergedProps(styles, props, Body.defaultProps);
     return <body {...(newProps as IBodyElement)} />;
 };
 

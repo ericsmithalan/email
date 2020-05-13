@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useCss } from "@email/css";
+import { css, useMergedProps } from "@email/css";
 import { DepricatedImageAttributes } from "./types";
 
 export interface IImgElement extends React.HTMLProps<HTMLImageElement>, DepricatedImageAttributes {}
@@ -9,7 +9,7 @@ const styles = css({
 });
 
 const Img: FC<IImgElement> = (props: IImgElement) => {
-    const newProps = useCss(styles, props, Img.defaultProps || {});
+    const newProps = useMergedProps(styles, props, Img.defaultProps);
     // @ts-ignore
     return <img {...(newProps as IImgElement)} />;
 };

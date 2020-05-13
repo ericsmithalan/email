@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useCss } from "@email/css";
+import { css, useMergedProps } from "@email/css";
 
 export interface IUlElement extends React.HTMLProps<HTMLUListElement> {}
 
@@ -8,7 +8,7 @@ const styles = css({
 });
 
 const Ul: FC<IUlElement> = (props: IUlElement) => {
-    const newProps = useCss(styles, props, Ul.defaultProps || {});
+    const newProps = useMergedProps(styles, props, Ul.defaultProps);
     return <ul {...(newProps as IUlElement)} />;
 };
 

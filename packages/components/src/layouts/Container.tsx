@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, ComponentProps } from "react";
-import { Table, Tr, Td } from "@email/element";
-import { css, CssArgs, useCss } from "@email/css";
+import { Table, Tr, Td } from "@email/elements";
+import { css, CssArgs, useStyled } from "@email/css";
 
 type Layout<T> = {
     children: ReactNode;
@@ -18,19 +18,23 @@ const styles = css({
         maxWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
     },
     containerContent: {
+        fontSize: 200,
         minWidth: "auto",
     },
 });
 
 const Container: FC<ContainerProps> = (props: ContainerProps) => {
-    // const context = useCss(styles, props, {});
+    const { containerGutterLeft, containerContent, containerGutterRight } = useStyled(
+        styles,
+        props,
+    );
 
     return (
         <Table>
             <Tr>
-                {props.gutter && <Td className={styles.classNames.containerGutterLeft}></Td>}
-                <Td className={styles.classNames.containerContent}>{props.children}</Td>
-                {props.gutter && <Td className={styles.classNames.containerGutterRight}></Td>}
+                {props.gutter && <Td className={containerGutterLeft}></Td>}
+                <Td className={containerContent}>{props.children}</Td>
+                {props.gutter && <Td className={containerGutterRight}></Td>}
             </Tr>
         </Table>
     );

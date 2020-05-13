@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useCss } from "@email/css";
+import { css, useMergedProps } from "@email/css";
 
 export interface IHrElement extends React.HTMLProps<HTMLHRElement> {}
 
@@ -8,7 +8,7 @@ const styles = css({
 });
 
 const Hr: FC<IHrElement> = (props: IHrElement) => {
-    const newProps = useCss(styles, props, Hr.defaultProps || {});
+    const newProps = useMergedProps(styles, props, Hr.defaultProps);
     return <hr {...(newProps as IHrElement)} />;
 };
 

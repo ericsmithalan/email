@@ -1,10 +1,16 @@
 import App, { AppProps } from "next/app";
+import { useCssRepository, CssRepository } from "@email/css";
 
 function MyApp({ Component, pageProps }) {
-    return <Component {...pageProps} />;
+    const context: CssRepository = useCssRepository();
+
+    return (
+        <>
+            <Component {...pageProps} />
+
+            {JSON.stringify(context.jsonToHTML())}
+        </>
+    );
 }
 
-MyApp.getInitialProps = async ({ Component, pageProps }: AppProps) => {
-    return <Component {...pageProps} />;
-};
 export default MyApp;

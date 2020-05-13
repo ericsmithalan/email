@@ -1,5 +1,5 @@
 {
-    "name": "@email/element",
+    "name": "@email/elements",
     "version": "1.0.0",
     "private": true,
     "main": "dist/index.js",

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useCss, CssStyle } from "@email/css";
+import { css, useMergedProps, CssStyle } from "@email/css";
 
 export interface IDivElement extends React.HTMLProps<HTMLDivElement> {}
 
@@ -10,7 +10,7 @@ const styles = css({
 });
 
 const Div: FC<IDivElement> = (props: IDivElement) => {
-    const newProps = useCss(styles, props, Div.defaultProps || {});
+    const newProps = useMergedProps(styles, props, Div.defaultProps);
     return <div {...(newProps as IDivElement)} />;
 };
 

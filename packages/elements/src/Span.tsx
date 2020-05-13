@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useCss } from "@email/css";
+import { css, useMergedProps } from "@email/css";
 
 export interface ISpanElement extends React.HTMLProps<HTMLSpanElement> {}
 
@@ -10,7 +10,7 @@ const styles = css({
 });
 
 const Span: FC<ISpanElement> = (props: ISpanElement) => {
-    const newProps = useCss(styles, props, Span.defaultProps || {});
+    const newProps = useMergedProps(styles, props, Span.defaultProps);
     return <span {...(newProps as ISpanElement)} />;
 };
 

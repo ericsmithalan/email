@@ -1,5 +1,5 @@
 {
-    "name": "@email/component",
+    "name": "@email/components",
     "version": "1.0.0",
     "private": true,
     "main": "dist/index.js",
@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "@email/css": "1.0.0",
-        "@email/element": "1.0.0"
+        "@email/elements": "1.0.0"
     },
     "sideEffects": false,
     "devDependencies": {

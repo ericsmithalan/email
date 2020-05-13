@@ -19,8 +19,8 @@
     },
     "references": [
         { "path": "packages/css" },
-        { "path": "packages/element" },
-        { "path": "packages/component" },
+        { "path": "packages/elemens" },
+        { "path": "packages/components" },
         { "path": "packages/client" }
     ],
     "include": ["packages"],

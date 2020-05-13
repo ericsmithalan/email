@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useCss } from "@email/css";
+import { css, useMergedProps } from "@email/css";
 
 export interface ILilElement extends React.HTMLProps<HTMLLIElement> {}
 
@@ -8,7 +8,7 @@ const styles = css({
 });
 
 const Li: FC<ILilElement> = (props: ILilElement) => {
-    const newProps = useCss(styles, props, Li.defaultProps || {});
+    const newProps = useMergedProps(styles, props, Li.defaultProps);
     return <li {...(newProps as ILilElement)} />;
 };
 

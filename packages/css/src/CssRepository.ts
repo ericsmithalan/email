@@ -1,5 +1,5 @@
 import { CssTarget, CssRepositoryList } from "./types";
-import { CSSProperties } from "react";
+import { CSSProperties, Props } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
 import _ from "underscore";
 import merge from "deepmerge";
@@ -15,25 +15,27 @@ export class CssRepository {
         return this._repository;
     }
 
-    public registerStyles = (records: CssRepositoryList | {}): void => {
-        this._repository = merge.all([this.repository, records], {});
+    public registerStyles = (records: CssRepositoryList): void => {
+        if (records) {
+            this._repository = merge.all([this.repository, records]);
+        }
     };
 
-    public registerPropStyles = <P>(props: any): CSSProperties => {
+    public registerPropStyles = (props: any): CSSProperties => {
         if (props && props.className) {
             const className = CssHelpers.camelize(props.className);
 
             // adds any element property that can be added to stylesheet
-            this.registerElementProps(props, className);
+            this._registerElementProps(props, className);
 
+            // console.log(props);
             // adds all styles under element style property
             if (props.style) {
-                this.set("@global", className, props.style);
+                this._set("@global", className, props.style);
             }
 
-            const styles = this.get("@global", className);
+            const styles = this._get("@global", className);
 
-            console.log(styles);
             // returns new styles
             return styles;
         }
@@ -41,9 +43,9 @@ export class CssRepository {
         return {};
     };
 
-    private registerElementProps = (props: any, className: string): void => {
+    private _registerElementProps = (props: any, className: string): void => {
         const results = {};
-        if (props) {
+        if (props && className) {
             for (const key in props) {
                 if (props.hasOwnProperty(key)) {
                     if (CssHelpers.isStyleableProperty(key)) {
@@ -53,19 +55,46 @@ export class CssRepository {
                 }
             }
 
-            this.set("@global", className, results);
+            this._set("@global", className, results);
         }
     };
 
-    private get = (target: CssTarget, className: string): CSSProperties => {
+    private _get = (target: CssTarget, className: string): CSSProperties => {
         return this.repository[target][className];
     };
 
-    private set = (target: CssTarget, className: string, styles: object): void => {
+    private _set = (target: CssTarget, className: string, styles: object): void => {
         const repClass = this.repository[target][className];
         const merged = Object.assign({}, repClass, styles);
 
         this.repository[target][className] = merged;
+    };
+
+    public jsonToHTML = (obj: object | undefined) => {
+        const data = obj ? obj : this._repository;
+        const str: string[] = [];
+
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+                const value = data[key];
+
+                if (typeof value === "object") {
+                    str.push(`<div>
+                                <div>${key}</div>
+                                <div>${this.jsonToHTML(value)}</div>
+                            </div>`);
+                }
+
+                if (typeof value === "string" || typeof value === "number") {
+                    str.push(`
+                        <div>
+                            <div>${key}</div>
+                            <div>${value}</div>
+                        </div>
+                    `);
+                }
+            }
+        }
     };
 
     public toString = (target: CssTarget) => {

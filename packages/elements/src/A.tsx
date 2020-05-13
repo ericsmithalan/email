@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useCss } from "@email/css";
+import { css, useMergedProps } from "@email/css";
 import { DepricatedLinkAttributes } from "./types";
 
 export interface IAElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes {}
@@ -11,7 +11,7 @@ const styles = css({
 });
 
 const A: FC<IAElement> = (props: IAElement) => {
-    const newProps = useCss(styles, props, A.defaultProps || {});
+    const newProps = useMergedProps(styles, props, A.defaultProps);
     return <a {...(newProps as IAElement)} />;
 };
 

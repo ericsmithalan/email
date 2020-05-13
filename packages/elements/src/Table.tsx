@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useCss } from "@email/css";
+import { css, useMergedProps } from "@email/css";
 import { DepricatedTableAttributes } from "./types";
 
 export interface ITableElement
@@ -13,7 +13,7 @@ const styles = css({
 });
 
 const Table: FC<ITableElement> = (props: ITableElement) => {
-    const newProps = useCss(styles, props, Table.defaultProps || {});
+    const newProps = useMergedProps(styles, props, Table.defaultProps);
     return (
         <table {...(newProps as ITableElement)}>
             <tbody>{props.children}</tbody>
