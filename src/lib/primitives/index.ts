@@ -11,5 +11,6 @@ export { Td } from "./Td";
 export { Tr } from "./Tr";
 export { Ul } from "./Ul";
 export { P } from "./P";
+export { Spacer } from "./Spacer";
 
 export * from "./types";

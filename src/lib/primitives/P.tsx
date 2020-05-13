@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Style, useMergeStyles } from "../css-js";
 import { PrimitveElement } from "./types";
 
-export interface PElement extends React.HTMLProps<HTMLOListElement>, PrimitveElement {}
+export interface PElement extends React.HTMLProps<HTMLParagraphElement>, PrimitveElement {}
 
 const styles = Style({
     ascP: {},
@@ -10,8 +10,8 @@ const styles = Style({
 
 const P: FC<PElement> = (props: PElement) => {
     const { commonCss, ...rest } = useMergeStyles(styles, props, P.defaultProps);
-    // @ts-ignore
-    return <ol {...(rest as PElement)} />;
+
+    return <p {...(rest as PElement)} />;
 };
 
 P.defaultProps = {

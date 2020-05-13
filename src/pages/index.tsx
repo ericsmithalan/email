@@ -1,4 +1,4 @@
-import { Container, Style, useStyle, Img, P } from "../lib";
+import { Container, Style, useStyle, Img, P, Signature } from "../lib";
 import { Helmet } from "react-helmet";
 
 const styles = Style({
@@ -46,6 +46,8 @@ export default function Home() {
                     development platform Botsai - It is easy, intuative and requires no code.
                 </P>
                 <P>Best reguards,</P>
+
+                <Signature />
             </Container>
         </>
     );

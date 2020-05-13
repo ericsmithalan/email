@@ -1,11 +1,8 @@
-import React, { FC, ReactNode, ComponentProps } from "react";
+import React, { FC, ReactNode } from "react";
 import { Table, Tr, Td } from "../../primitives";
-import { Style, Css, useStyle, useCommonCss } from "../../css-js";
-import { Layout } from "../types";
+import { useStyle, useCommonCss } from "../../css-js";
+import { Layout, Alignment, Size } from "../types";
 import styles from "./styles";
-
-type Alignment = "center" | "left" | "right";
-type Size = string | number;
 
 export interface ContainerProps extends Layout<ContainerProps> {
     rowGutter?: number;
