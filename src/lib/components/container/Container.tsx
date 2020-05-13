@@ -9,6 +9,8 @@ type Size = string | number;
 
 export interface ContainerProps extends Layout<ContainerProps> {
     gutter?: number;
+    gutterLeftContent?: ReactNode;
+    gutterRightContent?: ReactNode;
     align?: Alignment;
     width?: Size;
     height?: Size;
@@ -28,23 +30,23 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
 
     const { gutter, ...rest } = props;
 
-    const horizontalGutter = (className: string): JSX.Element => {
+    const horizontalGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
         if (props.gutter > 0) {
             return (
                 <Tr>
                     <Td colSpan={3} align="center" className={className}>
-                        &nbsp;
+                        {content && "&nbsp;"}
                     </Td>
                 </Tr>
             );
         }
     };
 
-    const verticalGutter = (className: string): JSX.Element => {
+    const verticalGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
         if (props.gutter > 0) {
             return (
                 <Td align="center" className={className}>
-                    &nbsp;
+                    {content && "&nbsp;"}
                 </Td>
             );
         }
@@ -54,11 +56,11 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
         <Table {...rest} commonCss={defaultText} className={container} align="center">
             {horizontalGutter(containerGutterTop)}
             <Tr>
-                {verticalGutter(containerGutterLeft)}
+                {verticalGutter(containerGutterLeft, containerGutterLeft)}
                 <Td commonCss={defaultText} className={containerContent}>
                     {props.children}
                 </Td>
-                {verticalGutter(containerGutterRight)}
+                {verticalGutter(containerGutterRight, containerGutterRight)}
             </Tr>
             {horizontalGutter(containerGutterBottom)}
         </Table>
