@@ -7,7 +7,7 @@ type Layout<T> = {
 };
 
 interface ContainerProps extends Layout<ContainerProps> {
-    gutter: number | number[];
+    gutter: number;
 }
 
 const styles = css({
@@ -18,7 +18,7 @@ const styles = css({
         "@tablet": {
             backgroundColor: "yellow",
             minWidth: 0,
-            width: "auto",
+            maxWidth: 0,
         },
     },
     containerGutterRight: {
@@ -28,7 +28,27 @@ const styles = css({
         "@tablet": {
             backgroundColor: "yellow",
             minWidth: 0,
-            width: "auto",
+            maxWidth: 0,
+        },
+    },
+    containerGutterTop: {
+        backgroundColor: "red",
+        maxHeight: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        minHeight: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        "@tablet": {
+            backgroundColor: "yellow",
+            minHeight: 0,
+            maxHeight: 0,
+        },
+    },
+    containerGutterBottom: {
+        backgroundColor: "red",
+        maxHeight: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        minHeight: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        "@tablet": {
+            backgroundColor: "yellow",
+            minHeight: 0,
+            maxHeight: 0,
         },
     },
     containerContent: {
@@ -47,18 +67,39 @@ const styles = css({
 });
 
 const Container: FC<ContainerProps> = (props: ContainerProps) => {
-    const { containerGutterLeft, containerContent, containerGutterRight } = useStyled(
-        styles,
-        props,
-    );
+    const {
+        containerGutterLeft,
+        containerContent,
+        containerGutterRight,
+        containerGutterTop,
+        containerGutterBottom,
+    } = useStyled(styles, props);
 
     return (
-        <Table>
+        <Table align="center">
+            {props.gutter && (
+                <Tr>
+                    <Td colSpan={3} align="center" className={containerGutterTop}>
+                        &nbsp;
+                    </Td>
+                </Tr>
+            )}
             <Tr>
-                {props.gutter && <Td className={containerGutterLeft}></Td>}
+                {props.gutter && (
+                    <Td align="center" className={containerGutterLeft}>
+                        &nbsp;
+                    </Td>
+                )}
                 <Td className={containerContent}>{props.children}</Td>
-                {props.gutter && <Td className={containerGutterRight}></Td>}
+                {props.gutter && <Td className={containerGutterRight}>&nbsp;</Td>}
             </Tr>
+            {props.gutter && (
+                <Tr>
+                    <Td colSpan={3} align="center" className={containerGutterBottom}>
+                        &nbsp;
+                    </Td>
+                </Tr>
+            )}
         </Table>
     );
 };
