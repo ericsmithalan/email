@@ -32,7 +32,11 @@ export class CssRepository {
             // console.log(props);
             // adds all styles under element style property
             if (props.style) {
-                this._set("@global", className, props.style);
+                this._set(
+                    "@global",
+                    className,
+                    merge.all([this._get("@global", className), props.style]),
+                );
             }
 
             const styles = this._get("@global", className);
@@ -56,7 +60,7 @@ export class CssRepository {
                 }
             }
 
-            this._set("@global", className, results);
+            this._set("@global", className, merge.all([this._get("@global", className), results]));
         }
     };
 
@@ -71,24 +75,58 @@ export class CssRepository {
         this.repository[target][className] = merged;
     };
 
+    private ensureUnit = (value: string) => {
+        let result = value.toString();
+        if (result) {
+            if (result === "0") {
+                return result;
+            }
+
+            const regex = /\d*\.?\d+(?:px|%)?/gim;
+            if (result.match(regex)) {
+                return `${result}px`;
+            }
+        }
+
+        return result;
+    };
+
     public toString = (trg: CssTarget): string => {
         const css: string[] = [];
         const target = this.repository[trg];
+        let important = "";
+
+        if (trg === "@phone") {
+            css.push(`@media only screen and (max-width: 479px) {`);
+            important = "!important";
+        }
+        if (trg === "@tablet") {
+            css.push(`@media only screen and (max-width: 800px) {`);
+            important = "!important";
+        }
 
         if (target) {
             for (const clsKey in target) {
                 if (target.hasOwnProperty(clsKey)) {
                     const clsValue = target[clsKey];
-                    css.push(`.${clsKey}{`);
+                    css.push(`.${CssHelpers.decamelize(clsKey)}{`);
                     for (const propertyKey in clsValue) {
                         if (clsValue.hasOwnProperty(propertyKey)) {
                             const propValue = clsValue[propertyKey];
-                            css.push(`${propertyKey}:${propValue};`);
+                            css.push(
+                                `${CssHelpers.decamelize(propertyKey)}:${this.ensureUnit(
+                                    propValue,
+                                )}${important};`,
+                            );
                         }
                     }
                     css.push(`}`);
                 }
             }
+        }
+
+        if (trg === "@tablet" || trg === "@phone") {
+            css.push(`}`);
         }
 
         return css.join("");

@@ -25,6 +25,14 @@ export default class MyDocument extends Document {
                         id="css_global"
                         dangerouslySetInnerHTML={{ __html: css.toString("@global") }}
                     ></style>
+                    <style
+                        id="css_tablet"
+                        dangerouslySetInnerHTML={{ __html: css.toString("@tablet") }}
+                    ></style>
+                    <style
+                        id="css_phone"
+                        dangerouslySetInnerHTML={{ __html: css.toString("@phone") }}
+                    ></style>
                 </>
             ),
         };

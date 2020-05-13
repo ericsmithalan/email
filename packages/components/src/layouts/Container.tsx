@@ -12,14 +12,34 @@ interface ContainerProps extends Layout<ContainerProps> {
 
 const styles = css({
     containerGutterLeft: {
+        backgroundColor: "red",
         maxWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        minWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        "@tablet": {
+            backgroundColor: "yellow",
+            minWidth: 0,
+            width: "auto",
+        },
     },
     containerGutterRight: {
+        backgroundColor: "red",
         maxWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        minWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        "@tablet": {
+            backgroundColor: "yellow",
+            minWidth: 0,
+            width: "auto",
+        },
     },
     containerContent: {
         fontSize: 200,
         minWidth: "auto",
+        "@tablet": {
+            fontSize: 13,
+        },
+        "@phone": {
+            fontSize: 9,
+        },
     },
 });
 
