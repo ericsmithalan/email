@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { css, useMergedProps, CssArgs } from "../css-js";
 import { DepricatedBodyAttributes } from "./types";
 
-export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}
+export interface BodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}
 
 const styles = css({
     ascBody: {
@@ -21,9 +21,9 @@ const styles = css({
     },
 });
 
-const Body: FC<IBodyElement> = (props: IBodyElement) => {
+const Body: FC<BodyElement> = (props: BodyElement) => {
     const newProps = useMergedProps(styles, props, Body.defaultProps);
-    return <body {...(newProps as IBodyElement)} />;
+    return <body {...(newProps as BodyElement)} />;
 };
 
 Body.defaultProps = {

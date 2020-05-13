@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { css, useMergedProps } from "../css-js";
 import { DepricatedTableAttributes } from "./types";
 
-export interface ITableElement
+export interface TableElement
     extends React.HTMLProps<HTMLTableElement>,
         DepricatedTableAttributes {}
 
@@ -12,10 +12,10 @@ const styles = css({
     },
 });
 
-const Table: FC<ITableElement> = (props: ITableElement) => {
+const Table: FC<TableElement> = (props: TableElement) => {
     const newProps = useMergedProps(styles, props, Table.defaultProps);
     return (
-        <table {...(newProps as ITableElement)}>
+        <table {...(newProps as TableElement)}>
             <tbody>{props.children}</tbody>
         </table>
     );

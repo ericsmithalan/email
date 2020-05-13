@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { css, useMergedProps, CssStyle } from "../css-js";
 
-export interface IDivElement extends React.HTMLProps<HTMLDivElement> {}
+export interface DivElement extends React.HTMLProps<HTMLDivElement> {}
 
 const styles = css({
     ascDiv: {
@@ -9,9 +9,9 @@ const styles = css({
     },
 });
 
-const Div: FC<IDivElement> = (props: IDivElement) => {
+const Div: FC<DivElement> = (props: DivElement) => {
     const newProps = useMergedProps(styles, props, Div.defaultProps);
-    return <div {...(newProps as IDivElement)} />;
+    return <div {...(newProps as DivElement)} />;
 };
 
 Div.defaultProps = {

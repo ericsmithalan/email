@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { css, useMergedProps } from "../css-js";
 
-export interface ISpanElement extends React.HTMLProps<HTMLSpanElement> {}
+export interface SpanElement extends React.HTMLProps<HTMLSpanElement> {}
 
 const styles = css({
     ascSpan: {
@@ -9,9 +9,9 @@ const styles = css({
     },
 });
 
-const Span: FC<ISpanElement> = (props: ISpanElement) => {
+const Span: FC<SpanElement> = (props: SpanElement) => {
     const newProps = useMergedProps(styles, props, Span.defaultProps);
-    return <span {...(newProps as ISpanElement)} />;
+    return <span {...(newProps as SpanElement)} />;
 };
 
 Span.defaultProps = {

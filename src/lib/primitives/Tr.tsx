@@ -2,15 +2,15 @@ import React, { FC } from "react";
 import { css, useMergedProps } from "../css-js";
 import { DepricatedTdAttributes } from "./types";
 
-export interface ITrElement extends React.HTMLProps<HTMLTableRowElement>, DepricatedTdAttributes {}
+export interface TrElement extends React.HTMLProps<HTMLTableRowElement>, DepricatedTdAttributes {}
 
 const styles = css({
     ascTr: {},
 });
 
-const Tr: FC<ITrElement> = (props: ITrElement) => {
+const Tr: FC<TrElement> = (props: TrElement) => {
     const newProps = useMergedProps(styles, props, Tr.defaultProps);
-    return <tr {...(newProps as ITrElement)} />;
+    return <tr {...(newProps as TrElement)} />;
 };
 
 Tr.defaultProps = {

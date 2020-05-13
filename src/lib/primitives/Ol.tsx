@@ -1,16 +1,16 @@
 import React, { FC } from "react";
 import { css, useMergedProps } from "../css-js";
 
-export interface IOlElement extends React.HTMLProps<HTMLOListElement> {}
+export interface OlElement extends React.HTMLProps<HTMLOListElement> {}
 
 const styles = css({
     ascOl: {},
 });
 
-const Ol: FC<IOlElement> = (props: IOlElement) => {
+const Ol: FC<OlElement> = (props: OlElement) => {
     const newProps = useMergedProps(styles, props, Ol.defaultProps);
     // @ts-ignore
-    return <ol {...(newProps as IOlElement)} />;
+    return <ol {...(newProps as OlElement)} />;
 };
 
 Ol.defaultProps = {

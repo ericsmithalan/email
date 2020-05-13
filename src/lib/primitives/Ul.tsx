@@ -1,15 +1,15 @@
 import React, { FC } from "react";
 import { css, useMergedProps } from "../css-js";
 
-export interface IUlElement extends React.HTMLProps<HTMLUListElement> {}
+export interface UlElement extends React.HTMLProps<HTMLUListElement> {}
 
 const styles = css({
     ascUl: {},
 });
 
-const Ul: FC<IUlElement> = (props: IUlElement) => {
+const Ul: FC<UlElement> = (props: UlElement) => {
     const newProps = useMergedProps(styles, props, Ul.defaultProps);
-    return <ul {...(newProps as IUlElement)} />;
+    return <ul {...(newProps as UlElement)} />;
 };
 
 Ul.defaultProps = {

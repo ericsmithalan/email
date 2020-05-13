@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { css, useMergedProps } from "../css-js";
 import { DepricatedLinkAttributes } from "./types";
 
-export interface IAElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes {}
+export interface AElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes {}
 
 const styles = css({
     ascA: {
@@ -10,9 +10,9 @@ const styles = css({
     },
 });
 
-const A: FC<IAElement> = (props: IAElement) => {
+const A: FC<AElement> = (props: AElement) => {
     const newProps = useMergedProps(styles, props, A.defaultProps);
-    return <a {...(newProps as IAElement)} />;
+    return <a {...(newProps as AElement)} />;
 };
 
 A.defaultProps = {

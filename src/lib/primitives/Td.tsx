@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { css, useMergedProps } from "../css-js";
 import { DepricatedTdAttributes } from "./types";
 
-export interface ITdElement extends React.HTMLProps<HTMLTableCellElement>, DepricatedTdAttributes {}
+export interface TdElement extends React.HTMLProps<HTMLTableCellElement>, DepricatedTdAttributes {}
 
 const styles = css({
     ascTd: {
@@ -10,9 +10,9 @@ const styles = css({
     },
 });
 
-const Td: FC<ITdElement> = (props: ITdElement) => {
+const Td: FC<TdElement> = (props: TdElement) => {
     const newProps = useMergedProps(styles, props, Td.defaultProps);
-    return <td {...(newProps as ITdElement)} />;
+    return <td {...(newProps as TdElement)} />;
 };
 
 Td.defaultProps = {

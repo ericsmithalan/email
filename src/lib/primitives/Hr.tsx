@@ -1,15 +1,15 @@
 import React, { FC } from "react";
 import { css, useMergedProps } from "../css-js";
 
-export interface IHrElement extends React.HTMLProps<HTMLHRElement> {}
+export interface HrElement extends React.HTMLProps<HTMLHRElement> {}
 
 const styles = css({
     ascHr: {},
 });
 
-const Hr: FC<IHrElement> = (props: IHrElement) => {
+const Hr: FC<HrElement> = (props: HrElement) => {
     const newProps = useMergedProps(styles, props, Hr.defaultProps);
-    return <hr {...(newProps as IHrElement)} />;
+    return <hr {...(newProps as HrElement)} />;
 };
 
 Hr.defaultProps = {
