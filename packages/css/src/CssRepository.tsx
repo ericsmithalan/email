@@ -17,11 +17,9 @@ export class CssRepository {
     }
 
     public registerStyles = (records: CssRepositoryList): void => {
-        console.log("records1", records);
         if (records) {
             this._repository = merge.all([this.repository, records]);
         }
-        console.log("records2", this._repository);
     };
 
     public registerPropStyles = (props: any): CSSProperties => {
@@ -73,52 +71,26 @@ export class CssRepository {
         this.repository[target][className] = merged;
     };
 
-    public jsonToHTML = (obj: object | undefined): JSX.Element[] => {
-        const data = obj ? obj : this._repository;
-        const str: JSX.Element[] = [];
-
-        console.log(data);
-        for (const key in data) {
-            if (data.hasOwnProperty(key)) {
-                const value = data[key];
-                console.log(typeof value);
-
-                if (typeof value === "string" || typeof value === "number") {
-                    str.push(
-                        <div>
-                            <div>{key}</div>
-                            <div>{value}</div>
-                        </div>,
-                    );
-
-                    continue;
-                }
-
-                if (typeof value === "object") {
-                    str.push(
-                        <div key={key}>
-                            <div>{key}</div>
-                            <div>{...this.jsonToHTML(value)}</div>
-                        </div>,
-                    );
-
-                    continue;
-                }
-            }
-        }
-
-        return str;
-    };
-
-    public toString = (target: CssTarget) => {
+    public toString = (trg: CssTarget): string => {
         const css: string[] = [];
-        const results = this.repository[target];
+        const target = this.repository[trg];
 
-        if (results) {
-            for (const key in results) {
-                if (results.hasOwnProperty(key)) {
+        if (target) {
+            for (const clsKey in target) {
+                if (target.hasOwnProperty(clsKey)) {
+                    const clsValue = target[clsKey];
+                    css.push(`.${clsKey}{`);
+                    for (const propertyKey in clsValue) {
+                        if (clsValue.hasOwnProperty(propertyKey)) {
+                            const propValue = clsValue[propertyKey];
+                            css.push(`${propertyKey}:${propValue};`);
+                        }
+                    }
+                    css.push(`}`);
                 }
             }
         }
+
+        return css.join("");
     };
 }

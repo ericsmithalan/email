@@ -3,7 +3,13 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 const nextConfig = {
-    // any configs you need
+    compress: false,
+    target: "serverless",
+    devIndicators: {
+        autoPrerender: false,
+    },
+    poweredByHeader: true,
+    generateEtags: false,
 };
 
 module.exports = withBundleAnalyzer(nextConfig);
