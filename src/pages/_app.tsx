@@ -1,4 +1,4 @@
-function MyApp({ Component, pageProps }) {
+function EmailApp({ Component, pageProps }) {
     return (
         <>
             <Component {...pageProps} />
@@ -6,4 +6,4 @@ function MyApp({ Component, pageProps }) {
     );
 }
 
-export default MyApp;
+export default EmailApp;

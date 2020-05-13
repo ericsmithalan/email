@@ -1,5 +1,5 @@
 import React from "react";
-import { StylesContext } from "../context/StylesContext";
+import { StylesContext } from "../StylesProvider";
 import { Theme } from "../types";
 
 export const useTheme = (): Theme => {

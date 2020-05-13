@@ -1,8 +1,7 @@
 export { Style } from "./Style";
 export * from "./types";
 export { CssHelpers } from "./helpers/CssHelpers";
-export { StylesContext } from "./context/StylesContext";
-export { StylesProvider } from "./StylesProvider";
+export { StylesProvider, StylesContext } from "./StylesProvider";
 export { useMergeStyles } from "./hooks/useMergeStyles";
 export { Parser } from "./Parser";
 export { useStyle } from "./hooks/useStyle";

@@ -1,5 +1,5 @@
 import React, { CSSProperties, Props } from "react";
-import { StylesContext } from "../context/StylesContext";
+import { StylesContext } from "../StylesProvider";
 import { StyleSheet } from "../types";
 import { Parser } from "../Parser";
 import { CssHelpers } from "../helpers/CssHelpers";
@@ -14,15 +14,15 @@ export const useMergeStyles = (css: Parser, props: any, defaultProps: any) => {
         }),
     );
 
-    context.repository.registerStyles(css.styles);
+    context.stylesheets.registerStyles(css.styles);
 
     let defaultStyles = {};
 
     if (defaultProps) {
-        defaultStyles = context.repository.registerPropStyles(defaultProps);
+        defaultStyles = context.stylesheets.registerPropStyles(defaultProps);
     }
 
-    const propStyles = context.repository.registerPropStyles(props);
+    const propStyles = context.stylesheets.registerPropStyles(props);
 
     const mergedProps = Object.assign({}, defaultProps, props, {
         className: CssHelpers.combineClassNames(defaultProps, props),

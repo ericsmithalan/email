@@ -8,20 +8,20 @@ import merge from "deepmerge";
 export class StyleSheets {
     constructor() {}
 
-    private _repository: StyleSheet | {} = {
+    private _stylesheets: StyleSheet | {} = {
         "@base": {},
         "@global": {},
         "@phone": {},
         "@tablet": {},
     };
 
-    public get repository(): StyleSheet | {} {
-        return this._repository;
+    public get stylesheets(): StyleSheet | {} {
+        return this._stylesheets;
     }
 
     public registerStyles = (records: StyleSheet): void => {
         if (records) {
-            this._repository = merge.all([this.repository, records]);
+            this._stylesheets = merge.all([this.stylesheets, records]);
         }
     };
 
@@ -68,14 +68,14 @@ export class StyleSheets {
     };
 
     private _get = (target: CssTarget, className: string): CSSProperties => {
-        return this.repository[target][className];
+        return this.stylesheets[target][className];
     };
 
     private _set = (target: CssTarget, className: string, styles: object): void => {
-        const repClass = this.repository[target][className];
+        const repClass = this.stylesheets[target][className];
         const merged = Object.assign({}, repClass, styles);
 
-        this.repository[target][className] = merged;
+        this.stylesheets[target][className] = merged;
     };
 
     private ensureUnit = (value: string) => {
@@ -96,9 +96,9 @@ export class StyleSheets {
         return result;
     };
 
-    public toString = (trg: CssTarget): string => {
+    public css = (trg: CssTarget): string => {
         const css: string[] = [];
-        const target = this.repository[trg];
+        const target = this.stylesheets[trg];
         let important = "";
 
         if (trg === "@phone") {

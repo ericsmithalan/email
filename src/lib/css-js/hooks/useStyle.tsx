@@ -1,5 +1,5 @@
 import React, { Props } from "react";
-import { StylesContext } from "../context/StylesContext";
+import { StylesContext } from "../StylesProvider";
 import { Parser } from "../Parser";
 import { CssClassNames } from "../types";
 
@@ -14,17 +14,17 @@ export const useStyle = (
         css.parse(context.theme, Object.assign({}, defaultProps, props));
     }
 
-    context.repository.registerStyles(css.styles);
+    context.stylesheets.registerStyles(css.styles);
 
     let defaultStyles = {};
     let propStyles = {};
 
     if (defaultProps) {
-        defaultStyles = context.repository.registerPropStyles(defaultProps);
+        defaultStyles = context.stylesheets.registerPropStyles(defaultProps);
     }
 
     if (props) {
-        propStyles = context.repository.registerPropStyles(props);
+        propStyles = context.stylesheets.registerPropStyles(props);
     }
 
     return css.classes;

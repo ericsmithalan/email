@@ -1,8 +1,4 @@
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-    enabled: process.env.ANALYZE === "true",
-});
-
-const nextConfig = {
+module.exports = {
     compress: false,
     target: "serverless",
     devIndicators: {
@@ -11,5 +7,3 @@ const nextConfig = {
     poweredByHeader: true,
     generateEtags: false,
 };
-
-module.exports = withBundleAnalyzer(nextConfig);
