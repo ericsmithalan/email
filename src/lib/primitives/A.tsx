@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Style, useMergedProps } from "../css-js";
+import { Style, useMergeStyles } from "../css-js";
 import { DepricatedLinkAttributes } from "./types";
 
 export interface AElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes {}
@@ -11,7 +11,7 @@ const styles = Style({
 });
 
 const A: FC<AElement> = (props: AElement) => {
-    const newProps = useMergedProps(styles, props, A.defaultProps);
+    const newProps = useMergeStyles(styles, props, A.defaultProps);
     return <a {...(newProps as AElement)} />;
 };
 

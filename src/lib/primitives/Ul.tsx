@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Style, useMergedProps } from "../css-js";
+import { Style, useMergeStyles } from "../css-js";
 
 export interface UlElement extends React.HTMLProps<HTMLUListElement> {}
 
@@ -8,7 +8,7 @@ const styles = Style({
 });
 
 const Ul: FC<UlElement> = (props: UlElement) => {
-    const newProps = useMergedProps(styles, props, Ul.defaultProps);
+    const newProps = useMergeStyles(styles, props, Ul.defaultProps);
     return <ul {...(newProps as UlElement)} />;
 };
 

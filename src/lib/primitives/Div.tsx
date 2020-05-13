@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Style, useMergedProps } from "../css-js";
+import { Style, useMergeStyles } from "../css-js";
 
 export interface DivElement extends React.HTMLProps<HTMLDivElement> {}
 
@@ -10,7 +10,7 @@ const styles = Style({
 });
 
 const Div: FC<DivElement> = (props: DivElement) => {
-    const newProps = useMergedProps(styles, props, Div.defaultProps);
+    const newProps = useMergeStyles(styles, props, Div.defaultProps);
     return <div {...(newProps as DivElement)} />;
 };
 

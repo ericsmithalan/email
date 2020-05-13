@@ -85,9 +85,11 @@ export class StyleSheets {
                 return result;
             }
 
-            const regex = /\d*\.?\d+(?:px|%)?/gim;
-            if (result.match(regex)) {
-                return `${result}px`;
+            if (parseInt(value)) {
+                const regex = /^[+-]?[0-9]+.?([0-9]+)?(px|em|ex|%|in|cm|mm|pt|pc)$/;
+                if (!result.match(regex)) {
+                    return `${result}px`;
+                }
             }
         }
 

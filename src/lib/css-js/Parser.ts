@@ -43,7 +43,7 @@ export class Parser {
         }
     }
 
-    public parse = (props: any | undefined = undefined, theme: Theme): void => {
+    public parse = (theme: Theme, props: object = {}): void => {
         this._parse({
             value: this._styles,
             target: "@global",

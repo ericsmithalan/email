@@ -4,14 +4,14 @@ import { StyleSheet } from "../types";
 import { Parser } from "../Parser";
 import { CssHelpers } from "../helpers/CssHelpers";
 
-export const useMergedProps = (css: Parser, props: any, defaultProps: any) => {
+export const useMergeStyles = (css: Parser, props: any, defaultProps: any) => {
     const context = React.useContext(StylesContext);
 
     css.parse(
+        context.theme,
         Object.assign({}, defaultProps, props, {
             className: CssHelpers.combineClassNames(defaultProps, props),
         }),
-        context.theme,
     );
 
     context.repository.registerStyles(css.styles);

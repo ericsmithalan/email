@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Style, useMergedProps } from "../css-js";
+import { Style, useMergeStyles } from "../css-js";
 
 export interface OlElement extends React.HTMLProps<HTMLOListElement> {}
 
@@ -8,7 +8,7 @@ const styles = Style({
 });
 
 const Ol: FC<OlElement> = (props: OlElement) => {
-    const newProps = useMergedProps(styles, props, Ol.defaultProps);
+    const newProps = useMergeStyles(styles, props, Ol.defaultProps);
     // @ts-ignore
     return <ol {...(newProps as OlElement)} />;
 };
