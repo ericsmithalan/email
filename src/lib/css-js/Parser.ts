@@ -14,11 +14,11 @@ import _ from "underscore";
 import { CssHelpers } from "./helpers/CssHelpers";
 
 export class Parser {
-    public classes: StyleSheet;
-    private _classNames: CssClassNames = {};
+    public styles: StyleSheet;
+    private _classes: CssClassNames = {};
 
-    constructor(private readonly _dirtyStyles: DirtyStyles) {
-        this.classes = {
+    constructor(private readonly _styles: DirtyStyles) {
+        this.styles = {
             "@base": {},
             "@global": {},
             "@phone": {},
@@ -26,26 +26,26 @@ export class Parser {
         };
 
         // render to get classNames
-        this.setClassNames(_dirtyStyles);
+        this.setClasses(_styles);
     }
 
-    public get classNames(): CssClassNames {
-        return this._classNames;
+    public get classes(): CssClassNames {
+        return this._classes;
     }
 
-    private setClassNames(props: any) {
+    private setClasses(props: any) {
         for (const key in props) {
             if (props.hasOwnProperty(key)) {
                 if (CssHelpers.isValidClassName(key)) {
-                    this._classNames[key] = CssHelpers.decamelize(key);
+                    this._classes[key] = CssHelpers.decamelize(key);
                 }
             }
         }
     }
 
-    public parseCss = (props: any | undefined = undefined, theme: Theme): void => {
-        this._parseCss({
-            value: this._dirtyStyles,
+    public parse = (props: any | undefined = undefined, theme: Theme): void => {
+        this._parse({
+            value: this._styles,
             target: "@global",
             theme: theme,
             pseudo: "none",
@@ -54,7 +54,7 @@ export class Parser {
         });
     };
 
-    private _parseCss = (args: ParserProps) => {
+    private _parse = (args: ParserProps) => {
         const css: StyleSheetProperty = {};
 
         for (const key in args.value) {
@@ -63,18 +63,18 @@ export class Parser {
                 let calculated = calculateValue(value, args);
 
                 if (_.isObject(calculated)) {
-                    const newArgs = updateArgs(args, {
+                    const props = updateProps(args, {
                         value: calculated,
                         classKey: getClassName(args, key),
                         target: CssHelpers.isTarget(key) ? (key as CssTarget) : args.target,
                         pseudo: CssHelpers.isTarget(key) ? (key as CssPseudo) : args.pseudo,
                     });
 
-                    const target = this.classes[newArgs.target];
+                    const target = this.styles[props.target];
 
-                    target[newArgs.classKey] = this._parseCss(newArgs);
+                    target[props.classKey] = this._parse(props);
 
-                    this._classNames[newArgs.classKey] = CssHelpers.decamelize(newArgs.classKey);
+                    this._classes[props.classKey] = CssHelpers.decamelize(props.classKey);
 
                     continue;
                 }
@@ -115,6 +115,6 @@ const getClassName = (args: Partial<ParserProps>, key: string): string => {
     return CssHelpers.camelize(`${className}${pseudo}`).trim();
 };
 
-const updateArgs = (oldArgs: Partial<ParserProps>, newArgs: Partial<ParserProps>): ParserProps => {
+const updateProps = (oldArgs: Partial<ParserProps>, newArgs: Partial<ParserProps>): ParserProps => {
     return Object.assign({}, oldArgs, newArgs) as ParserProps;
 };

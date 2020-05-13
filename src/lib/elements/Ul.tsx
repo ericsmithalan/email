@@ -13,7 +13,7 @@ const Ul: FC<IUlElement> = (props: IUlElement) => {
 };
 
 Ul.defaultProps = {
-    className: styles.classNames.ascUl,
+    className: styles.classes.ascUl,
 };
 
 export { Ul };

@@ -13,7 +13,7 @@ const Li: FC<ILilElement> = (props: ILilElement) => {
 };
 
 Li.defaultProps = {
-    className: styles.classNames.ascLi,
+    className: styles.classes.ascLi,
 };
 
 export { Li };

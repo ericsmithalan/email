@@ -7,14 +7,14 @@ import { CssHelpers } from "../helpers/CssHelpers";
 export const useMergedProps = (css: Parser, props: any, defaultProps: any) => {
     const context = React.useContext(CssContext);
 
-    css.parseCss(
+    css.parse(
         Object.assign({}, defaultProps, props, {
             className: CssHelpers.combineClassNames(defaultProps, props),
         }),
         context.theme,
     );
 
-    context.repository.registerStyles(css.classes);
+    context.repository.registerStyles(css.styles);
 
     let defaultStyles = {};
 

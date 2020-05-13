@@ -15,7 +15,7 @@ const Span: FC<ISpanElement> = (props: ISpanElement) => {
 };
 
 Span.defaultProps = {
-    className: styles.classNames.ascSpan,
+    className: styles.classes.ascSpan,
 };
 
 export { Span };

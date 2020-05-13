@@ -13,7 +13,7 @@ const Hr: FC<IHrElement> = (props: IHrElement) => {
 };
 
 Hr.defaultProps = {
-    className: styles.classNames.ascHr,
+    className: styles.classes.ascHr,
 };
 
 export { Hr };

@@ -15,7 +15,7 @@ const Img: FC<IImgElement> = (props: IImgElement) => {
 };
 
 Img.defaultProps = {
-    className: styles.classNames.ascImg,
+    className: styles.classes.ascImg,
 };
 
 export { Img };

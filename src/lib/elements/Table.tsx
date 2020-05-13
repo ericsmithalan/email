@@ -22,7 +22,7 @@ const Table: FC<ITableElement> = (props: ITableElement) => {
 };
 
 Table.defaultProps = {
-    className: styles.classNames.ascTable,
+    className: styles.classes.ascTable,
     cellPadding: 0,
     cellSpacing: 0,
     width: "100%",

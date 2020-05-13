@@ -14,7 +14,7 @@ const Ol: FC<IOlElement> = (props: IOlElement) => {
 };
 
 Ol.defaultProps = {
-    className: styles.classNames.ascOl,
+    className: styles.classes.ascOl,
 };
 
 export { Ol };

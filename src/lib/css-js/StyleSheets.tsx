@@ -8,9 +8,9 @@ import merge from "deepmerge";
 
 export class StyleSheets {
     constructor(theme: Theme) {
-        cssBase.parseCss({}, theme);
+        cssBase.parse({}, theme);
 
-        this.registerStyles(cssBase.classes);
+        this.registerStyles(cssBase.styles);
     }
 
     private _repository: StyleSheet | {} = {

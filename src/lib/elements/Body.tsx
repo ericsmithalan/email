@@ -27,7 +27,7 @@ const Body: FC<IBodyElement> = (props: IBodyElement) => {
 };
 
 Body.defaultProps = {
-    className: styles.classNames.ascBody,
+    className: styles.classes.ascBody,
 };
 
 export { Body };

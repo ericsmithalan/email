@@ -5,10 +5,10 @@ import { CssClassNames } from "../types";
 
 export const useStyled = (css: Parser, props: object): CssClassNames => {
     const context = React.useContext(CssContext);
-    css.parseCss(props, context.theme);
-    context.repository.registerStyles(css.classes);
+    css.parse(props, context.theme);
+    context.repository.registerStyles(css.styles);
 
     context.repository.registerPropStyles(props);
 
-    return css.classNames;
+    return css.classes;
 };

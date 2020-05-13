@@ -14,7 +14,7 @@ const Tr: FC<ITrElement> = (props: ITrElement) => {
 };
 
 Tr.defaultProps = {
-    className: styles.classNames.ascTr,
+    className: styles.classes.ascTr,
 };
 
 export { Tr };
