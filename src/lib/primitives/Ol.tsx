@@ -9,9 +9,9 @@ const styles = Style({
 });
 
 const Ol: FC<OlElement> = (props: OlElement) => {
-    const newProps = useMergeStyles(styles, props, Ol.defaultProps);
+    const { css, ...rest } = useMergeStyles(styles, props, Ol.defaultProps);
     // @ts-ignore
-    return <ol {...(newProps as OlElement)} />;
+    return <ol {...(rest as OlElement)} />;
 };
 
 Ol.defaultProps = {

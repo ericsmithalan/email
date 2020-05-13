@@ -12,8 +12,8 @@ const styles = Style({
 });
 
 const Tr: FC<TrElement> = (props: TrElement) => {
-    const newProps = useMergeStyles(styles, props, Tr.defaultProps);
-    return <tr {...(newProps as TrElement)} />;
+    const { css, ...rest } = useMergeStyles(styles, props, Tr.defaultProps);
+    return <tr {...(rest as TrElement)} />;
 };
 
 Tr.defaultProps = {

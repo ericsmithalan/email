@@ -9,8 +9,8 @@ const styles = Style({
 });
 
 const Ul: FC<UlElement> = (props: UlElement) => {
-    const newProps = useMergeStyles(styles, props, Ul.defaultProps);
-    return <ul {...(newProps as UlElement)} />;
+    const { css, ...rest } = useMergeStyles(styles, props, Ul.defaultProps);
+    return <ul {...(rest as UlElement)} />;
 };
 
 Ul.defaultProps = {

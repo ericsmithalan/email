@@ -9,8 +9,8 @@ const styles = Style({
 });
 
 const Li: FC<LilElement> = (props: LilElement) => {
-    const newProps = useMergeStyles(styles, props, Li.defaultProps);
-    return <li {...(newProps as LilElement)} />;
+    const { css, ...rest } = useMergeStyles(styles, props, Li.defaultProps);
+    return <li {...(rest as LilElement)} />;
 };
 
 Li.defaultProps = {

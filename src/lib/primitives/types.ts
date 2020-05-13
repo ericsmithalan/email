@@ -1,7 +1,7 @@
 export type DepricatedAlign = "center" | "left" | "right";
 
 export interface PrimitveElement {
-    css?: string | string[];
+    commonCss?: string | string[];
 }
 
 export type DepricatedElementAttributes = {

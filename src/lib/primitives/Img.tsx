@@ -12,9 +12,9 @@ const styles = Style({
 });
 
 const Img: FC<ImgElement> = (props: ImgElement) => {
-    const newProps = useMergeStyles(styles, props, Img.defaultProps);
+    const { css, ...rest } = useMergeStyles(styles, props, Img.defaultProps);
     // @ts-ignore
-    return <img {...(newProps as ImgElement)} />;
+    return <img {...(rest as ImgElement)} />;
 };
 
 Img.defaultProps = {

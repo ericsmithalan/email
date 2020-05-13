@@ -14,8 +14,8 @@ const styles = Style({
 });
 
 const Td: FC<TdElement> = (props: TdElement) => {
-    const newProps = useMergeStyles(styles, props, Td.defaultProps);
-    return <td {...(newProps as TdElement)} />;
+    const { css, ...rest } = useMergeStyles(styles, props, Td.defaultProps);
+    return <td {...(rest as TdElement)} />;
 };
 
 Td.defaultProps = {

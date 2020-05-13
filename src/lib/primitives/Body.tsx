@@ -25,8 +25,8 @@ const styles = Style({
 });
 
 const Body: FC<BodyElement> = (props: BodyElement) => {
-    const newProps = useMergeStyles(styles, props, Body.defaultProps);
-    return <body {...(newProps as BodyElement)} />;
+    const { css, ...rest } = useMergeStyles(styles, props, Body.defaultProps);
+    return <body {...(rest as BodyElement)} />;
 };
 
 Body.defaultProps = {

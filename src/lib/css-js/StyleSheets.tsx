@@ -49,9 +49,9 @@ export class StyleSheets {
                 );
             }
 
-            if (props.css) {
-                if (_.isArray(props.css)) {
-                    const arr = props.css as string[];
+            if (props.commonCss) {
+                if (_.isArray(props.commonCss)) {
+                    const arr = props.commonCss as string[];
                     arr.forEach((item) => {
                         if (item) {
                             const styles = this._get("@common", CssHelpers.camelize(item));
@@ -66,7 +66,6 @@ export class StyleSheets {
                         }
                     });
                 }
-                console.log(props.css);
             }
 
             const styles = this._get("@default", className);

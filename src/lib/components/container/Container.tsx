@@ -55,7 +55,7 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
             {horizontalGutter(containerGutterTop)}
             <Tr>
                 {verticalGutter(containerGutterLeft)}
-                <Td css={[fullWidth, largeFont]} className={containerContent}>
+                <Td commonCss={[fullWidth, largeFont]} className={containerContent}>
                     {props.children}
                 </Td>
                 {verticalGutter(containerGutterRight)}
