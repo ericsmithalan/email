@@ -1,11 +1,14 @@
 import React from "react";
-import { CssTarget, StyleSheet } from "./types";
+import { CssTarget, StyleSheet, CssClassNames } from "./types";
 import { CSSProperties, Props } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
-import merge from "deepmerge";
+import deepmerge from "deepmerge";
+import _ from "underscore";
 
 export class StyleSheets {
     constructor() {}
+    private _baseClasses: object;
+    private _commonClasses: object;
 
     private _stylesheets: StyleSheet | {} = {
         "@base": {},
@@ -19,9 +22,13 @@ export class StyleSheets {
         return this._stylesheets;
     }
 
+    public add = (styleSheet: StyleSheet, target: CssTarget) => {
+        this._stylesheets = deepmerge.all([this.stylesheets, styleSheet]);
+    };
+
     public registerStyles = (records: StyleSheet): void => {
         if (records) {
-            this._stylesheets = merge.all([this.stylesheets, records]);
+            this._stylesheets = deepmerge.all([this.stylesheets, records]);
         }
     };
 
@@ -38,8 +45,28 @@ export class StyleSheets {
                 this._set(
                     "@default",
                     className,
-                    merge.all([this._get("@default", className), props.style]),
+                    deepmerge.all([this._get("@default", className), props.style]),
                 );
+            }
+
+            if (props.css) {
+                if (_.isArray(props.css)) {
+                    const arr = props.css as string[];
+                    arr.forEach((item) => {
+                        if (item) {
+                            const styles = this._get("@common", CssHelpers.camelize(item));
+
+                            if (styles) {
+                                this._set(
+                                    "@default",
+                                    className,
+                                    deepmerge.all([this._get("@default", className), styles]),
+                                );
+                            }
+                        }
+                    });
+                }
+                console.log(props.css);
             }
 
             const styles = this._get("@default", className);
@@ -50,6 +77,23 @@ export class StyleSheets {
 
         return {};
     };
+
+    public getClassNames(target: CssTarget) {
+        const classes = this._stylesheets[target];
+        const classNames = {};
+
+        if (classes) {
+            for (const key in classes) {
+                if (classes.hasOwnProperty(key)) {
+                    if (CssHelpers.isValidClassName(key)) {
+                        classNames[key] = CssHelpers.decamelize(key);
+                    }
+                }
+            }
+        }
+
+        return classNames;
+    }
 
     private _registerElementProps = (props: any, className: string): void => {
         const results = {};
@@ -66,7 +110,7 @@ export class StyleSheets {
             this._set(
                 "@default",
                 className,
-                merge.all([this._get("@default", className), results]),
+                deepmerge.all([this._get("@default", className), results]),
             );
         }
     };

@@ -14,18 +14,19 @@ import { CssHelpers } from "./helpers/CssHelpers";
 import { Theme } from "../theme";
 
 export class Parser {
-    public styles: StyleSheet;
+    public styles: StyleSheet = {
+        "@base": {},
+        "@common": {},
+        "@default": {},
+        "@phone": {},
+        "@tablet": {},
+    };
     private _classes: CssClassNames = {};
 
-    constructor(private readonly _styles: DirtyStyles) {
-        this.styles = {
-            "@base": {},
-            "@common": {},
-            "@default": {},
-            "@phone": {},
-            "@tablet": {},
-        };
-
+    constructor(
+        private readonly _styles: DirtyStyles,
+        private readonly _target: CssTarget = undefined,
+    ) {
         // render to get classNames
         this.setClasses(_styles);
     }
@@ -44,15 +45,17 @@ export class Parser {
         }
     }
 
-    public parse = (theme: Theme, props: object = {}): void => {
+    public parse = (theme: Theme, props: object = {}): StyleSheet => {
         this._parse({
             value: this._styles,
-            target: "@default",
+            target: this._target ? this._target : "@default",
             theme: theme,
             pseudo: "none",
             classKey: "",
             props: props,
         });
+
+        return this.styles;
     };
 
     private _parse = (args: ParserProps) => {

@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, ComponentProps } from "react";
 import { Table, Tr, Td } from "../../primitives";
-import { Style, Css, useStyle } from "../../css-js";
+import { Style, Css, useStyle, useCommonCss } from "../../css-js";
 import { Layout } from "../types";
 import styles from "./styles";
 
@@ -15,6 +15,8 @@ export interface ContainerProps extends Layout<ContainerProps> {
 }
 
 const Container: FC<ContainerProps> = (props: ContainerProps) => {
+    const { fullWidth, largeFont } = useCommonCss();
+
     const {
         container,
         containerGutterLeft,
@@ -53,7 +55,9 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
             {horizontalGutter(containerGutterTop)}
             <Tr>
                 {verticalGutter(containerGutterLeft)}
-                <Td className={containerContent}>{props.children}</Td>
+                <Td css={[fullWidth, largeFont]} className={containerContent}>
+                    {props.children}
+                </Td>
                 {verticalGutter(containerGutterRight)}
             </Tr>
             {horizontalGutter(containerGutterBottom)}

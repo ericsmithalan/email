@@ -24,6 +24,7 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
+        "@types/deepmerge": "^2.2.0",
         "@types/react-helmet": "^6.0.0",
         "deepmerge": "^4.2.2",
         "jsdom": "^16.2.2",

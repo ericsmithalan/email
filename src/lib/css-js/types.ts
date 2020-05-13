@@ -32,7 +32,7 @@ export type ParserProps = {
 };
 
 export type StyleSheet = {
-    [K in CssTarget]: StyleSheetClasses;
+    [K in CssTarget]?: StyleSheetClasses;
 };
 
 export type StyleSheetClasses = {
