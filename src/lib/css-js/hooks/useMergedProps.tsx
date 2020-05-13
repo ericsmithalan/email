@@ -1,10 +1,10 @@
 import React, { CSSProperties, Props } from "react";
 import { CssContext } from "../context/CssContext";
 import { StyleSheet } from "../types";
-import { CssStyle } from "../CssStyle";
+import { Parser } from "../Parser";
 import { CssHelpers } from "../helpers/CssHelpers";
 
-export const useMergedProps = (css: CssStyle, props: any, defaultProps: any) => {
+export const useMergedProps = (css: Parser, props: any, defaultProps: any) => {
     const context = React.useContext(CssContext);
 
     css.parseCss(

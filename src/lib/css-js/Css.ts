@@ -1,6 +1,6 @@
 import { DirtyStyles } from "./types";
-import { CssStyle } from "./CssStyle";
+import { Parser } from "./Parser";
 
-export const css = (styles: DirtyStyles): CssStyle => {
-    return new CssStyle(styles);
+export const css = (styles: DirtyStyles): Parser => {
+    return new Parser(styles);
 };

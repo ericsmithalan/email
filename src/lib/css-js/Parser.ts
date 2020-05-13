@@ -12,10 +12,8 @@ import {
 } from "./types";
 import _ from "underscore";
 import { CssHelpers } from "./helpers/CssHelpers";
-import { defaultTheme } from "./defaultTheme";
-import { css } from "./Css";
 
-export class CssStyle {
+export class Parser {
     public classes: StyleSheet;
     private _classNames: CssClassNames = {};
 

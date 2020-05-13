@@ -15,7 +15,7 @@ export type CssProviderState = {
     repository: StyleSheets;
 };
 
-export class CssProvider extends React.Component<CssProviderProps, CssProviderState> {
+export class StylesProvider extends React.Component<CssProviderProps, CssProviderState> {
     componentWillMount() {
         this.setState({
             setTheme: this.setTheme.bind(this),

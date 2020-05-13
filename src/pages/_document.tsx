@@ -1,17 +1,17 @@
 import Document, { DocumentContext } from "next/document";
-import { CssProvider, Styles, defaultTheme } from "../lib/css-js";
+import { StylesProvider, StyleSheets, defaultTheme } from "../lib/css-js";
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
-        const css = new Styles(defaultTheme);
+        const css = new StyleSheets(defaultTheme);
         const originalRenderPage = ctx.renderPage;
 
         ctx.renderPage = () =>
             originalRenderPage({
                 enhanceApp: (App) => (props) => (
-                    <CssProvider theme={defaultTheme} repository={css}>
+                    <StylesProvider theme={defaultTheme} repository={css}>
                         <App {...props} />
-                    </CssProvider>
+                    </StylesProvider>
                 ),
             });
 
