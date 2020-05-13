@@ -6,6 +6,7 @@ import { CssAttributesKind } from "../enums/CssAttributesKind";
 import { CssStyleablePropertiesKind } from "../enums/CssStyleablePropertiesKind";
 
 import _ from "underscore";
+import { CssElementKind } from "../enums/CssElementKind";
 
 /**
  * typeof value has to be in CssValidValueKind
@@ -47,6 +48,16 @@ const isStyleableProperty = (value: any): boolean => {
  */
 const isTarget = (value: any): boolean => {
     if (value && value in CssTargetKind) {
+        return true;
+    }
+    return false;
+};
+
+/**
+ * value has to be in CssTargetKind
+ */
+const isTagName = (value: any): boolean => {
+    if (value && value in CssElementKind) {
         return true;
     }
     return false;
@@ -183,4 +194,5 @@ export const CssHelpers = {
     hasKey,
     combineClassNames,
     uniqueId,
+    isTagName,
 };

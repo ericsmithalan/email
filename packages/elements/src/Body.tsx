@@ -1,12 +1,23 @@
 import React, { FC } from "react";
-import { css, useMergedProps } from "@email/css";
+import { css, useMergedProps, CssArgs } from "@email/css";
 import { DepricatedBodyAttributes } from "./types";
 
 export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}
 
 const styles = css({
     ascBody: {
-        fontSize: 13,
+        fontSize: (args: CssArgs<any>) => args.theme.fonts.fontDefaultSize,
+        width: "100%",
+        height: "100%",
+        backgroundColor: (args: CssArgs<any>) => args.theme.colors.backgroundColor,
+        marginTop: 0,
+        marginRight: 0,
+        marginBottom: 0,
+        marginLeft: 0,
+        paddingTop: 0,
+        paddingRight: 0,
+        paddingBottom: 0,
+        paddingLeft: 0,
     },
 });
 

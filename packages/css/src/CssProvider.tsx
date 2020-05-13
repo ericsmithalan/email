@@ -20,7 +20,9 @@ export class CssProvider extends React.Component<CssProviderProps, CssProviderSt
         this.setState({
             setTheme: this.setTheme.bind(this),
             theme: this.props.theme ? this.props.theme : defaultTheme,
-            repository: this.props.repository ? this.props.repository : new CssRepository(),
+            repository: this.props.repository
+                ? this.props.repository
+                : new CssRepository(defaultTheme),
         });
     }
 

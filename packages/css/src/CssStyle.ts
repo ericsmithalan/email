@@ -21,6 +21,7 @@ export class CssStyle {
 
     constructor(private readonly _dirtyStyles: CssDirtyStyles) {
         this.classes = {
+            "@base": {},
             "@global": {},
             "@phone": {},
             "@tablet": {},

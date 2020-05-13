@@ -9,6 +9,6 @@ export type CssContextProperties = {
 };
 
 export const CssContext = React.createContext<CssContextProperties>({
-    repository: new CssRepository(),
+    repository: new CssRepository(defaultTheme),
     theme: defaultTheme,
 });

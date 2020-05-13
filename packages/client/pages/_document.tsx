@@ -3,7 +3,7 @@ import { CssProvider, CssRepository, defaultTheme } from "@email/css";
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
-        const css = new CssRepository();
+        const css = new CssRepository(defaultTheme);
         const originalRenderPage = ctx.renderPage;
 
         ctx.renderPage = () =>
@@ -21,6 +21,10 @@ export default class MyDocument extends Document {
             styles: (
                 <>
                     {initialProps.styles}
+                    <style
+                        id="css_base"
+                        dangerouslySetInnerHTML={{ __html: css.toString("@base") }}
+                    ></style>
                     <style
                         id="css_global"
                         dangerouslySetInnerHTML={{ __html: css.toString("@global") }}

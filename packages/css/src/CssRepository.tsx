@@ -1,12 +1,21 @@
 import React from "react";
-import { CssTarget, CssRepositoryList } from "./types";
+import { CssTarget, CssRepositoryList, CssTheme } from "./types";
 import { CSSProperties, Props } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
+import { cssBase } from "./CssBase";
 import _ from "underscore";
 import merge from "deepmerge";
 
 export class CssRepository {
+    constructor(theme: CssTheme) {
+        cssBase.parseCss({}, theme);
+
+        this.registerStyles(cssBase.classes);
+        console.log(cssBase.classes);
+    }
+
     private _repository: CssRepositoryList | {} = {
+        "@base": {},
         "@global": {},
         "@phone": {},
         "@tablet": {},
@@ -109,7 +118,13 @@ export class CssRepository {
             for (const clsKey in target) {
                 if (target.hasOwnProperty(clsKey)) {
                     const clsValue = target[clsKey];
-                    css.push(`.${CssHelpers.decamelize(clsKey)}{`);
+
+                    let prefix = ".";
+                    if (CssHelpers.isTagName(clsKey)) {
+                        prefix = "";
+                    }
+
+                    css.push(`${prefix}${CssHelpers.decamelize(clsKey)}{`);
                     for (const propertyKey in clsValue) {
                         if (clsValue.hasOwnProperty(propertyKey)) {
                             const propValue = clsValue[propertyKey];
