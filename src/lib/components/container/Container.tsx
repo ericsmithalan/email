@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, ComponentProps } from "react";
 import { Table, Tr, Td } from "../../primitives";
-import { Style, CssArgs, useStyled } from "../../css-js";
+import { Style, Css, useStyled } from "../../css-js";
 import { Layout } from "../types";
 import styles from "./styles";
 

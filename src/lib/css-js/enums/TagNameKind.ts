@@ -1,6 +1,6 @@
 import { toEnum } from "../utils/toEnum";
 
-export const CssElementKind = toEnum([
+export const TagNameKind = toEnum([
     "a",
     "table",
     "body",

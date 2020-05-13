@@ -1,14 +1,14 @@
 import CSS from "csstype";
-import { CssPseudoKind } from "./enums/CssPseudoKind";
-import { CssValidValueKind } from "./enums/CssValidValueKind";
-import { CssTargetKind } from "./enums/CssTargetKind";
+import { CssPseudoKind } from "./enums/PseudoKind";
+import { CssValueKind } from "./enums/ValidValueKind";
+import { TargetKind } from "./enums/TargetKind";
 
-export type CssValue = keyof typeof CssValidValueKind;
+export type CssValue = keyof typeof CssValueKind;
 export type CssPseudo = keyof typeof CssPseudoKind;
-export type CssTarget = keyof typeof CssTargetKind;
+export type CssTarget = keyof typeof TargetKind;
 
-export type CssArgs<T extends any> = { theme: Theme; props: T };
-export type Fn<R = CssValue> = (args: CssArgs<any>) => R;
+export type Css<T extends any> = { theme: Theme; props: T };
+export type Fn<R = CssValue> = (args: Css<any>) => R;
 
 export type DirtyValue = CssValue | Fn | string[] | number[] | Function | string;
 export interface DirtyProperty<T extends CSS.Properties<T> | CssPseudo> {}

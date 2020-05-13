@@ -1,11 +1,11 @@
-import { Style, CssArgs } from "src/lib/css-js";
+import { Style, Css } from "src/lib/css-js";
 import { ContainerProps } from "./Container";
 
 export default Style({
     containerGutterLeft: {
         backgroundColor: "red",
-        maxWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
-        minWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        maxWidth: (args: Css<ContainerProps>) => args.props.gutter,
+        minWidth: (args: Css<ContainerProps>) => args.props.gutter,
         "@tablet": {
             backgroundColor: "yellow",
             minWidth: 0,
@@ -14,8 +14,8 @@ export default Style({
     },
     containerGutterRight: {
         backgroundColor: "red",
-        maxWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
-        minWidth: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        maxWidth: (args: Css<ContainerProps>) => args.props.gutter,
+        minWidth: (args: Css<ContainerProps>) => args.props.gutter,
         "@tablet": {
             backgroundColor: "yellow",
             minWidth: 0,
@@ -24,8 +24,8 @@ export default Style({
     },
     containerGutterTop: {
         backgroundColor: "red",
-        maxHeight: (args: CssArgs<ContainerProps>) => args.props.gutter,
-        minHeight: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        maxHeight: (args: Css<ContainerProps>) => args.props.gutter,
+        minHeight: (args: Css<ContainerProps>) => args.props.gutter,
         "@tablet": {
             backgroundColor: "yellow",
             minHeight: 0,
@@ -34,8 +34,8 @@ export default Style({
     },
     containerGutterBottom: {
         backgroundColor: "red",
-        maxHeight: (args: CssArgs<ContainerProps>) => args.props.gutter,
-        minHeight: (args: CssArgs<ContainerProps>) => args.props.gutter,
+        maxHeight: (args: Css<ContainerProps>) => args.props.gutter,
+        minHeight: (args: Css<ContainerProps>) => args.props.gutter,
         "@tablet": {
             backgroundColor: "yellow",
             minHeight: 0,

@@ -1,6 +1,6 @@
 import { toEnum } from "../utils/toEnum";
 
-export const CssAttributesKind = toEnum([
+export const AttributesKind = toEnum([
     "alignContent",
     "alignItems",
     "alignSelf",

@@ -1,19 +1,19 @@
 import React from "react";
-import { CssValidValueKind } from "../enums/CssValidValueKind";
-import { CssTargetKind } from "../enums/CssTargetKind";
-import { CssPseudoKind } from "../enums/CssPseudoKind";
-import { CssAttributesKind } from "../enums/CssAttributesKind";
-import { CssStyleablePropertiesKind } from "../enums/CssStyleablePropertiesKind";
+import { CssValueKind } from "../enums/ValidValueKind";
+import { TargetKind } from "../enums/TargetKind";
+import { CssPseudoKind } from "../enums/PseudoKind";
+import { AttributesKind } from "../enums/AttributesKind";
+import { StyleablePropertiesKind } from "../enums/StyleablePropertiesKind";
 
 import _ from "underscore";
-import { CssElementKind } from "../enums/CssElementKind";
+import { TagNameKind } from "../enums/TagNameKind";
 
 /**
  * typeof value has to be in CssValidValueKind
  */
 const isValueValid = (value: any): boolean => {
     if (value) {
-        if (typeof value in CssValidValueKind) {
+        if (typeof value in CssValueKind) {
             return true;
         }
 
@@ -37,7 +37,7 @@ const isPseudo = (value: any): boolean => {
  * value has to be in CssStyleablePropertiesKind
  */
 const isStyleableProperty = (value: any): boolean => {
-    if (value && value in CssStyleablePropertiesKind) {
+    if (value && value in StyleablePropertiesKind) {
         return true;
     }
     return false;
@@ -47,7 +47,7 @@ const isStyleableProperty = (value: any): boolean => {
  * value has to be in CssTargetKind
  */
 const isTarget = (value: any): boolean => {
-    if (value && value in CssTargetKind) {
+    if (value && value in TargetKind) {
         return true;
     }
     return false;
@@ -57,7 +57,7 @@ const isTarget = (value: any): boolean => {
  * value has to be in CssTargetKind
  */
 const isTagName = (value: any): boolean => {
-    if (value && value in CssElementKind) {
+    if (value && value in TagNameKind) {
         return true;
     }
     return false;
@@ -67,7 +67,7 @@ const isTagName = (value: any): boolean => {
  * value has to be in CssAttributesKind
  */
 const isValidCssAttribute = (value: any): boolean => {
-    if (value && value in CssAttributesKind) {
+    if (value && value in AttributesKind) {
         return true;
     }
     return false;
@@ -81,10 +81,10 @@ const isValidClassName = (value: string): boolean => {
         return false;
     }
 
-    if (value in CssAttributesKind) {
+    if (value in AttributesKind) {
         return false;
     }
-    if (value in CssTargetKind) {
+    if (value in TargetKind) {
         return false;
     }
     if (value in CssPseudoKind) {

@@ -1,6 +1,6 @@
 import { toEnum } from "../utils/toEnum";
 
-export const CssStyleablePropertiesKind = toEnum([
+export const StyleablePropertiesKind = toEnum([
     "align",
     "background",
     "bgcolor",
