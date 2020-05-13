@@ -9,7 +9,7 @@ const styles = Style({
 });
 
 const Hr: FC<HrElement> = (props: HrElement) => {
-    const { css, ...rest } = useMergeStyles(styles, props, Hr.defaultProps);
+    const { commonCss, ...rest } = useMergeStyles(styles, props, Hr.defaultProps);
     return <hr {...(rest as HrElement)} />;
 };
 

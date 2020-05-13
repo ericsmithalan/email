@@ -11,7 +11,7 @@ const styles = Style({
 });
 
 const Span: FC<SpanElement> = (props: SpanElement) => {
-    const { css, ...rest } = useMergeStyles(styles, props, Span.defaultProps);
+    const { commonCss, ...rest } = useMergeStyles(styles, props, Span.defaultProps);
     return <span {...(rest as SpanElement)} />;
 };
 

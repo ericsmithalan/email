@@ -14,7 +14,7 @@ const styles = Style({
 });
 
 const Table: FC<TableElement> = (props: TableElement) => {
-    const { css, ...rest } = useMergeStyles(styles, props, Table.defaultProps);
+    const { commonCss, ...rest } = useMergeStyles(styles, props, Table.defaultProps);
     return (
         <table {...(rest as TableElement)}>
             <tbody>{props.children}</tbody>

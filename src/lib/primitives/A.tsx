@@ -14,7 +14,7 @@ const styles = Style({
 });
 
 const A: FC<AElement> = (props: AElement) => {
-    const { css, ...rest } = useMergeStyles(styles, props, A.defaultProps);
+    const { commonCss, ...rest } = useMergeStyles(styles, props, A.defaultProps);
     return <a {...(rest as AElement)} />;
 };
 

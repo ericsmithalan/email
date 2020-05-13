@@ -15,7 +15,7 @@ export interface ContainerProps extends Layout<ContainerProps> {
 }
 
 const Container: FC<ContainerProps> = (props: ContainerProps) => {
-    const { fullWidth, largeFont } = useCommonCss();
+    const { fullWidth, defaultText } = useCommonCss();
 
     const {
         container,
@@ -51,11 +51,11 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
     };
 
     return (
-        <Table {...rest} className={container} align="center">
+        <Table {...rest} commonCss={defaultText} className={container} align="center">
             {horizontalGutter(containerGutterTop)}
             <Tr>
                 {verticalGutter(containerGutterLeft)}
-                <Td commonCss={[fullWidth, largeFont]} className={containerContent}>
+                <Td commonCss={defaultText} className={containerContent}>
                     {props.children}
                 </Td>
                 {verticalGutter(containerGutterRight)}

@@ -65,6 +65,15 @@ export class StyleSheets {
                             }
                         }
                     });
+                } else {
+                    const styles = this._get("@common", CssHelpers.camelize(props.commonCss));
+                    if (styles) {
+                        this._set(
+                            "@default",
+                            className,
+                            deepmerge.all([this._get("@default", className), styles]),
+                        );
+                    }
                 }
             }
 

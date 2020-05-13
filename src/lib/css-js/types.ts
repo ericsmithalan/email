@@ -8,7 +8,7 @@ export type CssValue = keyof typeof CssValueKind;
 export type CssPseudo = keyof typeof CssPseudoKind;
 export type CssTarget = keyof typeof TargetKind;
 
-export type Css<T extends any> = { theme: Theme; props: T };
+export type Css<T extends any = any> = { theme: Theme; props: T };
 export type Fn<R = CssValue> = (args: Css<any>) => R;
 
 export type DirtyValue = CssValue | Fn | string[] | number[] | Function | string;
