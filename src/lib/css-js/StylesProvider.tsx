@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CssContext } from "./context/CssContext";
+import { StylesContext } from "./context/StylesContext";
 import { StyleSheets } from "./StyleSheets";
 import { Theme } from "./types";
 import { defaultTheme } from "./defaultTheme";
@@ -32,14 +32,14 @@ export class StylesProvider extends React.Component<CssProviderProps, CssProvide
 
     render() {
         return (
-            <CssContext.Provider
+            <StylesContext.Provider
                 value={{
                     repository: this.state.repository,
                     theme: this.state.theme,
                 }}
             >
                 {this.props.children}
-            </CssContext.Provider>
+            </StylesContext.Provider>
         );
     }
 }

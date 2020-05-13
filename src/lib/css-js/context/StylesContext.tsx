@@ -3,12 +3,12 @@ import { Theme } from "../types";
 import { defaultTheme } from "../defaultTheme";
 import { StyleSheets } from "../StyleSheets";
 
-export type CssContextProperties = {
+export type StylesContextProps = {
     repository: StyleSheets;
     theme: Theme;
 };
 
-export const CssContext = React.createContext<CssContextProperties>({
+export const StylesContext = React.createContext<StylesContextProps>({
     repository: new StyleSheets(defaultTheme),
     theme: defaultTheme,
 });

@@ -1,8 +1,8 @@
 import React from "react";
-import { CssContext } from "../context/CssContext";
+import { StylesContext } from "../context/StylesContext";
 import { Theme } from "../types";
 
 export const useTheme = (): Theme => {
-    const context = React.useContext(CssContext);
+    const context = React.useContext(StylesContext);
     return context.theme;
 };

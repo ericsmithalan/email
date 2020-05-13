@@ -1,6 +1,5 @@
-import React, { CSSProperties, Props, FC } from "react";
-import { CssContext } from "../context/CssContext";
-import { StyleSheet, DirtyStyles } from "../types";
+import React, { FC } from "react";
+import { DirtyStyles } from "../types";
 import { Parser } from "../Parser";
 import { useMergedProps } from "../hooks/useMergedProps";
 

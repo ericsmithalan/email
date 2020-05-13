@@ -2,7 +2,7 @@ export { css } from "./Css";
 export { defaultTheme } from "./defaultTheme";
 export * from "./types";
 export { CssHelpers } from "./helpers/CssHelpers";
-export { CssContext } from "./context/CssContext";
+export { StylesContext as CssContext } from "./context/StylesContext";
 export { StylesProvider } from "./StylesProvider";
 export { useMergedProps } from "./hooks/useMergedProps";
 export { Parser as CssStyle } from "./Parser";

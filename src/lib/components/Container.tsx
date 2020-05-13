@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, ComponentProps } from "react";
-import { Table, Tr, Td } from "../elements";
+import { Table, Tr, Td } from "../primitives";
 import { css, CssArgs, useStyled } from "../css-js";
 
 type Layout<T> = {
