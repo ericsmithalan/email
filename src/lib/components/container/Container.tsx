@@ -8,7 +8,8 @@ type Alignment = "center" | "left" | "right";
 type Size = string | number;
 
 export interface ContainerProps extends Layout<ContainerProps> {
-    gutter?: number;
+    rowGutter?: number;
+    columnGutter?: number;
     gutterLeftContent?: ReactNode;
     gutterRightContent?: ReactNode;
     align?: Alignment;
@@ -28,25 +29,25 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
         containerGutterBottom,
     } = useStyle(styles, props, Container.defaultProps);
 
-    const { gutter, ...rest } = props;
+    const { rowGutter: gutter, ...rest } = props;
 
-    const horizontalGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
-        if (props.gutter > 0) {
+    const rowGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
+        if (props.rowGutter > 0 || content) {
             return (
                 <Tr>
                     <Td colSpan={3} align="center" className={className}>
-                        {content && "&nbsp;"}
+                        {content}
                     </Td>
                 </Tr>
             );
         }
     };
 
-    const verticalGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
-        if (props.gutter > 0) {
+    const columnGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
+        if (props.columnGutter > 0 || content) {
             return (
                 <Td align="center" className={className}>
-                    {content && "&nbsp;"}
+                    {content}
                 </Td>
             );
         }
@@ -54,15 +55,15 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
 
     return (
         <Table {...rest} commonCss={defaultText} className={container} align="center">
-            {horizontalGutter(containerGutterTop)}
+            {rowGutter(containerGutterTop)}
             <Tr>
-                {verticalGutter(containerGutterLeft, containerGutterLeft)}
+                {columnGutter(containerGutterLeft, props.gutterLeftContent)}
                 <Td commonCss={defaultText} className={containerContent}>
                     {props.children}
                 </Td>
-                {verticalGutter(containerGutterRight, containerGutterRight)}
+                {columnGutter(containerGutterRight, props.gutterRightContent)}
             </Tr>
-            {horizontalGutter(containerGutterBottom)}
+            {rowGutter(containerGutterBottom)}
         </Table>
     );
 };
@@ -70,6 +71,6 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
 Container.defaultProps = {
     align: "center",
     width: 800,
-    gutter: 0,
+    rowGutter: 0,
 };
 export { Container };

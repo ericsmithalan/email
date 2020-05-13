@@ -3,7 +3,6 @@ import { ContainerProps } from "./Container";
 
 export default Style({
     container: {
-        backgroundColor: "red",
         "@tablet": {
             width: "100%",
             clear: "both",
@@ -14,39 +13,39 @@ export default Style({
         },
     },
     containerGutterLeft: {
-        width: 30,
+        width: (c: Css<ContainerProps>) => c.props.columnGutter,
         "@tablet": {
-            width: 15,
+            width: (c: Css<ContainerProps>) => c.props.columnGutter / 2,
         },
         "@phone": {
-            width: 8,
+            width: (c: Css<ContainerProps>) => c.props.columnGutter / 4,
         },
     },
     containerGutterRight: {
-        width: 30,
+        width: (c: Css<ContainerProps>) => c.props.columnGutter,
         "@tablet": {
-            width: 15,
+            width: (c: Css<ContainerProps>) => c.props.columnGutter / 2,
         },
         "@phone": {
-            width: 8,
+            width: (c: Css<ContainerProps>) => c.props.columnGutter / 4,
         },
     },
     containerGutterTop: {
-        height: 30,
+        width: (c: Css<ContainerProps>) => c.props.rowGutter,
         "@tablet": {
-            height: 15,
+            width: (c: Css<ContainerProps>) => c.props.rowGutter / 2,
         },
         "@phone": {
-            height: 8,
+            width: (c: Css<ContainerProps>) => c.props.rowGutter / 4,
         },
     },
     containerGutterBottom: {
-        height: 30,
+        width: (c: Css<ContainerProps>) => c.props.rowGutter,
         "@tablet": {
-            height: 15,
+            width: (c: Css<ContainerProps>) => c.props.rowGutter / 2,
         },
         "@phone": {
-            height: 8,
+            width: (c: Css<ContainerProps>) => c.props.rowGutter / 4,
         },
     },
     containerContent: {
