@@ -1,14 +1,9 @@
 import Document, { DocumentContext, Head, Main, NextScript } from "next/document";
-import { StylesProvider, StyleSheets, defaultTheme, Theme } from "../lib";
-import { Helmet, HelmetProps, HelmetData } from "react-helmet";
+import { StylesProvider, StyleSheets, defaultTheme } from "../lib";
+import { Helmet } from "react-helmet";
+import { DocProps } from "../types";
 
-type DocumentProps = {
-    helmet: HelmetData;
-    stylesheets: StyleSheets;
-    theme: Theme;
-};
-
-export default class MyDocument extends Document<DocumentProps> {
+export default class MyDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {
         const sheets = new StyleSheets();
         const originalRenderPage = ctx.renderPage;
@@ -30,8 +25,16 @@ export default class MyDocument extends Document<DocumentProps> {
             styles: (
                 <>
                     <style
-                        id="css_global"
-                        dangerouslySetInnerHTML={{ __html: sheets.css("@global") }}
+                        id="css_common"
+                        dangerouslySetInnerHTML={{ __html: sheets.css("@common") }}
+                    ></style>
+                    <style
+                        id="css_base"
+                        dangerouslySetInnerHTML={{ __html: sheets.css("@base") }}
+                    ></style>
+                    <style
+                        id="css_default"
+                        dangerouslySetInnerHTML={{ __html: sheets.css("@default") }}
                     ></style>
                     <style
                         id="css_tablet"

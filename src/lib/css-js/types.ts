@@ -2,6 +2,7 @@ import CSS from "csstype";
 import { CssPseudoKind } from "./enums/PseudoKind";
 import { CssValueKind } from "./enums/ValidValueKind";
 import { TargetKind } from "./enums/TargetKind";
+import { Theme } from "../theme/types";
 
 export type CssValue = keyof typeof CssValueKind;
 export type CssPseudo = keyof typeof CssPseudoKind;
@@ -41,43 +42,3 @@ export type StyleSheetClasses = {
 export type StyleSheetProperty = {
     [K in string]: CssValue;
 };
-
-export type Breakpoint = {
-    phone: number;
-    tablet: number;
-};
-
-export type Spaceing = {
-    xsm: number;
-    sm: number;
-    m: number;
-    lg: number;
-    xlg: number;
-};
-
-export interface Theme {
-    name: string;
-    colors: {
-        backgroundColor: string;
-        contentBackgroundColor: string;
-        darkFontColor: string;
-        lightFontColor: string;
-        orangeColor: string;
-        blueColor: string;
-        purpleColor: string;
-        linkColor: string;
-        hoverColor: string;
-        white: string;
-    };
-    fonts: {
-        fontFamily: string;
-        fontHeaderSize: number;
-        fontSubHeaderSize: number;
-        fontTitleSize: number;
-        fontSubTitleSize: number;
-        fontDefaultSize: number;
-        fontSmallSize: number;
-    };
-    spacing: Spaceing;
-    breakpoints: Breakpoint;
-}

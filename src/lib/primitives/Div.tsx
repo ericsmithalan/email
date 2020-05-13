@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { Style, useMergeStyles } from "../css-js";
+import { PrimitveElement } from "./types";
 
-export interface DivElement extends React.HTMLProps<HTMLDivElement> {}
+export interface DivElement extends React.HTMLProps<HTMLDivElement>, PrimitveElement {}
 
 const styles = Style({
     ascDiv: {

@@ -1,8 +1,11 @@
 import React, { FC } from "react";
 import { Style, useMergeStyles } from "../css-js";
-import { DepricatedTdAttributes } from "./types";
+import { DepricatedTdAttributes, PrimitveElement } from "./types";
 
-export interface TdElement extends React.HTMLProps<HTMLTableCellElement>, DepricatedTdAttributes {}
+export interface TdElement
+    extends React.HTMLProps<HTMLTableCellElement>,
+        DepricatedTdAttributes,
+        PrimitveElement {}
 
 const styles = Style({
     ascTd: {

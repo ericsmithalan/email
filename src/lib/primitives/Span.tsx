@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { Style, useMergeStyles } from "../css-js";
+import { PrimitveElement } from "./types";
 
-export interface SpanElement extends React.HTMLProps<HTMLSpanElement> {}
+export interface SpanElement extends React.HTMLProps<HTMLSpanElement>, PrimitveElement {}
 
 const styles = Style({
     ascSpan: {

@@ -1,5 +1,9 @@
 export type DepricatedAlign = "center" | "left" | "right";
 
+export interface PrimitveElement {
+    css?: string | string[];
+}
+
 export type DepricatedElementAttributes = {
     width?: number | string;
     height?: number | string;

@@ -8,10 +8,10 @@ import {
     StyleSheet,
     StyleSheetProperty,
     DirtyValue,
-    Theme,
 } from "./types";
 import _ from "underscore";
 import { CssHelpers } from "./helpers/CssHelpers";
+import { Theme } from "../theme";
 
 export class Parser {
     public styles: StyleSheet;
@@ -20,7 +20,8 @@ export class Parser {
     constructor(private readonly _styles: DirtyStyles) {
         this.styles = {
             "@base": {},
-            "@global": {},
+            "@common": {},
+            "@default": {},
             "@phone": {},
             "@tablet": {},
         };
@@ -46,7 +47,7 @@ export class Parser {
     public parse = (theme: Theme, props: object = {}): void => {
         this._parse({
             value: this._styles,
-            target: "@global",
+            target: "@default",
             theme: theme,
             pseudo: "none",
             classKey: "",

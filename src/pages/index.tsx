@@ -1,5 +1,11 @@
 import { Container } from "../lib/components";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
-    return <Container gutter={20}>Hello</Container>;
+    return (
+        <>
+            <Helmet title="My Template" />
+            <Container>hello</Container>
+        </>
+    );
 }

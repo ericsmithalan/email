@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { Style, useMergeStyles } from "../css-js";
+import { PrimitveElement } from "./types";
 
-export interface HrElement extends React.HTMLProps<HTMLHRElement> {}
+export interface HrElement extends React.HTMLProps<HTMLHRElement>, PrimitveElement {}
 
 const styles = Style({
     ascHr: {},

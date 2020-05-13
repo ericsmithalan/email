@@ -1,8 +1,7 @@
 import React from "react";
-import { CssTarget, StyleSheet, Theme } from "./types";
+import { CssTarget, StyleSheet } from "./types";
 import { CSSProperties, Props } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
-import _ from "underscore";
 import merge from "deepmerge";
 
 export class StyleSheets {
@@ -10,7 +9,8 @@ export class StyleSheets {
 
     private _stylesheets: StyleSheet | {} = {
         "@base": {},
-        "@global": {},
+        "@common": {},
+        "@default": {},
         "@phone": {},
         "@tablet": {},
     };
@@ -36,13 +36,13 @@ export class StyleSheets {
             // adds all styles under element style property
             if (props.style) {
                 this._set(
-                    "@global",
+                    "@default",
                     className,
-                    merge.all([this._get("@global", className), props.style]),
+                    merge.all([this._get("@default", className), props.style]),
                 );
             }
 
-            const styles = this._get("@global", className);
+            const styles = this._get("@default", className);
 
             // returns new styles
             return styles;
@@ -63,7 +63,11 @@ export class StyleSheets {
                 }
             }
 
-            this._set("@global", className, merge.all([this._get("@global", className), results]));
+            this._set(
+                "@default",
+                className,
+                merge.all([this._get("@default", className), results]),
+            );
         }
     };
 

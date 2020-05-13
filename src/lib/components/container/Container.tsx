@@ -26,31 +26,37 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
 
     const { gutter, ...rest } = props;
 
+    const horizontalGutter = (className: string): JSX.Element => {
+        if (props.gutter > 0) {
+            return (
+                <Tr>
+                    <Td colSpan={3} align="center" className={className}>
+                        &nbsp;
+                    </Td>
+                </Tr>
+            );
+        }
+    };
+
+    const verticalGutter = (className: string): JSX.Element => {
+        if (props.gutter > 0) {
+            return (
+                <Td align="center" className={className}>
+                    &nbsp;
+                </Td>
+            );
+        }
+    };
+
     return (
         <Table {...rest} className={container} align="center">
-            {props.gutter && (
-                <Tr>
-                    <Td colSpan={3} align="center" className={containerGutterTop}>
-                        &nbsp;
-                    </Td>
-                </Tr>
-            )}
+            {horizontalGutter(containerGutterTop)}
             <Tr>
-                {props.gutter && (
-                    <Td align="center" className={containerGutterLeft}>
-                        &nbsp;
-                    </Td>
-                )}
+                {verticalGutter(containerGutterLeft)}
                 <Td className={containerContent}>{props.children}</Td>
-                {props.gutter && <Td className={containerGutterRight}>&nbsp;</Td>}
+                {verticalGutter(containerGutterRight)}
             </Tr>
-            {props.gutter && (
-                <Tr>
-                    <Td colSpan={3} align="center" className={containerGutterBottom}>
-                        &nbsp;
-                    </Td>
-                </Tr>
-            )}
+            {horizontalGutter(containerGutterBottom)}
         </Table>
     );
 };

@@ -1,8 +1,11 @@
 import React, { FC } from "react";
 import { Style, useMergeStyles } from "../css-js";
-import { DepricatedTdAttributes } from "./types";
+import { DepricatedTdAttributes, PrimitveElement } from "./types";
 
-export interface TrElement extends React.HTMLProps<HTMLTableRowElement>, DepricatedTdAttributes {}
+export interface TrElement
+    extends React.HTMLProps<HTMLTableRowElement>,
+        DepricatedTdAttributes,
+        PrimitveElement {}
 
 const styles = Style({
     ascTr: {},

@@ -1,8 +1,11 @@
 import React, { FC } from "react";
 import { Style, useMergeStyles } from "../css-js";
-import { DepricatedLinkAttributes } from "./types";
+import { DepricatedLinkAttributes, PrimitveElement } from "./types";
 
-export interface AElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes {}
+export interface AElement
+    extends React.HTMLProps<HTMLAnchorElement>,
+        PrimitveElement,
+        DepricatedLinkAttributes {}
 
 const styles = Style({
     ascA: {

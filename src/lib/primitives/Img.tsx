@@ -1,8 +1,11 @@
 import React, { FC } from "react";
 import { Style, useMergeStyles } from "../css-js";
-import { DepricatedImageAttributes } from "./types";
+import { DepricatedImageAttributes, PrimitveElement } from "./types";
 
-export interface ImgElement extends React.HTMLProps<HTMLImageElement>, DepricatedImageAttributes {}
+export interface ImgElement
+    extends React.HTMLProps<HTMLImageElement>,
+        DepricatedImageAttributes,
+        PrimitveElement {}
 
 const styles = Style({
     ascImg: {},

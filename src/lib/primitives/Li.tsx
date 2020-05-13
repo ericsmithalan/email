@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { Style, useMergeStyles } from "../css-js";
+import { PrimitveElement } from "./types";
 
-export interface LilElement extends React.HTMLProps<HTMLLIElement> {}
+export interface LilElement extends React.HTMLProps<HTMLLIElement>, PrimitveElement {}
 
 const styles = Style({
     ascLi: {},

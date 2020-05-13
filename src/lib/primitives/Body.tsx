@@ -1,8 +1,11 @@
 import React, { FC } from "react";
 import { Style, useMergeStyles, Css } from "../css-js";
-import { DepricatedBodyAttributes } from "./types";
+import { DepricatedBodyAttributes, PrimitveElement } from "./types";
 
-export interface BodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}
+export interface BodyElement
+    extends React.HTMLProps<HTMLBodyElement>,
+        PrimitveElement,
+        DepricatedBodyAttributes {}
 
 const styles = Style({
     ascBody: {

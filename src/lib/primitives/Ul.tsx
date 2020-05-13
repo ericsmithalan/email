@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { Style, useMergeStyles } from "../css-js";
+import { PrimitveElement } from "./types";
 
-export interface UlElement extends React.HTMLProps<HTMLUListElement> {}
+export interface UlElement extends React.HTMLProps<HTMLUListElement>, PrimitveElement {}
 
 const styles = Style({
     ascUl: {},

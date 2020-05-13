@@ -1,4 +1,5 @@
-import { useTheme, Theme } from "../../css-js";
+import { useTheme } from "../../css-js";
+import { Theme } from "src/lib/theme";
 
 export const useCommon = () => {
     const theme: Theme = useTheme();
