@@ -18,7 +18,7 @@ export interface ContainerProps extends Layout<ContainerProps> {
 }
 
 const Container: FC<ContainerProps> = (props: ContainerProps) => {
-    const { fullWidth, defaultText } = useCommonCss();
+    const { defaultText } = useCommonCss();
 
     const {
         container,
@@ -29,9 +29,9 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
         containerGutterBottom,
     } = useStyle(styles, props, Container.defaultProps);
 
-    const { rowGutter: gutter, ...rest } = props;
+    const { rowGutter, columnGutter, gutterLeftContent, gutterRightContent, ...rest } = props;
 
-    const rowGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
+    const getRowGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
         if (props.rowGutter > 0 || content) {
             return (
                 <Tr>
@@ -43,7 +43,7 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
         }
     };
 
-    const columnGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
+    const getColumnGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
         if (props.columnGutter > 0 || content) {
             return (
                 <Td align="center" className={className}>
@@ -54,16 +54,16 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
     };
 
     return (
-        <Table {...rest} commonCss={defaultText} className={container} align="center">
-            {rowGutter(containerGutterTop)}
+        <Table {...rest} commonCss={defaultText} className={container}>
+            {getRowGutter(containerGutterTop)}
             <Tr>
-                {columnGutter(containerGutterLeft, props.gutterLeftContent)}
+                {getColumnGutter(containerGutterLeft, props.gutterLeftContent)}
                 <Td commonCss={defaultText} className={containerContent}>
                     {props.children}
                 </Td>
-                {columnGutter(containerGutterRight, props.gutterRightContent)}
+                {getColumnGutter(containerGutterRight, props.gutterRightContent)}
             </Tr>
-            {rowGutter(containerGutterBottom)}
+            {getRowGutter(containerGutterBottom)}
         </Table>
     );
 };

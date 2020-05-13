@@ -10,5 +10,6 @@ export { Table } from "./Table";
 export { Td } from "./Td";
 export { Tr } from "./Tr";
 export { Ul } from "./Ul";
+export { P } from "./P";
 
 export * from "./types";

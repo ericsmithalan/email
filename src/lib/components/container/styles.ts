@@ -4,16 +4,19 @@ import { ContainerProps } from "./Container";
 export default Style({
     container: {
         "@tablet": {
+            align: "center",
             width: "100%",
             clear: "both",
         },
         "@phone": {
+            align: "center",
             width: "100%",
             clear: "both",
         },
     },
     containerGutterLeft: {
         width: (c: Css<ContainerProps>) => c.props.columnGutter,
+        verticalAlign: "top",
         "@tablet": {
             width: (c: Css<ContainerProps>) => c.props.columnGutter / 2,
         },
@@ -22,6 +25,7 @@ export default Style({
         },
     },
     containerGutterRight: {
+        verticalAlign: "top",
         width: (c: Css<ContainerProps>) => c.props.columnGutter,
         "@tablet": {
             width: (c: Css<ContainerProps>) => c.props.columnGutter / 2,
@@ -48,7 +52,5 @@ export default Style({
             width: (c: Css<ContainerProps>) => c.props.rowGutter / 4,
         },
     },
-    containerContent: {
-        padding: 20,
-    },
+    containerContent: {},
 });
