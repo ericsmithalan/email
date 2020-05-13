@@ -13,8 +13,6 @@
     "devDependencies": {
         "@next/bundle-analyzer": "^9.4.0",
         "@types/jsdom": "^16.2.1",
-        "jsdom": "^16.2.2",
-        "next": "9.4.0",
         "@types/node": "^13.13.5",
         "@types/react": "^16.9.34",
         "@types/react-dom": "^16.9.7",
@@ -23,13 +21,17 @@
         "rimraf": "^3.0.2",
         "ts-node": "^8.10.1",
         "tsc-watch": "^4.2.3",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
         "typescript": "^3.8.3",
-        "underscore": "^1.10.2",
         "microbundle": "^0.12.0",
         "ts-watch": "^1.0.8",
-        "csstype": "^2.6.10",
-        "deepmerge": "^4.2.2"
+        "csstype": "^2.6.10"
+    },
+    "dependencies": {
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "underscore": "^1.10.2",
+        "deepmerge": "^4.2.2",
+        "next": "9.4.0",
+        "jsdom": "^16.2.2"
     }
 }
