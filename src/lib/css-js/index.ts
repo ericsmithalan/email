@@ -7,7 +7,7 @@ export { CssProvider } from "./CssProvider";
 export { useMergedProps } from "./hooks/useMergedProps";
 export { CssStyle } from "./CssStyle";
 export { useStyled } from "./hooks/useStyled";
-export { CssRepository } from "./CssRepository";
+export { StyleSheets as Styles } from "./StyleSheets";
 export { useCssRepository } from "./hooks/useCssRepository";
 export { withStyles } from "./hoc/withStyles";
 export { useTheme } from "./hooks/useTheme";

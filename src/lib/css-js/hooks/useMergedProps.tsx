@@ -1,6 +1,6 @@
 import React, { CSSProperties, Props } from "react";
 import { CssContext } from "../context/CssContext";
-import { CssRepositoryList } from "../types";
+import { StyleSheet } from "../types";
 import { CssStyle } from "../CssStyle";
 import { CssHelpers } from "../helpers/CssHelpers";
 

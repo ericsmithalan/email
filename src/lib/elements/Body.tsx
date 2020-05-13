@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useMergedProps, CssArgs } from "../css";
+import { css, useMergedProps, CssArgs } from "../css-js";
 import { DepricatedBodyAttributes } from "./types";
 
 export interface IBodyElement extends React.HTMLProps<HTMLBodyElement>, DepricatedBodyAttributes {}

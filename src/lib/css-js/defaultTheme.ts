@@ -1,6 +1,6 @@
-import { CssTheme } from "./types";
+import { Theme } from "./types";
 
-export const defaultTheme: CssTheme = {
+export const defaultTheme: Theme = {
     name: "Default",
     colors: {
         backgroundColor: "#f1f1f1",

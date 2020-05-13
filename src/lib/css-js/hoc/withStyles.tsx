@@ -1,10 +1,10 @@
 import React, { CSSProperties, Props, FC } from "react";
 import { CssContext } from "../context/CssContext";
-import { CssRepositoryList, CssDirtyStyles } from "../types";
+import { StyleSheet, DirtyStyles } from "../types";
 import { CssStyle } from "../CssStyle";
 import { useMergedProps } from "../hooks/useMergedProps";
 
-export const withStyles = (styles: CssDirtyStyles) => <P extends object>(Comp: FC<P>) => {
+export const withStyles = (styles: DirtyStyles) => <P extends object>(Comp: FC<P>) => {
     const cssStyles = new CssStyle(styles);
 
     const withStyles = (props: P) => {

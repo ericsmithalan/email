@@ -4,46 +4,41 @@ import { CssValidValueKind } from "./enums/CssValidValueKind";
 import { CssTargetKind } from "./enums/CssTargetKind";
 
 export type CssValue = keyof typeof CssValidValueKind;
-
 export type CssPseudo = keyof typeof CssPseudoKind;
-
 export type CssTarget = keyof typeof CssTargetKind;
 
-export type CssArgs<T extends any> = { theme: CssTheme; props: T };
+export type CssArgs<T extends any> = { theme: Theme; props: T };
 export type Fn<R = CssValue> = (args: CssArgs<any>) => R;
 
-export type Css = CssDirtyStyles;
+export type DirtyValue = CssValue | Fn | string[] | number[] | Function | string;
+export interface DirtyProperty<T extends CSS.Properties<T> | CssPseudo> {}
 
-export type CssDirtyValue = CssValue | Fn | string[] | number[] | Function | string;
-
-export interface CssDirtyProperty<T extends CSS.Properties<T> | CssPseudo> {}
-
-export type CssDirtyStyles = {
-    [K in keyof CssDirtyProperty<K>]?: CssDirtyValue;
+export type DirtyStyles = {
+    [K in keyof DirtyProperty<K>]?: DirtyValue;
 };
 
 export type CssClassNames = {
     [key: string]: string;
 };
 
-export type CssParseArgs = {
-    value: CssDirtyStyles;
+export type ParserProps = {
+    value: DirtyStyles;
     target: CssTarget;
-    theme: CssTheme;
+    theme: Theme;
     classKey: string;
     pseudo: CssPseudo;
     props: any | undefined;
 };
 
-export type CssRepositoryList = {
-    [K in CssTarget]: CssClassList;
+export type StyleSheet = {
+    [K in CssTarget]: StyleSheetClasses;
 };
 
-export type CssClassList = {
-    [K in string]: CssPropertyListItem;
+export type StyleSheetClasses = {
+    [K in string]: StyleSheetProperty;
 };
 
-export type CssPropertyListItem = {
+export type StyleSheetProperty = {
     [K in string]: CssValue;
 };
 
@@ -60,7 +55,7 @@ export type Spaceing = {
     xlg: number;
 };
 
-export interface CssTheme {
+export interface Theme {
     name: string;
     colors: {
         backgroundColor: string;

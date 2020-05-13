@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useMergedProps } from "../css";
+import { css, useMergedProps } from "../css-js";
 import { DepricatedTableAttributes } from "./types";
 
 export interface ITableElement

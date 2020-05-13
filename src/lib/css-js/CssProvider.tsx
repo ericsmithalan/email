@@ -1,18 +1,18 @@
 import * as React from "react";
 import { CssContext } from "./context/CssContext";
-import { CssRepository } from "./CssRepository";
-import { CssTheme } from "./types";
+import { StyleSheets } from "./StyleSheets";
+import { Theme } from "./types";
 import { defaultTheme } from "./defaultTheme";
 
 export type CssProviderProps = {
-    theme?: CssTheme;
-    repository: CssRepository;
+    theme?: Theme;
+    repository: StyleSheets;
 };
 
 export type CssProviderState = {
-    setTheme: (theme: CssTheme) => void;
-    theme: CssTheme;
-    repository: CssRepository;
+    setTheme: (theme: Theme) => void;
+    theme: Theme;
+    repository: StyleSheets;
 };
 
 export class CssProvider extends React.Component<CssProviderProps, CssProviderState> {
@@ -22,11 +22,11 @@ export class CssProvider extends React.Component<CssProviderProps, CssProviderSt
             theme: this.props.theme ? this.props.theme : defaultTheme,
             repository: this.props.repository
                 ? this.props.repository
-                : new CssRepository(defaultTheme),
+                : new StyleSheets(defaultTheme),
         });
     }
 
-    setTheme(theme: CssTheme) {
+    setTheme(theme: Theme) {
         this.setState({ theme });
     }
 

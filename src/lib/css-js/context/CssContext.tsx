@@ -1,14 +1,14 @@
 import React from "react";
-import { CssTheme } from "../types";
+import { Theme } from "../types";
 import { defaultTheme } from "../defaultTheme";
-import { CssRepository } from "../CssRepository";
+import { StyleSheets } from "../StyleSheets";
 
 export type CssContextProperties = {
-    repository: CssRepository;
-    theme: CssTheme;
+    repository: StyleSheets;
+    theme: Theme;
 };
 
 export const CssContext = React.createContext<CssContextProperties>({
-    repository: new CssRepository(defaultTheme),
+    repository: new StyleSheets(defaultTheme),
     theme: defaultTheme,
 });

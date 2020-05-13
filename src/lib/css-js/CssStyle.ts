@@ -1,14 +1,14 @@
 import {
-    CssDirtyStyles,
+    DirtyStyles,
     CssClassNames,
-    CssParseArgs,
+    ParserProps,
     CssValue,
     CssTarget,
     CssPseudo,
-    CssRepositoryList,
-    CssPropertyListItem,
-    CssDirtyValue,
-    CssTheme,
+    StyleSheet,
+    StyleSheetProperty,
+    DirtyValue,
+    Theme,
 } from "./types";
 import _ from "underscore";
 import { CssHelpers } from "./helpers/CssHelpers";
@@ -16,10 +16,10 @@ import { defaultTheme } from "./defaultTheme";
 import { css } from "./Css";
 
 export class CssStyle {
-    public classes: CssRepositoryList;
+    public classes: StyleSheet;
     private _classNames: CssClassNames = {};
 
-    constructor(private readonly _dirtyStyles: CssDirtyStyles) {
+    constructor(private readonly _dirtyStyles: DirtyStyles) {
         this.classes = {
             "@base": {},
             "@global": {},
@@ -45,7 +45,7 @@ export class CssStyle {
         }
     }
 
-    public parseCss = (props: any | undefined = undefined, theme: CssTheme): void => {
+    public parseCss = (props: any | undefined = undefined, theme: Theme): void => {
         this._parseCss({
             value: this._dirtyStyles,
             target: "@global",
@@ -56,8 +56,8 @@ export class CssStyle {
         });
     };
 
-    private _parseCss = (args: CssParseArgs) => {
-        const css: CssPropertyListItem = {};
+    private _parseCss = (args: ParserProps) => {
+        const css: StyleSheetProperty = {};
 
         for (const key in args.value) {
             if (args.value.hasOwnProperty(key)) {
@@ -93,10 +93,7 @@ export class CssStyle {
     };
 }
 
-const calculateValue = (
-    value: CssDirtyValue & CssValue,
-    args: CssParseArgs,
-): CssDirtyValue | CssValue => {
+const calculateValue = (value: DirtyValue & CssValue, args: ParserProps): DirtyValue | CssValue => {
     let calculated;
 
     if (_.isFunction(value)) {
@@ -109,7 +106,7 @@ const calculateValue = (
     return calculated;
 };
 
-const getClassName = (args: Partial<CssParseArgs>, key: string): string => {
+const getClassName = (args: Partial<ParserProps>, key: string): string => {
     const className = CssHelpers.isValidClassName(key) ? key : args.classKey;
     let pseudo = "";
 
@@ -120,9 +117,6 @@ const getClassName = (args: Partial<CssParseArgs>, key: string): string => {
     return CssHelpers.camelize(`${className}${pseudo}`).trim();
 };
 
-const updateArgs = (
-    oldArgs: Partial<CssParseArgs>,
-    newArgs: Partial<CssParseArgs>,
-): CssParseArgs => {
-    return Object.assign({}, oldArgs, newArgs) as CssParseArgs;
+const updateArgs = (oldArgs: Partial<ParserProps>, newArgs: Partial<ParserProps>): ParserProps => {
+    return Object.assign({}, oldArgs, newArgs) as ParserProps;
 };

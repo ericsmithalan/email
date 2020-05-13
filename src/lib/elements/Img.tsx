@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useMergedProps } from "../css";
+import { css, useMergedProps } from "../css-js";
 import { DepricatedImageAttributes } from "./types";
 
 export interface IImgElement extends React.HTMLProps<HTMLImageElement>, DepricatedImageAttributes {}

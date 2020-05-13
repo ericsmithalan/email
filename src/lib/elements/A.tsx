@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useMergedProps } from "../css";
+import { css, useMergedProps } from "../css-js";
 import { DepricatedLinkAttributes } from "./types";
 
 export interface IAElement extends React.HTMLProps<HTMLAnchorElement>, DepricatedLinkAttributes {}

@@ -1,31 +1,30 @@
 import React from "react";
-import { CssTarget, CssRepositoryList, CssTheme } from "./types";
+import { CssTarget, StyleSheet, Theme } from "./types";
 import { CSSProperties, Props } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
 import { cssBase } from "./CssBase";
 import _ from "underscore";
 import merge from "deepmerge";
 
-export class CssRepository {
-    constructor(theme: CssTheme) {
+export class StyleSheets {
+    constructor(theme: Theme) {
         cssBase.parseCss({}, theme);
 
         this.registerStyles(cssBase.classes);
-        console.log(cssBase.classes);
     }
 
-    private _repository: CssRepositoryList | {} = {
+    private _repository: StyleSheet | {} = {
         "@base": {},
         "@global": {},
         "@phone": {},
         "@tablet": {},
     };
 
-    public get repository(): CssRepositoryList | {} {
+    public get repository(): StyleSheet | {} {
         return this._repository;
     }
 
-    public registerStyles = (records: CssRepositoryList): void => {
+    public registerStyles = (records: StyleSheet): void => {
         if (records) {
             this._repository = merge.all([this.repository, records]);
         }

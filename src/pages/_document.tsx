@@ -1,9 +1,9 @@
 import Document, { DocumentContext } from "next/document";
-import { CssProvider, CssRepository, defaultTheme } from "../lib/css";
+import { CssProvider, Styles, defaultTheme } from "../lib/css-js";
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
-        const css = new CssRepository(defaultTheme);
+        const css = new Styles(defaultTheme);
         const originalRenderPage = ctx.renderPage;
 
         ctx.renderPage = () =>

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useMergedProps } from "../css";
+import { css, useMergedProps } from "../css-js";
 import { DepricatedTdAttributes } from "./types";
 
 export interface ITrElement extends React.HTMLProps<HTMLTableRowElement>, DepricatedTdAttributes {}

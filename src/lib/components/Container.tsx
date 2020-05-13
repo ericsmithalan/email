@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, ComponentProps } from "react";
 import { Table, Tr, Td } from "../elements";
-import { css, CssArgs, useStyled } from "../css";
+import { css, CssArgs, useStyled } from "../css-js";
 
 type Layout<T> = {
     children: ReactNode;

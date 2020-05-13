@@ -1,7 +1,7 @@
-import { useTheme, CssTheme } from "../../css";
+import { useTheme, Theme } from "../../css-js";
 
 export const useCommon = () => {
-    const theme: CssTheme = useTheme();
+    const theme: Theme = useTheme();
     const common = {
         empty: {
             fontSize: 0,

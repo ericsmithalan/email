@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { css, useMergedProps, CssStyle } from "../css";
+import { css, useMergedProps, CssStyle } from "../css-js";
 
 export interface IDivElement extends React.HTMLProps<HTMLDivElement> {}
 
