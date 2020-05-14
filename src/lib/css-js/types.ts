@@ -1,7 +1,7 @@
 import CSS from "csstype";
-import { CssPseudoKind } from "../enums/PseudoKind";
-import { CssValueKind } from "../enums/ValidValueKind";
-import { TargetKind } from "../enums/TargetKind";
+import { CssPseudoKind } from "../core/enums/PseudoKind";
+import { CssValueKind } from "../core/enums/ValidValueKind";
+import { TargetKind } from "../core/enums/TargetKind";
 
 import { CSSProperties } from "react";
 import { Theme } from "../theme";
