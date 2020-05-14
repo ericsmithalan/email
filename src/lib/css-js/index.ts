@@ -1,6 +1,6 @@
 export { Style } from "./Style";
 export * from "./types";
-export { CssHelpers } from "./helpers/CssHelpers";
+export { CssHelpers } from "./CssHelpers";
 export { StylesProvider, StylesContext } from "./StylesProvider";
 export { useMergeStyles } from "./hooks/useMergeStyles";
 export { Parser } from "./Parser";

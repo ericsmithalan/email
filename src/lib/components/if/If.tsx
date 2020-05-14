@@ -1,8 +1,7 @@
 import React, { FC, ReactNode, ComponentProps } from "react";
 import { Table, Tr, Td, Div, Span } from "../../primitives";
 import { Style, Css, useStyle, useCommonCss } from "../../css-js";
-import { MsoIfKind } from "../../core/enums/MsoIfKind";
-import { MsoOperatorKind } from "../../core/enums/MsoOperatorKind";
+import { MsoIfKind, MsoOperatorKind } from "../../core";
 
 //https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/compatibility/ms537512(v=vs.85)?redirectedfrom=MSDN
 

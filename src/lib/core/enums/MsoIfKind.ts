@@ -1,4 +1,4 @@
-import { toEnum } from "../utils";
+import { toEnum } from "../utils/toEnum";
 
 //https://stackoverflow.design/email/base/mso/
 

@@ -1,4 +1,4 @@
-import { toEnum } from "../utils";
+import { toEnum } from "../utils/toEnum";
 
 export const StyleablePropertiesKind = toEnum([
     "align",

@@ -10,7 +10,7 @@ import {
     DirtyValue,
 } from "./types";
 import _ from "underscore";
-import { CssHelpers } from "./helpers/CssHelpers";
+import { CssHelpers } from "./CssHelpers";
 import { Theme } from "../theme";
 
 export class Parser {

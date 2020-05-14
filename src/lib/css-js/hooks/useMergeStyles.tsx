@@ -2,7 +2,7 @@ import React from "react";
 import { StylesContext } from "../StylesProvider";
 import { StyleSheet } from "../types";
 import { Parser } from "../Parser";
-import { CssHelpers } from "../helpers/CssHelpers";
+import { CssHelpers } from "../CssHelpers";
 
 export const useMergeStyles = (css: Parser, props: any, defaultProps: any) => {
     const context = React.useContext(StylesContext);

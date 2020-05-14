@@ -1,7 +1,7 @@
 import React from "react";
 import { CssTarget, StyleSheet, CssClassNames, CssProperties } from "./types";
 import { Props } from "react";
-import { CssHelpers } from "./helpers/CssHelpers";
+import { CssHelpers } from "./CssHelpers";
 import deepmerge from "deepmerge";
 import _ from "underscore";
 import { Theme } from "../theme";

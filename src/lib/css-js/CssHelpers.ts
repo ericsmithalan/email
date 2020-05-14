@@ -1,12 +1,12 @@
 import React from "react";
-import { CssValueKind } from "../../core/enums/ValidValueKind";
-import { TargetKind } from "../../core/enums/TargetKind";
-import { CssPseudoKind } from "../../core/enums/PseudoKind";
-import { AttributesKind } from "../../core/enums/AttributesKind";
-import { StyleablePropertiesKind } from "../../core/enums/StyleablePropertiesKind";
+import { CssValueKind } from "../core/enums/ValidValueKind";
+import { TargetKind } from "../core/enums/TargetKind";
+import { PseudoKind } from "../core/enums/PseudoKind";
+import { AttributesKind } from "../core/enums/AttributesKind";
+import { StyleablePropertiesKind } from "../core/enums/StyleablePropertiesKind";
 
 import _ from "underscore";
-import { TagNameKind } from "../../core/enums/TagNameKind";
+import { TagNameKind } from "../core/enums/TagNameKind";
 
 const isValueValid = (value: any): boolean => {
     if (value) {
@@ -19,7 +19,7 @@ const isValueValid = (value: any): boolean => {
 };
 
 const isPseudo = (value: any): boolean => {
-    if (value && value in CssPseudoKind) {
+    if (value && value in PseudoKind) {
         return true;
     }
     return false;
@@ -57,7 +57,7 @@ const isValidClassName = (value: string): boolean => {
     if (value in TargetKind) {
         return false;
     }
-    if (value in CssPseudoKind) {
+    if (value in PseudoKind) {
         return false;
     }
 

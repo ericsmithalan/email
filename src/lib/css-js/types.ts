@@ -1,5 +1,5 @@
 import CSS from "csstype";
-import { CssPseudoKind } from "../core/enums/PseudoKind";
+import { PseudoKind } from "../core/enums/PseudoKind";
 import { CssValueKind } from "../core/enums/ValidValueKind";
 import { TargetKind } from "../core/enums/TargetKind";
 
@@ -11,7 +11,7 @@ export interface MergeCss {
 }
 
 export type CssValue = keyof typeof CssValueKind;
-export type CssPseudo = keyof typeof CssPseudoKind;
+export type CssPseudo = keyof typeof PseudoKind;
 export type CssTarget = keyof typeof TargetKind;
 
 export type CssProperties = CSSProperties;
