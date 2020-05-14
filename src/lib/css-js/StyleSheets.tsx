@@ -4,11 +4,13 @@ import { Props } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
 import deepmerge from "deepmerge";
 import _ from "underscore";
+import { Theme } from "../theme";
 
 export class StyleSheets {
-    constructor() {}
     private _baseClasses: object;
     private _commonClasses: object;
+
+    constructor(private readonly _theme: Theme) {}
 
     private _stylesheets: StyleSheet | {} = {
         "@reset": {
@@ -31,8 +33,6 @@ export class StyleSheets {
         } else {
             this._stylesheets = deepmerge.all([this.stylesheets, styleSheet as StyleSheet]);
         }
-
-        console.log(this.stylesheets);
     };
 
     public registerStyles = (records: StyleSheet): void => {
@@ -164,12 +164,16 @@ export class StyleSheets {
             let important = "";
 
             if (trg === "@phone") {
-                css.push(`@media only screen and (max-width: 479px) {`);
+                css.push(
+                    `@media only screen and (max-width: ${this._theme.breakpoints.phone}px) {`,
+                );
                 important = "!important";
             }
 
             if (trg === "@tablet") {
-                css.push(`@media only screen and (max-width: 800px) {`);
+                css.push(
+                    `@media only screen and (max-width: ${this._theme.breakpoints.tablet}px) {`,
+                );
                 important = "!important";
             }
 

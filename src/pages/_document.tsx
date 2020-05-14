@@ -7,12 +7,12 @@ import { commonCss } from "src/lib/theme";
 
 export default class MyDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {
-        const sheets = new StyleSheets();
+        const theme = defaultTheme;
+        const sheets = new StyleSheets(theme);
 
-        const parser = new Parser(commonCss, "@common");
-        const componentStyles = parser.parse(defaultTheme, {});
+        const common = new Parser(commonCss, "@common").parse(theme);
 
-        sheets.add(componentStyles, "@common");
+        sheets.add(common, "@common");
         sheets.add(cssReset, "@reset");
 
         const originalRenderPage = ctx.renderPage;
