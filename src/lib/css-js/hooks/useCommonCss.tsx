@@ -1,6 +1,6 @@
 import React, { Props } from "react";
 import { StylesContext } from "../StylesProvider";
-import { CssClassNames, CommonCss } from "../types";
+import { CommonCss } from "src/lib/theme";
 
 export const useCommonCss = (): CommonCss => {
     const context = React.useContext(StylesContext);

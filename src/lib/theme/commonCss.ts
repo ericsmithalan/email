@@ -1,7 +1,7 @@
-import { Style, Parser, Css } from "..";
-import { CssStyle } from "../types";
+import { Style, Css } from "..";
+import { CssStyle } from "./types";
 
-const common: CssStyle = {
+const commonCss: CssStyle = {
     defaultText: {
         fontFamily: (c: Css) => c.theme.fonts.fontFamily,
         fontSize: (c: Css) => c.theme.fonts.fontDefaultSize,
@@ -12,4 +12,4 @@ const common: CssStyle = {
     },
 };
 
-export const commonCss: Parser = Style(common, "@common");
+export { commonCss };

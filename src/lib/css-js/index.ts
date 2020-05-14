@@ -9,5 +9,3 @@ export { StyleSheets } from "./StyleSheets";
 export { useCssRepository } from "./hooks/useCssRepository";
 export { useTheme } from "./hooks/useTheme";
 export { useCommonCss } from "./hooks/useCommonCss";
-export { commonCss } from "./theme/commonCss";
-export { defaultTheme } from "./theme/defaultTheme";

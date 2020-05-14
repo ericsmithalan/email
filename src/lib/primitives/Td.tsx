@@ -20,9 +20,9 @@ const Td: FC<TdElement> = (props: TdElement) => {
         mergeCss: [String(defaultText)],
     };
 
-    const mergedStyles = useMergeStyles(styles, props, Td.defaultProps);
+    const { mergeCss, ...rest } = useMergeStyles(styles, props, Td.defaultProps);
 
-    return <td {...(mergedStyles as TdElement)} />;
+    return <td {...(rest as TdElement)} />;
 };
 
 export { Td };

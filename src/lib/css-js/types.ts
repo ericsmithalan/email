@@ -4,6 +4,7 @@ import { CssValueKind } from "../enums/ValidValueKind";
 import { TargetKind } from "../enums/TargetKind";
 
 import { CSSProperties } from "react";
+import { Theme } from "../theme";
 
 export interface MergeCss {
     mergeCss?: string[];
@@ -17,8 +18,6 @@ export type CssProperties = CSSProperties;
 
 export type Css<T extends any = any> = { theme: Theme; props: T };
 export type Fn<R = CssValue> = (args: Css<any>) => R;
-
-export type CssStyle = DirtyStyles;
 
 export type DirtyValue = CssValue | Fn | string[] | number[] | Function | string;
 export type DirtyProperty = CSS.Properties | CssPseudo | CssTarget;
@@ -51,48 +50,3 @@ export type StyleSheetClasses = {
 export type StyleSheetProperty = {
     [K in string]: CssValue;
 };
-
-export interface CommonCss {
-    defaultText: DirtyStyles;
-    fullWidth: DirtyStyles;
-}
-
-export type Breakpoint = {
-    phone: number;
-    tablet: number;
-};
-
-export type Spaceing = {
-    xsm: number;
-    sm: number;
-    m: number;
-    lg: number;
-    xlg: number;
-};
-
-export interface Theme {
-    name: string;
-    colors: {
-        backgroundColor: string;
-        contentBackgroundColor: string;
-        darkFontColor: string;
-        lightFontColor: string;
-        orangeColor: string;
-        blueColor: string;
-        purpleColor: string;
-        linkColor: string;
-        hoverColor: string;
-        white: string;
-    };
-    fonts: {
-        fontFamily: string;
-        fontHeaderSize: number;
-        fontSubHeaderSize: number;
-        fontTitleSize: number;
-        fontSubTitleSize: number;
-        fontDefaultSize: number;
-        fontSmallSize: number;
-    };
-    spacing: Spaceing;
-    breakpoints: Breakpoint;
-}
