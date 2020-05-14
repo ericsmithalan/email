@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import { Style, useMergeStyles, useCommonCss } from "../css-js";
+import { Style } from "../css-js";
 import { PrimitveElement } from "./types";
+import { useCommonCss, useMergeStyles } from "../core";
 
 export interface LilElement extends React.HTMLProps<HTMLLIElement>, PrimitveElement {}
 

@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import { Style, useMergeStyles, useCommonCss } from "../css-js";
+import { Style } from "../css-js";
 import { DepricatedTableAttributes, PrimitveElement } from "./types";
+import { useCommonCss, useMergeStyles } from "../core";
 
 export interface TableElement
     extends React.HTMLProps<HTMLTableElement>,

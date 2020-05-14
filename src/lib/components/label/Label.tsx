@@ -1,8 +1,8 @@
 import React, { FC, ReactNode, ComponentProps } from "react";
 import { Table, Tr, Td, Div, Span } from "../../primitives";
-import { Style, Css, useStyle, useCommonCss } from "../../css-js";
 import { Layout } from "../types";
 import styles from "./styles";
+import { useStyle } from "src/lib/core";
 
 export interface LabelProps extends Layout<LabelProps> {}
 

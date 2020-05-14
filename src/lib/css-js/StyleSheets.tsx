@@ -1,15 +1,13 @@
 import React from "react";
 import { CssTarget, StyleSheet, CssClassNames, CssProperties } from "./types";
 import { Props } from "react";
-import { CssHelpers } from "./CssHelpers";
 import deepmerge from "deepmerge";
 import _ from "underscore";
 import { Theme } from "../theme";
+import { camelize, decamelize } from "../core/utils/camelize";
+import { isValidClassName, isStyleableProperty, isTagName } from "../core/utils/validation";
 
 export class StyleSheets {
-    private _baseClasses: object;
-    private _commonClasses: object;
-
     constructor(private readonly _theme: Theme) {}
 
     private _stylesheets: StyleSheet | {} = {
@@ -44,32 +42,29 @@ export class StyleSheets {
     public registerPropStyles = (props: any): CssProperties => {
         if (props && props.className) {
             // adds any element property that can be added to stylesheet
-            this._registerElementProps(props, CssHelpers.camelize(props.className));
+            this._registerElementProps(props, camelize(props.className));
 
             // adds all styles under element style property
             if (props.style) {
                 this._set(
                     "@default",
-                    CssHelpers.camelize(props.className),
-                    deepmerge.all([
-                        this._get("@default", CssHelpers.camelize(props.className)),
-                        props.style,
-                    ]),
+                    camelize(props.className),
+                    deepmerge.all([this._get("@default", camelize(props.className)), props.style]),
                 );
             }
 
             if (props.mergeCss) {
                 props.mergeCss.forEach((clsName: string) => {
                     if (clsName) {
-                        const styles = this._get("@common", CssHelpers.camelize(clsName));
+                        const styles = this._get("@common", camelize(clsName));
 
                         // merge common with element css class
                         if (styles) {
                             this._set(
                                 "@default",
-                                CssHelpers.camelize(props.className),
+                                camelize(props.className),
                                 deepmerge.all([
-                                    this._get("@default", CssHelpers.camelize(props.className)),
+                                    this._get("@default", camelize(props.className)),
                                     styles,
                                 ]),
                             );
@@ -79,7 +74,7 @@ export class StyleSheets {
             }
 
             // return merged styles
-            const styles = this._get("@default", CssHelpers.camelize(props.className));
+            const styles = this._get("@default", camelize(props.className));
 
             // returns new styles
             return styles;
@@ -95,8 +90,8 @@ export class StyleSheets {
         if (classes) {
             for (const key in classes) {
                 if (classes.hasOwnProperty(key)) {
-                    if (CssHelpers.isValidClassName(key)) {
-                        classNames[key] = CssHelpers.decamelize(key);
+                    if (isValidClassName(key)) {
+                        classNames[key] = decamelize(key);
                     }
                 }
             }
@@ -110,7 +105,7 @@ export class StyleSheets {
         if (props && className) {
             for (const key in props) {
                 if (props.hasOwnProperty(key)) {
-                    if (CssHelpers.isStyleableProperty(key)) {
+                    if (isStyleableProperty(key)) {
                         const value = props[key];
                         results[key] = value;
                     }
@@ -183,16 +178,16 @@ export class StyleSheets {
                         const clsValue = target[clsKey];
 
                         let prefix = ".";
-                        if (CssHelpers.isTagName(clsKey)) {
+                        if (isTagName(clsKey)) {
                             prefix = "";
                         }
 
-                        css.push(`${prefix}${CssHelpers.decamelize(clsKey)}{`);
+                        css.push(`${prefix}${decamelize(clsKey)}{`);
                         for (const propertyKey in clsValue) {
                             if (clsValue.hasOwnProperty(propertyKey)) {
                                 const propValue = clsValue[propertyKey];
                                 css.push(
-                                    `${CssHelpers.decamelize(propertyKey)}:${this.ensureUnit(
+                                    `${decamelize(propertyKey)}:${this.ensureUnit(
                                         propValue,
                                     )}${important};`,
                                 );

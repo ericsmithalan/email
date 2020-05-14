@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheets } from "./StyleSheets";
+import { StyleSheets } from "../css-js";
 import { Theme, defaultTheme } from "../theme";
 
 export type StylesContextProps = {

@@ -1,7 +1,6 @@
 import React, { Props } from "react";
 import { StylesContext } from "../StylesProvider";
-import { Parser } from "../Parser";
-import { CssClassNames } from "../types";
+import { Parser, CssClassNames } from "src/lib/css-js";
 
 export const useStyle = (
     css: Parser,
