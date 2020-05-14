@@ -13,17 +13,17 @@ export const useStyle = (
         css.parse(context.theme, Object.assign({}, defaultProps, props));
     }
 
-    context.stylesheets.registerStyles(css.styles);
+    context.stylesheets.add(css.styles);
 
     let defaultStyles = {};
     let propStyles = {};
 
     if (defaultProps) {
-        defaultStyles = context.stylesheets.registerPropStyles(defaultProps);
+        defaultStyles = context.stylesheets.addPropStyles(defaultProps);
     }
 
     if (props) {
-        propStyles = context.stylesheets.registerPropStyles(props);
+        propStyles = context.stylesheets.addPropStyles(props);
     }
 
     return css.classes;

@@ -13,15 +13,15 @@ export const useMergeStyles = (css: Parser, props: any, defaultProps: any) => {
         }),
     );
 
-    context.stylesheets.registerStyles(css.styles);
+    context.stylesheets.add(css.styles);
 
     let defaultStyles = {};
 
     if (defaultProps) {
-        defaultStyles = context.stylesheets.registerPropStyles(defaultProps);
+        defaultStyles = context.stylesheets.addPropStyles(defaultProps);
     }
 
-    const propStyles = context.stylesheets.registerPropStyles(props);
+    const propStyles = context.stylesheets.addPropStyles(props);
 
     const mergedProps = Object.assign({}, defaultProps, props, {
         className: mergeClassNames(defaultProps, props),

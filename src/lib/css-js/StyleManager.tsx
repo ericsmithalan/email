@@ -6,6 +6,7 @@ import _ from "underscore";
 import { Theme } from "../theme";
 import { camelize, decamelize } from "../core/utils/camelize";
 import { isValidClassName, isStyleableProperty, isTagName } from "../core/utils/validation";
+import { render } from "./utils/render";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
@@ -25,24 +26,25 @@ export class StyleManager {
         return this._stylesheets;
     }
 
-    public add = (styleSheet: StyleSheet | string, target: CssTarget) => {
-        if (target === "@reset") {
-            this.stylesheets["@reset"]["css"] = styleSheet as string;
+    public add = (styleSheet: StyleSheet | string, target: CssTarget = undefined) => {
+        if (target) {
+            if (target === "@reset") {
+                this.stylesheets["@reset"]["css"] = styleSheet as string;
+            } else {
+                this._stylesheets = deepmerge.all([
+                    this.stylesheets[target],
+                    styleSheet as StyleSheet,
+                ]);
+            }
         } else {
-            this._stylesheets = deepmerge.all([this.stylesheets, styleSheet as StyleSheet]);
+            this._stylesheets = deepmerge.all([this.stylesheets, styleSheet]);
         }
     };
 
-    public registerStyles = (records: StyleSheet): void => {
-        if (records) {
-            this._stylesheets = deepmerge.all([this.stylesheets, records]);
-        }
-    };
-
-    public registerPropStyles = (props: any): CssProperties => {
+    public addPropStyles = (props: any): CssProperties => {
         if (props && props.className) {
             // adds any element property that can be added to stylesheet
-            this._registerElementProps(props, camelize(props.className));
+            this._setElementStyles(props, camelize(props.className));
 
             // adds all styles under element style property
             if (props.style) {
@@ -83,7 +85,7 @@ export class StyleManager {
         return {};
     };
 
-    public getClassNames(target: CssTarget) {
+    public classNames(target: CssTarget) {
         const classes = this._stylesheets[target];
         const classNames = {};
 
@@ -100,7 +102,7 @@ export class StyleManager {
         return classNames;
     }
 
-    private _registerElementProps = (props: any, className: string): void => {
+    private _setElementStyles = (props: any, className: string): void => {
         const results = {};
         if (props && className) {
             for (const key in props) {
@@ -131,26 +133,9 @@ export class StyleManager {
         this.stylesheets[target][className] = merged;
     };
 
-    private ensureUnit = (value: string) => {
-        let result = value.toString();
-        if (result) {
-            if (result === "0") {
-                return result;
-            }
-
-            if (parseInt(value)) {
-                const regex = /^[+-]?[0-9]+.?([0-9]+)?(px|em|ex|%|in|cm|mm|pt|pc)$/;
-                if (!result.match(regex)) {
-                    return `${result}px`;
-                }
-            }
-        }
-
-        return result;
-    };
-
-    public css = (trg: CssTarget): string => {
+    css = (trg: CssTarget) => {
         if (trg === "@reset") {
+            // reset is already a string
             const target = this.stylesheets["@reset"]["css"];
             return target || "";
         } else {
@@ -172,37 +157,15 @@ export class StyleManager {
                 important = "!important";
             }
 
-            if (target) {
-                for (const clsKey in target) {
-                    if (target.hasOwnProperty(clsKey)) {
-                        const clsValue = target[clsKey];
+            const rendered = render(target, true);
 
-                        let prefix = ".";
-                        if (isTagName(clsKey)) {
-                            prefix = "";
-                        }
-
-                        css.push(`${prefix}${decamelize(clsKey)}{`);
-                        for (const propertyKey in clsValue) {
-                            if (clsValue.hasOwnProperty(propertyKey)) {
-                                const propValue = clsValue[propertyKey];
-                                css.push(
-                                    `${decamelize(propertyKey)}:${this.ensureUnit(
-                                        propValue,
-                                    )}${important};`,
-                                );
-                            }
-                        }
-                        css.push(`}`);
-                    }
-                }
-            }
+            css.push(rendered);
 
             if (trg === "@tablet" || trg === "@phone") {
                 css.push(`}`);
             }
 
-            return css.join("");
+            return css;
         }
     };
 }
