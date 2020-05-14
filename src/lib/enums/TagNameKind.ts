@@ -1,4 +1,4 @@
-import { toEnum } from "../../utils";
+import { toEnum } from "../utils";
 
 export const TagNameKind = toEnum([
     "a",

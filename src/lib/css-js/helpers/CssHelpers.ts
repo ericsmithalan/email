@@ -1,12 +1,12 @@
 import React from "react";
-import { CssValueKind } from "../enums/ValidValueKind";
-import { TargetKind } from "../enums/TargetKind";
-import { CssPseudoKind } from "../enums/PseudoKind";
-import { AttributesKind } from "../enums/AttributesKind";
-import { StyleablePropertiesKind } from "../enums/StyleablePropertiesKind";
+import { CssValueKind } from "../../enums/ValidValueKind";
+import { TargetKind } from "../../enums/TargetKind";
+import { CssPseudoKind } from "../../enums/PseudoKind";
+import { AttributesKind } from "../../enums/AttributesKind";
+import { StyleablePropertiesKind } from "../../enums/StyleablePropertiesKind";
 
 import _ from "underscore";
-import { TagNameKind } from "../enums/TagNameKind";
+import { TagNameKind } from "../../enums/TagNameKind";
 
 const isValueValid = (value: any): boolean => {
     if (value) {
