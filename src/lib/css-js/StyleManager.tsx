@@ -7,7 +7,7 @@ import { Theme } from "../theme";
 import { camelize, decamelize } from "../core/utils/camelize";
 import { isValidClassName, isStyleableProperty, isTagName } from "../core/utils/validation";
 
-export class StyleSheets {
+export class StyleManager {
     constructor(private readonly _theme: Theme) {}
 
     private _stylesheets: StyleSheet | {} = {

@@ -1,14 +1,14 @@
 import * as React from "react";
-import { StyleSheets } from "../css-js";
+import { StyleManager } from "../css-js";
 import { Theme, defaultTheme } from "../theme";
 
 export type StylesContextProps = {
-    stylesheets: StyleSheets;
+    stylesheets: StyleManager;
     theme: Theme;
 };
 
 export const StylesContext = React.createContext<StylesContextProps>({
-    stylesheets: new StyleSheets(defaultTheme),
+    stylesheets: new StyleManager(defaultTheme),
     theme: defaultTheme,
 });
 

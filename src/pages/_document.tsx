@@ -1,5 +1,5 @@
 import Document, { DocumentContext, Head, Main, NextScript } from "next/document";
-import { StyleSheets, defaultTheme, Parser, cssReset } from "../lib";
+import { StyleManager, defaultTheme, Parser, cssReset } from "../lib";
 import { Helmet } from "react-helmet";
 import { DocProps } from "../types";
 import { Body } from "src/lib/primitives/Body";
@@ -9,7 +9,7 @@ import { StylesProvider } from "src/lib/core";
 export default class MyDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {
         const theme = defaultTheme;
-        const sheets = new StyleSheets(theme);
+        const sheets = new StyleManager(theme);
 
         const common = new Parser(commonCss, "@common").parse(theme);
 
