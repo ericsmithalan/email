@@ -1,4 +1,4 @@
-export const extra = `
+export const normalizeExtra: string = `
     /* Extra.css */
     /* Contents of this file must be placed between <style> tags in <head> of your newsletter in production */
 

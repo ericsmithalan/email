@@ -18,6 +18,7 @@ const Td: FC<TdElement> = (props: TdElement) => {
         className: styles.classes.ascTd,
         align: "left",
         mergeCss: [String(defaultText)],
+        valign: "top",
     };
 
     const { mergeCss, ...rest } = useMergeStyles(styles, props, Td.defaultProps);

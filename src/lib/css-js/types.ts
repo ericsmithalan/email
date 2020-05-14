@@ -44,7 +44,7 @@ export type StyleSheet = {
 };
 
 export type StyleSheetClasses = {
-    [K in string]: StyleSheetProperty;
+    [K in string]: StyleSheetProperty | string;
 };
 
 export type StyleSheetProperty = {

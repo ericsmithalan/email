@@ -32,6 +32,7 @@ export type DepricatedTdAttributes = {
     align?: DepricatedAlign;
     bgcolor?: string;
     nowrap?: string;
+    valign?: "top" | "middle" | "bottom" | "baseline";
 };
 
 export type DepricatedTrAttributes = {

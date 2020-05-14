@@ -1,4 +1,4 @@
-export const outlookCss = `
+export const normalizeOutlookCss: string = `
     /* Outlook.css */
     /* Contents of this file must be placed between <style> tags with conditional comment in <head> of your newsletter in production */
 

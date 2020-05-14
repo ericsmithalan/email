@@ -15,6 +15,7 @@ import { Theme } from "../theme";
 
 export class Parser {
     public styles: StyleSheet = {
+        "@reset": {},
         "@base": {},
         "@common": {},
         "@default": {},

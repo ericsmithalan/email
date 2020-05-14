@@ -1,5 +1,5 @@
 import Document, { DocumentContext, Head, Main, NextScript } from "next/document";
-import { StylesProvider, StyleSheets, defaultTheme, Parser } from "../lib";
+import { StylesProvider, StyleSheets, defaultTheme, Parser, cssReset } from "../lib";
 import { Helmet } from "react-helmet";
 import { DocProps } from "../types";
 import { Body } from "src/lib/primitives/Body";
@@ -13,6 +13,7 @@ export default class MyDocument extends Document<DocProps> {
         const componentStyles = parser.parse(defaultTheme, {});
 
         sheets.add(componentStyles, "@common");
+        sheets.add(cssReset, "@reset");
 
         const originalRenderPage = ctx.renderPage;
 
@@ -32,6 +33,10 @@ export default class MyDocument extends Document<DocProps> {
             sheets: sheets,
             styles: (
                 <>
+                    <style
+                        id="css_reset"
+                        dangerouslySetInnerHTML={{ __html: sheets.css("@reset") }}
+                    ></style>
                     <style
                         id="css_common"
                         dangerouslySetInnerHTML={{ __html: sheets.css("@common") }}

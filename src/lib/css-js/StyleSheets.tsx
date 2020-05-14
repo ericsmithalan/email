@@ -11,6 +11,9 @@ export class StyleSheets {
     private _commonClasses: object;
 
     private _stylesheets: StyleSheet | {} = {
+        "@reset": {
+            css: "",
+        },
         "@base": {},
         "@common": {},
         "@default": {},
@@ -22,8 +25,14 @@ export class StyleSheets {
         return this._stylesheets;
     }
 
-    public add = (styleSheet: StyleSheet, target: CssTarget) => {
-        this._stylesheets = deepmerge.all([this.stylesheets, styleSheet]);
+    public add = (styleSheet: StyleSheet | string, target: CssTarget) => {
+        if (target === "@reset") {
+            this.stylesheets["@reset"]["css"] = styleSheet as string;
+        } else {
+            this._stylesheets = deepmerge.all([this.stylesheets, styleSheet as StyleSheet]);
+        }
+
+        console.log(this.stylesheets);
     };
 
     public registerStyles = (records: StyleSheet): void => {
@@ -146,50 +155,55 @@ export class StyleSheets {
     };
 
     public css = (trg: CssTarget): string => {
-        const css: string[] = [];
-        const target = this.stylesheets[trg];
-        let important = "";
+        if (trg === "@reset") {
+            const target = this.stylesheets["@reset"]["css"];
+            return target || "";
+        } else {
+            const css: string[] = [];
+            const target = this.stylesheets[trg];
+            let important = "";
 
-        if (trg === "@phone") {
-            css.push(`@media only screen and (max-width: 479px) {`);
-            important = "!important";
-        }
+            if (trg === "@phone") {
+                css.push(`@media only screen and (max-width: 479px) {`);
+                important = "!important";
+            }
 
-        if (trg === "@tablet") {
-            css.push(`@media only screen and (max-width: 800px) {`);
-            important = "!important";
-        }
+            if (trg === "@tablet") {
+                css.push(`@media only screen and (max-width: 800px) {`);
+                important = "!important";
+            }
 
-        if (target) {
-            for (const clsKey in target) {
-                if (target.hasOwnProperty(clsKey)) {
-                    const clsValue = target[clsKey];
+            if (target) {
+                for (const clsKey in target) {
+                    if (target.hasOwnProperty(clsKey)) {
+                        const clsValue = target[clsKey];
 
-                    let prefix = ".";
-                    if (CssHelpers.isTagName(clsKey)) {
-                        prefix = "";
-                    }
-
-                    css.push(`${prefix}${CssHelpers.decamelize(clsKey)}{`);
-                    for (const propertyKey in clsValue) {
-                        if (clsValue.hasOwnProperty(propertyKey)) {
-                            const propValue = clsValue[propertyKey];
-                            css.push(
-                                `${CssHelpers.decamelize(propertyKey)}:${this.ensureUnit(
-                                    propValue,
-                                )}${important};`,
-                            );
+                        let prefix = ".";
+                        if (CssHelpers.isTagName(clsKey)) {
+                            prefix = "";
                         }
+
+                        css.push(`${prefix}${CssHelpers.decamelize(clsKey)}{`);
+                        for (const propertyKey in clsValue) {
+                            if (clsValue.hasOwnProperty(propertyKey)) {
+                                const propValue = clsValue[propertyKey];
+                                css.push(
+                                    `${CssHelpers.decamelize(propertyKey)}:${this.ensureUnit(
+                                        propValue,
+                                    )}${important};`,
+                                );
+                            }
+                        }
+                        css.push(`}`);
                     }
-                    css.push(`}`);
                 }
             }
-        }
 
-        if (trg === "@tablet" || trg === "@phone") {
-            css.push(`}`);
-        }
+            if (trg === "@tablet" || trg === "@phone") {
+                css.push(`}`);
+            }
 
-        return css.join("");
+            return css.join("");
+        }
     };
 }

@@ -1,4 +1,4 @@
-export const normalizedCss = `
+export const normalizedCss: string = `
     /* Normalize.css */
     /* Contents of this file must be inlined to your newsletter in production */
 
