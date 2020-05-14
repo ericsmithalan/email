@@ -6,7 +6,7 @@ import _ from "underscore";
 import { Theme } from "../theme";
 import { camelize, decamelize } from "../utils/camelize";
 import { isValidClassName, isStyleableProperty, isTagName } from "../utils/validation";
-import { render } from "./utils/render";
+import { render } from "../utils/render";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
