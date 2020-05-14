@@ -9,7 +9,7 @@ const styles = Style({
 });
 
 const Ul: FC<UlElement> = (props: UlElement) => {
-    const { commonCss, ...rest } = useMergeStyles(styles, props, Ul.defaultProps);
+    const { mergeCss, ...rest } = useMergeStyles(styles, props, Ul.defaultProps);
     return <ul {...(rest as UlElement)} />;
 };
 

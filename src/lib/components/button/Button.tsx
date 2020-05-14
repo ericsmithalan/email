@@ -14,9 +14,9 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
     const { buttonColumn, buttonLink } = useStyle(styles, props);
 
     return (
-        <Table {...props} commonCss={defaultText}>
+        <Table {...props} mergeCss={[defaultText]}>
             <Tr>
-                <Td commonCss={defaultText} className={buttonColumn}>
+                <Td mergeCss={[defaultText]} className={buttonColumn}>
                     <A href={props.href} className={buttonLink}>
                         {props.children}
                     </A>

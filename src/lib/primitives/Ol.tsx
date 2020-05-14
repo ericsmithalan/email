@@ -9,7 +9,7 @@ const styles = Style({
 });
 
 const Ol: FC<OlElement> = (props: OlElement) => {
-    const { commonCss, ...rest } = useMergeStyles(styles, props, Ol.defaultProps);
+    const { mergeCss, ...rest } = useMergeStyles(styles, props, Ol.defaultProps);
     // @ts-ignore
     return <ol {...(rest as OlElement)} />;
 };

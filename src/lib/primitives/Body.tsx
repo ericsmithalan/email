@@ -12,7 +12,7 @@ const styles = Style({
 });
 
 const Body: FC<BodyElement> = (props: BodyElement) => {
-    const { commonCss, ...rest } = useMergeStyles(styles, props, Body.defaultProps);
+    const { mergeCss, ...rest } = useMergeStyles(styles, props, Body.defaultProps);
     return <body {...(rest as BodyElement)} />;
 };
 

@@ -11,7 +11,7 @@ const styles = Style({
 });
 
 const Div: FC<DivElement> = (props: DivElement) => {
-    const { commonCss, ...rest } = useMergeStyles(styles, props, Div.defaultProps);
+    const { mergeCss, ...rest } = useMergeStyles(styles, props, Div.defaultProps);
     return <div {...(rest as DivElement)} />;
 };
 

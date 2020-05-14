@@ -1,8 +1,8 @@
+import { MergeCss } from "../css-js";
+
 export type DepricatedAlign = "center" | "left" | "right";
 
-export interface PrimitveElement {
-    commonCss?: string | string[];
-}
+export interface PrimitveElement extends MergeCss {}
 
 export type DepricatedElementAttributes = {
     width?: number | string;

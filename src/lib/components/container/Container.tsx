@@ -29,11 +29,11 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
     const { rowGutter, columnGutter, gutterLeftContent, gutterRightContent, ...rest } = props;
 
     return (
-        <Table {...rest} commonCss={defaultText} className={container}>
+        <Table {...rest} mergeCss={[defaultText]} className={container}>
             {getRowGutter(props, containerGutterTop)}
             <Tr>
                 {getColumnGutter(props, containerGutterLeft, props.gutterLeftContent)}
-                <Td commonCss={defaultText} className={containerContent}>
+                <Td mergeCss={[defaultText]} className={containerContent}>
                     {props.children}
                 </Td>
                 {getColumnGutter(props, containerGutterRight, props.gutterRightContent)}

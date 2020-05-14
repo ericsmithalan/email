@@ -9,7 +9,7 @@ const styles = Style({
 });
 
 const P: FC<PElement> = (props: PElement) => {
-    const { commonCss, ...rest } = useMergeStyles(styles, props, P.defaultProps);
+    const { mergeCss, ...rest } = useMergeStyles(styles, props, P.defaultProps);
 
     return <p {...(rest as PElement)} />;
 };

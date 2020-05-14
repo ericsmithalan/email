@@ -12,18 +12,18 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
     const { signature } = useStyle(styles, props);
 
     return (
-        <Table {...props} commonCss={defaultText} className={signature}>
+        <Table {...props} mergeCss={[defaultText]} className={signature}>
             <Tr>
-                <Td commonCss={defaultText}></Td>
+                <Td mergeCss={[defaultText]}></Td>
             </Tr>
             <Tr>
-                <Td commonCss={defaultText}>Signature</Td>
+                <Td mergeCss={[defaultText]}>Signature</Td>
             </Tr>
             <Tr>
-                <Td commonCss={defaultText}>Signature</Td>
+                <Td mergeCss={[defaultText]}>Signature</Td>
             </Tr>
             <Tr>
-                <Td commonCss={defaultText}>Signature</Td>
+                <Td mergeCss={[defaultText]}>Signature</Td>
             </Tr>
         </Table>
     );

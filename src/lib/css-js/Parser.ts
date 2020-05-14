@@ -11,7 +11,7 @@ import {
 } from "./types";
 import _ from "underscore";
 import { CssHelpers } from "./helpers/CssHelpers";
-import { Theme } from "../theme";
+import { Theme } from "./types";
 
 export class Parser {
     public styles: StyleSheet = {

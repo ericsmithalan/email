@@ -12,7 +12,7 @@ const styles = Style({
 });
 
 const Tr: FC<TrElement> = (props: TrElement) => {
-    const { commonCss, ...rest } = useMergeStyles(styles, props, Tr.defaultProps);
+    const { mergeCss, ...rest } = useMergeStyles(styles, props, Tr.defaultProps);
     return <tr {...(rest as TrElement)} />;
 };
 

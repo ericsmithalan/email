@@ -49,32 +49,21 @@ export class StyleSheets {
                 );
             }
 
-            if (props.commonCss) {
-                if (_.isArray(props.commonCss)) {
-                    const arr = props.commonCss as string[];
-                    arr.forEach((item) => {
-                        if (item) {
-                            const styles = this._get("@common", CssHelpers.camelize(item));
+            if (props.mergeCss) {
+                props.mergeCss.forEach((clsName: string) => {
+                    if (clsName) {
+                        const styles = this._get("@common", CssHelpers.camelize(clsName));
 
-                            if (styles) {
-                                this._set(
-                                    "@default",
-                                    className,
-                                    deepmerge.all([this._get("@default", className), styles]),
-                                );
-                            }
+                        // merge common with element css class
+                        if (styles) {
+                            this._set(
+                                "@default",
+                                className,
+                                deepmerge.all([this._get("@default", className), styles]),
+                            );
                         }
-                    });
-                } else {
-                    const styles = this._get("@common", CssHelpers.camelize(props.commonCss));
-                    if (styles) {
-                        this._set(
-                            "@default",
-                            className,
-                            deepmerge.all([this._get("@default", className), styles]),
-                        );
                     }
-                }
+                });
             }
 
             const styles = this._get("@default", className);
