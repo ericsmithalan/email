@@ -1,6 +1,6 @@
 import React from "react";
 import { EmailCssContext } from "../EmailCssProvider";
-import { Theme } from "src/lib/core/theme";
+import { Theme } from "../types/theme.types";
 
 export const useTheme = (): Theme => {
     const context = React.useContext(EmailCssContext);

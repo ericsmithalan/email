@@ -8,9 +8,9 @@ import {
     StyleSheet,
     StyleSheetProperty,
     DirtyValue,
-} from "./types";
+} from "../types/css.types";
 import _ from "underscore";
-import { Theme } from "../theme";
+import { Theme } from "../types/theme.types";
 import { isValidClassName, isTarget, isValueValid, isPseudo } from "../utils/validation";
 import { decamelize, camelize } from "../utils/camelize";
 

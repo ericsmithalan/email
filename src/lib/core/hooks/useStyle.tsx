@@ -1,6 +1,7 @@
 import React, { Props } from "react";
 import { EmailCssContext } from "../EmailCssProvider";
-import { Parser, CssClassNames } from "src/lib/core/css-js";
+import { Parser } from "src/lib/core/css-js";
+import { CssClassNames } from "../types/css.types";
 
 export const useStyle = (
     css: Parser,

@@ -1,6 +1,6 @@
 import React, { Props } from "react";
 import { EmailCssContext } from "../EmailCssProvider";
-import { CommonCss } from "src/lib/core/theme";
+import { CommonCss } from "../types/theme.types";
 
 export const useCommonCss = (): CommonCss => {
     const context = React.useContext(EmailCssContext);

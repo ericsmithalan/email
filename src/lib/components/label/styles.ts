@@ -1,4 +1,5 @@
-import { Style, Css } from "src/lib/core/css-js";
+import { Style } from "../../core/css-js";
+import { Css } from "../../core/types/css.types";
 
 export default Style({
     label: {

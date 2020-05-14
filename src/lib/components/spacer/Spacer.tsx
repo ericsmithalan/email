@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { Style } from "../../core/css-js";
 import styles from "./styles";
 import { useMergeStyles } from "src/lib/core";
 

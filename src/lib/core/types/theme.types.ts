@@ -1,4 +1,4 @@
-import { DirtyStyles } from "../css-js";
+import { DirtyStyles } from "./css.types";
 
 export interface CommonCss {
     defaultText: DirtyStyles;

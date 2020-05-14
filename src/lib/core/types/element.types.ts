@@ -1,4 +1,4 @@
-import { MergeCss } from "../css-js";
+import { MergeCss } from "./css.types";
 
 export type DepricatedAlign = "center" | "left" | "right";
 

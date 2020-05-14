@@ -1,6 +1,5 @@
 export { commonCss } from "./commonCss";
 export { defaultTheme } from "./defaultTheme";
-export * from "./types";
 
 import { normalizeExtra } from "./normalize/extra";
 import { normalizedCss } from "./normalize/normalize";

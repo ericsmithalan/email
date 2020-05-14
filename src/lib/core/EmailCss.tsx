@@ -1,4 +1,4 @@
-import { CssStyle, Theme } from "./theme";
+import { CssStyle, Theme } from "./types/theme.types";
 
 type EmailCssOptions = {
     resetCss: string;

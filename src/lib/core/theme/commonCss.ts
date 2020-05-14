@@ -1,5 +1,5 @@
-import { Style, Css } from "../..";
-import { CssStyle } from "./types";
+import { CssStyle } from "../types/theme.types";
+import { Css } from "../types/css.types";
 
 const commonCss: CssStyle = {
     defaultText: {
