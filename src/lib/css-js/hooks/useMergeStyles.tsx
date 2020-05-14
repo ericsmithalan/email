@@ -1,4 +1,4 @@
-import React, { CSSProperties, Props } from "react";
+import React from "react";
 import { StylesContext } from "../StylesProvider";
 import { StyleSheet } from "../types";
 import { Parser } from "../Parser";
@@ -10,7 +10,7 @@ export const useMergeStyles = (css: Parser, props: any, defaultProps: any) => {
     css.parse(
         context.theme,
         Object.assign({}, defaultProps, props, {
-            className: CssHelpers.combineClassNames(defaultProps, props),
+            className: CssHelpers.mergeClassNames(defaultProps, props),
         }),
     );
 
@@ -25,7 +25,7 @@ export const useMergeStyles = (css: Parser, props: any, defaultProps: any) => {
     const propStyles = context.stylesheets.registerPropStyles(props);
 
     const mergedProps = Object.assign({}, defaultProps, props, {
-        className: CssHelpers.combineClassNames(defaultProps, props),
+        className: CssHelpers.mergeClassNames(defaultProps, props),
         style: Object.assign({}, defaultStyles, propStyles),
     });
 

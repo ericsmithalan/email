@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Style, useMergeStyles } from "../css-js";
-import { PrimitveElement } from "./types";
+import { Style, useMergeStyles } from "../../css-js";
+import { PrimitveElement } from "../../primitives/types";
 
 export interface SpacerElement extends React.HTMLProps<HTMLDivElement>, PrimitveElement {}
 

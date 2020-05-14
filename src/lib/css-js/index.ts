@@ -7,6 +7,5 @@ export { Parser } from "./Parser";
 export { useStyle } from "./hooks/useStyle";
 export { StyleSheets } from "./StyleSheets";
 export { useCssRepository } from "./hooks/useCssRepository";
-export { withStyles } from "./hoc/withStyles";
 export { useTheme } from "./hooks/useTheme";
 export { useCommonCss } from "./hooks/useCommonCss";

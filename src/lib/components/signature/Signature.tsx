@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, ComponentProps } from "react";
-import { Table, Tr, Td } from "../../primitives";
+import { Table, Tr, Td, Div } from "../../primitives";
 import { Style, Css, useStyle, useCommonCss } from "../../css-js";
 import { Layout } from "../types";
 import styles from "./styles";
@@ -14,7 +14,16 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
     return (
         <Table {...props} commonCss={defaultText} className={signature}>
             <Tr>
-                <Td commonCss={defaultText}>{props.children}</Td>
+                <Td commonCss={defaultText}></Td>
+            </Tr>
+            <Tr>
+                <Td commonCss={defaultText}>Signature</Td>
+            </Tr>
+            <Tr>
+                <Td commonCss={defaultText}>Signature</Td>
+            </Tr>
+            <Tr>
+                <Td commonCss={defaultText}>Signature</Td>
             </Tr>
         </Table>
     );

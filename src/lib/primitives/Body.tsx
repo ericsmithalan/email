@@ -1,26 +1,13 @@
 import React, { FC } from "react";
-import { Style, useMergeStyles, Css } from "../css-js";
-import { DepricatedBodyAttributes, PrimitveElement } from "./types";
+import { Style, useMergeStyles } from "../css-js";
+import { PrimitveElement } from "./types";
 
-export interface BodyElement
-    extends React.HTMLProps<HTMLBodyElement>,
-        PrimitveElement,
-        DepricatedBodyAttributes {}
+export interface BodyElement extends React.HTMLProps<HTMLBodyElement>, PrimitveElement {}
 
 const styles = Style({
     ascBody: {
-        fontSize: (args: Css<any>) => args.theme.fonts.fontDefaultSize,
-        width: "100%",
-        height: "100%",
-        backgroundColor: (args: Css<any>) => args.theme.colors.backgroundColor,
-        marginTop: 0,
-        marginRight: 0,
-        marginBottom: 0,
-        marginLeft: 0,
-        paddingTop: 0,
-        paddingRight: 0,
-        paddingBottom: 0,
-        paddingLeft: 0,
+        margin: 0,
+        padding: 0,
     },
 });
 
@@ -28,6 +15,8 @@ const Body: FC<BodyElement> = (props: BodyElement) => {
     const { commonCss, ...rest } = useMergeStyles(styles, props, Body.defaultProps);
     return <body {...(rest as BodyElement)} />;
 };
+
+//<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly;”>
 
 Body.defaultProps = {
     className: styles.classes.ascBody,

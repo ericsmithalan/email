@@ -8,24 +8,16 @@ import { StyleablePropertiesKind } from "../enums/StyleablePropertiesKind";
 import _ from "underscore";
 import { TagNameKind } from "../enums/TagNameKind";
 
-/**
- * typeof value has to be in CssValidValueKind
- */
 const isValueValid = (value: any): boolean => {
     if (value) {
         if (typeof value in CssValueKind) {
             return true;
         }
-
         return false;
     }
-
     return false;
 };
 
-/**
- * value has to be in CssPseudoKind
- */
 const isPseudo = (value: any): boolean => {
     if (value && value in CssPseudoKind) {
         return true;
@@ -33,9 +25,6 @@ const isPseudo = (value: any): boolean => {
     return false;
 };
 
-/**
- * value has to be in CssStyleablePropertiesKind
- */
 const isStyleableProperty = (value: any): boolean => {
     if (value && value in StyleablePropertiesKind) {
         return true;
@@ -43,9 +32,6 @@ const isStyleableProperty = (value: any): boolean => {
     return false;
 };
 
-/**
- * value has to be in CssTargetKind
- */
 const isTarget = (value: any): boolean => {
     if (value && value in TargetKind) {
         return true;
@@ -53,9 +39,6 @@ const isTarget = (value: any): boolean => {
     return false;
 };
 
-/**
- * value has to be in CssTargetKind
- */
 const isTagName = (value: any): boolean => {
     if (value && value in TagNameKind) {
         return true;
@@ -63,19 +46,6 @@ const isTagName = (value: any): boolean => {
     return false;
 };
 
-/**
- * value has to be in CssAttributesKind
- */
-const isValidCssAttribute = (value: any): boolean => {
-    if (value && value in AttributesKind) {
-        return true;
-    }
-    return false;
-};
-
-/**
- * value cannot be Target, CssAttribute, or Pseudo
- */
 const isValidClassName = (value: string): boolean => {
     if (value === undefined) {
         return false;
@@ -94,10 +64,6 @@ const isValidClassName = (value: string): boolean => {
     return true;
 };
 
-/**
- * camelizes string
- * a usable value
- */
 const camelize = (str: string): string => {
     if (str) {
         return str
@@ -113,10 +79,6 @@ const camelize = (str: string): string => {
     }
 };
 
-/**
- * de-camelizes string
- * a usable value
- */
 const decamelize = (str: string) => {
     if (str) {
         const separator = "-";
@@ -130,25 +92,7 @@ const decamelize = (str: string) => {
     }
 };
 
-/**
- * creates a hash id
- * a usable value
- */
-const stringHashId = (...str: string[]): string => {
-    let value = 5381;
-    let len = str.join("").length;
-    while (len--) value = (value * 33) ^ str.join("").charCodeAt(len);
-    return (value >>> 0).toString(36);
-};
-
-/**
- * looks for key in object
- */
-const hasKey = (obj: object, key: string): boolean => {
-    return _.has(obj, key);
-};
-
-const combineClassNames = (defaultProps: any, props: any) => {
+const mergeClassNames = (defaultProps: any, props: any) => {
     const dirty: string[] = [];
     const clean: string[] = [];
 
@@ -177,22 +121,14 @@ const combineClassNames = (defaultProps: any, props: any) => {
     return clean.join(" ");
 };
 
-const uniqueId = (): string => {
-    return Math.random().toString(36).slice(2);
-};
-
 export const CssHelpers = {
     isValueValid,
     isTarget,
     isPseudo,
-    isValidCssAttribute,
     isValidClassName,
     isStyleableProperty,
     camelize,
     decamelize,
-    stringHashId,
-    hasKey,
-    combineClassNames,
-    uniqueId,
+    mergeClassNames,
     isTagName,
 };

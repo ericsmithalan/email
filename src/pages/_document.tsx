@@ -2,6 +2,7 @@ import Document, { DocumentContext, Head, Main, NextScript } from "next/document
 import { StylesProvider, StyleSheets, defaultTheme, commonCss } from "../lib";
 import { Helmet } from "react-helmet";
 import { DocProps } from "../types";
+import { Body } from "src/lib/primitives/Body";
 
 export default class MyDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {
@@ -84,10 +85,10 @@ export default class MyDocument extends Document<DocProps> {
                     <base target="_blank" />
                     {this.props.styles}
                 </Head>
-                <body {...this.helmetBodyAttrComponents}>
+                <Body>
                     <Main />
                     <NextScript />
-                </body>
+                </Body>
             </html>
         );
     }

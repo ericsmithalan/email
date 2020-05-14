@@ -1,6 +1,6 @@
 import React from "react";
-import { CssTarget, StyleSheet, CssClassNames } from "./types";
-import { CSSProperties, Props } from "react";
+import { CssTarget, StyleSheet, CssClassNames, CssProperties } from "./types";
+import { Props } from "react";
 import { CssHelpers } from "./helpers/CssHelpers";
 import deepmerge from "deepmerge";
 import _ from "underscore";
@@ -32,7 +32,7 @@ export class StyleSheets {
         }
     };
 
-    public registerPropStyles = (props: any): CSSProperties => {
+    public registerPropStyles = (props: any): CssProperties => {
         if (props && props.className) {
             const className = CssHelpers.camelize(props.className);
 
@@ -123,7 +123,7 @@ export class StyleSheets {
         }
     };
 
-    private _get = (target: CssTarget, className: string): CSSProperties => {
+    private _get = (target: CssTarget, className: string): CssProperties => {
         return this.stylesheets[target][className];
     };
 

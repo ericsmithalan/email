@@ -28,46 +28,49 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
 
     const { rowGutter, columnGutter, gutterLeftContent, gutterRightContent, ...rest } = props;
 
-    const getRowGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
-        if (props.rowGutter > 0 || content) {
-            return (
-                <Tr>
-                    <Td colSpan={3} align="center" className={className}>
-                        {content}
-                    </Td>
-                </Tr>
-            );
-        }
-    };
-
-    const getColumnGutter = (className: string, content: ReactNode = undefined): JSX.Element => {
-        if (props.columnGutter > 0 || content) {
-            return (
-                <Td align="center" className={className}>
-                    {content}
-                </Td>
-            );
-        }
-    };
-
     return (
         <Table {...rest} commonCss={defaultText} className={container}>
-            {getRowGutter(containerGutterTop)}
+            {getRowGutter(props, containerGutterTop)}
             <Tr>
-                {getColumnGutter(containerGutterLeft, props.gutterLeftContent)}
+                {getColumnGutter(props, containerGutterLeft, props.gutterLeftContent)}
                 <Td commonCss={defaultText} className={containerContent}>
                     {props.children}
                 </Td>
-                {getColumnGutter(containerGutterRight, props.gutterRightContent)}
+                {getColumnGutter(props, containerGutterRight, props.gutterRightContent)}
             </Tr>
-            {getRowGutter(containerGutterBottom)}
+            {getRowGutter(props, containerGutterBottom)}
         </Table>
     );
 };
 
-Container.defaultProps = {
-    align: "center",
-    width: 800,
-    rowGutter: 0,
+const getRowGutter = (
+    props: ContainerProps,
+    className: string,
+    content: ReactNode = undefined,
+): JSX.Element => {
+    if (props.rowGutter > 0 || content) {
+        return (
+            <Tr>
+                <Td colSpan={3} align="center" className={className}>
+                    {content}
+                </Td>
+            </Tr>
+        );
+    }
 };
+
+const getColumnGutter = (
+    props: ContainerProps,
+    className: string,
+    content: ReactNode = undefined,
+): JSX.Element => {
+    if (props.columnGutter > 0 || content) {
+        return (
+            <Td align="center" className={className}>
+                {content}
+            </Td>
+        );
+    }
+};
+
 export { Container };

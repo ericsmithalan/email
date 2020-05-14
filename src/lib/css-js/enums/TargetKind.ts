@@ -1,2 +1,2 @@
-import { toEnum } from "../utils/toEnum";
+import { toEnum } from "../../utils";
 export const TargetKind = toEnum(["@default", "@tablet", "@phone", "@common", "@base"]);

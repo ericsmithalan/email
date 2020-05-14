@@ -1,4 +1,4 @@
-import { toEnum } from "../utils/toEnum";
+import { toEnum } from "../../utils";
 export const CssPseudoKind = toEnum([
     "::after",
     "::backdrop",

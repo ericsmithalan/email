@@ -3,10 +3,13 @@ import { CssPseudoKind } from "./enums/PseudoKind";
 import { CssValueKind } from "./enums/ValidValueKind";
 import { TargetKind } from "./enums/TargetKind";
 import { Theme } from "../theme/types";
+import { CSSProperties } from "react";
 
 export type CssValue = keyof typeof CssValueKind;
 export type CssPseudo = keyof typeof CssPseudoKind;
 export type CssTarget = keyof typeof TargetKind;
+
+export type CssProperties = CSSProperties;
 
 export type Css<T extends any = any> = { theme: Theme; props: T };
 export type Fn<R = CssValue> = (args: Css<any>) => R;
