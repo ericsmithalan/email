@@ -12,5 +12,5 @@ export { useCssRepository } from "./hooks/useCssRepository";
 export { useTheme } from "./hooks/useTheme";
 export { useCommonCss } from "./hooks/useCommonCss";
 export { useStyle } from "./hooks/useStyle";
-export { StylesProvider, StylesContext } from "./StylesProvider";
+export { EmailCssProvider, EmailCssContext } from "./EmailCssProvider";
 export { useMergeStyles } from "./hooks/useMergeStyles";

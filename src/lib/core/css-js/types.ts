@@ -4,7 +4,7 @@ import { CssValueKind } from "../enums/ValidValueKind";
 import { TargetKind } from "../enums/TargetKind";
 
 import { CSSProperties } from "react";
-import { Theme } from "../../theme";
+import { Theme } from "../theme";
 
 export interface MergeCss {
     mergeCss?: string[];

@@ -1,4 +1,4 @@
-import { Style, Css } from "..";
+import { Style, Css } from "../..";
 import { CssStyle } from "./types";
 
 const commonCss: CssStyle = {

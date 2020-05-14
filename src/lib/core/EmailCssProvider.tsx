@@ -1,32 +1,32 @@
 import * as React from "react";
 import { StyleManager } from "./css-js";
-import { Theme, defaultTheme } from "../theme";
+import { Theme, defaultTheme } from "./theme";
 
-export type StylesContextProps = {
+export type EmailCssContextProps = {
     stylesheets: StyleManager;
     theme: Theme;
 };
 
-export const StylesContext = React.createContext<StylesContextProps>({
+export const EmailCssContext = React.createContext<EmailCssContextProps>({
     stylesheets: new StyleManager(defaultTheme),
     theme: defaultTheme,
 });
 
-export type StylesProviderProps = {
+export type EmailCssProviderProps = {
     children: React.ReactNode;
-} & StylesContextProps;
+} & EmailCssContextProps;
 
-export class StylesProvider extends React.Component<StylesProviderProps> {
+export class EmailCssProvider extends React.Component<EmailCssProviderProps> {
     render() {
         return (
-            <StylesContext.Provider
+            <EmailCssContext.Provider
                 value={{
                     stylesheets: this.props.stylesheets,
                     theme: this.props.theme,
                 }}
             >
                 {this.props.children}
-            </StylesContext.Provider>
+            </EmailCssContext.Provider>
         );
     }
 }

@@ -1,5 +1,5 @@
 import React, { Props } from "react";
-import { StylesContext } from "../StylesProvider";
+import { EmailCssContext } from "../EmailCssProvider";
 import { Parser, CssClassNames } from "src/lib/core/css-js";
 
 export const useStyle = (
@@ -7,7 +7,7 @@ export const useStyle = (
     props: object = {},
     defaultProps: object = {},
 ): CssClassNames => {
-    const context = React.useContext(StylesContext);
+    const context = React.useContext(EmailCssContext);
 
     if (props && defaultProps) {
         css.parse(context.theme, Object.assign({}, defaultProps, props));

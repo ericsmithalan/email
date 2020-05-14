@@ -3,8 +3,8 @@ import { StyleManager, defaultTheme, Parser, cssReset } from "../lib";
 import { Helmet } from "react-helmet";
 import { DocProps } from "../types";
 import { Body } from "src/lib/core/primitives/Body";
-import { commonCss } from "src/lib/theme";
-import { StylesProvider } from "src/lib/core";
+import { commonCss } from "src/lib/core/theme";
+import { EmailCssProvider } from "src/lib/core";
 
 export default class MyDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {
@@ -21,9 +21,9 @@ export default class MyDocument extends Document<DocProps> {
         ctx.renderPage = () =>
             originalRenderPage({
                 enhanceApp: (App) => (props) => (
-                    <StylesProvider theme={defaultTheme} stylesheets={sheets}>
+                    <EmailCssProvider theme={defaultTheme} stylesheets={sheets}>
                         <App {...props} />
-                    </StylesProvider>
+                    </EmailCssProvider>
                 ),
             });
 

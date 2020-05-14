@@ -10,7 +10,7 @@ import {
     DirtyValue,
 } from "./types";
 import _ from "underscore";
-import { Theme } from "../../theme";
+import { Theme } from "../theme";
 import { isValidClassName, isTarget, isValueValid, isPseudo } from "../utils/validation";
 import { decamelize, camelize } from "../utils/camelize";
 

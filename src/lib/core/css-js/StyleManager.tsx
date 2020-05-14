@@ -3,7 +3,7 @@ import { CssTarget, StyleSheet, CssClassNames, CssProperties } from "./types";
 import { Props } from "react";
 import deepmerge from "deepmerge";
 import _ from "underscore";
-import { Theme } from "../../theme";
+import { Theme } from "../theme";
 import { camelize, decamelize } from "../utils/camelize";
 import { isValidClassName, isStyleableProperty, isTagName } from "../utils/validation";
 import { render } from "./utils/render";
