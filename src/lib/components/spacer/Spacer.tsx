@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Style } from "../../css-js";
-import { PrimitveElement } from "../../primitives/types";
+import { Style } from "../../core/css-js";
+import { PrimitveElement } from "../../core/primitives/types";
 import styles from "./styles";
 import { useMergeStyles } from "src/lib/core";
 

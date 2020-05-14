@@ -1,5 +1,5 @@
 export * from "./theme";
 export * from "./components";
-export * from "./css-js";
-export * from "./primitives";
+export * from "./core/css-js";
+export * from "./core/primitives";
 export * from "./core/EmailCss";

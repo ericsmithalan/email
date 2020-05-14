@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, ComponentProps } from "react";
-import { Table, Tr, Td, Div, Span } from "../../primitives";
+import { Table, Tr, Td, Div, Span } from "../../core/primitives";
 import { Layout } from "../types";
 import styles from "./styles";
 import { useStyle } from "src/lib/core";

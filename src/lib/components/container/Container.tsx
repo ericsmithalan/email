@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import { Table, Tr, Td } from "../../primitives";
+import { Table, Tr, Td } from "../../core/primitives";
 import { Layout, Alignment, Size } from "../types";
 import styles from "./styles";
 import { useStyle } from "src/lib/core";

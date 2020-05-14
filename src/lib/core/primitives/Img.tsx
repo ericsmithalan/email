@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Style } from "../css-js";
 import { DepricatedImageAttributes, PrimitveElement } from "./types";
-import { useCommonCss, useMergeStyles } from "../core";
+import { useCommonCss, useMergeStyles } from "..";
 
 export interface ImgElement
     extends React.HTMLProps<HTMLImageElement>,

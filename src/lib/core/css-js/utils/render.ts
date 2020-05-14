@@ -1,6 +1,6 @@
 import { ensureUnit } from "./ensureUnit";
-import { decamelize } from "../../core/utils/camelize";
-import { isTagName } from "../../core/utils/validation";
+import { decamelize } from "../../utils/camelize";
+import { isTagName } from "../../utils/validation";
 
 export const render = (obj: object, isImportant: boolean): string => {
     const css: string[] = [];

@@ -1,6 +1,6 @@
 import React from "react";
 import { StylesContext } from "../StylesProvider";
-import { Parser } from "src/lib/css-js";
+import { Parser } from "src/lib/core/css-js";
 import { mergeClassNames } from "../utils/mergeClassNames";
 
 export const useMergeStyles = (css: Parser, props: any, defaultProps: any) => {

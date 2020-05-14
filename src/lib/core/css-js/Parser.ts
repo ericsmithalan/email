@@ -10,9 +10,9 @@ import {
     DirtyValue,
 } from "./types";
 import _ from "underscore";
-import { Theme } from "../theme";
-import { isValidClassName, isTarget, isValueValid, isPseudo } from "../core/utils/validation";
-import { decamelize, camelize } from "../core/utils/camelize";
+import { Theme } from "../../theme";
+import { isValidClassName, isTarget, isValueValid, isPseudo } from "../utils/validation";
+import { decamelize, camelize } from "../utils/camelize";
 
 export class Parser {
     public styles: StyleSheet = {

@@ -1,4 +1,4 @@
-import { Style } from "src/lib/css-js";
+import { Style } from "src/lib/core/css-js";
 
 export default Style({
     ascSpacer: {

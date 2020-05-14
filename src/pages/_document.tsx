@@ -2,7 +2,7 @@ import Document, { DocumentContext, Head, Main, NextScript } from "next/document
 import { StyleManager, defaultTheme, Parser, cssReset } from "../lib";
 import { Helmet } from "react-helmet";
 import { DocProps } from "../types";
-import { Body } from "src/lib/primitives/Body";
+import { Body } from "src/lib/core/primitives/Body";
 import { commonCss } from "src/lib/theme";
 import { StylesProvider } from "src/lib/core";
 

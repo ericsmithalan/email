@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Style } from "../css-js";
 import { PrimitveElement } from "./types";
-import { useCommonCss, useMergeStyles } from "../core";
+import { useCommonCss, useMergeStyles } from "..";
 
 export interface DivElement extends React.HTMLProps<HTMLDivElement>, PrimitveElement {}
 
