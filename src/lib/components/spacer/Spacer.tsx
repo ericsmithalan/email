@@ -1,19 +1,13 @@
 import React, { FC } from "react";
 import { Style, useMergeStyles } from "../../css-js";
 import { PrimitveElement } from "../../primitives/types";
+import styles from "./styles";
 
 export interface SpacerElement extends React.HTMLProps<HTMLDivElement>, PrimitveElement {}
 
-const styles = Style({
-    ascSpacer: {
-        fontSize: 0,
-        lineHeight: 0,
-    },
-});
-
 const Spacer: FC<SpacerElement> = (props: SpacerElement) => {
-    const { commonCss, ...rest } = useMergeStyles(styles, props, Spacer.defaultProps);
-    return <div {...(rest as SpacerElement)} />;
+    const mergedProps = useMergeStyles(styles, props, Spacer.defaultProps);
+    return <div {...(mergedProps as SpacerElement)} />;
 };
 
 Spacer.defaultProps = {

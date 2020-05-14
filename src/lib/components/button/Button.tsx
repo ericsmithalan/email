@@ -9,14 +9,12 @@ export interface ButtonProps extends Layout<ButtonProps> {
 }
 
 const Button: FC<ButtonProps> = (props: ButtonProps) => {
-    const { defaultText } = useCommonCss();
-
     const { buttonColumn, buttonLink } = useStyle(styles, props);
 
     return (
-        <Table {...props} mergeCss={[defaultText]}>
+        <Table {...props}>
             <Tr>
-                <Td mergeCss={[defaultText]} className={buttonColumn}>
+                <Td className={buttonColumn}>
                     <A href={props.href} className={buttonLink}>
                         {props.children}
                     </A>

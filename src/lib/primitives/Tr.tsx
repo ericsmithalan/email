@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Style, useMergeStyles } from "../css-js";
+import { Style, useMergeStyles, useCommonCss } from "../css-js";
 import { DepricatedTdAttributes, PrimitveElement } from "./types";
 
 export interface TrElement
@@ -12,12 +12,13 @@ const styles = Style({
 });
 
 const Tr: FC<TrElement> = (props: TrElement) => {
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Tr.defaultProps);
-    return <tr {...(rest as TrElement)} />;
-};
+    Tr.defaultProps = {
+        className: styles.classes.ascTr,
+    };
 
-Tr.defaultProps = {
-    className: styles.classes.ascTr,
+    const { mergeCss, ...rest } = useMergeStyles(styles, props, Tr.defaultProps);
+
+    return <tr {...(rest as TrElement)} />;
 };
 
 export { Tr };

@@ -15,8 +15,6 @@ export interface ContainerProps extends Layout<ContainerProps> {
 }
 
 const Container: FC<ContainerProps> = (props: ContainerProps) => {
-    const { defaultText } = useCommonCss();
-
     const {
         container,
         containerGutterLeft,
@@ -29,13 +27,11 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
     const { rowGutter, columnGutter, gutterLeftContent, gutterRightContent, ...rest } = props;
 
     return (
-        <Table {...rest} mergeCss={[defaultText]} className={container}>
+        <Table {...rest} className={container}>
             {getRowGutter(props, containerGutterTop)}
             <Tr>
                 {getColumnGutter(props, containerGutterLeft, props.gutterLeftContent)}
-                <Td mergeCss={[defaultText]} className={containerContent}>
-                    {props.children}
-                </Td>
+                <Td className={containerContent}>{props.children}</Td>
                 {getColumnGutter(props, containerGutterRight, props.gutterRightContent)}
             </Tr>
             {getRowGutter(props, containerGutterBottom)}

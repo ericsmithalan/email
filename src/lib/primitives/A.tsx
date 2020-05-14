@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Style, useMergeStyles } from "../css-js";
+import { Style, useMergeStyles, useCommonCss } from "../css-js";
 import { DepricatedLinkAttributes, PrimitveElement } from "./types";
 
 export interface AElement
@@ -8,19 +8,21 @@ export interface AElement
         DepricatedLinkAttributes {}
 
 const styles = Style({
-    ascA: {
-        fontSize: 13,
-    },
+    ascA: {},
 });
 
 const A: FC<AElement> = (props: AElement) => {
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, A.defaultProps);
-    return <a {...(rest as AElement)} />;
-};
+    const { defaultText } = useCommonCss();
 
-A.defaultProps = {
-    className: styles.classes.ascA,
-    target: "_blank",
+    A.defaultProps = {
+        className: styles.classes.ascA,
+        target: "_blank",
+        mergeCss: [String(defaultText)],
+    };
+
+    const { mergeCss, ...rest } = useMergeStyles(styles, props, A.defaultProps);
+
+    return <a {...(rest as AElement)} />;
 };
 
 export { A };

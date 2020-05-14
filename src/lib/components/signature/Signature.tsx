@@ -7,23 +7,21 @@ import styles from "./styles";
 export interface SignatureProps extends Layout<SignatureProps> {}
 
 const Signature: FC<SignatureProps> = (props: SignatureProps) => {
-    const { defaultText } = useCommonCss();
-
     const { signature } = useStyle(styles, props);
 
     return (
-        <Table {...props} mergeCss={[defaultText]} className={signature}>
+        <Table {...props} className={signature}>
             <Tr>
-                <Td mergeCss={[defaultText]}></Td>
+                <Td></Td>
             </Tr>
             <Tr>
-                <Td mergeCss={[defaultText]}>Signature</Td>
+                <Td>Signature</Td>
             </Tr>
             <Tr>
-                <Td mergeCss={[defaultText]}>Signature</Td>
+                <Td>Signature</Td>
             </Tr>
             <Tr>
-                <Td mergeCss={[defaultText]}>Signature</Td>
+                <Td>Signature</Td>
             </Tr>
         </Table>
     );

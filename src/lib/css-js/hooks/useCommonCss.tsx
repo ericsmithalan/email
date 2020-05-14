@@ -1,10 +1,10 @@
 import React, { Props } from "react";
 import { StylesContext } from "../StylesProvider";
-import { CssClassNames } from "../types";
+import { CssClassNames, CommonCss } from "../types";
 
-export const useCommonCss = (): CssClassNames => {
+export const useCommonCss = (): CommonCss => {
     const context = React.useContext(StylesContext);
-    const results = context.stylesheets.getClassNames("@common");
+    const results: CommonCss = context.stylesheets.getClassNames("@common") as CommonCss;
 
     return results;
 };

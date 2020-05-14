@@ -34,18 +34,18 @@ export class StyleSheets {
 
     public registerPropStyles = (props: any): CssProperties => {
         if (props && props.className) {
-            const className = CssHelpers.camelize(props.className);
-
             // adds any element property that can be added to stylesheet
-            this._registerElementProps(props, className);
+            this._registerElementProps(props, CssHelpers.camelize(props.className));
 
-            // console.log(props);
             // adds all styles under element style property
             if (props.style) {
                 this._set(
                     "@default",
-                    className,
-                    deepmerge.all([this._get("@default", className), props.style]),
+                    CssHelpers.camelize(props.className),
+                    deepmerge.all([
+                        this._get("@default", CssHelpers.camelize(props.className)),
+                        props.style,
+                    ]),
                 );
             }
 
@@ -58,15 +58,19 @@ export class StyleSheets {
                         if (styles) {
                             this._set(
                                 "@default",
-                                className,
-                                deepmerge.all([this._get("@default", className), styles]),
+                                CssHelpers.camelize(props.className),
+                                deepmerge.all([
+                                    this._get("@default", CssHelpers.camelize(props.className)),
+                                    styles,
+                                ]),
                             );
                         }
                     }
                 });
             }
 
-            const styles = this._get("@default", className);
+            // return merged styles
+            const styles = this._get("@default", CssHelpers.camelize(props.className));
 
             // returns new styles
             return styles;

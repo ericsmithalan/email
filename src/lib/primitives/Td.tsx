@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Style, useMergeStyles } from "../css-js";
+import { Style, useMergeStyles, useCommonCss } from "../css-js";
 import { DepricatedTdAttributes, PrimitveElement } from "./types";
 
 export interface TdElement
@@ -8,19 +8,21 @@ export interface TdElement
         PrimitveElement {}
 
 const styles = Style({
-    ascTd: {
-        fontSize: 13,
-    },
+    ascTd: {},
 });
 
 const Td: FC<TdElement> = (props: TdElement) => {
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Td.defaultProps);
-    return <td {...(rest as TdElement)} />;
-};
+    const { defaultText } = useCommonCss();
 
-Td.defaultProps = {
-    className: styles.classes.ascTd,
-    align: "left",
+    Td.defaultProps = {
+        className: styles.classes.ascTd,
+        align: "left",
+        mergeCss: [String(defaultText)],
+    };
+
+    const mergedStyles = useMergeStyles(styles, props, Td.defaultProps);
+
+    return <td {...(mergedStyles as TdElement)} />;
 };
 
 export { Td };

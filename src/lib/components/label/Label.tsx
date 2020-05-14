@@ -7,11 +7,9 @@ import styles from "./styles";
 export interface LabelProps extends Layout<LabelProps> {}
 
 const Label: FC<LabelProps> = (props: LabelProps) => {
-    const { defaultText } = useCommonCss();
+    const { label } = useStyle(styles, props);
 
-    const { signature } = useStyle(styles, props);
-
-    return <Span></Span>;
+    return <Span className={label}>{props.children}</Span>;
 };
 
 export { Label };
