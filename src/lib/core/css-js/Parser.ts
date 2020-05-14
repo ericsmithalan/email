@@ -7,12 +7,14 @@ import {
     CssPseudo,
     StyleSheet,
     StyleSheetProperty,
-    DirtyValue,
 } from "../types/css.types";
 import _ from "underscore";
 import { Theme } from "../types/theme.types";
 import { isValidClassName, isTarget, isValueValid, isPseudo } from "../utils/validation";
 import { decamelize, camelize } from "../utils/camelize";
+import { calculateValue } from "../utils/calculateValue";
+import { updateProps } from "../utils/updateProps";
+import { getClassName } from "../utils/getClassName";
 
 export class Parser {
     public styles: StyleSheet = {
@@ -77,7 +79,6 @@ export class Parser {
                     });
 
                     const target = this.styles[props.target];
-
                     target[props.classKey] = this._parse(props);
 
                     this._classes[props.classKey] = decamelize(props.classKey);
@@ -96,31 +97,3 @@ export class Parser {
         return css;
     };
 }
-
-const calculateValue = (value: DirtyValue & CssValue, args: ParserProps): DirtyValue | CssValue => {
-    let calculated;
-
-    if (_.isFunction(value)) {
-        const fn = value as Function;
-        calculated = fn({ theme: args.theme, props: args.props });
-    } else {
-        calculated = value;
-    }
-
-    return calculated;
-};
-
-const getClassName = (args: Partial<ParserProps>, key: string): string => {
-    const className = isValidClassName(key) ? key : args.classKey;
-    let pseudo = "";
-
-    if (isPseudo(key)) {
-        pseudo = key;
-    }
-
-    return camelize(`${className}${pseudo}`).trim();
-};
-
-const updateProps = (oldArgs: Partial<ParserProps>, newArgs: Partial<ParserProps>): ParserProps => {
-    return Object.assign({}, oldArgs, newArgs) as ParserProps;
-};
