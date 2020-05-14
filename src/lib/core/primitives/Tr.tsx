@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Style } from "../css-js";
-import { DepricatedTdAttributes, PrimitveElement } from "./types";
+import { DepricatedTdAttributes, PrimitveElement } from "../types/element.types";
 import { useCommonCss, useMergeStyles } from "..";
 
 export interface TrElement

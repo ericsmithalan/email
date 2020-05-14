@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Style } from "../css-js";
-import { DepricatedImageAttributes, PrimitveElement } from "./types";
+import { DepricatedImageAttributes, PrimitveElement } from "../types/element.types";
 import { useCommonCss, useMergeStyles } from "..";
 
 export interface ImgElement
