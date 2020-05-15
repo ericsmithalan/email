@@ -30,6 +30,35 @@ export default class MyDocument extends Document<DocProps> {
 
         const initialProps = await Document.getInitialProps(ctx);
 
+        const styles = (
+            <>
+                <style
+                    id="css_reset"
+                    dangerouslySetInnerHTML={{ __html: sheets.css("@reset") }}
+                ></style>
+                <style
+                    id="css_common"
+                    dangerouslySetInnerHTML={{ __html: sheets.css("@common") }}
+                ></style>
+                <style
+                    id="css_base"
+                    dangerouslySetInnerHTML={{ __html: sheets.css("@base") }}
+                ></style>
+                <style
+                    id="css_default"
+                    dangerouslySetInnerHTML={{ __html: sheets.css("@default") }}
+                ></style>
+                <style
+                    id="css_tablet"
+                    dangerouslySetInnerHTML={{ __html: sheets.css("@tablet") }}
+                ></style>
+                <style
+                    id="css_phone"
+                    dangerouslySetInnerHTML={{ __html: sheets.css("@phone") }}
+                ></style>
+            </>
+        );
+
         const log = () => {
             fs.writeFile("log.json", JSON.stringify(sheets.stylesheets), function (err) {
                 if (err) {
@@ -42,35 +71,8 @@ export default class MyDocument extends Document<DocProps> {
 
         return {
             ...initialProps,
-            stylesheets: (
-                <>
-                    <style
-                        id="css_reset"
-                        dangerouslySetInnerHTML={{ __html: sheets.css("@reset") }}
-                    ></style>
-                    <style
-                        id="css_common"
-                        dangerouslySetInnerHTML={{ __html: sheets.css("@common") }}
-                    ></style>
-                    <style
-                        id="css_base"
-                        dangerouslySetInnerHTML={{ __html: sheets.css("@base") }}
-                    ></style>
-                    <style
-                        id="css_default"
-                        dangerouslySetInnerHTML={{ __html: sheets.css("@default") }}
-                    ></style>
-                    <style
-                        id="css_tablet"
-                        dangerouslySetInnerHTML={{ __html: sheets.css("@tablet") }}
-                    ></style>
-                    <style
-                        id="css_phone"
-                        dangerouslySetInnerHTML={{ __html: sheets.css("@phone") }}
-                    ></style>
-                </>
-            ),
             theme: defaultTheme,
+            styles: styles,
         };
     }
 
