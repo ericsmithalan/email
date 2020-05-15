@@ -1,6 +1,31 @@
 import { ContainerProps } from "./Container";
 import { Style } from "../../core/css-js";
 import { Css } from "../../core/types/css.types";
+import { Styles } from "../../core/types/index";
+import { Theme } from "src/lib/core/types/theme.types";
+
+const styles: Styles = {
+    container: {
+        "@tablet": {
+            width: "100%",
+            clear: "both",
+            height: 20,
+        },
+        "@phone": {},
+        ":hover": {},
+    },
+    containerGutterLeft: {
+        width: (p: ContainerProps) => p.columnGutter,
+        "@tablet": {
+            width: (p: ContainerProps) => p.height,
+        },
+        "@phone": {
+            width: (t: Theme) => t.fonts.fontSmallSize,
+        },
+    },
+
+    containerContent: {},
+};
 
 export default Style({
     container: {
