@@ -1,6 +1,8 @@
+import { Styleable } from "./css.types";
+
 export type DepricatedAlign = "center" | "left" | "right";
 
-export interface PrimitveElement {
+export interface PrimitveElement extends Styleable {
     commoncss?: string[];
 }
 

@@ -1,14 +1,15 @@
 import React, { FC } from "react";
-import { style } from "../css-js";
+
 import { DepricatedLinkAttributes, PrimitveElement } from "../types/element.types";
 import { useCommonCss, useStyledProps } from "..";
+import { styleable } from "../css-js/style";
 
 export interface AElement
     extends React.HTMLProps<HTMLAnchorElement>,
         PrimitveElement,
         DepricatedLinkAttributes {}
 
-const styles = style({
+const styles = styleable({
     ascA: {},
 });
 
@@ -16,7 +17,7 @@ const A: FC<AElement> = (props: AElement) => {
     const { defaultText } = useCommonCss();
 
     A.defaultProps = {
-        className: styles.classes.ascA,
+        className: styles.classNames.ascA,
         target: "_blank",
         commoncss: [String(defaultText)],
     };

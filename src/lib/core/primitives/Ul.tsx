@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { style } from "../css-js";
+import { styleable } from "../css-js/style";
 import { PrimitveElement } from "../types/element.types";
 import { useCommonCss, useStyledProps } from "..";
 
 export interface UlElement extends React.HTMLProps<HTMLUListElement>, PrimitveElement {}
 
-const styles = style({
+const styles = styleable({
     ascUl: {},
 });
 
@@ -13,7 +13,7 @@ const Ul: FC<UlElement> = (props: UlElement) => {
     const { defaultText } = useCommonCss();
 
     Ul.defaultProps = {
-        className: styles.classes.ascUl,
+        className: styles.classNames.ascUl,
         commoncss: [String(defaultText)],
     };
 

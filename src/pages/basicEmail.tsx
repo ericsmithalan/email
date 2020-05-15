@@ -1,7 +1,8 @@
-import { Container, style, Img, P, Signature, Spacer } from "../lib";
 import { useStyle } from "src/lib/core";
+import { Container } from "next/app";
+import { styleable } from "src/lib/core/css-js/style";
 
-const styles = style({
+const styles = styleable({
     cornerImage: {
         width: 118,
         height: "auto",

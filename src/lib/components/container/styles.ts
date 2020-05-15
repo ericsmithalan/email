@@ -1,8 +1,8 @@
 import { ContainerProps } from "./Container";
-import { style } from "../../core/css-js";
-import { Theme } from "src/lib/core/types/theme.types";
+import { Prop } from "src/lib/core/types/css.types";
+import { styleable } from "src/lib/core/css-js/style";
 
-export default style({
+export default styleable({
     container: {
         width: 800,
         "@tablet": {
@@ -15,41 +15,41 @@ export default style({
         },
     },
     containerGutterLeft: {
-        width: (t: Theme, p: ContainerProps) => p.columnGutter,
+        width: (p: Prop) => p.p.columnGutter,
         verticalAlign: "top",
         "@tablet": {
-            width: (p: ContainerProps) => p.columnGutter / 2,
+            width: (p: Prop) => p.p.columnGutter / 2,
         },
         "@phone": {
-            width: (p: ContainerProps) => p.columnGutter / 4,
+            width: (p: Prop) => p.p.columnGutter / 4,
         },
     },
     containerGutterRight: {
         verticalAlign: "top",
-        width: (p: ContainerProps) => p.columnGutter,
+        width: (p: Prop) => p.p.columnGutter,
         "@tablet": {
-            width: (p: ContainerProps) => p.columnGutter / 2,
+            width: (p: Prop) => p.p.columnGutter / 2,
         },
         "@phone": {
-            width: (p: ContainerProps) => p.columnGutter / 4,
+            width: (p: Prop) => p.p.columnGutter / 4,
         },
     },
     containerGutterTop: {
-        width: (p: ContainerProps) => p.rowGutter,
+        width: (p: Prop) => p.p.rowGutter,
         "@tablet": {
-            width: (p: ContainerProps) => p.rowGutter / 2,
+            width: (p: Prop) => p.p.rowGutter / 2,
         },
         "@phone": {
-            width: (p: ContainerProps) => p.rowGutter / 4,
+            width: (p: Prop) => p.p.rowGutter / 4,
         },
     },
     containerGutterBottom: {
-        width: (p: ContainerProps) => p.rowGutter,
+        width: (p: Prop) => p.p.rowGutter,
         "@tablet": {
-            width: (p: ContainerProps) => p.rowGutter / 2,
+            width: (p: Prop) => p.p.rowGutter / 2,
         },
         "@phone": {
-            width: (p: ContainerProps) => p.rowGutter / 4,
+            width: (p: Prop) => p.p.rowGutter / 4,
         },
     },
     containerContent: {

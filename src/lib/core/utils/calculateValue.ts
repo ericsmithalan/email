@@ -1,18 +1,20 @@
-import { isFunction } from "util";
+import { isFunction, isObject } from "util";
 import { Theme } from "../types/theme.types";
+import { Fn } from "../types/css.types";
+import { Styleable, Prop } from "../types/css.types";
 
 export const calculateValue = (
-    value: object | string | number,
-    args: { props: any; theme: Theme },
+    value: object | string | number | Fn,
+    args: { props: Styleable; theme: Theme },
 ): object | string | number => {
-    let calculated;
+    if (!isObject(value)) {
+        if (isFunction(value)) {
+            const fn = value as Fn;
+            return fn({ t: args.theme, p: args.props });
+        }
 
-    if (isFunction(value)) {
-        const fn = value as Function;
-        calculated = fn(args.theme, args.props);
-    } else {
-        calculated = value;
+        console.log(value);
     }
 
-    return calculated;
+    return value;
 };

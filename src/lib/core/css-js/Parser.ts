@@ -3,8 +3,10 @@ import {
     CssValue,
     CssTarget,
     CssPseudo,
-    StyleSheet,
+    StyleRepository,
     ClassNameSelector,
+    ParseResults,
+    Styleable,
 } from "../types/css.types";
 import _ from "underscore";
 import { Theme } from "../types/theme.types";
@@ -12,7 +14,8 @@ import { isValidClassName, isTarget, isValueValid, isObject } from "../utils/val
 import { decamelize, camelize } from "../utils/camelize";
 import { calculateValue } from "../utils/calculateValue";
 import { updateProps as updateArgs } from "../utils/updateProps";
-import { getClassName } from "../utils/getClassName";
+import { formatClassName } from "../utils/formatClassName";
+import { defaultTheme } from "../theme";
 
 export type ParseArgs = {
     value: object | string | number;
@@ -23,8 +26,9 @@ export type ParseArgs = {
     props: any | undefined;
 };
 
-export class Parser {
-    public styles: StyleSheet = {
+export function parser(styles: Styles, target?: CssTarget): ParseResults {
+    const classNames = {};
+    const repository = {
         "@reset": {},
         "@base": {},
         "@common": {},
@@ -32,44 +36,19 @@ export class Parser {
         "@phone": {},
         "@tablet": {},
     };
-    private _classNames: ClassNameSelector = {};
 
-    constructor(private readonly _styles: Styles, private readonly _target: CssTarget = undefined) {
-        // render to get classNames
-        this._setClasses(_styles);
+    if (!styles) {
+        throw new Error(`Styles is undefined : ${styles}`);
     }
 
-    public get classes(): ClassNameSelector {
-        return this._classNames;
-    }
-
-    private _setClasses(props: any) {
-        for (const key in props) {
-            if (props.hasOwnProperty(key)) {
-                if (isValidClassName(key)) {
-                    this._classNames[key] = decamelize(key);
-                }
-            }
-        }
-    }
-
-    public parse = (theme: Theme, props: object = {}): StyleSheet => {
-        if (!this._styles) {
-            throw new Error(`Styles is undefined : ${this._styles}`);
-        }
-        this._parse({
-            value: this._styles,
-            target: this._target ? this._target : "@default",
-            theme: theme,
-            pseudo: "none",
-            classKey: "",
-            props: props,
-        });
-
-        return this.styles;
+    const args = {
+        value: styles,
+        target: target || "@default",
+        pseudo: "none",
+        classKey: "",
     };
 
-    private _parse = (parseArgs: ParseArgs) => {
+    const recursiveParse = (parseArgs: ParseArgs) => {
         const css: object = {};
 
         for (const key in parseArgs.value as object) {
@@ -83,15 +62,15 @@ export class Parser {
                 if (isObject(calculated)) {
                     const args = updateArgs(parseArgs, {
                         value: calculated,
-                        classKey: getClassName({ classKey: parseArgs.classKey }, key),
+                        classKey: formatClassName({ classKey: parseArgs.classKey }, key),
                         target: isTarget(key) ? (key as CssTarget) : parseArgs.target,
                         pseudo: isTarget(key) ? (key as CssPseudo) : parseArgs.pseudo,
                     }) as ParseArgs;
 
-                    const target = this.styles[args.target];
-                    target[args.classKey] = this._parse(args);
+                    const target = repository[args.target];
+                    target[args.classKey] = recursiveParse(args);
 
-                    this._classNames[args.classKey] = decamelize(args.classKey);
+                    classNames[args.classKey] = decamelize(args.classKey);
 
                     continue;
                 }
@@ -105,5 +84,20 @@ export class Parser {
         }
 
         return css;
+    };
+
+    return {
+        styles: repository,
+        classNames: classNames,
+        parse: function <T extends Styleable>(theme: Theme, props: T): StyleRepository {
+            const newArgs = updateArgs(args, {
+                theme: theme,
+                props: props,
+            });
+
+            recursiveParse(newArgs);
+
+            return repository;
+        },
     };
 }

@@ -1,18 +1,19 @@
 import Document, { DocumentContext, Head, Main, NextScript } from "next/document";
-import { StyleManager, defaultTheme, Parser, cssReset } from "../lib";
+import { StyleManager, defaultTheme, cssReset } from "../lib";
 import { Helmet } from "react-helmet";
 import { DocProps } from "../types";
 import { Body } from "src/lib/core/primitives/Body";
 import { commonCss } from "src/lib/core/theme";
 import { EmailCssProvider } from "src/lib/core";
 import fs from "fs";
+import { parser } from "src/lib/core/css-js/Parser";
 
 export default class MyDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {
         const theme = defaultTheme;
         const sheets = new StyleManager(theme);
 
-        const common = new Parser(commonCss, "@common").parse(theme);
+        const common = parser(commonCss, "@common").parse(theme);
 
         sheets.add(common, "@common");
         sheets.add(cssReset, "@reset");

@@ -1,6 +1,6 @@
-import { style } from "src/lib/core/css-js";
+import { styleable } from "src/lib/core/css-js/style";
 
-export default style({
+export default styleable({
     ascSpacer: {
         fontSize: 0,
         lineHeight: 0,

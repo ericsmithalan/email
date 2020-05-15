@@ -1,6 +1,12 @@
-import { CssTarget, Styles } from "../types/css.types";
-import { Parser } from "./Parser";
+import { CssTarget, Styles, Styleable, ParseResults } from "../types/css.types";
 
-export const style = (styles: Styles, target: CssTarget = undefined): Parser => {
-    return new Parser(styles, target);
-};
+import { Theme } from "../types/theme.types";
+import { parser } from "../css-js/Parser";
+
+export function styleable(styles: Styles): ParseResults;
+export function styleable(styles: Styles, target?: CssTarget): ParseResults {
+    return parser(styles, target || "@default");
+}
+// export function parse(theme?: Theme, styles?: Styles): Styles;
+// export function parse(props?: T, styles?: Styles): Styles;
+// export function parse(props?: T, theme?: Theme, styles?: Styles): Styles;

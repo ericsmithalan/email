@@ -1,19 +1,19 @@
 import React from "react";
 import { EmailCssContext } from "../EmailCssProvider";
-import { Parser } from "src/lib/core/css-js";
 import { mergeClassNames } from "../utils/mergeClassNames";
+import { ParseResults } from "../types/css.types";
 
-export const useStyledProps = (css: Parser, props: any, defaultProps: any) => {
+export const useStyledProps = (parser: ParseResults, props: any, defaultProps: any) => {
     const context = React.useContext(EmailCssContext);
 
-    css.parse(
+    parser.parse(
         context.theme,
         Object.assign({}, defaultProps, props, {
             className: mergeClassNames(defaultProps, props),
         }),
     );
 
-    context.stylesheets.add(css.styles);
+    context.stylesheets.add(parser.styles);
 
     let defaultStyles = {};
 

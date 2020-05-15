@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { style } from "../css-js";
+import { styleable } from "../css-js/style";
 import { DepricatedTdAttributes, PrimitveElement } from "../types/element.types";
 import { useCommonCss, useStyledProps } from "..";
 
@@ -8,13 +8,13 @@ export interface TrElement
         DepricatedTdAttributes,
         PrimitveElement {}
 
-const styles = style({
+const styles = styleable({
     ascTr: {},
 });
 
 const Tr: FC<TrElement> = (props: TrElement) => {
     Tr.defaultProps = {
-        className: styles.classes.ascTr,
+        className: styles.classNames.ascTr,
     };
 
     const { commoncss, ...rest } = useStyledProps(styles, props, Tr.defaultProps);

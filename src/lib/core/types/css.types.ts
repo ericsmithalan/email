@@ -2,9 +2,24 @@ import CSS from "csstype";
 import * as MSO from "./mso.types";
 import { Theme } from "./theme.types";
 
-export type CssValue = string | number;
+export type CssValue = string | number | Symbol;
 
-type Fn = (t: any, p: any) => CssValue;
+export interface Styleable {}
+
+export interface Prop {
+    t?: Theme;
+    p?: any;
+}
+
+export interface ParseResults {
+    styles: StyleRepository;
+    classNames: ClassNameSelector;
+    parse: <T extends Styleable>(theme: Theme, props?: T) => StyleRepository;
+}
+
+export type Fn<R extends CssValue = CssValue> = (p: Prop) => R;
+
+//Fn = (<R extends CssValue>(t: any, p: any) => R) & Function;
 
 export interface CssProperties
     extends CSS.Properties<CssValue>,
@@ -16,7 +31,7 @@ export type Styles = {
     [K in string]?: CssProperties | TargetType | PsuedoType | PropertyType;
 };
 
-export type StyleSheet = {
+export type StyleRepository = {
     [K in CssTarget]?: ClassType;
 };
 

@@ -1,20 +1,19 @@
 import React, { Props } from "react";
 import { EmailCssContext } from "../EmailCssProvider";
-import { Parser } from "src/lib/core/css-js";
-import { ClassNameSelector } from "../types/css.types";
+import { ClassNameSelector, ParseResults } from "../types/css.types";
 
 export const useStyle = (
-    css: Parser,
+    parser: ParseResults,
     props: object = {},
     defaultProps: object = {},
 ): ClassNameSelector => {
     const context = React.useContext(EmailCssContext);
 
     if (props && defaultProps) {
-        css.parse(context.theme, Object.assign({}, defaultProps, props));
+        parser.parse(context.theme, Object.assign({}, defaultProps, props));
     }
 
-    context.stylesheets.add(css.styles);
+    context.stylesheets.add(parser.styles);
 
     let defaultStyles = {};
     let propStyles = {};
@@ -29,5 +28,5 @@ export const useStyle = (
 
     console.log(propStyles, defaultStyles);
 
-    return css.classes;
+    return parser.classNames;
 };

@@ -1,8 +1,9 @@
-import { Container, style, Img, P, Signature, Spacer } from "../lib";
+import { Container, Img, P, Signature, Spacer } from "../lib";
 import { Helmet } from "react-helmet";
 import { useStyle } from "src/lib/core";
+import { styleable } from "src/lib/core/css-js/style";
 
-const styles = style({
+const styles = styleable({
     cornerImage: {
         width: 118,
         height: "auto",

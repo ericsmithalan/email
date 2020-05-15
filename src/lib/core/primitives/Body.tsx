@@ -1,18 +1,18 @@
 import React, { FC } from "react";
-import { style } from "../css-js";
+import { styleable } from "../css-js/style";
 import { PrimitveElement } from "../types/element.types";
 import { useCommonCss, useStyledProps } from "..";
 
 export interface BodyElement extends React.HTMLProps<HTMLBodyElement>, PrimitveElement {}
 
-const styles = style({
+const styles = styleable({
     ascBody: {},
 });
 
 const Body: FC<BodyElement> = (props: BodyElement) => {
     const { defaultText } = useCommonCss();
     Body.defaultProps = {
-        className: styles.classes.ascBody,
+        className: styles.classNames.ascBody,
         commoncss: [String(defaultText)],
         width: "100%",
         style: {

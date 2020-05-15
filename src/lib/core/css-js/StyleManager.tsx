@@ -1,4 +1,4 @@
-import { CssTarget, StyleSheet, CssProperties } from "../types/css.types";
+import { CssTarget, StyleRepository, CssProperties } from "../types/css.types";
 import deepmerge from "deepmerge";
 import { Theme } from "../types/theme.types";
 import { camelize, decamelize } from "../utils/camelize";
@@ -9,7 +9,7 @@ import fs from "fs";
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
 
-    private _stylesheets: StyleSheet | {} = {
+    private _stylesheets: StyleRepository | {} = {
         "@reset": {
             css: "",
         },
@@ -24,14 +24,14 @@ export class StyleManager {
         return this._stylesheets;
     }
 
-    public add = (styleSheet: StyleSheet | string, target: CssTarget = undefined) => {
+    public add = (styleSheet: StyleRepository | string, target: CssTarget = undefined) => {
         if (target) {
             if (target === "@reset") {
                 this._stylesheets["@reset"]["css"] = styleSheet as string;
             } else {
                 this._stylesheets = deepmerge.all([
                     this._stylesheets[target],
-                    styleSheet as StyleSheet,
+                    styleSheet as StyleRepository,
                 ]);
             }
         } else {

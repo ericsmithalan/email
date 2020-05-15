@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { style } from "../css-js";
+import { styleable } from "../css-js/style";
 import { DepricatedImageAttributes, PrimitveElement } from "../types/element.types";
 import { useCommonCss, useStyledProps } from "..";
 
@@ -8,7 +8,7 @@ export interface ImgElement
         DepricatedImageAttributes,
         PrimitveElement {}
 
-const styles = style({
+const styles = styleable({
     ascImg: {},
 });
 
@@ -16,7 +16,7 @@ const Img: FC<ImgElement> = (props: ImgElement) => {
     const { defaultText } = useCommonCss();
 
     Img.defaultProps = {
-        className: styles.classes.ascImg,
+        className: styles.classNames.ascImg,
         commoncss: [String(defaultText)],
         border: 0,
         alt: "",

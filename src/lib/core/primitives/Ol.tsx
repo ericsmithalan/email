@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { style } from "../css-js";
+import { styleable } from "../css-js/style";
 import { PrimitveElement } from "../types/element.types";
 import { useCommonCss, useStyledProps } from "..";
 
 export interface OlElement extends React.HTMLProps<HTMLOListElement>, PrimitveElement {}
 
-const styles = style({
+const styles = styleable({
     ascOl: {},
 });
 
@@ -13,7 +13,7 @@ const Ol: FC<OlElement> = (props: OlElement) => {
     const { defaultText } = useCommonCss();
 
     Ol.defaultProps = {
-        className: styles.classes.ascOl,
+        className: styles.classNames.ascOl,
         commoncss: [String(defaultText)],
     };
 

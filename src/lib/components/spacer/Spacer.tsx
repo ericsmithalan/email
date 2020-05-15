@@ -10,7 +10,7 @@ const Spacer: FC<SpacerElement> = (props: SpacerElement) => {
 };
 
 Spacer.defaultProps = {
-    className: styles.classes.ascSpacer,
+    className: styles.classNames.ascSpacer,
 };
 
 export { Spacer };
