@@ -46,12 +46,3 @@ export interface MergeCss {
 export type ClassNameSelector = {
     [K in string]: string;
 };
-
-export type ParserProps = {
-    value: object | string | number;
-    target: CssTarget;
-    theme: Theme;
-    classKey: string;
-    pseudo: CssPseudo;
-    props: any | undefined;
-};

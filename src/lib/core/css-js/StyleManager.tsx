@@ -4,6 +4,7 @@ import { Theme } from "../types/theme.types";
 import { camelize, decamelize } from "../utils/camelize";
 import { isValidClassName, isStyleableProperty } from "../utils/validation";
 import { render } from "../utils/render";
+import fs from "fs";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
@@ -18,6 +19,10 @@ export class StyleManager {
         "@phone": {},
         "@tablet": {},
     };
+
+    public get stylesheets() {
+        return this._stylesheets;
+    }
 
     public add = (styleSheet: StyleSheet | string, target: CssTarget = undefined) => {
         if (target) {

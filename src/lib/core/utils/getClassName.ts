@@ -1,8 +1,7 @@
-import { ParserProps } from "../types/css.types";
 import { isValidClassName, isPseudo } from "./validation";
 import { camelize } from "./camelize";
 
-export const getClassName = (args: Partial<ParserProps>, key: string): string => {
+export const getClassName = (args: { classKey: string }, key: string): string => {
     const className = isValidClassName(key) ? key : args.classKey;
     let pseudo = "";
 

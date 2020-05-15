@@ -1,9 +1,9 @@
-import { ParserProps } from "../types/css.types";
 import { isFunction } from "util";
+import { Theme } from "../types/theme.types";
 
 export const calculateValue = (
     value: object | string | number,
-    args: ParserProps,
+    args: { props: any; theme: Theme },
 ): object | string | number => {
     let calculated;
 

@@ -5,6 +5,7 @@ import { DocProps } from "../types";
 import { Body } from "src/lib/core/primitives/Body";
 import { commonCss } from "src/lib/core/theme";
 import { EmailCssProvider } from "src/lib/core";
+import fs from "fs";
 
 export default class MyDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {
@@ -29,9 +30,20 @@ export default class MyDocument extends Document<DocProps> {
 
         const initialProps = await Document.getInitialProps(ctx);
 
+        initialProps.styles = {};
+
+        const log = () => {
+            fs.writeFile("log.json", JSON.stringify(sheets.stylesheets), function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        };
+
+        log();
+
         return {
             ...initialProps,
-            sheets: sheets,
             styles: (
                 <>
                     <style
@@ -90,7 +102,6 @@ export default class MyDocument extends Document<DocProps> {
                         content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"
                     />
                     <base target="_blank" />
-                    {this.props.styles}
                 </Head>
                 <Body>
                     <Main />
