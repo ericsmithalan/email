@@ -52,5 +52,7 @@ export default style({
             width: (p: ContainerProps) => p.rowGutter / 4,
         },
     },
-    containerContent: {},
+    containerContent: {
+        padding: 20,
+    },
 });

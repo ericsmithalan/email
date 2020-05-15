@@ -19,30 +19,31 @@ body {
         display: flex;
         flex-direction: row;
         color: #fff;
-        background-color: #333;
         height: 50px;
         align-items: center;
-        margin-left: 50px;
+        background-color: rgba(0, 0, 0, 0.1);
 
         > a {
             color: #fff;
             display: block;
             margin-right: 20px;
         }
+
+        margin-bottom: 50px;
+        padding-left: 50px;
     }
     > .email-content {
         display: flex;
         flex-direction: row;
-        background-color: #555;
         justify-content: center;
         flex: 1 1 auto;
-        padding-top: 20px;
 
         > .email-border {
             background-color: #fff;
             border: 1px solid #555;
             display: flex;
             flex-direction: row;
+            filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 1));
 
             .email-isolate {
                 all: initial;
