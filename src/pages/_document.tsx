@@ -30,8 +30,6 @@ export default class MyDocument extends Document<DocProps> {
 
         const initialProps = await Document.getInitialProps(ctx);
 
-        initialProps.styles = {};
-
         const log = () => {
             fs.writeFile("log.json", JSON.stringify(sheets.stylesheets), function (err) {
                 if (err) {
@@ -44,7 +42,7 @@ export default class MyDocument extends Document<DocProps> {
 
         return {
             ...initialProps,
-            styles: (
+            stylesheets: (
                 <>
                     <style
                         id="css_reset"
@@ -94,15 +92,7 @@ export default class MyDocument extends Document<DocProps> {
     render() {
         return (
             <html {...this.helmetHtmlAttrComponents}>
-                <Head>
-                    {this.helmetHeadComponents}
-                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-                    <meta
-                        name="viewport"
-                        content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"
-                    />
-                    <base target="_blank" />
-                </Head>
+                <Head>{this.helmetHeadComponents}</Head>
                 <Body>
                     <Main />
                     <NextScript />
