@@ -17,7 +17,7 @@ const Span: FC<SpanElement> = (props: SpanElement) => {
         commoncss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, Span.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, Span.defaultProps);
     return <span {...(rest as SpanElement)} />;
 };
 

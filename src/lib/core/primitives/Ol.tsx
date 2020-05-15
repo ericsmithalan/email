@@ -17,7 +17,7 @@ const Ol: FC<OlElement> = (props: OlElement) => {
         commoncss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, Ol.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, Ol.defaultProps);
     // @ts-ignore
     return <ol {...(rest as OlElement)} />;
 };

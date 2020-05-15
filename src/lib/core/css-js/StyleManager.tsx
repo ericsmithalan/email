@@ -53,8 +53,8 @@ export class StyleManager {
                 );
             }
 
-            if (props.mergeCss) {
-                props.mergeCss.forEach((clsName: string) => {
+            if (props.commoncss) {
+                props.commoncss.forEach((clsName: string) => {
                     if (clsName) {
                         const styles = this._get("@common", camelize(clsName));
 

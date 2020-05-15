@@ -24,7 +24,7 @@ const Table: FC<TableElement> = (props: TableElement) => {
         commoncss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, Table.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, Table.defaultProps);
     return (
         <table role="presentation" {...(rest as TableElement)}>
             <tbody>{props.children}</tbody>

@@ -22,7 +22,7 @@ const Td: FC<TdElement> = (props: TdElement) => {
         valign: "top",
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, Td.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, Td.defaultProps);
 
     return <td {...(rest as TdElement)} />;
 };

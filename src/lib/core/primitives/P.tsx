@@ -17,7 +17,7 @@ const P: FC<PElement> = (props: PElement) => {
         commoncss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, P.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, P.defaultProps);
 
     return <p {...(rest as PElement)} />;
 };

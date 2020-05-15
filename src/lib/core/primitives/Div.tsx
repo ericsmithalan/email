@@ -17,7 +17,7 @@ const Div: FC<DivElement> = (props: DivElement) => {
         commoncss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, Div.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, Div.defaultProps);
 
     return <div {...(rest as DivElement)} />;
 };

@@ -17,7 +17,7 @@ const Tr: FC<TrElement> = (props: TrElement) => {
         className: styles.classes.ascTr,
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, Tr.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, Tr.defaultProps);
 
     return <tr {...(rest as TrElement)} />;
 };

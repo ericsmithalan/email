@@ -21,7 +21,7 @@ const Body: FC<BodyElement> = (props: BodyElement) => {
         },
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, Body.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, Body.defaultProps);
 
     return <body {...(rest as BodyElement)} />;
 };

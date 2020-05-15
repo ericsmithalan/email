@@ -27,7 +27,7 @@ const Img: FC<ImgElement> = (props: ImgElement) => {
         },
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, Img.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, Img.defaultProps);
     // @ts-ignore
     return <img {...(rest as ImgElement)} />;
 };

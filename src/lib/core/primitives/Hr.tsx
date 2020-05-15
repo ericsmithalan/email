@@ -14,7 +14,7 @@ const Hr: FC<HrElement> = (props: HrElement) => {
         className: styles.classes.ascHr,
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, Hr.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, Hr.defaultProps);
 
     return <hr {...(rest as HrElement)} />;
 };

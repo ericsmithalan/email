@@ -21,7 +21,7 @@ const A: FC<AElement> = (props: AElement) => {
         commoncss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, A.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, A.defaultProps);
 
     return <a {...(rest as AElement)} />;
 };

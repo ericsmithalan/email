@@ -17,7 +17,7 @@ const Li: FC<LilElement> = (props: LilElement) => {
         commoncss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useStyledProps(styles, props, Li.defaultProps);
+    const { commoncss, ...rest } = useStyledProps(styles, props, Li.defaultProps);
     return <li {...(rest as LilElement)} />;
 };
 
