@@ -19,12 +19,11 @@ const Table: FC<TableElement> = (props: TableElement) => {
         className: styles.classes.ascTable,
         cellPadding: 0,
         cellSpacing: 0,
-        width: "100%",
         border: 0,
         commoncss: [String(defaultText)],
     };
 
-    const { commoncss, ...rest } = useStyledProps(styles, props, Table.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, Table.defaultProps);
     return (
         <table role="presentation" {...(rest as TableElement)}>
             <tbody>{props.children}</tbody>

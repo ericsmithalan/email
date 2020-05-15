@@ -20,7 +20,6 @@ export default function Home() {
 
     return (
         <>
-            <Helmet title="My Template" />
             <Container
                 columnGutter={80}
                 rowGutter={100}

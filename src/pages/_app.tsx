@@ -1,32 +1,16 @@
 import { Helmet } from "react-helmet";
+import { withBoundary } from "../lib/core";
+import { FC } from "react";
+import { AppPropsType, NextComponentType, NextPageContext } from "next/dist/next-server/lib/utils";
 
-function EmailApp({ Component, pageProps }) {
+const EmailApp = ({ Component, pageProps }: AppPropsType) => {
     return (
         <>
-            <Helmet
-                htmlAttributes={{
-                    lang: "en",
-                    xmlns: "http://www.w3.org/1999/xhtml",
-                    "xmlns:v": "urn:schemas-microsoft-com:vml",
-                    "xmlns:o": "urn:schemas-microsoft-com:office:office",
-                }}
-                titleTemplate="Ascendum.com - %s"
-                defaultTitle="Email"
-                meta={[
-                    {
-                        name: "viewport",
-                        content: "width=device-width, initial-scale=1.0, maximum-scale=1.0,",
-                    },
-                    {
-                        httpEquiv: "Content-Type",
-                        content: "text/html, charset=UTF-8",
-                    },
-                ]}
-                base={<base target="_blank" />}
-            />
             <Component {...pageProps} />
         </>
     );
-}
+};
+
+const ErrorFallBack = withBoundary(EmailApp);
 
 export default EmailApp;

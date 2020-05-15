@@ -27,5 +27,7 @@ export const useStyle = (
         propStyles = context.stylesheets.addPropStyles(props);
     }
 
+    console.log(propStyles, defaultStyles);
+
     return css.classes;
 };
