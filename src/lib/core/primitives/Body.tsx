@@ -13,7 +13,7 @@ const Body: FC<BodyElement> = (props: BodyElement) => {
     const { defaultText } = useCommonCss();
     Body.defaultProps = {
         className: styles.classes.ascBody,
-        mergeCss: [String(defaultText)],
+        commoncss: [String(defaultText)],
         width: "100%",
         style: {
             margin: 0,

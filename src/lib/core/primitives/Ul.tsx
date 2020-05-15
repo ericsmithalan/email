@@ -14,7 +14,7 @@ const Ul: FC<UlElement> = (props: UlElement) => {
 
     Ul.defaultProps = {
         className: styles.classes.ascUl,
-        mergeCss: [String(defaultText)],
+        commoncss: [String(defaultText)],
     };
 
     const { mergeCss, ...rest } = useStyledProps(styles, props, Ul.defaultProps);

@@ -21,7 +21,7 @@ const Table: FC<TableElement> = (props: TableElement) => {
         cellSpacing: 0,
         width: "100%",
         border: 0,
-        mergeCss: [String(defaultText)],
+        commoncss: [String(defaultText)],
     };
 
     const { mergeCss, ...rest } = useStyledProps(styles, props, Table.defaultProps);

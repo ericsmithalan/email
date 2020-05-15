@@ -27,7 +27,7 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
     const { rowGutter, columnGutter, gutterLeftContent, gutterRightContent, ...rest } = props;
 
     return (
-        <Table {...rest} className={container}>
+        <Table align="center" {...rest} className={container}>
             {getRowGutter(props, containerGutterTop)}
             <Tr>
                 {getColumnGutter(props, containerGutterLeft, props.gutterLeftContent)}

@@ -18,7 +18,7 @@ const Td: FC<TdElement> = (props: TdElement) => {
     Td.defaultProps = {
         className: styles.classes.ascTd,
         align: "left",
-        mergeCss: [String(defaultText)],
+        commoncss: [String(defaultText)],
         valign: "top",
     };
 

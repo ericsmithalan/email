@@ -14,7 +14,7 @@ const Span: FC<SpanElement> = (props: SpanElement) => {
 
     Span.defaultProps = {
         className: styles.classes.ascSpan,
-        mergeCss: [String(defaultText)],
+        commoncss: [String(defaultText)],
     };
 
     const { mergeCss, ...rest } = useStyledProps(styles, props, Span.defaultProps);

@@ -14,7 +14,7 @@ const P: FC<PElement> = (props: PElement) => {
 
     P.defaultProps = {
         className: styles.classes.ascP,
-        mergeCss: [String(defaultText)],
+        commoncss: [String(defaultText)],
     };
 
     const { mergeCss, ...rest } = useStyledProps(styles, props, P.defaultProps);

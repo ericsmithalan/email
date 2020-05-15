@@ -14,7 +14,7 @@ const Ol: FC<OlElement> = (props: OlElement) => {
 
     Ol.defaultProps = {
         className: styles.classes.ascOl,
-        mergeCss: [String(defaultText)],
+        commoncss: [String(defaultText)],
     };
 
     const { mergeCss, ...rest } = useStyledProps(styles, props, Ol.defaultProps);

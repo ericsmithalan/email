@@ -18,7 +18,7 @@ const A: FC<AElement> = (props: AElement) => {
     A.defaultProps = {
         className: styles.classes.ascA,
         target: "_blank",
-        mergeCss: [String(defaultText)],
+        commoncss: [String(defaultText)],
     };
 
     const { mergeCss, ...rest } = useStyledProps(styles, props, A.defaultProps);

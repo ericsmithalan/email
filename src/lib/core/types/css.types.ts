@@ -4,7 +4,7 @@ import { Theme } from "./theme.types";
 
 export type CssValue = string | number;
 
-type Fn = (p: any) => CssValue;
+type Fn = (t: any, p: any) => CssValue;
 
 export interface CssProperties
     extends CSS.Properties<CssValue>,
@@ -38,10 +38,6 @@ type PropertyType = {
 
 export type CssTarget = "@tablet" | "@phone" | "@common" | "@base" | "@reset" | "@default";
 export type CssPseudo = CSS.SimplePseudos | "none";
-
-export interface MergeCss {
-    mergeCss?: string[];
-}
 
 export type ClassNameSelector = {
     [K in string]: string;

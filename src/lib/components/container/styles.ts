@@ -1,8 +1,10 @@
 import { ContainerProps } from "./Container";
 import { style } from "../../core/css-js";
+import { Theme } from "src/lib/core/types/theme.types";
 
 export default style({
     container: {
+        width: 800,
         "@tablet": {
             width: "100%",
             clear: "both",
@@ -13,7 +15,7 @@ export default style({
         },
     },
     containerGutterLeft: {
-        width: (p: ContainerProps) => p.columnGutter,
+        width: (t: Theme, p: ContainerProps) => p.columnGutter,
         verticalAlign: "top",
         "@tablet": {
             width: (p: ContainerProps) => p.columnGutter / 2,

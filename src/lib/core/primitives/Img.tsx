@@ -17,7 +17,7 @@ const Img: FC<ImgElement> = (props: ImgElement) => {
 
     Img.defaultProps = {
         className: styles.classes.ascImg,
-        mergeCss: [String(defaultText)],
+        commoncss: [String(defaultText)],
         border: 0,
         alt: "",
         style: {
