@@ -2,11 +2,11 @@ import Document, { DocumentContext, Head, Main, NextScript } from "next/document
 import { StyleManager, defaultTheme, cssReset } from "../lib";
 import { Helmet } from "react-helmet";
 import { DocProps } from "../types";
-import { Body } from "src/lib/core/primitives/Body";
-import { commonCss } from "src/lib/core/theme";
-import { EmailCssProvider } from "src/lib/core";
+import { Body } from "src/lib/primitives/Body";
+import { commonCss } from "src/lib/theme";
+import { EmailCssProvider } from "src/lib";
 import fs from "fs";
-import { parser } from "src/lib/core/css-js/parser";
+import { parser } from "src/lib/css-js/parser";
 
 export default class MyDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {

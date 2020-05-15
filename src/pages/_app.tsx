@@ -3,7 +3,7 @@ import React, { useEffect, useState, ReactElement, ReactFragment } from "react";
 import Link from "next/link";
 import { AppPropsType } from "next/dist/next-server/lib/utils";
 import "../styles/index.scss";
-import { ErrorBoundary } from "src/lib/core/ErrorBoundary";
+import { ErrorBoundary } from "src/lib/ErrorBoundary";
 
 export type AppProps = {
     cssStyles: ReactElement[] | ReactFragment;
