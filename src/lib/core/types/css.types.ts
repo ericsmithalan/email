@@ -4,7 +4,7 @@ import { Theme } from "./theme.types";
 
 export type CssValue = string | number;
 
-type Fn2 = (p: any) => CssValue;
+type Fn = (p: any) => CssValue;
 
 export interface CssProperties
     extends CSS.Properties<CssValue>,
@@ -33,7 +33,7 @@ type PsuedoType = {
 };
 
 type PropertyType = {
-    [K in keyof CssProperties]?: CssValue | Fn2;
+    [K in keyof CssProperties]?: CssValue | Fn;
 };
 
 export type CssTarget = "@tablet" | "@phone" | "@common" | "@base" | "@reset" | "@default";
