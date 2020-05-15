@@ -23,7 +23,7 @@ export interface Prop {
 export interface ParseResults {
     styles: StyleRepository;
     classNames: ClassNameSelector;
-    parse: <T extends Styleable>(theme: Theme, props?: T) => StyleRepository;
+    parse: <T extends Styleable>(theme: Theme, props?: T, target?: CssTarget) => StyleRepository;
 }
 
 export type Fn<R extends CssValue = CssValue> = (p: Prop) => R;

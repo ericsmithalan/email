@@ -13,7 +13,7 @@ export default class MyDocument extends Document<DocProps> {
         const theme = defaultTheme;
         const sheets = new StyleManager(theme);
 
-        const common = parser(commonCss, "@common").parse(theme);
+        const common = parser(commonCss).parse(theme, "@common");
 
         sheets.add(common, "@common");
         sheets.add(cssReset, "@reset");

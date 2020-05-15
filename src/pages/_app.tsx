@@ -3,6 +3,7 @@ import React, { useEffect, useState, ReactElement, ReactFragment } from "react";
 import Link from "next/link";
 import { AppPropsType } from "next/dist/next-server/lib/utils";
 import "../styles/index.scss";
+import { ErrorBoundary } from "src/lib/core/ErrorBoundary";
 
 export type AppProps = {
     cssStyles: ReactElement[] | ReactFragment;
@@ -24,8 +25,6 @@ class EmailApp extends App<AppProps> {
         content.appendChild(css_default);
         content.appendChild(css_tablet);
         content.appendChild(css_phone);
-
-        console.log("MOUNTeD", css_reset);
     }
     render() {
         const { Component, pageProps } = this.props;
@@ -45,7 +44,9 @@ class EmailApp extends App<AppProps> {
                             <div id="contentRoot">
                                 {`<!--- START ----!>
                                 `}
-                                <Component {...pageProps} />
+                                <ErrorBoundary>
+                                    <Component {...pageProps} />
+                                </ErrorBoundary>
                                 {`
                                   <!--- END ----!>`}
                             </div>

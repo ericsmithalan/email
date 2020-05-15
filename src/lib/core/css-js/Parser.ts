@@ -14,7 +14,7 @@ import { Theme } from "../types/theme.types";
 import { decamelize, camelize } from "../utils/camelize";
 import { isObject, isTarget, isValueValid, isValidClassName, isPseudo } from "../utils/validation";
 
-export function parser(styles: Styles, target?: CssTarget): ParseResults {
+export function parser(styles: Styles): ParseResults {
     const classNames = {};
     const repository = {
         "@reset": {},
@@ -78,10 +78,15 @@ export function parser(styles: Styles, target?: CssTarget): ParseResults {
     return {
         styles: repository,
         classNames: classNames,
-        parse: function <T extends Styleable>(theme: Theme, props: T): StyleRepository {
+        parse: function <T extends Styleable>(
+            theme: Theme,
+            props: T,
+            target?: CssTarget,
+        ): StyleRepository {
             const newArgs = updateArgs(args, {
                 theme: theme,
                 props: props,
+                target: target || "@default",
             });
 
             recursiveParse(newArgs);
