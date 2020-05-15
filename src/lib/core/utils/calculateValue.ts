@@ -1,15 +1,15 @@
-import { DirtyValue, CssValue, ParserProps } from "../types/css.types";
+import { ParserProps } from "../types/css.types";
 import _ from "underscore";
 
 export const calculateValue = (
-    value: DirtyValue & CssValue,
+    value: object | string | number,
     args: ParserProps,
-): DirtyValue | CssValue => {
+): object | string | number => {
     let calculated;
 
     if (_.isFunction(value)) {
         const fn = value as Function;
-        calculated = fn({ theme: args.theme, props: args.props });
+        calculated = fn(args.theme, args.props);
     } else {
         calculated = value;
     }

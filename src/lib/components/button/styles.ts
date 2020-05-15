@@ -1,5 +1,4 @@
 import { Style } from "../../core/css-js";
-import { Css } from "../../core/types/css.types";
 
 export default Style({
     buttonColumn: {

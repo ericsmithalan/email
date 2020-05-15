@@ -1,13 +1,13 @@
 import React, { Props } from "react";
 import { EmailCssContext } from "../EmailCssProvider";
 import { Parser } from "src/lib/core/css-js";
-import { CssClassNames } from "../types/css.types";
+import { ClassNameSelector } from "../types/css.types";
 
 export const useStyle = (
     css: Parser,
     props: object = {},
     defaultProps: object = {},
-): CssClassNames => {
+): ClassNameSelector => {
     const context = React.useContext(EmailCssContext);
 
     if (props && defaultProps) {

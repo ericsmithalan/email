@@ -1,52 +1,57 @@
 import CSS from "csstype";
-import { PseudoKind } from "../enums/PseudoKind";
-import { CssValueKind } from "../enums/ValidValueKind";
-import { TargetKind } from "../enums/TargetKind";
+import * as MSO from "./mso.types";
+import { Theme } from "./theme.types";
 
-import { CSSProperties } from "react";
-import { Theme } from "../types/theme.types";
+export type CssValue = string | number;
+
+type Fn2 = (p: any) => CssValue;
+
+export interface CssProperties
+    extends CSS.Properties<CssValue>,
+        CSS.VendorProperties<CssValue>,
+        MSO.FontProperties<CssValue>,
+        MSO.Properties<CssValue> {}
+
+export type Styles = {
+    [K in string]?: CssProperties | TargetType | PsuedoType | PropertyType;
+};
+
+export type StyleSheet = {
+    [K in CssTarget]?: ClassType;
+};
+
+type ClassType = {
+    [K in string]?: CssProperties;
+};
+
+type TargetType = {
+    [K in CssTarget]?: PropertyType;
+};
+
+type PsuedoType = {
+    [K in CssPseudo]?: PropertyType;
+};
+
+type PropertyType = {
+    [K in keyof CssProperties]?: CssValue | Fn2;
+};
+
+export type CssTarget = "@tablet" | "@phone" | "@common" | "@base" | "@reset" | "@default";
+export type CssPseudo = CSS.SimplePseudos | "none";
 
 export interface MergeCss {
     mergeCss?: string[];
 }
 
-export type CssValue = keyof typeof CssValueKind;
-export type CssPseudo = keyof typeof PseudoKind;
-export type CssTarget = keyof typeof TargetKind;
-
-export type CssProperties = CSSProperties;
-
-export type Css<T extends any = any> = { theme: Theme; props: T };
-export type Fn<R = CssValue> = (args: Css<any>) => R;
-
-export type DirtyValue = CssValue | Fn | string[] | number[] | Function | string;
-export type DirtyProperty = CSS.Properties | CssPseudo | CssTarget;
-
-export type DirtyStyles = {
-    [K in string & keyof DirtyProperty]?: DirtyValue;
-};
-
-export type CssClassNames = {
-    [key: string]: string;
+export type ClassNameSelector = {
+    [K in string]: string;
 };
 
 export type ParserProps = {
-    value: DirtyStyles;
+    value: object | string | number;
     target: CssTarget;
     theme: Theme;
     classKey: string;
     pseudo: CssPseudo;
     props: any | undefined;
-};
-
-export type StyleSheet = {
-    [K in CssTarget]?: StyleSheetClasses;
-};
-
-export type StyleSheetClasses = {
-    [K in string]: StyleSheetProperty | string;
-};
-
-export type StyleSheetProperty = {
-    [K in string]: CssValue;
 };

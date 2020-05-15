@@ -1,11 +1,10 @@
-import { CssStyle } from "../types/theme.types";
-import { Css } from "../types/css.types";
+import { CssStyle, Theme } from "../types/theme.types";
 
 const commonCss: CssStyle = {
     defaultText: {
-        fontFamily: (c: Css) => c.theme.fonts.fontFamily,
-        fontSize: (c: Css) => c.theme.fonts.fontDefaultSize,
-        color: (c: Css) => c.theme.colors.darkFontColor,
+        fontFamily: (t: Theme) => t.fonts.fontFamily,
+        fontSize: (t: Theme) => t.fonts.fontDefaultSize,
+        color: (t: Theme) => t.colors.darkFontColor,
     },
     fullWidth: {
         width: "100%",

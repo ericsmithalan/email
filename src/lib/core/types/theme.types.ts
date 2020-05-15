@@ -1,11 +1,11 @@
-import { DirtyStyles } from "./css.types";
+import { Styles } from "./css.types";
 
 export interface CommonCss {
-    defaultText: DirtyStyles;
-    fullWidth: DirtyStyles;
+    defaultText: Styles;
+    fullWidth: Styles;
 }
 
-export type CssStyle = DirtyStyles;
+export type CssStyle = Styles;
 
 export type Spaceing = {
     xsm: number;

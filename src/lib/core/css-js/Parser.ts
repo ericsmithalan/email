@@ -1,12 +1,11 @@
 import {
-    DirtyStyles,
-    CssClassNames,
+    Styles,
     ParserProps,
     CssValue,
     CssTarget,
     CssPseudo,
     StyleSheet,
-    StyleSheetProperty,
+    ClassNameSelector,
 } from "../types/css.types";
 import _ from "underscore";
 import { Theme } from "../types/theme.types";
@@ -25,17 +24,14 @@ export class Parser {
         "@phone": {},
         "@tablet": {},
     };
-    private _classes: CssClassNames = {};
+    private _classes: ClassNameSelector = {};
 
-    constructor(
-        private readonly _styles: DirtyStyles,
-        private readonly _target: CssTarget = undefined,
-    ) {
+    constructor(private readonly _styles: Styles, private readonly _target: CssTarget = undefined) {
         // render to get classNames
         this.setClasses(_styles);
     }
 
-    public get classes(): CssClassNames {
+    public get classes(): ClassNameSelector {
         return this._classes;
     }
 
@@ -63,9 +59,9 @@ export class Parser {
     };
 
     private _parse = (args: ParserProps) => {
-        const css: StyleSheetProperty = {};
+        const css: object = {};
 
-        for (const key in args.value) {
+        for (const key in args.value as object) {
             if (args.value.hasOwnProperty(key)) {
                 let value = args.value[key];
                 let calculated = calculateValue(value, args);

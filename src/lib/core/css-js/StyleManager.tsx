@@ -1,4 +1,4 @@
-import { CssTarget, StyleSheet, CssClassNames, CssProperties } from "../types/css.types";
+import { CssTarget, StyleSheet, CssProperties } from "../types/css.types";
 import deepmerge from "deepmerge";
 import _ from "underscore";
 import { Theme } from "../types/theme.types";
@@ -139,23 +139,23 @@ export class StyleManager {
         } else {
             const css: string[] = [];
             const target = this.stylesheets[trg];
-            let important = "";
+            let important = false;
 
             if (trg === "@phone") {
                 css.push(
                     `@media only screen and (max-width: ${this._theme.breakpoints.phone}px) {`,
                 );
-                important = "!important";
+                important = true;
             }
 
             if (trg === "@tablet") {
                 css.push(
                     `@media only screen and (max-width: ${this._theme.breakpoints.tablet}px) {`,
                 );
-                important = "!important";
+                important = true;
             }
 
-            const rendered = render(target, true);
+            const rendered = render(target, important);
 
             css.push(rendered);
 
