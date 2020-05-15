@@ -1,5 +1,5 @@
 import { ParserProps } from "../types/css.types";
-import _ from "underscore";
+import { isFunction } from "util";
 
 export const calculateValue = (
     value: object | string | number,
@@ -7,7 +7,7 @@ export const calculateValue = (
 ): object | string | number => {
     let calculated;
 
-    if (_.isFunction(value)) {
+    if (isFunction(value)) {
         const fn = value as Function;
         calculated = fn(args.theme, args.props);
     } else {

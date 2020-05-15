@@ -5,6 +5,8 @@ import { StyleablePropertiesKind } from "../enums/StyleablePropertiesKind";
 import { TargetKind } from "../enums/TargetKind";
 import { TagNameKind } from "../enums/TagNameKind";
 import { AttributesKind } from "../enums/AttributesKind";
+import _ from "underscore";
+
 export const isValueValid = (value: any): boolean => {
     if (value) {
         if (typeof value === "string" || typeof value === "number") {
@@ -13,6 +15,18 @@ export const isValueValid = (value: any): boolean => {
         return false;
     }
     return false;
+};
+
+export const isObject = (value: any): boolean => {
+    return _.isObject(value);
+};
+
+export const isArray = (value: any): boolean => {
+    return _.isArray(value);
+};
+
+export const isFunction = (value: any): boolean => {
+    return _.isFunction(value);
 };
 
 export const isPseudo = (value: any): boolean => {

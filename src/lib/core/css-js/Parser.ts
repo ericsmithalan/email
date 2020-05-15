@@ -9,7 +9,7 @@ import {
 } from "../types/css.types";
 import _ from "underscore";
 import { Theme } from "../types/theme.types";
-import { isValidClassName, isTarget, isValueValid, isPseudo } from "../utils/validation";
+import { isValidClassName, isTarget, isValueValid, isObject } from "../utils/validation";
 import { decamelize, camelize } from "../utils/camelize";
 import { calculateValue } from "../utils/calculateValue";
 import { updateProps } from "../utils/updateProps";
@@ -28,14 +28,14 @@ export class Parser {
 
     constructor(private readonly _styles: Styles, private readonly _target: CssTarget = undefined) {
         // render to get classNames
-        this.setClasses(_styles);
+        this._setClasses(_styles);
     }
 
     public get classes(): ClassNameSelector {
         return this._classes;
     }
 
-    private setClasses(props: any) {
+    private _setClasses(props: any) {
         for (const key in props) {
             if (props.hasOwnProperty(key)) {
                 if (isValidClassName(key)) {
@@ -66,7 +66,7 @@ export class Parser {
                 let value = args.value[key];
                 let calculated = calculateValue(value, args);
 
-                if (_.isObject(calculated)) {
+                if (isObject(calculated)) {
                     const props = updateProps(args, {
                         value: calculated,
                         classKey: getClassName(args, key),
