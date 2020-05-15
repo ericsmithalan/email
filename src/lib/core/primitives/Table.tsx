@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Style } from "../css-js";
+import { style } from "../css-js";
 import { DepricatedTableAttributes, PrimitveElement } from "../types/element.types";
 import { useCommonCss, useMergeStyles } from "..";
 
@@ -8,7 +8,7 @@ export interface TableElement
         DepricatedTableAttributes,
         PrimitveElement {}
 
-const styles = Style({
+const styles = style({
     ascTable: {},
 });
 

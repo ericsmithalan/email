@@ -1,7 +1,7 @@
 import { ContainerProps } from "./Container";
-import { Style } from "../../core/css-js";
+import { style } from "../../core/css-js";
 
-export default Style({
+export default style({
     container: {
         "@tablet": {
             width: "100%",

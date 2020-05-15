@@ -1,6 +1,6 @@
-import { Style } from "../../core/css-js";
+import { style } from "../../core/css-js";
 
-export default Style({
+export default style({
     signature: {
         backgroundColor: "red",
         ":hover": {

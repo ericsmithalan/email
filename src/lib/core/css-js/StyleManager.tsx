@@ -1,9 +1,8 @@
 import { CssTarget, StyleSheet, CssProperties } from "../types/css.types";
 import deepmerge from "deepmerge";
-import _ from "underscore";
 import { Theme } from "../types/theme.types";
 import { camelize, decamelize } from "../utils/camelize";
-import { isValidClassName, isStyleableProperty, isTagName } from "../utils/validation";
+import { isValidClassName, isStyleableProperty } from "../utils/validation";
 import { render } from "../utils/render";
 
 export class StyleManager {
@@ -20,22 +19,18 @@ export class StyleManager {
         "@tablet": {},
     };
 
-    public get stylesheets(): StyleSheet | {} {
-        return this._stylesheets;
-    }
-
     public add = (styleSheet: StyleSheet | string, target: CssTarget = undefined) => {
         if (target) {
             if (target === "@reset") {
-                this.stylesheets["@reset"]["css"] = styleSheet as string;
+                this._stylesheets["@reset"]["css"] = styleSheet as string;
             } else {
                 this._stylesheets = deepmerge.all([
-                    this.stylesheets[target],
+                    this._stylesheets[target],
                     styleSheet as StyleSheet,
                 ]);
             }
         } else {
-            this._stylesheets = deepmerge.all([this.stylesheets, styleSheet]);
+            this._stylesheets = deepmerge.all([this._stylesheets, styleSheet]);
         }
     };
 
@@ -121,25 +116,26 @@ export class StyleManager {
     };
 
     private _get = (target: CssTarget, className: string): CssProperties => {
-        return this.stylesheets[target][className];
+        return this._stylesheets[target][className];
     };
 
     private _set = (target: CssTarget, className: string, styles: object): void => {
-        const repClass = this.stylesheets[target][className];
+        const repClass = this._stylesheets[target][className];
         const merged = Object.assign({}, repClass, styles);
 
-        this.stylesheets[target][className] = merged;
+        this._stylesheets[target][className] = merged;
     };
 
-    css = (trg: CssTarget) => {
+    public css = (trg: CssTarget) => {
         if (trg === "@reset") {
             // reset is already a string
-            const target = this.stylesheets["@reset"]["css"];
+            const target = this._stylesheets["@reset"]["css"];
             return target || "";
         } else {
-            const css: string[] = [];
-            const target = this.stylesheets[trg];
             let important = false;
+
+            const css: string[] = [];
+            const target = this._stylesheets[trg];
 
             if (trg === "@phone") {
                 css.push(
