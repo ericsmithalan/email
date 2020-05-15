@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { styleable } from "../css-js/style";
+import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types/element.types";
 import { useCommonCss, useStyledProps } from "..";
 

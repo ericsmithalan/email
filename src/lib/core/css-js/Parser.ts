@@ -1,30 +1,18 @@
+import { isFunction } from "util";
 import {
-    Styles,
-    CssValue,
-    CssTarget,
     CssPseudo,
-    StyleRepository,
-    ClassNameSelector,
+    CssTarget,
+    CssValue,
+    Fn,
     ParseResults,
     Styleable,
+    StyleRepository,
+    Styles,
+    ParseArgs,
 } from "../types/css.types";
-import _ from "underscore";
 import { Theme } from "../types/theme.types";
-import { isValidClassName, isTarget, isValueValid, isObject } from "../utils/validation";
 import { decamelize, camelize } from "../utils/camelize";
-import { calculateValue } from "../utils/calculateValue";
-import { updateProps as updateArgs } from "../utils/updateProps";
-import { formatClassName } from "../utils/formatClassName";
-import { defaultTheme } from "../theme";
-
-export type ParseArgs = {
-    value: object | string | number;
-    target: CssTarget;
-    theme: Theme;
-    classKey: string;
-    pseudo: CssPseudo;
-    props: any | undefined;
-};
+import { isObject, isTarget, isValueValid, isValidClassName, isPseudo } from "../utils/validation";
 
 export function parser(styles: Styles, target?: CssTarget): ParseResults {
     const classNames = {};
@@ -54,6 +42,7 @@ export function parser(styles: Styles, target?: CssTarget): ParseResults {
         for (const key in parseArgs.value as object) {
             if (parseArgs.value.hasOwnProperty(key)) {
                 let value = parseArgs.value[key];
+
                 let calculated = calculateValue(value, {
                     props: parseArgs.props,
                     theme: parseArgs.theme,
@@ -65,7 +54,7 @@ export function parser(styles: Styles, target?: CssTarget): ParseResults {
                         classKey: formatClassName({ classKey: parseArgs.classKey }, key),
                         target: isTarget(key) ? (key as CssTarget) : parseArgs.target,
                         pseudo: isTarget(key) ? (key as CssPseudo) : parseArgs.pseudo,
-                    }) as ParseArgs;
+                    });
 
                     const target = repository[args.target];
                     target[args.classKey] = recursiveParse(args);
@@ -101,3 +90,32 @@ export function parser(styles: Styles, target?: CssTarget): ParseResults {
         },
     };
 }
+
+const calculateValue = (
+    value: object | string | number | Fn,
+    args: { props: Styleable; theme: Theme },
+): object | string | number => {
+    if (!isObject(value)) {
+        if (isFunction(value)) {
+            const fn = value as Fn;
+            return fn({ t: args.theme, p: args.props });
+        }
+    }
+
+    return value;
+};
+
+const formatClassName = (args: { classKey: string }, key: string): string => {
+    const className = isValidClassName(key) ? key : args.classKey;
+    let pseudo = "";
+
+    if (isPseudo(key)) {
+        pseudo = key;
+    }
+
+    return camelize(`${className}${pseudo}`).trim();
+};
+
+const updateArgs = (oldArgs: object, newArgs: object): ParseArgs => {
+    return Object.assign({}, oldArgs, newArgs) as ParseArgs;
+};

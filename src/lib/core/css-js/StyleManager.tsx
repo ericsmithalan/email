@@ -1,10 +1,8 @@
-import { CssTarget, StyleRepository, CssProperties } from "../types/css.types";
 import deepmerge from "deepmerge";
+import { CssProperties, CssTarget, StyleRepository } from "../types/css.types";
 import { Theme } from "../types/theme.types";
 import { camelize, decamelize } from "../utils/camelize";
-import { isValidClassName, isStyleableProperty } from "../utils/validation";
-import { render } from "../utils/render";
-import fs from "fs";
+import { isStyleableProperty, isTagName, isValidClassName } from "../utils/validation";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
@@ -168,3 +166,50 @@ export class StyleManager {
         }
     };
 }
+
+const render = (obj: object, isImportant: boolean): string => {
+    const css: string[] = [];
+    for (const clsKey in obj) {
+        if (obj.hasOwnProperty(clsKey)) {
+            const clsValue = obj[clsKey];
+
+            let prefix = ".";
+            if (isTagName(clsKey)) {
+                prefix = "";
+            }
+
+            css.push(`${prefix}${decamelize(clsKey)}{`);
+            for (const propertyKey in clsValue) {
+                if (clsValue.hasOwnProperty(propertyKey)) {
+                    const propValue = clsValue[propertyKey];
+                    css.push(
+                        `${decamelize(propertyKey)}:${ensureUnit(propValue)}${
+                            isImportant ? "!important" : ""
+                        };`,
+                    );
+                }
+            }
+            css.push(`}`);
+        }
+    }
+
+    return css.join("").trim();
+};
+
+const ensureUnit = (value: string) => {
+    let result = value.toString();
+    if (result) {
+        if (result === "0") {
+            return result;
+        }
+
+        if (parseInt(value)) {
+            const regex = /^[+-]?[0-9]+.?([0-9]+)?(px|em|ex|%|in|cm|mm|pt|pc)$/;
+            if (!result.match(regex)) {
+                return `${result}px`;
+            }
+        }
+    }
+
+    return result;
+};

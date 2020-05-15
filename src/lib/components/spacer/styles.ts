@@ -1,4 +1,4 @@
-import { styleable } from "src/lib/core/css-js/style";
+import { styleable } from "src/lib/core/css-js/styleable";
 
 export default styleable({
     ascSpacer: {

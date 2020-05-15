@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import { DepricatedLinkAttributes, PrimitveElement } from "../types/element.types";
 import { useCommonCss, useStyledProps } from "..";
-import { styleable } from "../css-js/style";
+import { styleable } from "../css-js/styleable";
 
 export interface AElement
     extends React.HTMLProps<HTMLAnchorElement>,

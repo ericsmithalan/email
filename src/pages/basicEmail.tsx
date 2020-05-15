@@ -1,6 +1,6 @@
 import { useStyle } from "src/lib/core";
 import { Container } from "next/app";
-import { styleable } from "src/lib/core/css-js/style";
+import { styleable } from "src/lib/core/css-js/styleable";
 
 const styles = styleable({
     cornerImage: {

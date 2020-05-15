@@ -1,6 +1,6 @@
 import { ContainerProps } from "./Container";
 import { Prop } from "src/lib/core/types/css.types";
-import { styleable } from "src/lib/core/css-js/style";
+import { styleable } from "src/lib/core/css-js/styleable";
 
 export default styleable({
     container: {

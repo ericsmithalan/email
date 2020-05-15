@@ -2,6 +2,15 @@ import CSS from "csstype";
 import * as MSO from "./mso.types";
 import { Theme } from "./theme.types";
 
+export type ParseArgs = {
+    value: object | string | number;
+    target: CssTarget;
+    theme: Theme;
+    classKey: string;
+    pseudo: CssPseudo;
+    props: any | undefined;
+};
+
 export type CssValue = string | number | Symbol;
 
 export interface Styleable {}

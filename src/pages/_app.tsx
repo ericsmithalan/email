@@ -43,7 +43,11 @@ class EmailApp extends App<AppProps> {
                     <div className="email-border">
                         <div className="email-isolate">
                             <div id="contentRoot">
+                                {`<!--- START ----!>
+                                `}
                                 <Component {...pageProps} />
+                                {`
+                                  <!--- END ----!>`}
                             </div>
                         </div>
                     </div>
