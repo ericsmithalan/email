@@ -1,13 +1,13 @@
-import { CssValueKind } from "../enums/ValidValueKind";
-import { TargetKind } from "../enums/TargetKind";
+import { CssValue } from "../types/css.types";
+import CSS from "csstype";
 import { PseudoKind } from "../enums/PseudoKind";
-import { AttributesKind } from "../enums/AttributesKind";
 import { StyleablePropertiesKind } from "../enums/StyleablePropertiesKind";
+import { TargetKind } from "../enums/TargetKind";
 import { TagNameKind } from "../enums/TagNameKind";
-
+import { AttributesKind } from "../enums/AttributesKind";
 export const isValueValid = (value: any): boolean => {
     if (value) {
-        if (typeof value in CssValueKind) {
+        if (typeof value === "string" || typeof value === "number") {
             return true;
         }
         return false;
