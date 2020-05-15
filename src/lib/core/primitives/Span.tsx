@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface SpanElement extends React.HTMLProps<HTMLSpanElement>, PrimitveElement {}
 
@@ -17,7 +17,7 @@ const Span: FC<SpanElement> = (props: SpanElement) => {
         mergeCss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Span.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, Span.defaultProps);
     return <span {...(rest as SpanElement)} />;
 };
 

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { DepricatedLinkAttributes, PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface AElement
     extends React.HTMLProps<HTMLAnchorElement>,
@@ -21,7 +21,7 @@ const A: FC<AElement> = (props: AElement) => {
         mergeCss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, A.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, A.defaultProps);
 
     return <a {...(rest as AElement)} />;
 };

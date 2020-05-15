@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface UlElement extends React.HTMLProps<HTMLUListElement>, PrimitveElement {}
 
@@ -17,7 +17,7 @@ const Ul: FC<UlElement> = (props: UlElement) => {
         mergeCss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Ul.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, Ul.defaultProps);
     return <ul {...(rest as UlElement)} />;
 };
 

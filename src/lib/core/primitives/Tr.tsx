@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { DepricatedTdAttributes, PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface TrElement
     extends React.HTMLProps<HTMLTableRowElement>,
@@ -17,7 +17,7 @@ const Tr: FC<TrElement> = (props: TrElement) => {
         className: styles.classes.ascTr,
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Tr.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, Tr.defaultProps);
 
     return <tr {...(rest as TrElement)} />;
 };

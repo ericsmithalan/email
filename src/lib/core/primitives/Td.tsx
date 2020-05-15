@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { DepricatedTdAttributes, PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface TdElement
     extends React.HTMLProps<HTMLTableCellElement>,
@@ -22,7 +22,7 @@ const Td: FC<TdElement> = (props: TdElement) => {
         valign: "top",
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Td.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, Td.defaultProps);
 
     return <td {...(rest as TdElement)} />;
 };

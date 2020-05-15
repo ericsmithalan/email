@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { DepricatedImageAttributes, PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface ImgElement
     extends React.HTMLProps<HTMLImageElement>,
@@ -27,7 +27,7 @@ const Img: FC<ImgElement> = (props: ImgElement) => {
         },
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Img.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, Img.defaultProps);
     // @ts-ignore
     return <img {...(rest as ImgElement)} />;
 };

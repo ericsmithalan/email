@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface BodyElement extends React.HTMLProps<HTMLBodyElement>, PrimitveElement {}
 
@@ -21,7 +21,7 @@ const Body: FC<BodyElement> = (props: BodyElement) => {
         },
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Body.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, Body.defaultProps);
 
     return <body {...(rest as BodyElement)} />;
 };

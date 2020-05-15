@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface OlElement extends React.HTMLProps<HTMLOListElement>, PrimitveElement {}
 
@@ -17,7 +17,7 @@ const Ol: FC<OlElement> = (props: OlElement) => {
         mergeCss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Ol.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, Ol.defaultProps);
     // @ts-ignore
     return <ol {...(rest as OlElement)} />;
 };

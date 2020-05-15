@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface PElement extends React.HTMLProps<HTMLParagraphElement>, PrimitveElement {}
 
@@ -17,7 +17,7 @@ const P: FC<PElement> = (props: PElement) => {
         mergeCss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, P.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, P.defaultProps);
 
     return <p {...(rest as PElement)} />;
 };

@@ -7,4 +7,4 @@ export { TargetKind } from "./enums/TargetKind";
 export { useCommonCss } from "./hooks/useCommonCss";
 export { useStyle } from "./hooks/useStyle";
 export { EmailCssProvider, EmailCssContext } from "./EmailCssProvider";
-export { useMergeStyles } from "./hooks/useMergeStyles";
+export { useStyledProps } from "./hooks/useStyledProps";

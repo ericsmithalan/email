@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { DepricatedTableAttributes, PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface TableElement
     extends React.HTMLProps<HTMLTableElement>,
@@ -24,7 +24,7 @@ const Table: FC<TableElement> = (props: TableElement) => {
         mergeCss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Table.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, Table.defaultProps);
     return (
         <table role="presentation" {...(rest as TableElement)}>
             <tbody>{props.children}</tbody>

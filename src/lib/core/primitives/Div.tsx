@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface DivElement extends React.HTMLProps<HTMLDivElement>, PrimitveElement {}
 
@@ -17,7 +17,7 @@ const Div: FC<DivElement> = (props: DivElement) => {
         mergeCss: [String(defaultText)],
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Div.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, Div.defaultProps);
 
     return <div {...(rest as DivElement)} />;
 };

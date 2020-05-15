@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js";
 import { PrimitveElement } from "../types/element.types";
-import { useCommonCss, useMergeStyles } from "..";
+import { useCommonCss, useStyledProps } from "..";
 
 export interface HrElement extends React.HTMLProps<HTMLHRElement>, PrimitveElement {}
 
@@ -14,7 +14,7 @@ const Hr: FC<HrElement> = (props: HrElement) => {
         className: styles.classes.ascHr,
     };
 
-    const { mergeCss, ...rest } = useMergeStyles(styles, props, Hr.defaultProps);
+    const { mergeCss, ...rest } = useStyledProps(styles, props, Hr.defaultProps);
 
     return <hr {...(rest as HrElement)} />;
 };
