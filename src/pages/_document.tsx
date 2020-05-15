@@ -6,7 +6,7 @@ import { Body } from "src/lib/core/primitives/Body";
 import { commonCss } from "src/lib/core/theme";
 import { EmailCssProvider } from "src/lib/core";
 import fs from "fs";
-import { parser } from "src/lib/core/css-js/Parser";
+import { parser } from "src/lib/core/css-js/parser";
 
 export default class MyDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {

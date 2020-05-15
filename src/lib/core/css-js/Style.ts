@@ -1,7 +1,7 @@
 import { CssTarget, Styles, Styleable, ParseResults } from "../types/css.types";
 
 import { Theme } from "../types/theme.types";
-import { parser } from "../css-js/Parser";
+import { parser } from "./parser";
 
 export function styleable(styles: Styles): ParseResults;
 export function styleable(styles: Styles, target?: CssTarget): ParseResults {
