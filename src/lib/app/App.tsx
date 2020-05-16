@@ -34,6 +34,7 @@ const moveStylesheets = () => {
     const content = document.getElementById("contentRoot");
 
     if (content) {
+        const css_fonts = document.getElementById("css_fonts");
         const css_reset = document.getElementById("css_reset");
         const css_common = document.getElementById("css_common");
         const css_base = document.getElementById("css_base");
@@ -47,5 +48,6 @@ const moveStylesheets = () => {
         content.insertBefore(css_common, content.firstChild);
         content.insertBefore(css_base, content.firstChild);
         content.insertBefore(css_reset, content.firstChild);
+        content.insertBefore(css_fonts, content.firstChild);
     }
 };

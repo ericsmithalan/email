@@ -130,6 +130,12 @@ export class StyleManager {
         this._stylesheets[target][className] = merged;
     };
 
+    public fonts = () => {
+        if (this._theme.fonts.googleFonts) {
+            return `@import url(${this._theme.fonts.googleFonts});`;
+        }
+    };
+
     public css = (trg: CssTarget) => {
         if (trg === "@reset") {
             // reset is already a string

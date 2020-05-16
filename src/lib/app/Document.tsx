@@ -32,6 +32,7 @@ export default class EmailDocument extends Document<DocProps> {
 
         const styles = (
             <>
+                <style id="css_fonts" dangerouslySetInnerHTML={{ __html: sheets.fonts() }}></style>
                 <style
                     id="css_reset"
                     dangerouslySetInnerHTML={{ __html: sheets.css("@reset") }}
