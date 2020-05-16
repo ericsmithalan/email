@@ -2,7 +2,7 @@ import deepmerge from "deepmerge";
 import { CssProperties, CssTarget, StyleRepository, Theme, ClassNameSelector } from "../types";
 
 import { camelize, decamelize } from "../utils/camelize";
-import { isStyleableProperty, isTagName, isValidClassName } from "../utils/validation";
+import { isStyleableProperty, isTagName, isValidClassName, isPseudo } from "../utils/validation";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
@@ -52,6 +52,7 @@ export class StyleManager {
             }
 
             if (props.commoncss) {
+                console.log(props.commoncss);
                 props.commoncss.forEach((clsName: string) => {
                     if (clsName) {
                         const styles = this._get("@common", camelize(clsName));
@@ -169,31 +170,40 @@ export class StyleManager {
 
 const render = (obj: object, isImportant: boolean): string => {
     const css: string[] = [];
+    const pseudos: string[] = [];
+
     for (const clsKey in obj) {
         if (obj.hasOwnProperty(clsKey)) {
             const clsValue = obj[clsKey];
-
+            let arr = css;
             let prefix = ".";
+
+            if (isPseudo(clsKey)) {
+                arr = pseudos;
+            }
+
+            // if html tag don't add period
             if (isTagName(clsKey)) {
                 prefix = "";
             }
 
-            css.push(`${prefix}${decamelize(clsKey)}{`);
+            arr.push(`${prefix}${decamelize(clsKey)}{`);
             for (const propertyKey in clsValue) {
                 if (clsValue.hasOwnProperty(propertyKey)) {
                     const propValue = clsValue[propertyKey];
-                    css.push(
+
+                    arr.push(
                         `${decamelize(propertyKey)}:${ensureUnit(propValue)}${
                             isImportant ? "!important" : ""
                         };`,
                     );
                 }
             }
-            css.push(`}`);
+            arr.push(`}`);
         }
     }
 
-    return css.join("").trim();
+    return `${css.join("").trim()}${pseudos.join("").trim()}`;
 };
 
 const ensureUnit = (value: string) => {

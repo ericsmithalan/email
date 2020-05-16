@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 import { DepricatedLinkAttributes, PrimitveElement } from "../types";
-import { useClassNames } from "../hooks/useClassNames";
+import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyledProps } from "../hooks/useStyledProps";
 import { styleable } from "../css-js/styleable";
 
@@ -15,7 +15,7 @@ const styles = styleable({
 });
 
 const A: FC<AElement> = (props: AElement) => {
-    const { defaultText } = useClassNames("@common");
+    const { defaultText } = useCommonCss();
 
     A.defaultProps = {
         className: styles.classNames.ascA,

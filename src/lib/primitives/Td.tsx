@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { styleable } from "../css-js/styleable";
 import { DepricatedTdAttributes, PrimitveElement } from "../types";
-import { useClassNames } from "../hooks/useClassNames";
+import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyledProps } from "../hooks/useStyledProps";
 
 export interface TdElement
@@ -14,7 +14,7 @@ const styles = styleable({
 });
 
 const Td: FC<TdElement> = (props: TdElement) => {
-    const { defaultText } = useClassNames("@common");
+    const { defaultText } = useCommonCss();
 
     Td.defaultProps = {
         className: styles.classNames.ascTd,

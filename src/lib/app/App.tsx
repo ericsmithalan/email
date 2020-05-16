@@ -41,11 +41,11 @@ const moveStylesheets = () => {
         const css_tablet = document.getElementById("css_tablet");
         const css_phone = document.getElementById("css_phone");
 
-        content.appendChild(css_reset);
-        content.appendChild(css_base);
-        content.appendChild(css_common);
-        content.appendChild(css_default);
-        content.appendChild(css_tablet);
-        content.appendChild(css_phone);
+        content.insertBefore(css_phone, content.firstChild);
+        content.insertBefore(css_tablet, content.firstChild);
+        content.insertBefore(css_default, content.firstChild);
+        content.insertBefore(css_common, content.firstChild);
+        content.insertBefore(css_base, content.firstChild);
+        content.insertBefore(css_reset, content.firstChild);
     }
 };

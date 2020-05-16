@@ -15,7 +15,10 @@ export const defaultTheme: Theme = {
         white: "#fff",
     },
     fonts: {
-        fontFamily: "'Barlow Semi Condensed', Arial, sans-serif",
+        googleFonts:
+            "https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,200;0,600;1,400&family=Barlow:wght@300;400;600&display=swap",
+        headerFontFamily: "'Barlow Semi Condensed', sans-serif",
+        fontFamily: "'Barlow', sans-serif",
         fontHeaderSize: 26,
         fontSubHeaderSize: 24,
         fontTitleSize: 20,

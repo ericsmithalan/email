@@ -9,7 +9,11 @@ export interface LabelProps extends Layout<LabelProps> {}
 const Label: FC<LabelProps> = (props: LabelProps) => {
     const { label } = useStyle(styles, props);
 
-    return <Span className={label}>{props.children}</Span>;
+    return (
+        <Span {...props} className={label}>
+            {props.children}
+        </Span>
+    );
 };
 
 export { Label };

@@ -2,9 +2,9 @@ import React, { Props } from "react";
 import { EmailCssContext } from "../EmailCssProvider";
 import { CommonCss, ClassNameSelector, CssTarget } from "../types";
 
-export const useClassNames = (target: CssTarget): ClassNameSelector => {
+export const useCommonCss = (): ClassNameSelector => {
     const context = React.useContext(EmailCssContext);
-    const results = context.stylesheets.classNames(target) as ClassNameSelector;
+    const results = context.stylesheets.classNames("@common");
 
     return results;
 };

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types";
-import { useClassNames } from "../hooks/useClassNames";
+import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyledProps } from "../hooks/useStyledProps";
 
 export interface OlElement extends React.HTMLProps<HTMLOListElement>, PrimitveElement {}
@@ -11,7 +11,7 @@ const styles = styleable({
 });
 
 const Ol: FC<OlElement> = (props: OlElement) => {
-    const { defaultText } = useClassNames("@common");
+    const { defaultText } = useCommonCss();
 
     Ol.defaultProps = {
         className: styles.classNames.ascOl,

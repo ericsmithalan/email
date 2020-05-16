@@ -10,6 +10,18 @@ const commonCss = styleable({
     fullWidth: {
         width: "100%",
     },
+    bold: {
+        fontWeight: 600,
+    },
+    italic: {
+        fontStyle: "italic",
+    },
+    underline: {
+        textDecoration: "underline",
+    },
+    caps: {
+        textTransform: "uppercase",
+    },
 });
 
 export { commonCss };

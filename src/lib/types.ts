@@ -36,6 +36,8 @@ export interface Theme {
         white: string;
     };
     fonts: {
+        googleFonts: string;
+        headerFontFamily: string;
         fontFamily: string;
         fontHeaderSize: number;
         fontSubHeaderSize: number;

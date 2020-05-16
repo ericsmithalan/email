@@ -29,10 +29,15 @@ export const isFunction = (value: any): boolean => {
     return _.isFunction(value);
 };
 
-export const isPseudo = (value: any): boolean => {
+export const isPseudo = (value: string): boolean => {
     if (value && value in PseudoKind) {
         return true;
     }
+
+    if (value && value.indexOf(":") !== -1) {
+        return true;
+    }
+
     return false;
 };
 
