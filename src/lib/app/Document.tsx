@@ -4,6 +4,7 @@ import { DocProps } from "./types";
 import { Body } from "src/lib/primitives/Body";
 import { commonCss } from "src/lib/theme";
 import { EmailCssProvider } from "src/lib";
+import path from "path";
 import fs from "fs";
 
 export default class EmailDocument extends Document<DocProps> {
@@ -59,11 +60,15 @@ export default class EmailDocument extends Document<DocProps> {
         );
 
         const log = () => {
-            fs.writeFile("log.json", JSON.stringify(sheets.stylesheets), function (err) {
-                if (err) {
-                    console.log(err);
-                }
-            });
+            fs.writeFile(
+                `${path.join(process.cwd(), "/logs/log.stylesheet.json")}`,
+                JSON.stringify(sheets.stylesheets),
+                function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                },
+            );
         };
 
         log();

@@ -8,12 +8,6 @@ import { format } from "url";
 
 export interface ToolbarProps {}
 
-let isUI: boolean = false;
-
-export async function getServerSideProps() {
-    return { props: { initialUI: isUI } };
-}
-
 const Toolbar: FC<ToolbarProps> = (props: ToolbarProps) => {
     const router: NextRouter = useRouter();
     const { pathname, query } = router;
@@ -27,7 +21,7 @@ const Toolbar: FC<ToolbarProps> = (props: ToolbarProps) => {
     };
 
     return (
-        <div>
+        <div className="email-toolbar">
             <Link href="/">
                 <a>Home</a>
             </Link>
