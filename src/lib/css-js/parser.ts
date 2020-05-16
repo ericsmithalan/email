@@ -59,14 +59,10 @@ export function parser(styles: Styles): ParseResults {
                     target[args.classKey] = recursiveParse(args);
 
                     classNames[args.classKey] = decamelize(args.classKey);
-
-                    continue;
                 }
 
                 if (isValueValid(calculated)) {
                     css[key] = calculated as CssValue;
-
-                    continue;
                 }
             }
         }
@@ -99,14 +95,17 @@ const calculateValue = (
     value: object | string | number | Fn,
     args: { props: Styleable; theme: Theme },
 ): object | string | number => {
-    if (!isObject(value)) {
-        if (isFunction(value)) {
-            const fn = value as Fn;
-            return fn({ t: args.theme, p: args.props });
-        }
+    let calculated;
+    if (isFunction(value)) {
+        const fn = value as Fn;
+        calculated = fn({ t: args.theme, p: args.props });
+
+        console.log("calculated", calculated);
+    } else {
+        calculated = value;
     }
 
-    return value;
+    return calculated;
 };
 
 const formatClassName = (args: { classKey: string }, key: string): string => {
