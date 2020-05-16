@@ -1,7 +1,7 @@
 import { HelmetData } from "react-helmet";
-import { StyleManager } from "./lib";
+import { StyleManager } from "..";
 import { DocumentProps } from "next/document";
-import { Theme } from "./lib/types";
+import { Theme } from "../types";
 import { ReactNode } from "react";
 
 export type DocProps = {
