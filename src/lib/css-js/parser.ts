@@ -99,8 +99,6 @@ const calculateValue = (
     if (isFunction(value)) {
         const fn = value as Fn;
         calculated = fn({ t: args.theme, p: args.props });
-
-        console.log("calculated", calculated);
     } else {
         calculated = value;
     }
