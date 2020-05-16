@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types";
-import { useCommonCss, useStyledProps } from "..";
+import { useClassNames } from "../hooks/useClassNames";
+import { useStyledProps } from "../hooks/useStyledProps";
 
 export interface BodyElement extends React.HTMLProps<HTMLBodyElement>, PrimitveElement {}
 
@@ -10,10 +11,10 @@ const styles = styleable({
 });
 
 const Body: FC<BodyElement> = (props: BodyElement) => {
-    const { defaultText } = useCommonCss();
+    const { defaultText } = useClassNames("@common");
     Body.defaultProps = {
         className: styles.classNames.ascBody,
-        commoncss: [String(defaultText)],
+        commoncss: [defaultText],
         width: "100%",
         style: {
             margin: 0,

@@ -4,7 +4,7 @@ export { PseudoKind } from "./enums/PseudoKind";
 export { StyleablePropertiesKind } from "./enums/StyleablePropertiesKind";
 export { TagNameKind } from "./enums/TagNameKind";
 export { TargetKind } from "./enums/TargetKind";
-export { useCommonCss } from "./hooks/useCommonCss";
+export { useClassNames as useCommonCss } from "./hooks/useClassNames";
 export { useStyle } from "./hooks/useStyle";
 export { EmailCssProvider, EmailCssContext } from "./EmailCssProvider";
 export { useStyledProps } from "./hooks/useStyledProps";

@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types";
-import { useCommonCss, useStyledProps } from "..";
+import { useClassNames } from "../hooks/useClassNames";
+import { useStyledProps } from "../hooks/useStyledProps";
 
 export interface SpanElement extends React.HTMLProps<HTMLSpanElement>, PrimitveElement {}
 
@@ -10,11 +11,11 @@ const styles = styleable({
 });
 
 const Span: FC<SpanElement> = (props: SpanElement) => {
-    const { defaultText } = useCommonCss();
+    const { defaultText } = useClassNames("@common");
 
     Span.defaultProps = {
         className: styles.classNames.ascSpan,
-        commoncss: [String(defaultText)],
+        commoncss: [defaultText],
     };
 
     const { commoncss, ...rest } = useStyledProps(styles, props, Span.defaultProps);

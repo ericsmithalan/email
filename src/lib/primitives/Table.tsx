@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { styleable } from "../css-js/styleable";
 import { DepricatedTableAttributes, PrimitveElement } from "../types";
-import { useCommonCss, useStyledProps } from "..";
+import { useClassNames } from "../hooks/useClassNames";
+import { useStyledProps } from "../hooks/useStyledProps";
 
 export interface TableElement
     extends React.HTMLProps<HTMLTableElement>,
@@ -13,14 +14,14 @@ const styles = styleable({
 });
 
 const Table: FC<TableElement> = (props: TableElement) => {
-    const { defaultText } = useCommonCss();
+    const { defaultText } = useClassNames("@common");
 
     Table.defaultProps = {
         className: styles.classNames.ascTable,
         cellPadding: 0,
         cellSpacing: 0,
         border: 0,
-        commoncss: [String(defaultText)],
+        commoncss: [defaultText],
     };
 
     const { mergeCss, ...rest } = useStyledProps(styles, props, Table.defaultProps);

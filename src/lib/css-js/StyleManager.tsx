@@ -1,5 +1,5 @@
 import deepmerge from "deepmerge";
-import { CssProperties, CssTarget, StyleRepository, Theme } from "../types";
+import { CssProperties, CssTarget, StyleRepository, Theme, ClassNameSelector } from "../types";
 
 import { camelize, decamelize } from "../utils/camelize";
 import { isStyleableProperty, isTagName, isValidClassName } from "../utils/validation";
@@ -81,7 +81,7 @@ export class StyleManager {
         return {};
     };
 
-    public classNames(target: CssTarget) {
+    public classNames(target: CssTarget): ClassNameSelector {
         const classes = this._stylesheets[target];
         const classNames = {};
 

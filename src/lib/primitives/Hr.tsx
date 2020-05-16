@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types";
-import { useCommonCss, useStyledProps } from "..";
+import { useClassNames } from "../hooks/useClassNames";
+import { useStyledProps } from "../hooks/useStyledProps";
 
 export interface HrElement extends React.HTMLProps<HTMLHRElement>, PrimitveElement {}
 

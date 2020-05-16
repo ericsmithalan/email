@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types";
-import { useCommonCss, useStyledProps } from "..";
+import { useClassNames } from "../hooks/useClassNames";
+import { useStyledProps } from "../hooks/useStyledProps";
 
 export interface PElement extends React.HTMLProps<HTMLParagraphElement>, PrimitveElement {}
 
@@ -10,11 +11,11 @@ const styles = styleable({
 });
 
 const P: FC<PElement> = (props: PElement) => {
-    const { defaultText } = useCommonCss();
+    const { defaultText } = useClassNames("@common");
 
     P.defaultProps = {
         className: styles.classNames.ascP,
-        commoncss: [String(defaultText)],
+        commoncss: [defaultText],
     };
 
     const { commoncss, ...rest } = useStyledProps(styles, props, P.defaultProps);

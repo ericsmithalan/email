@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 
 import { DepricatedLinkAttributes, PrimitveElement } from "../types";
-import { useCommonCss, useStyledProps } from "..";
+import { useClassNames } from "../hooks/useClassNames";
+import { useStyledProps } from "../hooks/useStyledProps";
 import { styleable } from "../css-js/styleable";
 
 export interface AElement
@@ -14,12 +15,12 @@ const styles = styleable({
 });
 
 const A: FC<AElement> = (props: AElement) => {
-    const { defaultText } = useCommonCss();
+    const { defaultText } = useClassNames("@common");
 
     A.defaultProps = {
         className: styles.classNames.ascA,
         target: "_blank",
-        commoncss: [String(defaultText)],
+        commoncss: [defaultText],
     };
 
     const { commoncss, ...rest } = useStyledProps(styles, props, A.defaultProps);

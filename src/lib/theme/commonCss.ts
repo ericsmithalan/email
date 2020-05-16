@@ -1,6 +1,7 @@
-import { CssStyle, Prop } from "../types";
+import { CssStyle, Prop, CommonCss } from "../types";
+import { styleable } from "../css-js/styleable";
 
-const commonCss: CssStyle = {
+const commonCss = styleable({
     defaultText: {
         fontFamily: (p: Prop) => p.t.fonts.fontFamily,
         fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
@@ -9,6 +10,6 @@ const commonCss: CssStyle = {
     fullWidth: {
         width: "100%",
     },
-};
+});
 
 export { commonCss };

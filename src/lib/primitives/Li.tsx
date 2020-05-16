@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types";
-import { useCommonCss, useStyledProps } from "..";
+import { useClassNames } from "../hooks/useClassNames";
+import { useStyledProps } from "../hooks/useStyledProps";
 
 export interface LilElement extends React.HTMLProps<HTMLLIElement>, PrimitveElement {}
 
@@ -10,11 +11,11 @@ const styles = styleable({
 });
 
 const Li: FC<LilElement> = (props: LilElement) => {
-    const { defaultText } = useCommonCss();
+    const { defaultText } = useClassNames("@common");
 
     Li.defaultProps = {
         className: styles.classNames.ascLi,
-        commoncss: [String(defaultText)],
+        commoncss: [defaultText],
     };
 
     const { commoncss, ...rest } = useStyledProps(styles, props, Li.defaultProps);

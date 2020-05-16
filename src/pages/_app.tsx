@@ -8,10 +8,16 @@ export type AppProps = {
     cssStyles: ReactElement[] | ReactFragment;
 } & AppPropsType;
 
+export async function getServerSideProps() {
+    return { props: { innerHeight: 29 } };
+}
+
 class EmailApp extends App<AppProps> {
     componentDidMount() {
         moveStylesheets();
+        console.log(this.props);
     }
+
     render() {
         const { Component, pageProps } = this.props;
         return (
