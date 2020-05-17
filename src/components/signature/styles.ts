@@ -2,29 +2,29 @@ import { style } from "src/lib/css-js/style";
 import { Prop } from "src/lib/types";
 
 export default style({
-    signature: {},
-    link: {},
+    signature: {
+        color: (p: Prop) => p.t.colors.darkFontColor,
+    },
+    link: {
+        color: (p: Prop) => p.t.colors.darkFontColor,
+    },
     name: {
-        fontSize: 10,
-        fontWeight: 600,
-        textTransform: "uppercase",
+        color: (p: Prop) => p.t.colors.darkFontColor,
     },
     jobTitle: {
-        textTransform: "uppercase",
-        fontSize: 10,
         color: (p: Prop) => p.t.colors.orangeColor,
     },
+    address: {
+        color: (p: Prop) => p.t.colors.darkFontColor,
+    },
     email: {
+        color: (p: Prop) => p.t.colors.darkFontColor,
         textTransform: "lowercase",
-        fontSize: 10,
     },
     phone: {
-        fontSize: 10,
+        color: (p: Prop) => p.t.colors.darkFontColor,
     },
     heading: {
         color: (p: Prop) => p.t.colors.orangeColor,
-
-        textTransform: "uppercase",
-        fontSize: 10,
     },
 });

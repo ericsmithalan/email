@@ -4,6 +4,7 @@ import { DepricatedLinkAttributes, PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { style } from "../css-js/style";
 import { useStyle2 } from "../hooks/useStyle2";
+import { Prop } from "../css-js/types";
 
 export interface AElement
     extends React.HTMLProps<HTMLAnchorElement>,
@@ -11,7 +12,11 @@ export interface AElement
         DepricatedLinkAttributes {}
 
 const styles = style({
-    ascA: {},
+    ascA: {
+        fontFamily: (p: Prop) => p.t.fonts.fontFamily,
+        fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
+        color: (p: Prop) => p.t.colors.darkFontColor,
+    },
 });
 
 const A: FC<AElement> = (props: AElement) => {
@@ -20,7 +25,6 @@ const A: FC<AElement> = (props: AElement) => {
     A.defaultProps = {
         className: styles.classNames.ascA,
         target: "_blank",
-        commoncss: [defaultText],
     };
 
     const { mergedProps, ...rest } = useStyle2<AElement>(styles, props, A.defaultProps);

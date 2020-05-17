@@ -7,8 +7,6 @@ import { EmailCssProvider } from "src/lib";
 import path from "path";
 import fs from "fs";
 
-let index: number = 0;
-
 export default class EmailDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {
         const originalRenderPage = ctx.renderPage;
@@ -20,8 +18,6 @@ export default class EmailDocument extends Document<DocProps> {
         sheets.add(common, "@common");
         sheets.add(defaultReset, "@reset");
 
-        index++;
-        console.log("refresh", index);
         ctx.renderPage = () => {
             return originalRenderPage({
                 enhanceApp: (App) => (props) => (
@@ -62,29 +58,29 @@ export default class EmailDocument extends Document<DocProps> {
             </>
         );
 
-        const log = () => {
-            fs.writeFile(
-                `${path.join(process.cwd(), "/logs/log.stylesheet.json")}`,
-                JSON.stringify(sheets.stylesheets),
-                function (err) {
-                    if (err) {
-                        console.log(err);
-                    }
-                },
-            );
+        // const log = () => {
+        //     fs.writeFile(
+        //         `${path.join(process.cwd(), "/logs/log.stylesheet.json")}`,
+        //         JSON.stringify(sheets.stylesheets),
+        //         function (err) {
+        //             if (err) {
+        //                 console.log(err);
+        //             }
+        //         },
+        //     );
 
-            fs.writeFile(
-                `${path.join(process.cwd(), "/logs/log.styleables.json")}`,
-                JSON.stringify(sheets.styleables),
-                function (err) {
-                    if (err) {
-                        console.log(err);
-                    }
-                },
-            );
-        };
+        //     fs.writeFile(
+        //         `${path.join(process.cwd(), "/logs/log.styleables.json")}`,
+        //         JSON.stringify(sheets.styleables),
+        //         function (err) {
+        //             if (err) {
+        //                 console.log(err);
+        //             }
+        //         },
+        //     );
+        // };
 
-        log();
+        // log();
 
         const initialProps = await Document.getInitialProps(ctx);
 

@@ -4,6 +4,7 @@ import { DepricatedTableAttributes, PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyle2 } from "../hooks/useStyle2";
 import { generateId } from "../utils/generateId";
+import { Prop } from "../css-js/types";
 
 export interface TableElement
     extends React.HTMLProps<HTMLTableElement>,
@@ -11,7 +12,11 @@ export interface TableElement
         PrimitveElement {}
 
 const styles = style({
-    ascTable: {},
+    ascTable: {
+        fontFamily: (p: Prop) => p.t.fonts.fontFamily,
+        fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
+        color: (p: Prop) => p.t.colors.darkFontColor,
+    },
 });
 
 const Table: FC<TableElement> = (props: TableElement) => {
@@ -23,7 +28,6 @@ const Table: FC<TableElement> = (props: TableElement) => {
         cellPadding: 0,
         cellSpacing: 0,
         border: 0,
-        commoncss: [defaultText],
     };
 
     const { mergedProps } = useStyle2<TableElement>(styles, props, Table.defaultProps);

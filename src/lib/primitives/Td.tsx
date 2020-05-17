@@ -4,6 +4,7 @@ import { DepricatedTdAttributes, PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { generateId } from "../utils/generateId";
 import { useStyle2 } from "../hooks/useStyle2";
+import { Prop } from "../css-js/types";
 
 export interface TdElement
     extends React.HTMLProps<HTMLTableCellElement>,
@@ -11,7 +12,11 @@ export interface TdElement
         PrimitveElement {}
 
 const styles = style({
-    ascTd: {},
+    ascTd: {
+        fontFamily: (p: Prop) => p.t.fonts.fontFamily,
+        fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
+        color: (p: Prop) => p.t.colors.darkFontColor,
+    },
 });
 
 const Td: FC<TdElement> = (props: TdElement) => {
@@ -21,7 +26,7 @@ const Td: FC<TdElement> = (props: TdElement) => {
         uid: generateId(),
         className: styles.classNames.ascTd,
         align: "left",
-        commoncss: [defaultText],
+
         valign: "top",
     };
 

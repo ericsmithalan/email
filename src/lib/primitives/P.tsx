@@ -3,11 +3,16 @@ import { style } from "../css-js/style";
 import { PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyle2 } from "../hooks/useStyle2";
+import { Prop } from "../css-js/types";
 
 export interface PElement extends React.HTMLProps<HTMLParagraphElement>, PrimitveElement {}
 
 const styles = style({
-    ascP: {},
+    ascP: {
+        fontFamily: (p: Prop) => p.t.fonts.fontFamily,
+        fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
+        color: (p: Prop) => p.t.colors.darkFontColor,
+    },
 });
 
 const P: FC<PElement> = (props: PElement) => {
@@ -15,7 +20,6 @@ const P: FC<PElement> = (props: PElement) => {
 
     P.defaultProps = {
         className: styles.classNames.ascP,
-        commoncss: [defaultText],
     };
 
     const { mergedProps } = useStyle2<PElement>(styles, props, P.defaultProps);

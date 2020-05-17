@@ -3,6 +3,7 @@ import { style } from "../css-js/style";
 import { DepricatedImageAttributes, PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyle2 } from "../hooks/useStyle2";
+import { Prop } from "../css-js/types";
 
 export interface ImgElement
     extends React.HTMLProps<HTMLImageElement>,
@@ -10,7 +11,11 @@ export interface ImgElement
         PrimitveElement {}
 
 const styles = style({
-    ascImg: {},
+    ascImg: {
+        fontFamily: (p: Prop) => p.t.fonts.fontFamily,
+        fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
+        color: (p: Prop) => p.t.colors.darkFontColor,
+    },
 });
 
 const Img: FC<ImgElement> = (props: ImgElement) => {
@@ -18,7 +23,7 @@ const Img: FC<ImgElement> = (props: ImgElement) => {
 
     Img.defaultProps = {
         className: styles.classNames.ascImg,
-        commoncss: [defaultText],
+
         border: 0,
         alt: "",
         style: {

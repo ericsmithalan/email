@@ -45,8 +45,6 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
         Signature.defaultProps,
     );
 
-    // const htmlOnlyProps: Diff<SignatureProps, Styleable> = props;
-
     const { caps, bold } = useCommonCss();
 
     const address = getAddress(props.location);
@@ -72,7 +70,9 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
                     <Table>
                         <Tr>
                             <Td>
-                                <Label className={classNames.heading}>E</Label>
+                                <Label commoncss={[bold, caps]} className={classNames.heading}>
+                                    E
+                                </Label>
                             </Td>
                             <Td colSpan={3}>
                                 <Label className={classNames.email}>{props.email}</Label>
@@ -106,7 +106,7 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
             <Tr>
                 <Td>
                     {address.map((value: string, i: number) => (
-                        <Label lineBreak={true} key={i}>
+                        <Label className={classNames.address} lineBreak={true} key={i}>
                             {value}
                         </Label>
                     ))}

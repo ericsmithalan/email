@@ -45,6 +45,22 @@ export class StyleManager {
         }
     };
 
+    private log = (...args: any[]) => {
+        const content = {
+            args: args,
+        };
+
+        // fs.appendFile(
+        //     `${path.join(process.cwd(), "/logs/log.manager.json")}`,
+        //     JSON.stringify(content),
+        //     function (err) {
+        //         if (err) {
+        //             console.log(err);
+        //         }
+        //     },
+        // );
+    };
+
     public registerStyleable = (styleable: Styleable) => {
         this._styleables[styleable.uid] = styleable;
     };
@@ -53,23 +69,43 @@ export class StyleManager {
         if (props) {
             if (props.className) {
                 // adds any element property that can be added to stylesheet
-                this._setElementStyles(props, camelize(props.className));
+
+                this._setElementPropStyles(props, camelize(props.className));
 
                 if (props.commoncss) {
                     props.commoncss.forEach((clsName: string) => {
                         if (clsName) {
-                            const styles = this._get("@common", camelize(clsName));
+                            const commonStyle = this._get("@common", camelize(clsName));
+                            const elementStyle = this._get("@default", camelize(props.className));
+                            const combinedStyles = deepmerge.all([elementStyle, commonStyle]);
 
-                            // merge common with element css class
-                            if (styles) {
+                            // add common to element styles
+                            if (Object.keys(combinedStyles).length > 0) {
                                 this._set(
                                     "@default",
                                     camelize(props.className),
-                                    deepmerge.all([
-                                        this._get("@default", camelize(props.className)),
-                                        styles,
-                                    ]),
+                                    deepmerge.all([elementStyle, commonStyle]),
                                 );
+
+                                // this.log({
+                                //     method: "addPropStyles",
+                                //     area: "set commoncss",
+                                //     className: props.className,
+                                //     commonClassName: clsName,
+                                //     before: elementStyle,
+                                //     after: this._get("@default", camelize(props.className)),
+                                // });
+                            } else {
+                                this.log({
+                                    method: "addPropStyles",
+                                    area: "props.commoncss",
+                                    className: props.className,
+                                    commonClassName: clsName,
+                                    props: props,
+                                    common: commonStyle,
+                                    element: elementStyle,
+                                    combined: combinedStyles,
+                                });
                             }
                         }
                     });
@@ -77,18 +113,36 @@ export class StyleManager {
 
                 // adds all styles under element style property
                 if (props.style) {
-                    this._set(
-                        "@default",
-                        camelize(props.className),
-                        deepmerge.all([
-                            this._get("@default", camelize(props.className)),
-                            props.style,
-                        ]),
-                    );
+                    const elementStyle = this._get("@default", camelize(props.className));
+                    const combinedStyles = deepmerge.all([elementStyle, props.style]);
+
+                    if (Object.keys(combinedStyles).length > 0) {
+                        this._set("@default", camelize(props.className), combinedStyles);
+                    } else {
+                        this.log({
+                            method: "addPropStyles",
+                            area: "props.style",
+                            className: props.className,
+                            style: props.style,
+                            props: props,
+                            element: elementStyle,
+                            combined: combinedStyles,
+                        });
+                    }
                 }
 
                 // return merged styles
                 const styles = this._get("@default", camelize(props.className));
+
+                // if (Object.keys(styles).length === 0) {
+                //     this.log({
+                //         method: "addPropStyles",
+                //         area: "styles",
+                //         returnedStyles: styles,
+                //         props: props,
+                //         styles: styles,
+                //     });
+                // }
 
                 // returns new styles
                 return styles;
@@ -112,10 +166,20 @@ export class StyleManager {
             }
         }
 
+        // if (Object.keys(classNames).length === 0) {
+        //     console.error(`classNames length = 0`, classNames, target);
+
+        //     this.log({
+        //         method: "classNames",
+        //         classNames: classNames,
+        //         target: target,
+        //     });
+        // }
+
         return classNames;
     }
 
-    private _setElementStyles = (props: Styleable, className: string): void => {
+    private _setElementPropStyles = (props: Styleable, className: string): void => {
         const results = {};
         if (props && className) {
             for (const key in props) {
@@ -127,11 +191,20 @@ export class StyleManager {
                 }
             }
 
-            this._set(
-                "@default",
-                className,
-                deepmerge.all([this._get("@default", className), results]),
-            );
+            if (results) {
+                const combinedStyles = deepmerge.all([this._get("@default", className), results]);
+
+                if (combinedStyles) {
+                    this._set("@default", className, combinedStyles);
+                } else {
+                    this.log({
+                        method: "_setElementPropStyles",
+                        className: className,
+                        combinedStyles: combinedStyles,
+                        props: props,
+                    });
+                }
+            }
         }
     };
 
@@ -140,10 +213,14 @@ export class StyleManager {
     };
 
     private _set = (target: CssTarget, className: string, styles: object): void => {
-        const repClass = this._stylesheets[target][className];
-        const merged = Object.assign({}, repClass, styles);
+        if (target !== "@common" && target !== "@reset") {
+            const repClass = this._stylesheets[target][className];
+            const merged = Object.assign({}, repClass, styles);
 
-        this._stylesheets[target][className] = merged;
+            this._stylesheets[target][className] = merged;
+        } else {
+            console.error(`_set tried setting wrong target ${target} ${className}`, styles);
+        }
     };
 
     public fonts = () => {
