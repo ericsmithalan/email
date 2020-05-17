@@ -14,4 +14,4 @@
 ## Todo
 
 -   Allow components to be email only or private so they don't get published to the web.
--
+-   map styles with inline styles
