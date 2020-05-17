@@ -22,7 +22,6 @@ const Img: FC<ImgElement> = (props: ImgElement) => {
         border: 0,
         alt: "",
         style: {
-            width: "100%",
             height: "auto",
             display: "block",
         },

@@ -49,8 +49,6 @@ export const getStaticProps: GetStaticProps = async (props) => {
 };
 
 const BasicEmailPage = (props) => {
-    console.log("props", props);
-
     return <BasicEmail {...props.post} />;
 };
 

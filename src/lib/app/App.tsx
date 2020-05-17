@@ -4,13 +4,7 @@ import { Shell } from "./shell/Shell";
 import React, { ReactElement, ReactFragment } from "react";
 import { Toolbar } from "./toolbar/Toolbar";
 
-export type AppProps = {
-    cssStyles: ReactElement[] | ReactFragment;
-} & AppPropsType;
-
-export async function getServerSideProps() {
-    return { props: { innerHeight: 29 } };
-}
+export type AppProps = {} & AppPropsType;
 
 export default class EmailApp extends App<AppProps> {
     render() {

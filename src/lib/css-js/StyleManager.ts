@@ -4,6 +4,8 @@ import { CssProperties, CssTarget, StyleRepository, Theme, ClassNameSelector } f
 import { camelize, decamelize } from "../utils/camelize";
 import { isStyleableProperty, isTagName, isValidClassName, isPseudo } from "../utils/validation";
 import { Styleable } from "./types";
+import fs from "fs";
+import path from "path";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
@@ -49,23 +51,9 @@ export class StyleManager {
 
     public addPropStyles = (props: Styleable): CssProperties => {
         if (props) {
-            this.registerStyleable(props);
-
             if (props.className) {
                 // adds any element property that can be added to stylesheet
                 this._setElementStyles(props, camelize(props.className));
-
-                // adds all styles under element style property
-                if (props.style) {
-                    this._set(
-                        "@default",
-                        camelize(props.className),
-                        deepmerge.all([
-                            this._get("@default", camelize(props.className)),
-                            props.style,
-                        ]),
-                    );
-                }
 
                 if (props.commoncss) {
                     props.commoncss.forEach((clsName: string) => {
@@ -85,6 +73,18 @@ export class StyleManager {
                             }
                         }
                     });
+                }
+
+                // adds all styles under element style property
+                if (props.style) {
+                    this._set(
+                        "@default",
+                        camelize(props.className),
+                        deepmerge.all([
+                            this._get("@default", camelize(props.className)),
+                            props.style,
+                        ]),
+                    );
                 }
 
                 // return merged styles

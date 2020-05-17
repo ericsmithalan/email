@@ -52,7 +52,7 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
     const address = getAddress(props.location);
 
     return (
-        <Table {...mergedProps} className={classNames.signature}>
+        <Table className={classNames.signature}>
             <Tr>
                 <Td>
                     <Label className={classNames.name}>{props.name}</Label>
@@ -106,10 +106,9 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
             <Tr>
                 <Td>
                     {address.map((value: string, i: number) => (
-                        <>
-                            <Label key={i}>{value}</Label>
-                            <br />
-                        </>
+                        <Label lineBreak={true} key={i}>
+                            {value}
+                        </Label>
                     ))}
                 </Td>
             </Tr>
@@ -156,7 +155,7 @@ const getOrgName = (department: Department): string => {
 };
 
 const getLogoUrl = (department: Department): string => {
-    const imagePath = "public/";
+    const imagePath = "/images/signature/";
 
     switch (department) {
         case "Ascendum": // ascendum

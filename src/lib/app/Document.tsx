@@ -7,8 +7,11 @@ import { EmailCssProvider } from "src/lib";
 import path from "path";
 import fs from "fs";
 
+let index: number = 0;
+
 export default class EmailDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {
+        const originalRenderPage = ctx.renderPage;
         const theme = defaultTheme;
         const sheets = new StyleManager(theme);
 
@@ -17,18 +20,17 @@ export default class EmailDocument extends Document<DocProps> {
         sheets.add(common, "@common");
         sheets.add(defaultReset, "@reset");
 
-        const originalRenderPage = ctx.renderPage;
-
-        ctx.renderPage = () =>
-            originalRenderPage({
+        index++;
+        console.log("refresh", index);
+        ctx.renderPage = () => {
+            return originalRenderPage({
                 enhanceApp: (App) => (props) => (
                     <EmailCssProvider theme={defaultTheme} stylesheets={sheets}>
                         <App {...props} />
                     </EmailCssProvider>
                 ),
             });
-
-        const initialProps = await Document.getInitialProps(ctx);
+        };
 
         const styles = (
             <>
@@ -83,6 +85,8 @@ export default class EmailDocument extends Document<DocProps> {
         };
 
         log();
+
+        const initialProps = await Document.getInitialProps(ctx);
 
         return {
             ...initialProps,

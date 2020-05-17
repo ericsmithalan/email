@@ -23,7 +23,7 @@ export default style({
     },
     heading: {
         color: (p: Prop) => p.t.colors.orangeColor,
-        fontWeight: 600,
+
         textTransform: "uppercase",
         fontSize: 10,
     },

@@ -28,13 +28,13 @@ export const useStyle2 = <T extends Styleable>(
 
     const propStyles = context.stylesheets.addPropStyles(props);
 
-    const mergedProps = Object.assign({}, defaultProps, props, {
+    const { commoncss, uid, ...rest } = Object.assign({}, defaultProps, props, {
         className: mergeClassNames(defaultProps, props),
         style: Object.assign({}, defaultStyles, propStyles),
     });
 
     return {
         classNames: parser.classNames,
-        mergedProps: mergedProps,
+        mergedProps: rest as T,
     };
 };
