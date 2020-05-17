@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import { styleable } from "../css-js/styleable";
+import { style } from "../css-js/style";
 import { PrimitveElement } from "../types";
 import { useStyle2 } from "../hooks/useStyle2";
 
 export interface HrElement extends React.HTMLProps<HTMLHRElement>, PrimitveElement {}
 
-const styles = styleable({
+const styles = style({
     ascHr: {},
 });
 

@@ -1,7 +1,7 @@
 import { Container } from "next/app";
-import { styleable } from "src/lib/css-js/styleable";
+import { style } from "src/lib/css-js/style";
 
-const styles = styleable({
+const styles = style({
     cornerImage: {
         width: 118,
         height: "auto",

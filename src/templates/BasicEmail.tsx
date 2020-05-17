@@ -1,9 +1,9 @@
 import { Container, Signature, Spacer } from "../components";
 import { useStyle, Img, P, A } from "src/lib";
-import { styleable } from "src/lib/css-js/styleable";
+import { style } from "src/lib/css-js/style";
 import { Label } from "src/components/label/Label";
 
-const styles = styleable({
+const styles = style({
     cornerImage: {
         width: 118,
         height: "auto",

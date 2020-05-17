@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import { DepricatedLinkAttributes, PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
-import { styleable } from "../css-js/styleable";
+import { style } from "../css-js/style";
 import { useStyle2 } from "../hooks/useStyle2";
 
 export interface AElement
@@ -10,7 +10,7 @@ export interface AElement
         PrimitveElement,
         DepricatedLinkAttributes {}
 
-const styles = styleable({
+const styles = style({
     ascA: {},
 });
 

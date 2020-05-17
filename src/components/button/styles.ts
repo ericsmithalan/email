@@ -1,6 +1,6 @@
-import { styleable } from "src/lib/css-js/styleable";
+import { style } from "src/lib/css-js/style";
 
-export default styleable({
+export default style({
     buttonColumn: {
         borderRadius: 4,
         background: "#0077cc",

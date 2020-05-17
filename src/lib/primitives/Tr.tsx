@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { styleable } from "../css-js/styleable";
+import { style } from "../css-js/style";
 import { DepricatedTdAttributes, PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { generateId } from "../utils/generateId";
@@ -10,7 +10,7 @@ export interface TrElement
         DepricatedTdAttributes,
         PrimitveElement {}
 
-const styles = styleable({
+const styles = style({
     ascTr: {},
 });
 

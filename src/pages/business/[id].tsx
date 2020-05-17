@@ -1,6 +1,6 @@
 import { Container, Signature, Spacer } from "../../components";
 import { useStyle, Img, P, A } from "src/lib";
-import { styleable } from "src/lib/css-js/styleable";
+import { style } from "src/lib/css-js/style";
 import { useRouter } from "next/router";
 import BasicEmail from "src/templates/BasicEmail";
 import path from "path";

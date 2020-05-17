@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { styleable } from "../css-js/styleable";
+import { style } from "../css-js/style";
 import { DepricatedImageAttributes, PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyle2 } from "../hooks/useStyle2";
@@ -9,7 +9,7 @@ export interface ImgElement
         DepricatedImageAttributes,
         PrimitveElement {}
 
-const styles = styleable({
+const styles = style({
     ascImg: {},
 });
 
