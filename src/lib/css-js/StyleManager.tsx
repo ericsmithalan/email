@@ -52,7 +52,6 @@ export class StyleManager {
             }
 
             if (props.commoncss) {
-                console.log(props.commoncss);
                 props.commoncss.forEach((clsName: string) => {
                     if (clsName) {
                         const styles = this._get("@common", camelize(clsName));
