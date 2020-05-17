@@ -9,24 +9,20 @@ export interface LabelProps extends Layout<LabelProps> {
 }
 
 const Label: FC<LabelProps> = (props: LabelProps) => {
-    const { mergedProps, classNames } = useStyle2<LabelProps>(styles, props, Label.defaultProps);
+    Label.defaultProps = {
+        className: styles.classNames.label,
+    };
+
+    const { mergedProps } = useStyle2<LabelProps>(styles, props, Label.defaultProps);
 
     const { lineBreak, ...rest } = mergedProps;
 
     const getLabel = () => {
         if (props.lineBreak) {
-            return (
-                <Div {...rest} className={classNames.label}>
-                    {props.children}
-                </Div>
-            );
+            return <Div {...rest}>{props.children}</Div>;
         }
 
-        return (
-            <Span {...rest} className={classNames.label}>
-                {props.children}
-            </Span>
-        );
+        return <Span {...rest}>{props.children}</Span>;
     };
 
     return getLabel();

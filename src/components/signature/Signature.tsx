@@ -39,11 +39,7 @@ type Diff<T, K> = Omit<T, keyof K>;
 type Props = Omit<SignatureProps, "description">;
 
 const Signature: FC<SignatureProps> = (props: SignatureProps) => {
-    const { mergedProps, classNames } = useStyle2<SignatureProps>(
-        styles,
-        props,
-        Signature.defaultProps,
-    );
+    const { classNames } = useStyle2<SignatureProps>(styles, props, Signature.defaultProps);
 
     const address = getAddress(props.location);
 
@@ -51,8 +47,9 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
         <Table className={classNames.signature}>
             <Tr>
                 <Td>
-                    <Label className={classNames.name}>{props.name}</Label>
-                    <br />
+                    <Label lineBreak={true} className={classNames.name}>
+                        {props.name}
+                    </Label>
                     <Label className={classNames.jobTitle}>{props.jobTitle}</Label>
                 </Td>
             </Tr>

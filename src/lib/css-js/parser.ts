@@ -15,7 +15,7 @@ import { decamelize, camelize } from "../utils/camelize";
 import { isObject, isTarget, isValueValid, isValidClassName, isPseudo } from "../utils/validation";
 
 export function parser(styles: Styles): ParseResults {
-    const classNames = {};
+    const _classNames = {};
     const repository = {
         "@reset": {},
         "@base": {},
@@ -58,7 +58,7 @@ export function parser(styles: Styles): ParseResults {
                     const target = repository[args.target];
                     target[args.classKey] = recursiveParse(args);
 
-                    classNames[args.classKey] = decamelize(args.classKey);
+                    _classNames[args.classKey] = decamelize(args.classKey);
                 }
 
                 if (isValueValid(calculated)) {
@@ -72,7 +72,7 @@ export function parser(styles: Styles): ParseResults {
 
     return {
         styles: repository,
-        classNames: classNames,
+        classNames: _classNames,
         parse: function <T extends Styleable>(
             theme: Theme,
             props: T,
@@ -85,7 +85,6 @@ export function parser(styles: Styles): ParseResults {
             });
 
             recursiveParse(newArgs);
-
             return repository;
         },
     };

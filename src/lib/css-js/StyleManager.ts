@@ -72,21 +72,24 @@ export class StyleManager {
 
                 // adds all styles under element style property
                 if (props.style) {
-                    const elementStyle = this._get("@default", camelize(props.className));
-                    const combinedStyles = deepmerge.all([elementStyle, props.style]);
+                    const elementStyle = this._get("@default", camelize(props.className)) || {};
 
-                    if (Object.keys(combinedStyles).length > 0) {
-                        this._set("@default", camelize(props.className), combinedStyles);
-                    } else {
-                        this.log({
-                            method: "addPropStyles",
-                            area: "props.style",
-                            className: props.className,
-                            style: props.style,
-                            props: props,
-                            element: elementStyle,
-                            combined: combinedStyles,
-                        });
+                    if (elementStyle) {
+                        const combinedStyles = deepmerge.all([elementStyle, props.style]);
+
+                        if (Object.keys(combinedStyles).length > 0) {
+                            this._set("@default", camelize(props.className), combinedStyles);
+                        } else {
+                            this.log({
+                                method: "addPropStyles",
+                                area: "props.style",
+                                className: props.className,
+                                style: props.style,
+                                props: props,
+                                element: elementStyle,
+                                combined: combinedStyles,
+                            });
+                        }
                     }
                 }
 
@@ -94,16 +97,6 @@ export class StyleManager {
 
                 // return merged styles
                 const styles = this._get("@default", camelize(props.className));
-
-                // if (Object.keys(styles).length === 0) {
-                //     this.log({
-                //         method: "addPropStyles",
-                //         area: "styles",
-                //         returnedStyles: styles,
-                //         props: props,
-                //         styles: styles,
-                //     });
-                // }
 
                 // returns new styles
                 return styles;
@@ -126,16 +119,6 @@ export class StyleManager {
                 }
             }
         }
-
-        // if (Object.keys(classNames).length === 0) {
-        //     console.error(`classNames length = 0`, classNames, target);
-
-        //     this.log({
-        //         method: "classNames",
-        //         classNames: classNames,
-        //         target: target,
-        //     });
-        // }
 
         return classNames;
     }
