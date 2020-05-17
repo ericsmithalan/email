@@ -1,7 +1,7 @@
 import { CssStyle, Prop, CommonCss } from "../types";
 import { styleable } from "../css-js/styleable";
 
-const commonCss = styleable({
+const defaultCommon = styleable({
     defaultText: {
         fontFamily: (p: Prop) => p.t.fonts.fontFamily,
         fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
@@ -24,4 +24,4 @@ const commonCss = styleable({
     },
 });
 
-export { commonCss };
+export { defaultCommon };

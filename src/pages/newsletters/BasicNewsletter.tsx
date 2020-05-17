@@ -15,14 +15,10 @@ const styles = styleable({
     },
 });
 
-export default function BasicEmail() {
-    const { cornerImage } = useStyle(styles);
-
+export default function BasicNewsletter() {
     return (
-        <>
-            <Container columnGutter={80} rowGutter={100}>
-                Basic Template
-            </Container>
-        </>
+        <Container columnGutter={80} rowGutter={100}>
+            Basic Template
+        </Container>
     );
 }

@@ -1,8 +1,8 @@
 import Document, { DocumentContext, Head, Main, NextScript } from "next/document";
-import { StyleManager, defaultTheme, cssReset } from "../";
+import { StyleManager } from "../";
 import { DocProps } from "./types";
 import { Body } from "src/lib/primitives/Body";
-import { commonCss } from "src/lib/theme";
+import { defaultCommon, defaultTheme, defaultReset } from "src/lib/theme";
 import { EmailCssProvider } from "src/lib";
 import path from "path";
 import fs from "fs";
@@ -12,10 +12,10 @@ export default class EmailDocument extends Document<DocProps> {
         const theme = defaultTheme;
         const sheets = new StyleManager(theme);
 
-        const common = commonCss.parse(theme, {}, "@common");
+        const common = defaultCommon.parse(theme, {}, "@common");
 
         sheets.add(common, "@common");
-        sheets.add(cssReset, "@reset");
+        sheets.add(defaultReset, "@reset");
 
         const originalRenderPage = ctx.renderPage;
 
