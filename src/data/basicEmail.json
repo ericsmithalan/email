@@ -1,0 +1,10 @@
+{
+    "to": "Some Name",
+    "signature": {
+        "name": "Eric Smith"
+    },
+    "content": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra libero tellus, vel laoreet ex semper a",
+        "Sed rutrum quam in elit posuere condimentum"
+    ]
+}

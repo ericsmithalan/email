@@ -5,7 +5,9 @@ import styles from "./styles";
 import { useStyle, useCommonCss } from "src/lib";
 import { Label } from "../label/Label";
 
-export interface SignatureProps extends Layout<SignatureProps> {}
+export interface SignatureProps extends Layout<SignatureProps> {
+    name: string;
+}
 
 const Signature: FC<SignatureProps> = (props: SignatureProps) => {
     const { signature, bold } = useStyle(styles, props);
@@ -15,18 +17,8 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
         <Table {...props} className={signature}>
             <Tr>
                 <Td>
-                    <Label commoncss={[caps, bold]}>Eric Smith</Label>
-                    <Label>UX Designer</Label>
+                    <Label commoncss={[caps, bold]}>{props.name}</Label>
                 </Td>
-            </Tr>
-            <Tr>
-                <Td>Signature</Td>
-            </Tr>
-            <Tr>
-                <Td>Signature</Td>
-            </Tr>
-            <Tr>
-                <Td>Signature</Td>
             </Tr>
         </Table>
     );

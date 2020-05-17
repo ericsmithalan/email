@@ -13,20 +13,9 @@ export async function getServerSideProps() {
 }
 
 export default class EmailApp extends App<AppProps> {
-    componentDidMount() {
-        moveStylesheets();
-    }
-
     render() {
         const { Component, pageProps } = this.props;
-        return (
-            <>
-                <Toolbar />
-                <Shell>
-                    <Component {...pageProps} />
-                </Shell>
-            </>
-        );
+        return <Component {...pageProps} />;
     }
 }
 
