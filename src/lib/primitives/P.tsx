@@ -3,6 +3,7 @@ import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyledProps } from "../hooks/useStyledProps";
+import { useStyle2 } from "../hooks/useStyle2";
 
 export interface PElement extends React.HTMLProps<HTMLParagraphElement>, PrimitveElement {}
 
@@ -18,9 +19,9 @@ const P: FC<PElement> = (props: PElement) => {
         commoncss: [defaultText],
     };
 
-    const { commoncss, ...rest } = useStyledProps(styles, props, P.defaultProps);
+    const { mergedProps } = useStyle2<PElement>(styles, props, P.defaultProps);
 
-    return <p {...(rest as PElement)} />;
+    return <p {...(mergedProps as PElement)} />;
 };
 
 export { P };

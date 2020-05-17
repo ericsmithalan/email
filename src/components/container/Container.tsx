@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import { Table, Tr, Td } from "../../lib/primitives";
 import { Layout, Alignment, Size } from "../types";
 import styles from "./styles";
-import { useStyle } from "src/lib";
+import { useStyle2 } from "src/lib";
 
 export interface ContainerProps extends Layout<ContainerProps> {
     rowGutter?: number;
@@ -15,6 +15,11 @@ export interface ContainerProps extends Layout<ContainerProps> {
 }
 
 const Container: FC<ContainerProps> = (props: ContainerProps) => {
+    const { classNames, mergedProps } = useStyle2<ContainerProps>(
+        styles,
+        props,
+        Container.defaultProps,
+    );
     const {
         container,
         containerGutterLeft,
@@ -22,9 +27,16 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
         containerGutterRight,
         containerGutterTop,
         containerGutterBottom,
-    } = useStyle(styles, props, Container.defaultProps);
+    } = classNames;
 
-    const { rowGutter, columnGutter, gutterLeftContent, gutterRightContent, ...rest } = props;
+    const {
+        commoncss,
+        rowGutter,
+        columnGutter,
+        gutterLeftContent,
+        gutterRightContent,
+        ...rest
+    } = mergedProps;
 
     return (
         <Table align="center" {...rest} className={container}>

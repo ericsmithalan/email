@@ -70,6 +70,16 @@ export default class EmailDocument extends Document<DocProps> {
                     }
                 },
             );
+
+            fs.writeFile(
+                `${path.join(process.cwd(), "/logs/log.styleables.json")}`,
+                JSON.stringify(sheets.styleables),
+                function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                },
+            );
         };
 
         log();

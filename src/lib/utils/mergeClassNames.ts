@@ -1,21 +1,31 @@
-export const mergeClassNames = (defaultProps: any, props: any) => {
+import { Styleable } from "../types";
+
+export const mergeClassNames = <T extends Styleable>(defaultProps: T, props: T) => {
     const dirty: string[] = [];
     const clean: string[] = [];
 
     if (defaultProps && defaultProps.className) {
-        if (defaultProps.className.split(" ").length > 1) {
-            dirty.concat(defaultProps.className.split(" "));
-        } else {
-            dirty.push(defaultProps.className);
-        }
+        defaultProps.className.split(" ").forEach((item: string) => {
+            dirty.push(item);
+        });
     }
 
     if (props && props.className) {
-        if (props.className.split(" ").length > 1) {
-            dirty.concat(props.className.split(" "));
-        } else {
-            dirty.push(props.className);
-        }
+        props.className.split(" ").forEach((item: string) => {
+            dirty.push(item);
+        });
+    }
+
+    if (defaultProps && defaultProps.commoncss) {
+        defaultProps.commoncss.forEach((item: string) => {
+            dirty.push(item);
+        });
+    }
+
+    if (props && props.commoncss) {
+        props.commoncss.forEach((item: string) => {
+            dirty.push(item);
+        });
     }
 
     dirty.forEach((item) => {

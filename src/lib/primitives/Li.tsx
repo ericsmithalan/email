@@ -3,6 +3,7 @@ import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyledProps } from "../hooks/useStyledProps";
+import { useStyle2 } from "../hooks/useStyle2";
 
 export interface LilElement extends React.HTMLProps<HTMLLIElement>, PrimitveElement {}
 
@@ -18,8 +19,8 @@ const Li: FC<LilElement> = (props: LilElement) => {
         commoncss: [defaultText],
     };
 
-    const { commoncss, ...rest } = useStyledProps(styles, props, Li.defaultProps);
-    return <li {...(rest as LilElement)} />;
+    const { mergedProps } = useStyle2<LilElement>(styles, props, Li.defaultProps);
+    return <li {...(mergedProps as LilElement)} />;
 };
 
 export { Li };

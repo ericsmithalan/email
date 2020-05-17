@@ -3,10 +3,12 @@ import { CssProperties, CssTarget, StyleRepository, Theme, ClassNameSelector } f
 
 import { camelize, decamelize } from "../utils/camelize";
 import { isStyleableProperty, isTagName, isValidClassName, isPseudo } from "../utils/validation";
+import { Styleable } from "./types";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
 
+    private _styleables = {};
     private _stylesheets: StyleRepository | {} = {
         "@reset": {
             css: "",
@@ -20,6 +22,10 @@ export class StyleManager {
 
     public get stylesheets() {
         return this._stylesheets;
+    }
+
+    public get styleables() {
+        return this._styleables;
     }
 
     public add = (styleSheet: StyleRepository | string, target: CssTarget = undefined) => {
@@ -37,45 +43,61 @@ export class StyleManager {
         }
     };
 
-    public addPropStyles = (props: any): CssProperties => {
-        if (props && props.className) {
-            // adds any element property that can be added to stylesheet
-            this._setElementStyles(props, camelize(props.className));
+    public registerStyleable = (styleable: Styleable) => {
+        this._styleables[styleable.uid] = styleable;
+        // if (!Object.keys(this._styleables).includes(styleable.uid)) {
+        //     this._styleables[styleable.uid] = styleable;
+        // } else {
+        //     console.error(`uid already exists`, styleable.uid, styleable);
+        // }
+    };
 
-            // adds all styles under element style property
-            if (props.style) {
-                this._set(
-                    "@default",
-                    camelize(props.className),
-                    deepmerge.all([this._get("@default", camelize(props.className)), props.style]),
-                );
-            }
+    public addPropStyles = (props: Styleable): CssProperties => {
+        if (props) {
+            this.registerStyleable(props);
 
-            if (props.commoncss) {
-                props.commoncss.forEach((clsName: string) => {
-                    if (clsName) {
-                        const styles = this._get("@common", camelize(clsName));
+            if (props.className) {
+                // adds any element property that can be added to stylesheet
+                this._setElementStyles(props, camelize(props.className));
 
-                        // merge common with element css class
-                        if (styles) {
-                            this._set(
-                                "@default",
-                                camelize(props.className),
-                                deepmerge.all([
-                                    this._get("@default", camelize(props.className)),
-                                    styles,
-                                ]),
-                            );
+                // adds all styles under element style property
+                if (props.style) {
+                    this._set(
+                        "@default",
+                        camelize(props.className),
+                        deepmerge.all([
+                            this._get("@default", camelize(props.className)),
+                            props.style,
+                        ]),
+                    );
+                }
+
+                if (props.commoncss) {
+                    props.commoncss.forEach((clsName: string) => {
+                        if (clsName) {
+                            const styles = this._get("@common", camelize(clsName));
+
+                            // merge common with element css class
+                            if (styles) {
+                                this._set(
+                                    "@default",
+                                    camelize(props.className),
+                                    deepmerge.all([
+                                        this._get("@default", camelize(props.className)),
+                                        styles,
+                                    ]),
+                                );
+                            }
                         }
-                    }
-                });
+                    });
+                }
+
+                // return merged styles
+                const styles = this._get("@default", camelize(props.className));
+
+                // returns new styles
+                return styles;
             }
-
-            // return merged styles
-            const styles = this._get("@default", camelize(props.className));
-
-            // returns new styles
-            return styles;
         }
 
         return {};
@@ -98,7 +120,7 @@ export class StyleManager {
         return classNames;
     }
 
-    private _setElementStyles = (props: any, className: string): void => {
+    private _setElementStyles = (props: Styleable, className: string): void => {
         const results = {};
         if (props && className) {
             for (const key in props) {

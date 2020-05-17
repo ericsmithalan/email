@@ -3,6 +3,7 @@ import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyledProps } from "../hooks/useStyledProps";
+import { useStyle2 } from "../hooks/useStyle2";
 
 export interface DivElement extends React.HTMLProps<HTMLDivElement>, PrimitveElement {}
 
@@ -18,9 +19,9 @@ const Div: FC<DivElement> = (props: DivElement) => {
         commoncss: [defaultText],
     };
 
-    const { commoncss, ...rest } = useStyledProps(styles, props, Div.defaultProps);
+    const { mergedProps } = useStyle2<DivElement>(styles, props, Div.defaultProps);
 
-    return <div {...(rest as DivElement)} />;
+    return <div {...(mergedProps as DivElement)} />;
 };
 
 export { Div };

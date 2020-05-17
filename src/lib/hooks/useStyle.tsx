@@ -1,11 +1,12 @@
 import React, { Props } from "react";
 import { EmailCssContext } from "../EmailCssProvider";
 import { ClassNameSelector, ParseResults } from "../types";
+import { Styleable } from "../css-js/types";
 
 export const useStyle = (
     parser: ParseResults,
-    props: object = {},
-    defaultProps: object = {},
+    props: Styleable = {},
+    defaultProps: Styleable = {},
 ): ClassNameSelector => {
     const context = React.useContext(EmailCssContext);
 

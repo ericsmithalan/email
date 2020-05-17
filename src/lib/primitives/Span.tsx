@@ -3,6 +3,7 @@ import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyledProps } from "../hooks/useStyledProps";
+import { useStyle2 } from "../hooks/useStyle2";
 
 export interface SpanElement extends React.HTMLProps<HTMLSpanElement>, PrimitveElement {}
 
@@ -18,8 +19,8 @@ const Span: FC<SpanElement> = (props: SpanElement) => {
         commoncss: [defaultText],
     };
 
-    const { commoncss, ...rest } = useStyledProps(styles, props, Span.defaultProps);
-    return <span {...(rest as SpanElement)} />;
+    const { mergedProps } = useStyle2<SpanElement>(styles, props, Span.defaultProps);
+    return <span {...(mergedProps as SpanElement)} />;
 };
 
 export { Span };

@@ -4,6 +4,7 @@ import { DepricatedLinkAttributes, PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyledProps } from "../hooks/useStyledProps";
 import { styleable } from "../css-js/styleable";
+import { useStyle2 } from "../hooks/useStyle2";
 
 export interface AElement
     extends React.HTMLProps<HTMLAnchorElement>,
@@ -23,9 +24,9 @@ const A: FC<AElement> = (props: AElement) => {
         commoncss: [defaultText],
     };
 
-    const { commoncss, ...rest } = useStyledProps(styles, props, A.defaultProps);
+    const { mergedProps, ...rest } = useStyle2<AElement>(styles, props, A.defaultProps);
 
-    return <a {...(rest as AElement)} />;
+    return <a {...(mergedProps as AElement)} />;
 };
 
 export { A };

@@ -4,6 +4,7 @@ import { styleable } from "src/lib/css-js/styleable";
 
 export default styleable({
     container: {
+        backgroundColor: "#eaeaea",
         width: 800,
         "@tablet": {
             width: "100%",
@@ -15,6 +16,7 @@ export default styleable({
         },
     },
     containerGutterLeft: {
+        backgroundColor: "#fafafa",
         width: (p: Prop) => p.p.columnGutter,
         verticalAlign: "top",
         "@tablet": {
@@ -25,6 +27,7 @@ export default styleable({
         },
     },
     containerGutterRight: {
+        backgroundColor: "#fafafa",
         verticalAlign: "top",
         width: (p: Prop) => p.p.columnGutter,
         "@tablet": {

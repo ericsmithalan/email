@@ -3,6 +3,7 @@ import { styleable } from "../css-js/styleable";
 import { PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyledProps } from "../hooks/useStyledProps";
+import { useStyle2 } from "../hooks/useStyle2";
 
 export interface OlElement extends React.HTMLProps<HTMLOListElement>, PrimitveElement {}
 
@@ -18,9 +19,9 @@ const Ol: FC<OlElement> = (props: OlElement) => {
         commoncss: [defaultText],
     };
 
-    const { commoncss, ...rest } = useStyledProps(styles, props, Ol.defaultProps);
+    const { mergedProps } = useStyle2<OlElement>(styles, props, Ol.defaultProps);
     // @ts-ignore
-    return <ol {...(rest as OlElement)} />;
+    return <ol {...(mergedProps as OlElement)} />;
 };
 
 export { Ol };

@@ -3,6 +3,8 @@ import { styleable } from "../css-js/styleable";
 import { DepricatedTdAttributes, PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
 import { useStyledProps } from "../hooks/useStyledProps";
+import { generateId } from "../utils/generateId";
+import { useStyle2 } from "../hooks/useStyle2";
 
 export interface TrElement
     extends React.HTMLProps<HTMLTableRowElement>,
@@ -15,12 +17,13 @@ const styles = styleable({
 
 const Tr: FC<TrElement> = (props: TrElement) => {
     Tr.defaultProps = {
+        uid: generateId(),
         className: styles.classNames.ascTr,
     };
 
-    const { commoncss, ...rest } = useStyledProps(styles, props, Tr.defaultProps);
+    const { mergedProps } = useStyle2<TrElement>(styles, props, Tr.defaultProps);
 
-    return <tr {...(rest as TrElement)} />;
+    return <tr {...(mergedProps as TrElement)} />;
 };
 
 export { Tr };
