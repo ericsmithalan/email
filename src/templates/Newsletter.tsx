@@ -1,5 +1,9 @@
-import { Container } from "next/app";
+import { Container } from "../components";
 import { style } from "src/lib/css-js/style";
+
+export interface NewsletterProps {
+    text: string;
+}
 
 const styles = style({
     cornerImage: {
@@ -14,10 +18,10 @@ const styles = style({
     },
 });
 
-export default function BasicNewsletter() {
+export default function NewsLetter(props: NewsletterProps) {
     return (
-        <Container columnGutter={80} rowGutter={100}>
-            Basic Template
+        <Container columnGutter={20} rowGutter={100}>
+            {props.text}
         </Container>
     );
 }
