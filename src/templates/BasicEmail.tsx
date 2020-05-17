@@ -18,7 +18,7 @@ const styles = style({
 
 export default function BasicEmail({ post }) {
     const { cornerImage } = useStyle(styles);
-    console.log("posts", post);
+
     return (
         <Container
             columnGutter={80}

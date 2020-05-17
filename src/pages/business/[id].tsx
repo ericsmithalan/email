@@ -35,8 +35,6 @@ const BasicEmailPage = ({ post }) => {
     const router = useRouter();
     const { postId } = router.query;
 
-    console.log("postId", postId);
-
     return <BasicEmail post={post} />;
 };
 

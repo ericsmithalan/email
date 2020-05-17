@@ -45,11 +45,6 @@ export class StyleManager {
 
     public registerStyleable = (styleable: Styleable) => {
         this._styleables[styleable.uid] = styleable;
-        // if (!Object.keys(this._styleables).includes(styleable.uid)) {
-        //     this._styleables[styleable.uid] = styleable;
-        // } else {
-        //     console.error(`uid already exists`, styleable.uid, styleable);
-        // }
     };
 
     public addPropStyles = (props: Styleable): CssProperties => {
