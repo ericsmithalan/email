@@ -33,5 +33,9 @@ export default style({
     heading: {
         color: (p: Prop) => p.t.colors.orangeColor,
         fontWeight: 600,
+        paddingRight: 5,
+    },
+    margin1: {
+        paddingRight: 10,
     },
 });

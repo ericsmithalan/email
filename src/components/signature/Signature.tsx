@@ -68,11 +68,17 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
                 </Td>
             </Tr>
             <Tr>
+                <Td height={8}></Td>
+            </Tr>
+            <Tr>
                 <Td>
                     <A href={"http://www.ascendum.com"}>
                         <Img width={213} height={45} src={getLogoUrl(props.department)} />
                     </A>
                 </Td>
+            </Tr>
+            <Tr>
+                <Td height={8}></Td>
             </Tr>
             <Tr>
                 <Td>
@@ -89,7 +95,7 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
                             <Td>
                                 <Label className={classNames.heading}>T</Label>
                             </Td>
-                            <Td>
+                            <Td className={classNames.margin1}>
                                 <Label className={classNames.phone}>{props.workPhone}</Label>
                             </Td>
                             <Td>
@@ -109,6 +115,9 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
                         </Tr>
                     </Table>
                 </Td>
+            </Tr>
+            <Tr>
+                <Td height={15}></Td>
             </Tr>
             <Tr>
                 <Td>
@@ -206,7 +215,7 @@ const getPhone = (location: Location): string => {
 const getAddress = (location: Location): string[] => {
     switch (location) {
         case "US HQ": //US HQ
-            return ["10290 Alliance Road", "Blue Ash Ohio 45242 USA", "+1 513 792 5100"];
+            return ["10290 Alliance Road", "Blue Ash Ohio 45242 USA"];
         case "India HQ": //INDIA HQ
             return ["#170-172 Phase 2 EPIP Whitefield", "Bengaluru 560066 India"];
         case "India": //INDIA
