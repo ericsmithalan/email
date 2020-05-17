@@ -169,7 +169,7 @@ export class StyleManager {
 
     public fonts = () => {
         if (this._theme.fonts.googleFonts) {
-            return `@import url(${this._theme.fonts.googleFonts});`;
+            return this._theme.fonts.googleFonts;
         }
     };
 

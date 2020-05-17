@@ -33,18 +33,32 @@ export interface SignatureProps extends Layout<SignatureProps> {
     location: Location;
 }
 
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
-type Diff<T, K> = Omit<T, keyof K>;
-
-type Props = Omit<SignatureProps, "description">;
-
 const Signature: FC<SignatureProps> = (props: SignatureProps) => {
-    const { classNames } = useStyle2<SignatureProps>(styles, props, Signature.defaultProps);
+    Signature.defaultProps = {
+        className: styles.classNames.signature,
+    };
+
+    const { classNames, mergedProps } = useStyle2<SignatureProps>(
+        styles,
+        props,
+        Signature.defaultProps,
+    );
+
+    const {
+        name,
+        jobTitle,
+        email,
+        department,
+        workPhone,
+        cellPhone,
+        location,
+        ...rest
+    } = mergedProps;
 
     const address = getAddress(props.location);
 
     return (
-        <Table className={classNames.signature}>
+        <Table {...rest}>
             <Tr>
                 <Td>
                     <Label lineBreak={true} className={classNames.name}>

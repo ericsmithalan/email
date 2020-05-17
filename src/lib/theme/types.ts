@@ -44,6 +44,9 @@ export interface Theme {
         fontSubTitleSize: number;
         fontDefaultSize: number;
         fontSmallSize: number;
+        lightWeight: number;
+        normalWeight: number;
+        boldWeight: number;
     };
     spacing: Spaceing;
     breakpoints: Breakpoint;

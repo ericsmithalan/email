@@ -17,6 +17,7 @@ export default style({
     jobTitle: {
         fontFamily: (p: Prop) => p.t.fonts.headerFontFamily,
         textTransform: "uppercase",
+        fontWeight: 600,
         color: (p: Prop) => p.t.colors.orangeColor,
     },
     address: {

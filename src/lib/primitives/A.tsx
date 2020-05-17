@@ -16,6 +16,7 @@ const styles = style({
         fontFamily: (p: Prop) => p.t.fonts.fontFamily,
         fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
         color: (p: Prop) => p.t.colors.darkFontColor,
+        fontWeight: (p: Prop) => p.t.fonts.normalWeight,
     },
 });
 

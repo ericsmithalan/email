@@ -13,7 +13,7 @@ const Label: FC<LabelProps> = (props: LabelProps) => {
         className: styles.classNames.label,
     };
 
-    const { mergedProps } = useStyle2<LabelProps>(styles, props, Label.defaultProps);
+    const { mergedProps, classNames } = useStyle2<LabelProps>(styles, props, Label.defaultProps);
 
     const { lineBreak, ...rest } = mergedProps;
 
