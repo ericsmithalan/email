@@ -1,6 +1,6 @@
 import CSS from "csstype";
 import * as MSO from "./types.mso";
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 import { Theme } from "../theme/types";
 
 export type ParseArgs = {
@@ -19,6 +19,7 @@ export interface Styleable {
     className?: string;
     style?: CSSProperties;
     commoncss?: string[];
+    children?: ReactNode;
 }
 
 export interface Prop {

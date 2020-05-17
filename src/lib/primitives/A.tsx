@@ -2,7 +2,6 @@ import React, { FC } from "react";
 
 import { DepricatedLinkAttributes, PrimitveElement } from "../types";
 import { useCommonCss } from "../hooks/useCommonCss";
-import { useStyledProps } from "../hooks/useStyledProps";
 import { styleable } from "../css-js/styleable";
 import { useStyle2 } from "../hooks/useStyle2";
 
