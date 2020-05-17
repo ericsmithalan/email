@@ -1,4 +1,3 @@
-import { useStyle } from "src/lib";
 import { Container } from "next/app";
 import { styleable } from "src/lib/css-js/styleable";
 

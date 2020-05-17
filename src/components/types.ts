@@ -6,5 +6,4 @@ export type Size = string | number;
 
 export interface Layout<T> extends Styleable {
     children?: ReactNode;
-    commoncss?: string[];
 }
