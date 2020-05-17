@@ -4,7 +4,6 @@ import { style } from "src/lib/css-js/style";
 
 export default style({
     container: {
-        backgroundColor: "#eaeaea",
         width: 800,
         "@tablet": {
             width: "100%",
@@ -16,7 +15,6 @@ export default style({
         },
     },
     containerGutterLeft: {
-        backgroundColor: "#fafafa",
         width: (p: Prop) => p.p.columnGutter,
         verticalAlign: "top",
         "@tablet": {
@@ -27,7 +25,6 @@ export default style({
         },
     },
     containerGutterRight: {
-        backgroundColor: "#fafafa",
         verticalAlign: "top",
         width: (p: Prop) => p.p.columnGutter,
         "@tablet": {
