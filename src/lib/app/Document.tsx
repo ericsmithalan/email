@@ -13,9 +13,6 @@ export default class EmailDocument extends Document<DocProps> {
         const theme = defaultTheme;
         const sheets = new StyleManager(theme);
 
-        const common = defaultCommon.parse(theme, {}, "@common");
-
-        sheets.add(common, "@common");
         sheets.add(defaultReset, "@reset");
 
         ctx.renderPage = () => {
@@ -34,10 +31,6 @@ export default class EmailDocument extends Document<DocProps> {
                 <style
                     id="css_reset"
                     dangerouslySetInnerHTML={{ __html: sheets.css("@reset") }}
-                ></style>
-                <style
-                    id="css_common"
-                    dangerouslySetInnerHTML={{ __html: sheets.css("@common") }}
                 ></style>
                 <style
                     id="css_base"

@@ -70,47 +70,6 @@ export class StyleManager {
             if (props.className) {
                 // adds any element property that can be added to stylesheet
 
-                this._setElementPropStyles(props, camelize(props.className));
-
-                if (props.commoncss) {
-                    props.commoncss.forEach((clsName: string) => {
-                        if (clsName) {
-                            const commonStyle = this._get("@common", camelize(clsName));
-                            const elementStyle = this._get("@default", camelize(props.className));
-                            const combinedStyles = deepmerge.all([elementStyle, commonStyle]);
-
-                            // add common to element styles
-                            if (Object.keys(combinedStyles).length > 0) {
-                                this._set(
-                                    "@default",
-                                    camelize(props.className),
-                                    deepmerge.all([elementStyle, commonStyle]),
-                                );
-
-                                // this.log({
-                                //     method: "addPropStyles",
-                                //     area: "set commoncss",
-                                //     className: props.className,
-                                //     commonClassName: clsName,
-                                //     before: elementStyle,
-                                //     after: this._get("@default", camelize(props.className)),
-                                // });
-                            } else {
-                                this.log({
-                                    method: "addPropStyles",
-                                    area: "props.commoncss",
-                                    className: props.className,
-                                    commonClassName: clsName,
-                                    props: props,
-                                    common: commonStyle,
-                                    element: elementStyle,
-                                    combined: combinedStyles,
-                                });
-                            }
-                        }
-                    });
-                }
-
                 // adds all styles under element style property
                 if (props.style) {
                     const elementStyle = this._get("@default", camelize(props.className));
@@ -130,6 +89,8 @@ export class StyleManager {
                         });
                     }
                 }
+
+                this._setElementPropStyles(props, camelize(props.className));
 
                 // return merged styles
                 const styles = this._get("@default", camelize(props.className));

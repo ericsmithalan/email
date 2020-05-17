@@ -2,7 +2,7 @@ import React, { FC, ReactNode, ComponentProps } from "react";
 import { Table, Tr, Td, Div, A, Img } from "../../lib/primitives";
 import { Layout } from "../types";
 import styles from "./styles";
-import { useStyle, useCommonCss, useStyle2 } from "src/lib";
+import { useStyle, useStyle2 } from "src/lib";
 import { Label } from "../label/Label";
 import { Styleable } from "src/lib/types";
 
@@ -45,8 +45,6 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
         Signature.defaultProps,
     );
 
-    const { caps, bold } = useCommonCss();
-
     const address = getAddress(props.location);
 
     return (
@@ -70,9 +68,7 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
                     <Table>
                         <Tr>
                             <Td>
-                                <Label commoncss={[bold, caps]} className={classNames.heading}>
-                                    E
-                                </Label>
+                                <Label className={classNames.heading}>E</Label>
                             </Td>
                             <Td colSpan={3}>
                                 <Label className={classNames.email}>{props.email}</Label>

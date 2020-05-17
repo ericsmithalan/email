@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js/style";
 import { DepricatedTdAttributes, PrimitveElement } from "../types";
-import { useCommonCss } from "../hooks/useCommonCss";
+
 import { generateId } from "../utils/generateId";
 import { useStyle2 } from "../hooks/useStyle2";
 

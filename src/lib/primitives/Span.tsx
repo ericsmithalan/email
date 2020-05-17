@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js/style";
 import { PrimitveElement } from "../types";
-import { useCommonCss } from "../hooks/useCommonCss";
+
 import { useStyle2 } from "../hooks/useStyle2";
 import { Prop } from "../css-js/types";
 
@@ -16,8 +16,6 @@ const styles = style({
 });
 
 const Span: FC<SpanElement> = (props: SpanElement) => {
-    const { defaultText } = useCommonCss();
-
     Span.defaultProps = {
         className: styles.classNames.ascSpan,
     };

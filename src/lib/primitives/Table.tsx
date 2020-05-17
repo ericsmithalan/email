@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js/style";
 import { DepricatedTableAttributes, PrimitveElement } from "../types";
-import { useCommonCss } from "../hooks/useCommonCss";
+
 import { useStyle2 } from "../hooks/useStyle2";
 import { generateId } from "../utils/generateId";
 import { Prop } from "../css-js/types";
@@ -20,8 +20,6 @@ const styles = style({
 });
 
 const Table: FC<TableElement> = (props: TableElement) => {
-    const { defaultText } = useCommonCss();
-
     Table.defaultProps = {
         uid: generateId(),
         className: styles.classNames.ascTable,

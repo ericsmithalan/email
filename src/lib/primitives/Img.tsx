@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js/style";
 import { DepricatedImageAttributes, PrimitveElement } from "../types";
-import { useCommonCss } from "../hooks/useCommonCss";
+
 import { useStyle2 } from "../hooks/useStyle2";
 import { Prop } from "../css-js/types";
 
@@ -19,8 +19,6 @@ const styles = style({
 });
 
 const Img: FC<ImgElement> = (props: ImgElement) => {
-    const { defaultText } = useCommonCss();
-
     Img.defaultProps = {
         className: styles.classNames.ascImg,
 

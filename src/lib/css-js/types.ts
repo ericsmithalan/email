@@ -18,7 +18,6 @@ export interface Styleable {
     uid?: string;
     className?: string;
     style?: CSSProperties;
-    commoncss?: string[];
     children?: ReactNode;
 }
 

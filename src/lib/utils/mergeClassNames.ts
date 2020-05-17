@@ -16,18 +16,6 @@ export const mergeClassNames = <T extends Styleable>(defaultProps: T, props: T) 
         });
     }
 
-    if (defaultProps && defaultProps.commoncss) {
-        defaultProps.commoncss.forEach((item: string) => {
-            dirty.push(item);
-        });
-    }
-
-    if (props && props.commoncss) {
-        props.commoncss.forEach((item: string) => {
-            dirty.push(item);
-        });
-    }
-
     dirty.forEach((item) => {
         if (!clean.includes(item)) {
             clean.push(item);

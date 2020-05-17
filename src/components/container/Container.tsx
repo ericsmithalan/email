@@ -29,14 +29,7 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
         containerGutterBottom,
     } = classNames;
 
-    const {
-        commoncss,
-        rowGutter,
-        columnGutter,
-        gutterLeftContent,
-        gutterRightContent,
-        ...rest
-    } = mergedProps;
+    const { rowGutter, columnGutter, gutterLeftContent, gutterRightContent, ...rest } = mergedProps;
 
     return (
         <Table align="center" {...rest} className={container}>

@@ -2,7 +2,6 @@ import React, { Props, FunctionComponent } from "react";
 import { EmailCssContext } from "../EmailCssProvider";
 import { ClassNameSelector, ParseResults, Styleable } from "../types";
 import { mergeClassNames } from "../utils/mergeClassNames";
-import { useCommonCss } from "./useCommonCss";
 
 export const useStyle2 = <T extends Styleable>(
     parser: ParseResults,
@@ -28,7 +27,7 @@ export const useStyle2 = <T extends Styleable>(
 
     const propStyles = context.stylesheets.addPropStyles(props);
 
-    const { commoncss, uid, ...rest } = Object.assign({}, defaultProps, props, {
+    const { uid, ...rest } = Object.assign({}, defaultProps, props, {
         className: mergeClassNames(defaultProps, props),
         style: Object.assign({}, defaultStyles, propStyles),
     });

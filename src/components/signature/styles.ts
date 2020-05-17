@@ -9,9 +9,14 @@ export default style({
         color: (p: Prop) => p.t.colors.darkFontColor,
     },
     name: {
+        fontFamily: (p: Prop) => p.t.fonts.headerFontFamily,
+        textTransform: "uppercase",
+        fontWeight: 600,
         color: (p: Prop) => p.t.colors.darkFontColor,
     },
     jobTitle: {
+        fontFamily: (p: Prop) => p.t.fonts.headerFontFamily,
+        textTransform: "uppercase",
         color: (p: Prop) => p.t.colors.orangeColor,
     },
     address: {
@@ -26,5 +31,6 @@ export default style({
     },
     heading: {
         color: (p: Prop) => p.t.colors.orangeColor,
+        fontWeight: 600,
     },
 });

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { style } from "../css-js/style";
 import { DepricatedTdAttributes, PrimitveElement } from "../types";
-import { useCommonCss } from "../hooks/useCommonCss";
+
 import { generateId } from "../utils/generateId";
 import { useStyle2 } from "../hooks/useStyle2";
 import { Prop } from "../css-js/types";
@@ -20,8 +20,6 @@ const styles = style({
 });
 
 const Td: FC<TdElement> = (props: TdElement) => {
-    const { defaultText } = useCommonCss();
-
     Td.defaultProps = {
         uid: generateId(),
         className: styles.classNames.ascTd,
