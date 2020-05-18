@@ -6,6 +6,7 @@ import { defaultCommon, defaultTheme, defaultReset } from "src/lib/theme";
 import { EmailCssProvider } from "src/lib";
 import path from "path";
 import fs from "fs";
+import { Html } from "../primitives/Html";
 
 export default class EmailDocument extends Document<DocProps> {
     static async getInitialProps(ctx: DocumentContext) {
@@ -87,13 +88,13 @@ export default class EmailDocument extends Document<DocProps> {
 
     render() {
         return (
-            <html>
+            <Html>
                 <Head></Head>
                 <Body>
                     <Main />
                     <NextScript />
                 </Body>
-            </html>
+            </Html>
         );
     }
 }

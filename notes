@@ -1,1 +1,25 @@
  
+                    {/* <C if="gte mso 9">
+                        {`
+                            <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:${props.width}px">
+                            <v:fill type="frame" src="http://placehold.it/${props.width}x${props.height}" color="#ffffff" />
+                            <v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0">
+                            <div style="font-size:1px;line-height:1px">
+                            <table width="${props.width}px" cellspacing="0" cellpadding="0" border="0" align="center">
+                            <tbody>
+                            <tr>
+                            <td height="${props.height}px" align="center">
+                    `}
+                    </C>
+
+                    <C if="gte mso 9">
+                        {`
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+                            </div>
+                            </v:textbox>
+                            </v:rect>
+                    `}
+                    </C> */}

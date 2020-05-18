@@ -11,20 +11,22 @@ import { Table, Tr, Td, Div, Span } from "../../lib/primitives";
 import { Layout } from "../types";
 import { CssProperties } from "src/lib/types";
 
-export interface RectProps {
+export interface TextboxProps {
     children?: ReactNode;
-    fill?: boolean;
-    stroke?: boolean;
-    fillColor?: string;
-    width?: string | number;
-    height?: string | number;
+    style?: CSSProperties | { [key: string]: string };
 }
 
-const Rect: FC<RectProps> = (props: RectProps) => {
-    const ref = React.createRef<HTMLSpanElement>();
-    const el = React.createElement("v:rect", props, props.children);
+const Textbox: FC<TextboxProps> = (props: TextboxProps) => {
+    Textbox.defaultProps = {
+        style: {
+            "mso-fit-shape-to-text": "true",
+            inset: 0,
+        },
+    };
+
+    const el = React.createElement("v:textbox", props, props.children);
 
     return el;
 };
 
-export { Rect };
+export { Textbox };
