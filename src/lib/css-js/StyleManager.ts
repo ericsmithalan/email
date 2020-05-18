@@ -1,22 +1,25 @@
 import deepmerge from "deepmerge";
-import { CssProperties, CssTarget, StyleRepository, Theme, ClassNameSelector } from "../types";
+import { CssProperties, CssTarget, StyleRepository, Theme, KeyValue } from "../types";
 
 import { camelize, decamelize } from "../utils/camelize";
 import { isStyleableProperty, isTagName, isValidClassName, isPseudo } from "../utils/validation";
-import { Styleable } from "./types";
+import { Styleable, ClassType, PropertyType, CssValue } from "./types";
 import fs from "fs";
 import path from "path";
+import { CSSProperties } from "react";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
 
     private _styleables = {};
-    private _stylesheets: StyleRepository | {} = {
+    private _globals = {
         "@reset": {
             css: "",
         },
-        "@base": {},
         "@common": {},
+    };
+    private _stylesheets: StyleRepository = {
+        "@base": {},
         "@default": {},
         "@phone": {},
         "@tablet": {},
@@ -30,18 +33,16 @@ export class StyleManager {
         return this._styleables;
     }
 
-    public add = (styleSheet: StyleRepository | string, target: CssTarget = undefined) => {
+    public add = (styleSheet: StyleRepository | string, target: CssTarget) => {
         if (target) {
             if (target === "@reset") {
-                this._stylesheets["@reset"]["css"] = styleSheet as string;
+                this._globals["@reset"]["css"] = styleSheet as string;
             } else {
-                this._stylesheets = deepmerge.all([
-                    this._stylesheets[target],
-                    styleSheet as StyleRepository,
-                ]);
+                const styles = this._stylesheets[target] as object;
+                this._stylesheets = deepmerge.all([styles, styleSheet as StyleRepository]);
             }
         } else {
-            this._stylesheets = deepmerge.all([this._stylesheets, styleSheet]);
+            this._stylesheets = deepmerge.all([this._stylesheets, styleSheet as object]);
         }
     };
 
@@ -61,9 +62,11 @@ export class StyleManager {
         // );
     };
 
-    public registerStyleable = (styleable: Styleable) => {
-        this._styleables[styleable.uid] = styleable;
-    };
+    // public registerStyleable = (styleable: Styleable) => {
+    //     if (styleable.uid) {
+    //         this._styleables[styleable.uid] = styleable as object;
+    //     }
+    // };
 
     public addPropStyles = (props: Styleable): CssProperties => {
         if (props) {
@@ -99,16 +102,16 @@ export class StyleManager {
                 const styles = this._get("@default", camelize(props.className));
 
                 // returns new styles
-                return styles;
+                return styles || {};
             }
         }
 
         return {};
     };
 
-    public classNames(target: CssTarget): ClassNameSelector {
+    public classNames(target: CssTarget): KeyValue {
         const classes = this._stylesheets[target];
-        const classNames = {};
+        const classNames: KeyValue = {};
 
         if (classes) {
             for (const key in classes) {
@@ -123,45 +126,59 @@ export class StyleManager {
         return classNames;
     }
 
-    private _setElementPropStyles = (props: Styleable, className: string): void => {
-        const results = {};
+    private _setElementPropStyles = (props: any, className: string): void => {
+        const results: KeyValue = {};
         if (props && className) {
             for (const key in props) {
                 if (props.hasOwnProperty(key)) {
                     if (isStyleableProperty(key)) {
-                        const value = props[key];
-                        results[key] = value;
+                        results[key] = props[key];
                     }
                 }
             }
 
             if (results) {
-                const combinedStyles = deepmerge.all([this._get("@default", className), results]);
+                const styles = this._get("@default", className);
+                if (styles) {
+                    const combinedStyles = deepmerge.all([styles, results]);
 
-                if (combinedStyles) {
-                    this._set("@default", className, combinedStyles);
-                } else {
-                    this.log({
-                        method: "_setElementPropStyles",
-                        className: className,
-                        combinedStyles: combinedStyles,
-                        props: props,
-                    });
+                    if (combinedStyles) {
+                        this._set("@default", className, combinedStyles);
+                    } else {
+                        this.log({
+                            method: "_setElementPropStyles",
+                            className: className,
+                            combinedStyles: combinedStyles,
+                            props: props,
+                        });
+                    }
                 }
             }
         }
     };
 
-    private _get = (target: CssTarget, className: string): CssProperties => {
-        return this._stylesheets[target][className];
+    private _get = (target: CssTarget, className: string): CssProperties | undefined => {
+        const targetResults = this._stylesheets[target];
+        if (targetResults) {
+            const item = targetResults[className];
+
+            if (item) {
+                return item;
+            }
+        }
+        return undefined;
     };
 
     private _set = (target: CssTarget, className: string, styles: object): void => {
         if (target !== "@common" && target !== "@reset") {
-            const repClass = this._stylesheets[target][className];
-            const merged = Object.assign({}, repClass, styles);
+            const targetResults = this._stylesheets[target];
+            if (targetResults) {
+                const item = targetResults[className];
 
-            this._stylesheets[target][className] = merged;
+                if (item) {
+                    const merged = Object.assign({}, item, styles);
+                }
+            }
         } else {
             console.error(`_set tried setting wrong target ${target} ${className}`, styles);
         }
@@ -176,8 +193,14 @@ export class StyleManager {
     public css = (trg: CssTarget) => {
         if (trg === "@reset") {
             // reset is already a string
-            const target = this._stylesheets["@reset"]["css"];
-            return target || "";
+            const target = this._stylesheets["@reset"];
+            if (target) {
+                const css = target["css"];
+
+                if (css) {
+                    return css || "";
+                }
+            }
         } else {
             let important = false;
 
@@ -198,7 +221,7 @@ export class StyleManager {
                 important = true;
             }
 
-            const rendered = render(target, important);
+            const rendered = render(target as ClassType, important);
 
             css.push(rendered);
 
@@ -211,7 +234,7 @@ export class StyleManager {
     };
 }
 
-const render = (obj: object, isImportant: boolean): string => {
+const render = (obj: any, isImportant: boolean): string => {
     const css: string[] = [];
     const pseudos: string[] = [];
 

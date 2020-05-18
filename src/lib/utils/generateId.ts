@@ -24,7 +24,7 @@ const generate = () => {
 export const generateId = () => {
     const previous: string[] = ids;
     let retries: number = 0;
-    let id: string;
+    let id: string | null = null;
 
     while (!id && retries < UNIQUE_RETRIES) {
         id = generate();

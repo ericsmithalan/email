@@ -1,20 +1,20 @@
 import React, { Props } from "react";
 import { EmailCssContext } from "../EmailCssProvider";
-import { ClassNameSelector, ParseResults } from "../types";
+import { KeyValue, ParseResults } from "../types";
 import { Styleable } from "../css-js/types";
 
 export const useStyle = (
     parser: ParseResults,
     props: Styleable = {},
     defaultProps: Styleable = {},
-): ClassNameSelector => {
+): KeyValue => {
     const context = React.useContext(EmailCssContext);
 
     if (props && defaultProps) {
         parser.parse(context.theme, Object.assign({}, defaultProps, props));
     }
 
-    context.stylesheets.add(parser.styles);
+    context.stylesheets.add(parser.styles, "@default");
 
     let defaultStyles = {};
     let propStyles = {};

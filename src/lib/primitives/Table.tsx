@@ -22,7 +22,6 @@ const styles = style({
 
 const Table: FC<TableElement> = (props: TableElement) => {
     Table.defaultProps = {
-        uid: generateId(),
         className: styles.classNames.ascTable,
         cellPadding: 0,
         cellSpacing: 0,

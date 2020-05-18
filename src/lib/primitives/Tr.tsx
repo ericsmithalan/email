@@ -16,7 +16,6 @@ const styles = style({
 
 const Tr: FC<TrElement> = (props: TrElement) => {
     Tr.defaultProps = {
-        uid: generateId(),
         className: styles.classNames.ascTr,
     };
 

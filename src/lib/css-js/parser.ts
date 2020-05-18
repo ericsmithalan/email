@@ -38,34 +38,38 @@ export function parser(styles: Styles): ParseResults {
     const recursiveParse = (parseArgs: ParseArgs) => {
         const css: object = {};
 
-        for (const key in parseArgs.value as object) {
-            if (parseArgs.value.hasOwnProperty(key)) {
-                let value = parseArgs.value[key];
-
-                let calculated = calculateValue(value, {
-                    props: parseArgs.props,
-                    theme: parseArgs.theme,
-                });
-
-                if (isObject(calculated)) {
-                    const args = updateArgs(parseArgs, {
-                        value: calculated,
-                        classKey: formatClassName({ classKey: parseArgs.classKey }, key),
-                        target: isTarget(key) ? (key as CssTarget) : parseArgs.target,
-                        pseudo: isTarget(key) ? (key as CssPseudo) : parseArgs.pseudo,
-                    });
-
-                    const target = repository[args.target];
-                    target[args.classKey] = recursiveParse(args);
-
-                    _classNames[args.classKey] = decamelize(args.classKey);
-                }
-
-                if (isValueValid(calculated)) {
-                    css[key] = calculated as CssValue;
-                }
-            }
+        for (const [key, value] of Object.entries(parseArgs.value)) {
+            console.log(key);
         }
+
+        // for (const key in parseArgs.value) {
+        //     if (parseArgs.value.hasOwnProperty(key)) {
+        //         let value: any = parseArgs.value[key];
+
+        //         let calculated = calculateValue(value, {
+        //             props: parseArgs.props,
+        //             theme: parseArgs.theme,
+        //         });
+
+        //         if (isObject(calculated)) {
+        //             const args = updateArgs(parseArgs, {
+        //                 value: calculated,
+        //                 classKey: formatClassName({ classKey: parseArgs.classKey }, key),
+        //                 target: isTarget(key) ? (key as CssTarget) : parseArgs.target,
+        //                 pseudo: isTarget(key) ? (key as CssPseudo) : parseArgs.pseudo,
+        //             });
+
+        //             const target = repository[args.target];
+        //             target[args.classKey] = recursiveParse(args);
+
+        //             _classNames[args.classKey] = decamelize(args.classKey);
+        //         }
+
+        //         if (isValueValid(calculated)) {
+        //             css[key] = calculated as CssValue;
+        //         }
+        //     }
+        // }
 
         return css;
     };
@@ -73,14 +77,14 @@ export function parser(styles: Styles): ParseResults {
     return {
         styles: repository,
         classNames: _classNames,
-        parse: function <T extends Styleable>(
+        parse: <T extends Styleable>(
             theme: Theme,
             props: T,
             target?: CssTarget,
-        ): StyleRepository {
+        ): StyleRepository => {
             const newArgs = updateArgs(args, {
                 theme: theme,
-                props: props,
+                props: props as T,
                 target: target || "@default",
             });
 

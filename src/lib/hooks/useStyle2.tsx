@@ -1,13 +1,13 @@
 import React, { Props, FunctionComponent } from "react";
 import { EmailCssContext } from "../EmailCssProvider";
-import { ClassNameSelector, ParseResults, Styleable } from "../types";
+import { KeyValue, ParseResults, Styleable } from "../types";
 import { mergeClassNames } from "../utils/mergeClassNames";
 
 export const useStyle2 = <T extends Styleable>(
     parser: ParseResults,
     props: T,
     defaultProps: Partial<T>,
-): { classNames: ClassNameSelector; mergedProps: T } => {
+): { classNames: KeyValue; mergedProps: T } => {
     const context = React.useContext(EmailCssContext);
 
     parser.parse(
@@ -17,7 +17,7 @@ export const useStyle2 = <T extends Styleable>(
         }),
     );
 
-    context.stylesheets.add(parser.styles);
+    context.stylesheets.add(parser.styles, "@default");
 
     let defaultStyles = {};
 

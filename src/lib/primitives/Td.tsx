@@ -22,7 +22,6 @@ const styles = style({
 
 const Td: FC<TdElement> = (props: TdElement) => {
     Td.defaultProps = {
-        uid: generateId(),
         className: styles.classNames.ascTd,
         align: "left",
 

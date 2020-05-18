@@ -14,7 +14,7 @@ export const useStyledProps = (parser: ParseResults, props: Styleable, defaultPr
         }),
     );
 
-    context.stylesheets.add(parser.styles);
+    context.stylesheets.add(parser.styles, "@default");
 
     let defaultStyles = {};
 

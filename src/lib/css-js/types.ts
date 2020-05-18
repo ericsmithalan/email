@@ -4,7 +4,7 @@ import { CSSProperties, ReactNode } from "react";
 import { Theme } from "../theme/types";
 
 export type ParseArgs = {
-    value: object | string | number;
+    value: any;
     target: CssTarget;
     theme: Theme;
     classKey: string;
@@ -22,14 +22,14 @@ export interface Styleable {
 }
 
 export interface Prop {
-    t?: Theme;
-    p?: any;
+    t: Theme;
+    p: any;
 }
 
 export interface ParseResults {
     styles: StyleRepository;
-    classNames: ClassNameSelector;
-    parse: <T extends Styleable>(theme: Theme, props?: T, target?: CssTarget) => StyleRepository;
+    classNames: KeyValue;
+    parse: <T extends Styleable>(theme: Theme, props: T, target?: CssTarget) => StyleRepository;
 }
 
 export type Fn<R extends CssValue = CssValue> = (p: Prop) => R;
@@ -50,25 +50,25 @@ export type StyleRepository = {
     [K in CssTarget]?: ClassType;
 };
 
-type ClassType = {
+export type ClassType = {
     [K in string]?: CssProperties;
 };
 
-type TargetType = {
+export type TargetType = {
     [K in CssTarget]?: PropertyType;
 };
 
-type PsuedoType = {
+export type PsuedoType = {
     [K in CssPseudo]?: PropertyType;
 };
 
-type PropertyType = {
+export type PropertyType = {
     [K in keyof CssProperties]?: CssValue | Fn;
 };
 
 export type CssTarget = "@tablet" | "@phone" | "@common" | "@base" | "@reset" | "@default";
 export type CssPseudo = CSS.SimplePseudos | "none";
 
-export type ClassNameSelector = {
+export type KeyValue = {
     [K in string]: string;
 };
