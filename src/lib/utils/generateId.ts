@@ -9,7 +9,7 @@ const ALPHABET = "23456789abdegjkmnpqrvwxyz";
 
 const ALPHABET_LENGTH = ALPHABET.length;
 
-const ID_LENGTH = 6;
+const ID_LENGTH = 8;
 
 const UNIQUE_RETRIES = 9999;
 

@@ -1,44 +1,39 @@
 {
-    "name": "email",
-    "private": true,
-    "scripts": {
-        "dev": "next",
-        "build": "next build",
-        "start": "next start",
-        "type-check": "tsc"
-    },
-    "devDependencies": {
-        "@next/bundle-analyzer": "^9.4.0",
-        "@types/jsdom": "^16.2.3",
-        "@types/node": "^14.0.1",
-        "@types/react": "^16.9.34",
-        "@types/react-dom": "^16.9.7",
-        "@types/underscore": "^1.10.0",
-        "csstype": "^2.6.10",
-        "interweave-ssr": "^1.1.0",
-        "lerna": "^3.20.2",
-        "microbundle": "^0.12.0",
-        "rimraf": "^3.0.2",
-        "ts-node": "^8.10.1",
-        "ts-watch": "^1.0.8",
-        "tsc-watch": "^4.2.3",
-        "typescript": "^3.8.3"
-    },
-    "dependencies": {
-        "@types/deepmerge": "^2.2.0",
-        "@types/htmlparser2": "^3.10.1",
-        "@types/react-helmet": "^6.0.0",
-        "deepmerge": "^4.2.2",
-        "html-to-react": "^1.4.2",
-        "htmlparser2": "^4.1.0",
-        "jsdom": "^16.2.2",
-        "next": "9.4.0",
-        "next-offline": "^5.0.2",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "react-helmet": "^6.0.0",
-        "react-shadow-root": "^5.0.2",
-        "sass": "^1.26.5",
-        "underscore": "^1.10.2"
-    }
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "typescript": "~3.7.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
