@@ -4,13 +4,11 @@ import { Theme } from "./types";
 import { defaultTheme } from "./theme/defaultTheme";
 
 export type EmailCssContextProps = {
-    stylesheets: StyleManager;
-    theme: Theme;
+    styleManager: StyleManager;
 };
 
 export const EmailCssContext = React.createContext<EmailCssContextProps>({
-    stylesheets: new StyleManager(defaultTheme),
-    theme: defaultTheme,
+    styleManager: new StyleManager(defaultTheme),
 });
 
 export type EmailCssProviderProps = {
@@ -22,8 +20,7 @@ export class EmailCssProvider extends React.Component<EmailCssProviderProps> {
         return (
             <EmailCssContext.Provider
                 value={{
-                    stylesheets: this.props.stylesheets,
-                    theme: this.props.theme,
+                    styleManager: this.props.styleManager,
                 }}
             >
                 {this.props.children}

@@ -25,6 +25,10 @@ export class StyleManager {
         "@tablet": {},
     };
 
+    public get theme() {
+        return this._theme;
+    }
+
     public get stylesheets() {
         return this._stylesheets;
     }

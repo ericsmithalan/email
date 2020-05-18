@@ -8,23 +8,23 @@ export const useStyle = (
     props: Styleable = {},
     defaultProps: Styleable = {},
 ): KeyValue => {
-    const context = React.useContext(EmailCssContext);
+    const { styleManager } = React.useContext(EmailCssContext);
 
     if (props && defaultProps) {
-        parser.parse(context.theme, Object.assign({}, defaultProps, props));
+        parser.parse(styleManager.theme, Object.assign({}, defaultProps, props));
     }
 
-    context.stylesheets.add(parser.styles, "@default");
+    styleManager.add(parser.styles, "@default");
 
     let defaultStyles = {};
     let propStyles = {};
 
     if (defaultProps) {
-        defaultStyles = context.stylesheets.addPropStyles(defaultProps);
+        defaultStyles = styleManager.addPropStyles(defaultProps);
     }
 
     if (props) {
-        propStyles = context.stylesheets.addPropStyles(props);
+        propStyles = styleManager.addPropStyles(props);
     }
 
     return parser.classNames;

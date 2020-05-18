@@ -8,24 +8,24 @@ export const useStyle2 = <T extends Styleable>(
     props: T,
     defaultProps: Partial<T>,
 ): { classNames: KeyValue; mergedProps: T } => {
-    const context = React.useContext(EmailCssContext);
+    const { styleManager } = React.useContext(EmailCssContext);
 
     parser.parse(
-        context.theme,
+        styleManager.theme,
         Object.assign({}, defaultProps, props, {
             className: mergeClassNames(defaultProps, props),
         }),
     );
 
-    context.stylesheets.add(parser.styles, "@default");
+    styleManager.add(parser.styles, "@default");
 
     let defaultStyles = {};
 
     if (defaultProps) {
-        defaultStyles = context.stylesheets.addPropStyles(defaultProps);
+        defaultStyles = styleManager.addPropStyles(defaultProps);
     }
 
-    const propStyles = context.stylesheets.addPropStyles(props);
+    const propStyles = styleManager.addPropStyles(props);
 
     const { uid, ...rest } = Object.assign({}, defaultProps, props, {
         className: mergeClassNames(defaultProps, props),
