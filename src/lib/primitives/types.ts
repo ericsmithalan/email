@@ -15,6 +15,7 @@ export type DepricatedTableAttributes = {
     cellPadding?: number | string;
     cellSpacing?: number | string;
     border?: number | string;
+    background?: string;
 };
 
 export type DepricatedLinkAttributes = {

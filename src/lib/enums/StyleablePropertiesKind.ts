@@ -27,4 +27,5 @@ export const StyleablePropertiesKind = toEnum([
     "minWidth",
     "maxHeight",
     "minHeight",
+    "background",
 ]);
