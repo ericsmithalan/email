@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { renderToString } from "react-dom/server";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
@@ -11,15 +12,21 @@ import Document from "./frame/Document";
 
 const styleManager = new StyleManager(defaultTheme);
 
+const handleEvent = (type: string) => {
+    console.log(type);
+};
+
+const htmlDoc = renderToString(<Document />);
+
 ReactDOM.render(
     <React.StrictMode>
-        <EmailCssProvider styleManager={styleManager}>
-            <Frame document={<Document subject={"cool"} />}>
+        <Frame doc={htmlDoc}>
+            <EmailCssProvider styleManager={styleManager}>
                 <App />
-            </Frame>
-        </EmailCssProvider>
+            </EmailCssProvider>
+        </Frame>
     </React.StrictMode>,
-    document.getElementById("viewer-root"),
+    document.querySelector("#root"),
 );
 
 serviceWorker.unregister();

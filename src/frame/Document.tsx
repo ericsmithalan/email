@@ -27,9 +27,9 @@ export default class Document extends Component<DocumentProps, DocumentState> {
         return (
             <Html>
                 <Head>
-                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                    <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
                     <meta name="viewport" content="width=device-width" />
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                     <meta name="x-apple-disable-message-reformatting" />
                     <meta
                         name="format-detection"
@@ -46,7 +46,7 @@ export default class Document extends Component<DocumentProps, DocumentState> {
                         </Style>
                     ))}
                 </Head>
-                <Body>{this.props.children}</Body>
+                <Body id="frameRoot">{this.props.children}</Body>
             </Html>
         );
     }
