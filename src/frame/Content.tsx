@@ -2,8 +2,8 @@ import React, { Component, Children } from "react"; // eslint-disable-line no-un
 import PropTypes from "prop-types";
 
 export type ContentProps = {
-    contentDidMount: Function;
-    contentDidUpdate: Function;
+    contentDidMount?: () => void;
+    contentDidUpdate?: () => void;
 };
 
 export default class Content extends Component<ContentProps> {
@@ -14,11 +14,15 @@ export default class Content extends Component<ContentProps> {
     };
 
     componentDidMount() {
-        this.props.contentDidMount();
+        if (this.props.contentDidMount) {
+            this.props.contentDidMount();
+        }
     }
 
     componentDidUpdate() {
-        this.props.contentDidUpdate();
+        if (this.props.contentDidUpdate) {
+            this.props.contentDidUpdate();
+        }
     }
 
     render() {

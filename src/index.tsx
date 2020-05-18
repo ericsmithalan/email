@@ -6,31 +6,20 @@ import * as serviceWorker from "./serviceWorker";
 import { defaultTheme } from "./lib/theme/defaultTheme";
 import { EmailCssProvider } from "./lib/EmailCssProvider";
 import { StyleManager } from "./lib/css-js/StyleManager";
-import Frame from "./Frame";
+import Frame from "./frame/Frame";
+import Document from "./frame/Document";
 
 const styleManager = new StyleManager(defaultTheme);
 
-// ReactDOM.render(
-//     <React.StrictMode>
-//         <EmailCssProvider styleManager={styleManager}>
-//             <App />
-//         </EmailCssProvider>
-//     </React.StrictMode>,
-//     document.getElementById("root"),
-// );
-
 ReactDOM.render(
     <React.StrictMode>
-        <Frame>
-            <EmailCssProvider styleManager={styleManager}>
+        <EmailCssProvider styleManager={styleManager}>
+            <Frame document={<Document subject={"cool"} />}>
                 <App />
-            </EmailCssProvider>
-        </Frame>
+            </Frame>
+        </EmailCssProvider>
     </React.StrictMode>,
     document.getElementById("viewer-root"),
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();

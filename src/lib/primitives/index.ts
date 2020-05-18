@@ -10,3 +10,5 @@ export { Td } from "./Td";
 export { Tr } from "./Tr";
 export { Ul } from "./Ul";
 export { P } from "./P";
+export { Head } from "./Head";
+export { Style } from "./Style";
