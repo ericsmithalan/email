@@ -1,10 +1,11 @@
 import CSS from "csstype";
-import * as MSO from "./types.mso";
 import { CSSProperties, ReactNode } from "react";
+
 import { Theme } from "../theme/types";
+import * as MSO from "./types.mso";
 
 export type ParseArgs = {
-    value: ClassType;
+    value: any;
     target: CssTarget;
     theme: Theme;
     classKey: string;
@@ -36,8 +37,6 @@ export type Fn<R extends CssValue = CssValue> = (p: Prop) => R;
 
 //Fn = (<R extends CssValue>(t: any, p: any) => R) & Function;
 
-export type CssProp = keyof CssProperties;
-
 export interface CssProperties
     extends CSS.Properties<CssValue>,
         CSS.VendorProperties<CssValue>,
@@ -53,11 +52,11 @@ export type StyleRepository = {
 };
 
 export type ClassType = {
-    [K in string]?: CssProperties | TargetType | PsuedoType;
+    [K in string]?: CssProperties;
 };
 
 export type TargetType = {
-    [K in CssTarget]?: ClassType;
+    [K in CssTarget]?: PropertyType;
 };
 
 export type PsuedoType = {

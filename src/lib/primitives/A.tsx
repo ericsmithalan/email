@@ -1,10 +1,9 @@
 import React, { FC } from "react";
 
-import { DepricatedLinkAttributes, PrimitveElement } from "../types";
-
 import { style } from "../css-js/style";
-import { useStyle2 } from "../hooks/useStyle2";
 import { Prop } from "../css-js/types";
+import { useStyle2 } from "../hooks/useStyle2";
+import { DepricatedLinkAttributes, PrimitveElement } from "../types";
 
 export interface AElement
     extends React.HTMLProps<HTMLAnchorElement>,

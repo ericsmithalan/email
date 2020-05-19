@@ -1,10 +1,9 @@
 import React, { FC } from "react";
-import { style } from "../css-js/style";
-import { DepricatedTableAttributes, PrimitveElement } from "../types";
 
-import { useStyle2 } from "../hooks/useStyle2";
-import { generateId } from "../utils/generateId";
+import { style } from "../css-js/style";
 import { Prop } from "../css-js/types";
+import { useStyle2 } from "../hooks/useStyle2";
+import { DepricatedTableAttributes, PrimitveElement } from "../types";
 
 export interface TableElement
     extends React.HTMLProps<HTMLTableElement>,

@@ -1,5 +1,4 @@
-import React, { Component, Children, ReactNode } from "react"; // eslint-disable-line no-unused-vars
-import PropTypes from "prop-types";
+import React, { Children, Component, ReactNode } from "react";
 
 export interface ContentProps {
     children: ReactNode;

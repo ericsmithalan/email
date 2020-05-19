@@ -1,4 +1,5 @@
-import React, { Props, FunctionComponent } from "react";
+import React from "react";
+
 import { EmailCssContext } from "../EmailCssProvider";
 import { KeyValue, ParseResults, Styleable } from "../types";
 import { mergeClassNames } from "../utils/mergeClassNames";

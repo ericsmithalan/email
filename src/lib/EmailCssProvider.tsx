@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { defaultTheme } from "./theme/defaultTheme";
 import { StyleManager } from "./css-js/StyleManager";
+import { defaultTheme } from "./theme/defaultTheme";
 
 export type EmailCssContextProps = {
     styleManager: StyleManager;

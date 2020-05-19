@@ -1,8 +1,9 @@
 import React from "react";
-import { EmailCssContext } from "../EmailCssProvider";
-import { mergeClassNames } from "../utils/mergeClassNames";
-import { ParseResults } from "../types";
+
 import { Styleable } from "../css-js/types";
+import { EmailCssContext } from "../EmailCssProvider";
+import { ParseResults } from "../types";
+import { mergeClassNames } from "../utils/mergeClassNames";
 
 export const useStyledProps = (parser: ParseResults, props: Styleable, defaultProps: Styleable) => {
     const { styleManager } = React.useContext(EmailCssContext);

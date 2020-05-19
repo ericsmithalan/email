@@ -1,6 +1,7 @@
-import React, { Props } from "react";
+import React from "react";
+
 import { EmailCssContext } from "../EmailCssProvider";
-import { CommonCss, KeyValue, CssTarget } from "../types";
+import { KeyValue } from "../types";
 
 export const useCommonCss = (): KeyValue => {
     const context = React.useContext(EmailCssContext);

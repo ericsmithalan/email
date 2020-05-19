@@ -1,7 +1,8 @@
-import React, { Props } from "react";
+import React from "react";
+
+import { Styleable } from "../css-js/types";
 import { EmailCssContext } from "../EmailCssProvider";
 import { KeyValue, ParseResults } from "../types";
-import { Styleable } from "../css-js/types";
 
 export const useStyle = (
     parser: ParseResults,

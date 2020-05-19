@@ -1,5 +1,5 @@
-import { CssStyle, Prop, CommonCss } from "../types";
 import { style } from "../css-js/style";
+import { Prop } from "../types";
 
 const defaultCommon = style({
     defaultText: {

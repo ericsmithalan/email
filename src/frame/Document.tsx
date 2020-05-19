@@ -1,11 +1,8 @@
 import React, { Component, ReactNode } from "react";
-import ReactDOM from "react-dom";
-import Content from "./Content";
-import { FrameContextProvider } from "./Context";
-import { Html } from "../lib/primitives/Html";
-import { Body } from "../lib/primitives/Body";
-import { CssTarget } from "../lib/types";
+
 import { Head, Style } from "../lib/primitives";
+import { Body } from "../lib/primitives/Body";
+import { Html } from "../lib/primitives/Html";
 import { Injectables, InjectableStyle } from "./types";
 
 export interface DocumentProps {

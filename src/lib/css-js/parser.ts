@@ -1,23 +1,20 @@
 import { isFunction } from "util";
+
 import {
+    ClassType,
     CssPseudo,
     CssTarget,
-    CssValue,
     Fn,
-    CssProp,
+    KeyValue,
+    ParseArgs,
     ParseResults,
     Styleable,
     StyleRepository,
     Styles,
-    ParseArgs,
     Theme,
-    KeyValue,
-    ClassType,
-    CssProperties,
 } from "../types";
-import { decamelize, camelize } from "../utils/camelize";
-import { isObject, isTarget, isValueValid, isValidClassName, isPseudo } from "../utils/validation";
-import { PropertyType, TargetType } from "./types";
+import { camelize, decamelize } from "../utils/camelize";
+import { isObject, isPseudo, isTarget, isValidClassName, isValueValid } from "../utils/validation";
 
 export function parser(styles: Styles): ParseResults {
     const classNames: KeyValue = {};
@@ -44,9 +41,9 @@ export function parser(styles: Styles): ParseResults {
         const css: any = {};
 
         for (const [key, value] of Object.entries(parseArgs.value)) {
-            let value: any = parseArgs.value[key];
+            let itemValue: any = parseArgs.value[key];
 
-            let calculated = calculateValue(value, {
+            let calculated = calculateValue(itemValue, {
                 props: parseArgs.props,
                 theme: parseArgs.theme,
             });

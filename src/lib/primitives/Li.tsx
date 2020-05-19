@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { style } from "../css-js/style";
-import { PrimitveElement } from "../types";
 
-import { useStyle2 } from "../hooks/useStyle2";
+import { style } from "../css-js/style";
 import { Prop } from "../css-js/types";
+import { useStyle2 } from "../hooks/useStyle2";
+import { PrimitveElement } from "../types";
 
 export interface LilElement extends React.HTMLProps<HTMLLIElement>, PrimitveElement {}
 

@@ -1,7 +1,8 @@
 import deepmerge from "deepmerge";
+
 import { CssProperties, CssTarget, KeyValue, StyleRepository, Theme } from "../types";
 import { camelize, decamelize } from "../utils/camelize";
-import { isPseudo, isStyleableProperty, isTagName, isValidClassName } from "../utils/validation";
+import { isPseudo, isStyleableProperty, isTagName, isTarget, isValidClassName } from "../utils/validation";
 import { ClassType, Styleable } from "./types";
 
 export class StyleManager {
@@ -53,13 +54,14 @@ export class StyleManager {
 
                 // adds all styles under element style property
                 if (props.style) {
-                    const elementStyle = this._get("@default", camelize(props.className)) || {};
+                    const elementStyle =
+                        this._getClass("@default", camelize(props.className)) || {};
 
                     if (elementStyle) {
                         const combinedStyles = deepmerge.all([elementStyle, props.style]);
 
                         if (Object.keys(combinedStyles).length > 0) {
-                            this._set("@default", camelize(props.className), combinedStyles);
+                            this._setClass("@default", camelize(props.className), combinedStyles);
                         } else {
                         }
                     }
@@ -68,7 +70,7 @@ export class StyleManager {
                 this._setElementPropStyles(props, camelize(props.className));
 
                 // return merged styles
-                const styles = this._get("@default", camelize(props.className));
+                const styles = this._getClass("@default", camelize(props.className));
 
                 // returns new styles
                 return styles || {};
@@ -107,12 +109,12 @@ export class StyleManager {
             }
 
             if (results) {
-                const styles = this._get("@default", className);
+                const styles = this._getClass("@default", className);
                 if (styles) {
                     const combinedStyles = deepmerge.all([styles, results]);
 
                     if (combinedStyles) {
-                        this._set("@default", className, combinedStyles);
+                        this._setClass("@default", className, combinedStyles);
                     } else {
                     }
                 }
@@ -120,30 +122,41 @@ export class StyleManager {
         }
     };
 
-    private _get = (target: CssTarget, className: string): ClassType | undefined => {
+    private _getClass = (target: CssTarget, className: string): ClassType | undefined => {
         const targetResults = this._stylesheets[target];
         if (targetResults) {
             const item = targetResults[className] as ClassType;
 
             if (item) {
                 return item;
+            } else {
+                console.warn(`StyleManager > _getClass returned undefined`, className);
             }
         }
         return undefined;
     };
 
-    private _set = (target: CssTarget, className: string, styles: object): void => {
-        if (target !== "@common" && target !== "@reset") {
-            const targetResults = this._stylesheets[target];
-            if (targetResults) {
+    private _setClass = (target: CssTarget, className: string, styles: object): void => {
+        const targetResults = this._stylesheets[target];
+        if (targetResults) {
+            if (isTarget(targetResults)) {
                 const item = targetResults[className];
 
                 if (item) {
                     const merged = Object.assign({}, item, styles);
+                    try {
+                        //@ts-ignore
+                        this._stylesheets[target][className] = merged;
+                    } catch (e) {
+                        console.error(e);
+                    }
                 }
+            } else {
+                console.error(
+                    `StyleManager > _setClass invalid target ${target} ${className}`,
+                    styles,
+                );
             }
-        } else {
-            console.error(`_set tried setting wrong target ${target} ${className}`, styles);
         }
     };
 

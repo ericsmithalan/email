@@ -1,9 +1,6 @@
 import React, { FC, useLayoutEffect } from "react";
-import { style } from "../css-js/style";
-import { PrimitveElement } from "../types";
 
-import { useStyle2 } from "../hooks/useStyle2";
-import { Prop } from "../css-js/types";
+import { PrimitveElement } from "../types";
 
 export interface HtmlElement extends React.HTMLProps<HTMLHtmlElement>, PrimitveElement {
     xmlns?: string;

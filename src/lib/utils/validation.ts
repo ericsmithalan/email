@@ -1,11 +1,10 @@
-import { CssValue } from "../types";
-import CSS from "csstype";
+import _ from "underscore";
+
+import { AttributesKind } from "../enums/AttributesKind";
 import { PseudoKind } from "../enums/PseudoKind";
 import { StyleablePropertiesKind } from "../enums/StyleablePropertiesKind";
-import { TargetKind } from "../enums/TargetKind";
 import { TagNameKind } from "../enums/TagNameKind";
-import { AttributesKind } from "../enums/AttributesKind";
-import _ from "underscore";
+import { TargetKind } from "../enums/TargetKind";
 
 export const isValueValid = (value: any): boolean => {
     if (value) {

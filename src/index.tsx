@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { renderToString } from "react-dom/server";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
 
-import { defaultTheme } from "./lib/theme/defaultTheme";
-import { EmailCssProvider } from "./lib/EmailCssProvider";
-import { StyleManager } from "./lib/css-js/StyleManager";
-import Frame from "./frame/Frame";
+import App from "./App";
 import Document from "./frame/Document";
+import Frame from "./frame/Frame";
+import { StyleManager } from "./lib/css-js/StyleManager";
+import { EmailCssProvider } from "./lib/EmailCssProvider";
+import { defaultTheme } from "./lib/theme/defaultTheme";
+import * as serviceWorker from "./serviceWorker";
 
 const styleManager = new StyleManager(defaultTheme);
 
