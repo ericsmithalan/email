@@ -17,9 +17,6 @@ const styles = style({
         color: (p: Prop) => p.t.colors.darkFontColor,
         fontWeight: (p: Prop) => p.t.fonts.normalWeight,
         textDecoration: "none",
-        ":visited": {
-            color: (p: Prop) => p.t.colors.darkFontColor,
-        },
     },
 });
 

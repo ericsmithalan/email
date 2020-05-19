@@ -2,21 +2,20 @@ import deepmerge from "deepmerge";
 
 import { CssProperties, CssTarget, KeyValue, StyleRepository, Theme } from "../types";
 import { camelize, decamelize } from "../utils/camelize";
-import { isPseudo, isStyleableProperty, isTagName, isTarget, isValidClassName } from "../utils/validation";
-import { ClassType, Styleable } from "./types";
+import { Log } from "../utils/Logger";
+import { isPseudo, isStyleableProperty, isTagName, isValidClassName } from "../utils/validation";
+import { ClassType, GlobalRepository, GlobalTarget, GlobalTargetType, Styleable, TargetType } from "./types";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
 
     private _styleables = {};
-    private _globals = {
+    private _globals: GlobalRepository = {
         "@reset": {
             css: "",
         },
-        "@common": {},
     };
     private _stylesheets: StyleRepository = {
-        "@base": {},
         "@default": {},
         "@phone": {},
         "@tablet": {},
@@ -34,24 +33,22 @@ export class StyleManager {
         return this._styleables;
     }
 
-    public add = (styleSheet: StyleRepository | string, target: CssTarget) => {
+    public addStyle = (styleSheet: StyleRepository, target: CssTarget) => {
         if (target) {
-            if (target === "@reset") {
-                this._globals["@reset"]["css"] = styleSheet as string;
-            } else {
-                const styles = this._stylesheets[target] as object;
-                this._stylesheets = deepmerge.all([styles, styleSheet as StyleRepository]);
-            }
-        } else {
-            this._stylesheets = deepmerge.all([this._stylesheets, styleSheet as object]);
+            const styles = this._getTarget(target);
+            this._stylesheets = deepmerge.all([styles, styleSheet as StyleRepository]);
+        }
+    };
+
+    public addGlobal = (css: string, target: GlobalTarget) => {
+        if (target) {
+            this._setGlobal("@reset", css);
         }
     };
 
     public addPropStyles = (props: Styleable): CssProperties => {
         if (props) {
             if (props.className) {
-                // adds any element property that can be added to stylesheet
-
                 // adds all styles under element style property
                 if (props.style) {
                     const elementStyle =
@@ -81,7 +78,7 @@ export class StyleManager {
     };
 
     public classNames(target: CssTarget): KeyValue {
-        const classes = this._stylesheets[target];
+        const classes = this._getTarget(target);
         const classNames: KeyValue = {};
 
         if (classes) {
@@ -122,41 +119,54 @@ export class StyleManager {
         }
     };
 
-    private _getClass = (target: CssTarget, className: string): ClassType | undefined => {
-        const targetResults = this._stylesheets[target];
-        if (targetResults) {
-            const item = targetResults[className] as ClassType;
-
-            if (item) {
-                return item;
-            } else {
-                console.warn(`StyleManager > _getClass returned undefined`, className);
-            }
+    private _getClass = (target: CssTarget, className: string): ClassType => {
+        try {
+            //@ts-ignore
+            return this._stylesheets[target][className] as TargetType;
+        } catch (e) {
+            Log.throwError(e);
         }
-        return undefined;
+
+        return {};
+    };
+
+    //@ts-ignore TargetType expecting a return even
+    private _getTarget = (target: CssTarget): TargetType => {
+        try {
+            return this._stylesheets[target] as TargetType;
+        } catch (e) {
+            Log.throwError(e);
+        }
+    };
+
+    //@ts-ignore TargetType expecting a return even
+    private _getGlobal = (target: GlobalTarget): GlobalTargetType => {
+        try {
+            return this._globals[target] as GlobalTargetType;
+        } catch (e) {
+            Log.throwError(e);
+        }
+    };
+
+    private _setGlobal = (target: GlobalTarget, css: string): void => {
+        try {
+            //@ts-ignore
+            this._globals[target]["css"] = css;
+        } catch (e) {
+            Log.error(e);
+        }
     };
 
     private _setClass = (target: CssTarget, className: string, styles: object): void => {
-        const targetResults = this._stylesheets[target];
-        if (targetResults) {
-            if (isTarget(targetResults)) {
-                const item = targetResults[className];
+        try {
+            //@ts-ignore
+            const currentCls = this._stylesheets[target][className];
+            const merged = Object.assign({}, currentCls, styles);
 
-                if (item) {
-                    const merged = Object.assign({}, item, styles);
-                    try {
-                        //@ts-ignore
-                        this._stylesheets[target][className] = merged;
-                    } catch (e) {
-                        console.error(e);
-                    }
-                }
-            } else {
-                console.error(
-                    `StyleManager > _setClass invalid target ${target} ${className}`,
-                    styles,
-                );
-            }
+            //@ts-ignore
+            this._stylesheets[target][className] = merged;
+        } catch (e) {
+            Log.throwError(e);
         }
     };
 
@@ -166,22 +176,21 @@ export class StyleManager {
         }
     };
 
-    public css = (trg: CssTarget) => {
-        if (trg === "@reset") {
-            // reset is already a string
-            const target = this._stylesheets["@reset"];
-            if (target) {
-                const css = target["css"];
+    public globalCss = (target: GlobalTarget) => {
+        try {
+            //@ts-ignore
+            this._globals[target]["css"] = css;
+        } catch (e) {
+            Log.throwError(e);
+        }
+    };
 
-                if (css) {
-                    return css || "";
-                }
-            }
-        } else {
+    public css = (trg: CssTarget): string => {
+        try {
             let important = false;
 
             const css: string[] = [];
-            const target = this._stylesheets[trg];
+            const target = this._getTarget(trg);
 
             if (trg === "@phone") {
                 css.push(
@@ -205,8 +214,12 @@ export class StyleManager {
                 css.push(`}`);
             }
 
-            return css;
+            return css.join("");
+        } catch (e) {
+            Log.throwError(e);
         }
+
+        return "";
     };
 }
 

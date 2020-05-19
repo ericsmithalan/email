@@ -1,6 +1,7 @@
 import CSS from "csstype";
 import { CSSProperties, ReactNode } from "react";
 
+import { GlobalTargetKind, TargetKind } from "../enums/TargetKind";
 import { Theme } from "../theme/types";
 import * as MSO from "./types.mso";
 
@@ -52,25 +53,39 @@ export type StyleRepository = {
     [K in CssTarget]?: ClassType;
 };
 
-export type ClassType = {
-    [K in string]?: CssProperties;
+export type GlobalRepository = {
+    [K in GlobalTarget]?: GlobalTargetType;
 };
 
+export type GlobalTargetType = {
+    [K in "css"]: string;
+};
+
+export type ClassType = {
+    [K in string]: CssProperties | TargetType | PsuedoType | PropertyType;
+};
+
+// TargetType's are stored as parents of ClassType
+// however they are written as children of ClassTypes
+//
+// PsuedoType's are written as Children of ClassType but stored
+// as child of TargetType
 export type TargetType = {
-    [K in CssTarget]?: PropertyType;
+    [K in CssTarget]: ClassType | PsuedoType | PropertyType;
 };
 
 export type PsuedoType = {
-    [K in CssPseudo]?: PropertyType;
+    [K in CssPseudo]: PropertyType;
 };
 
 export type PropertyType = {
-    [K in keyof CssProperties]?: CssValue | Fn;
+    [K in keyof CssProperties]?: ParsedValue | CssValue;
 };
 
-export type CssTarget = "@tablet" | "@phone" | "@common" | "@base" | "@reset" | "@default";
-export type CssPseudo = CSS.SimplePseudos | "none";
+export type GlobalTarget = keyof typeof GlobalTargetKind;
+export type CssTarget = keyof typeof TargetKind;
+export type CssPseudo = CSS.SimplePseudos;
 
 export type KeyValue = {
-    [K in string]: string;
+    [key: string]: string;
 };

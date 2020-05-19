@@ -15,7 +15,7 @@ export const useStyle = (
         parser.parse(styleManager.theme, Object.assign({}, defaultProps, props));
     }
 
-    styleManager.add(parser.styles, "@default");
+    styleManager.addStyle(parser.styles, "@default");
 
     let defaultStyles = {};
     let propStyles = {};

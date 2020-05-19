@@ -18,7 +18,7 @@ export const useStyle2 = <T extends Styleable>(
         }),
     );
 
-    styleManager.add(parser.styles, "@default");
+    styleManager.addStyle(parser.styles, "@default");
 
     let defaultStyles = {};
 

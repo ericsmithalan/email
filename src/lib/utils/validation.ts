@@ -59,6 +59,17 @@ export const isStyleableProperty = (value: any): boolean => {
     return false;
 };
 
+export const isGlobalTarget = (value: any): boolean => {
+    if (!hasValue(value)) {
+        return false;
+    }
+
+    if (value in TargetKind) {
+        return true;
+    }
+    return false;
+};
+
 export const isTarget = (value: any): boolean => {
     if (!hasValue(value)) {
         return false;
