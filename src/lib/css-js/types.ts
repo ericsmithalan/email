@@ -10,7 +10,7 @@ export type ParseArgs = {
     theme: Theme;
     classKey: string;
     pseudo: CssPseudo;
-    props: any | undefined;
+    props: Styleable;
 };
 
 export type CssValue = string | number | Symbol;

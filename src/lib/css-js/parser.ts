@@ -31,12 +31,14 @@ export function parser(styles: Styles): ParseResults {
 
     const args = {
         value: styles,
-        pseudo: "none",
-        classKey: "",
     };
 
     const recursiveParse = (parseArgs: ParseArgs) => {
         const css: any = {};
+
+        if (!isObject(parseArgs.value)) {
+            throw new Error(`invalid parser value ${parseArgs.value}`);
+        }
 
         for (const [key, value] of Object.entries(parseArgs.value)) {
             let calculated = calculateValue(value as any, {
@@ -50,24 +52,22 @@ export function parser(styles: Styles): ParseResults {
                         value: calculated,
                         classKey: formatClassName({ classKey: parseArgs.classKey }, key),
                         target: isTarget(key) ? (key as CssTarget) : parseArgs.target,
-                        pseudo: isTarget(key) ? (key as CssPseudo) : parseArgs.pseudo,
+                        pseudo: isPseudo(key) ? (key as CssPseudo) : parseArgs.pseudo,
                     });
 
-                    const target: ClassType = repository[args.target];
-
-                    if (target) {
+                    try {
+                        const target: ClassType = repository[args.target];
                         target[args.classKey] = recursiveParse(args) as ClassType;
-                    } else {
-                        throw new Error(`invalid target ${args.target}`);
+                    } catch (e) {
+                        throw new Error(`parse error args:${{ ...args }}`);
                     }
 
                     if (isValidClassName(args.classKey)) {
                         classNames[args.classKey] = decamelize(args.classKey);
                     } else {
-                        console.warn(
-                            `parser > parse tried to add invalid className`,
-                            args.classKey,
-                        );
+                        console.warn(`parser > parse tried to add invalid className args:`, {
+                            ...args,
+                        });
                     }
                 } else {
                     if (isValueValid(calculated)) {
@@ -91,7 +91,7 @@ export function parser(styles: Styles): ParseResults {
             props: T,
             target?: CssTarget,
         ): StyleRepository => {
-            const newArgs = updateArgs(args, {
+            const newArgs = updateArgs(args as Partial<ParseArgs>, {
                 theme: theme,
                 props: props as T,
                 target: target || "@default",
@@ -151,6 +151,13 @@ const formatClassName = (args: { classKey: string }, key: string): string => {
     }
 };
 
-const updateArgs = (oldArgs: object, newArgs: object): ParseArgs => {
+const updateArgs = (oldArgs: Partial<ParseArgs>, newArgs: Partial<ParseArgs>): ParseArgs => {
+    if (hasValue(newArgs.pseudo) && !isPseudo(newArgs.pseudo)) {
+        console.warn(`parse > updateArgs invalid pseudo args:`, { ...newArgs });
+    }
+    if (!isTarget(newArgs.target)) {
+        console.warn(`parse > updateArgs invalid pseudo target:`, { ...newArgs });
+    }
+
     return Object.assign({}, oldArgs, newArgs) as ParseArgs;
 };

@@ -32,16 +32,16 @@ export const isFunction = (value: any): boolean => {
     return _.isFunction(value);
 };
 
-export const isPseudo = (value: string): boolean => {
+export const isPseudo = (value: any): boolean => {
     if (!hasValue(value)) {
         return false;
     }
 
-    if (value && value in PseudoKind) {
+    if (value in PseudoKind) {
         return true;
     }
 
-    if (value && value.indexOf(":") !== -1) {
+    if (value.indexOf(":") !== -1) {
         return true;
     }
 
@@ -64,7 +64,7 @@ export const isTarget = (value: any): boolean => {
         return false;
     }
 
-    if (value && value in TargetKind) {
+    if (value in TargetKind) {
         return true;
     }
     return false;
