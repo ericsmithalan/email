@@ -14,15 +14,15 @@ const styles = style({
         fontFamily: (p: Prop) => p.t.fonts.fontFamily,
         fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
         color: (p: Prop) => p.t.colors.darkFontColor,
-        fontWeight: (p: Prop) => p.t.fonts.normalWeight,
-    },
+        fontWeight: (p: Prop) => p.t.fonts.normalWeight
+    }
 });
 
 const Body: FC<BodyElement> = (props: BodyElement) => {
     Body.defaultProps = {
         className: styles.classNames.ascBody,
 
-        width: "100%",
+        width: "100%"
     };
 
     const { mergedProps } = useStyle2(styles, props, Body.defaultProps);
