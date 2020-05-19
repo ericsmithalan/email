@@ -7,6 +7,10 @@ import { TagNameKind } from "../enums/TagNameKind";
 import { TargetKind } from "../enums/TargetKind";
 
 export const isValueValid = (value: any): boolean => {
+    if (!hasValue(value)) {
+        return false;
+    }
+
     if (value) {
         if (typeof value === "string" || typeof value === "number") {
             return true;
@@ -29,6 +33,10 @@ export const isFunction = (value: any): boolean => {
 };
 
 export const isPseudo = (value: string): boolean => {
+    if (!hasValue(value)) {
+        return false;
+    }
+
     if (value && value in PseudoKind) {
         return true;
     }
@@ -41,6 +49,10 @@ export const isPseudo = (value: string): boolean => {
 };
 
 export const isStyleableProperty = (value: any): boolean => {
+    if (!hasValue(value)) {
+        return false;
+    }
+
     if (value && value in StyleablePropertiesKind) {
         return true;
     }
@@ -48,6 +60,10 @@ export const isStyleableProperty = (value: any): boolean => {
 };
 
 export const isTarget = (value: any): boolean => {
+    if (!hasValue(value)) {
+        return false;
+    }
+
     if (value && value in TargetKind) {
         return true;
     }
@@ -55,6 +71,10 @@ export const isTarget = (value: any): boolean => {
 };
 
 export const isTagName = (value: any): boolean => {
+    if (!hasValue(value)) {
+        return false;
+    }
+
     if (value && value in TagNameKind) {
         return true;
     }
@@ -62,7 +82,7 @@ export const isTagName = (value: any): boolean => {
 };
 
 export const isValidClassName = (value: string): boolean => {
-    if (value === undefined) {
+    if (!hasValue(value)) {
         return false;
     }
 
@@ -73,6 +93,14 @@ export const isValidClassName = (value: string): boolean => {
         return false;
     }
     if (value in PseudoKind) {
+        return false;
+    }
+
+    return true;
+};
+
+export const hasValue = (value: any): boolean => {
+    if (value === undefined || value === null || value === "") {
         return false;
     }
 
