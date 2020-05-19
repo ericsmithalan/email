@@ -12,7 +12,9 @@ import {
     Theme,
 } from "../types";
 import { camelize, decamelize } from "../utils/camelize";
+import { Log } from "../utils/Logger";
 import { hasValue, isFunction, isObject, isPseudo, isTarget, isValidClassName, isValueValid } from "../utils/validation";
+import { ParsedValue } from "./types";
 
 export function parser(styles: Styles): ParseResults {
     const classNames: KeyValue = {};
@@ -26,7 +28,7 @@ export function parser(styles: Styles): ParseResults {
     };
 
     if (!styles) {
-        throw new Error(`Styles is undefined : ${styles}`);
+        Log.throwError(`Styles is undefined : ${styles}`);
     }
 
     const args = {
@@ -37,7 +39,7 @@ export function parser(styles: Styles): ParseResults {
         const css: any = {};
 
         if (!isObject(parseArgs.value)) {
-            throw new Error(`invalid parser value ${parseArgs.value}`);
+            Log.throwError(`invalid parser value ${parseArgs.value}`);
         }
 
         for (const [key, value] of Object.entries(parseArgs.value)) {
@@ -59,13 +61,13 @@ export function parser(styles: Styles): ParseResults {
                         const target: ClassType = repository[args.target];
                         target[args.classKey] = recursiveParse(args) as ClassType;
                     } catch (e) {
-                        throw new Error(`parse error args:${{ ...args }}`);
+                        Log.throwError(`parse error args:${{ ...args }}`);
                     }
 
                     if (isValidClassName(args.classKey)) {
                         classNames[args.classKey] = decamelize(args.classKey);
                     } else {
-                        console.warn(`parser > parse tried to add invalid className args:`, {
+                        Log.warn(`parser > parse tried to add invalid className args:`, {
                             ...args,
                         });
                     }
@@ -74,7 +76,7 @@ export function parser(styles: Styles): ParseResults {
                         try {
                             css[key] = calculated;
                         } catch (e) {
-                            console.error(`parser > parse error calculated:${calculated}`, css);
+                            Log.error(`parser > parse error calculated:${calculated}`, css);
                         }
                     }
                 }
@@ -104,13 +106,13 @@ export function parser(styles: Styles): ParseResults {
 }
 
 const calculateValue = (
-    value: object | string | number | Fn,
+    value: ParsedValue,
     args: { props: Styleable; theme: Theme },
-): object | string | number => {
-    let calculated;
+): ParsedValue => {
+    let calculated: ParsedValue = value;
 
     if (!hasValue(value)) {
-        throw new Error(`invalid value ${value}`);
+        Log.throwError(`invalid value ${value}`);
     }
 
     if (isFunction(value)) {
@@ -118,17 +120,19 @@ const calculateValue = (
 
         if (hasValue(args) && hasValue(args.props) && hasValue(args.theme)) {
             calculated = fn({ t: args.theme, p: args.props });
+
+            if (!isValueValid(calculated)) {
+                Log.error(`parse > calculateValue value is invalid ${calculated}`);
+            }
         } else {
-            throw new Error(
+            Log.throwError(
                 `args or args.props or args.theme is undefined args:${args} args.props:${args.props} args.theme:${args.theme}`,
             );
         }
-    } else {
-        calculated = value;
     }
 
     if (!hasValue(calculated)) {
-        throw new Error(`invalid value ${value}`);
+        Log.throwError(`invalid value ${value}`);
     }
 
     return calculated;
@@ -147,16 +151,18 @@ const formatClassName = (args: { classKey: string }, key: string): string => {
     if (hasValue(name)) {
         return name;
     } else {
-        throw new Error(`invalid className ${name}`);
+        Log.throwError(`invalid className ${name}`);
     }
+
+    return name;
 };
 
 const updateArgs = (oldArgs: Partial<ParseArgs>, newArgs: Partial<ParseArgs>): ParseArgs => {
     if (hasValue(newArgs.pseudo) && !isPseudo(newArgs.pseudo)) {
-        console.warn(`parse > updateArgs invalid pseudo args:`, { ...newArgs });
+        Log.warn(`parse > updateArgs invalid pseudo args:`, { ...newArgs });
     }
     if (!isTarget(newArgs.target)) {
-        console.warn(`parse > updateArgs invalid pseudo target:`, { ...newArgs });
+        Log.warn(`parse > updateArgs invalid pseudo target:`, { ...newArgs });
     }
 
     return Object.assign({}, oldArgs, newArgs) as ParseArgs;

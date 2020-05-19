@@ -13,6 +13,7 @@ export type ParseArgs = {
     props: Styleable;
 };
 
+export type ParsedValue = CssValue | Fn | Function | Object | Array<any>;
 export type CssValue = string | number | Symbol;
 
 export interface Styleable {
