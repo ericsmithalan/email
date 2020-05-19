@@ -30,6 +30,4 @@ const Body: FC<BodyElement> = (props: BodyElement) => {
     return <body {...(mergedProps as BodyElement)} />;
 };
 
-//<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly;”>
-
 export { Body };
