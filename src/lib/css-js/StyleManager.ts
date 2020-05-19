@@ -1,12 +1,8 @@
 import deepmerge from "deepmerge";
-import { CssProperties, CssTarget, StyleRepository, Theme, KeyValue } from "../types";
-
+import { CssProperties, CssTarget, KeyValue, StyleRepository, Theme } from "../types";
 import { camelize, decamelize } from "../utils/camelize";
-import { isStyleableProperty, isTagName, isValidClassName, isPseudo } from "../utils/validation";
-import { Styleable, ClassType, PropertyType, CssValue } from "./types";
-import fs from "fs";
-import path from "path";
-import { CSSProperties } from "react";
+import { isPseudo, isStyleableProperty, isTagName, isValidClassName } from "../utils/validation";
+import { ClassType, Styleable } from "./types";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
@@ -50,28 +46,6 @@ export class StyleManager {
         }
     };
 
-    private log = (...args: any[]) => {
-        const content = {
-            args: args,
-        };
-
-        // fs.appendFile(
-        //     `${path.join(process.cwd(), "/logs/log.manager.json")}`,
-        //     JSON.stringify(content),
-        //     function (err) {
-        //         if (err) {
-        //             console.log(err);
-        //         }
-        //     },
-        // );
-    };
-
-    // public registerStyleable = (styleable: Styleable) => {
-    //     if (styleable.uid) {
-    //         this._styleables[styleable.uid] = styleable as object;
-    //     }
-    // };
-
     public addPropStyles = (props: Styleable): CssProperties => {
         if (props) {
             if (props.className) {
@@ -87,15 +61,6 @@ export class StyleManager {
                         if (Object.keys(combinedStyles).length > 0) {
                             this._set("@default", camelize(props.className), combinedStyles);
                         } else {
-                            this.log({
-                                method: "addPropStyles",
-                                area: "props.style",
-                                className: props.className,
-                                style: props.style,
-                                props: props,
-                                element: elementStyle,
-                                combined: combinedStyles,
-                            });
                         }
                     }
                 }
@@ -149,22 +114,16 @@ export class StyleManager {
                     if (combinedStyles) {
                         this._set("@default", className, combinedStyles);
                     } else {
-                        this.log({
-                            method: "_setElementPropStyles",
-                            className: className,
-                            combinedStyles: combinedStyles,
-                            props: props,
-                        });
                     }
                 }
             }
         }
     };
 
-    private _get = (target: CssTarget, className: string): CssProperties | undefined => {
+    private _get = (target: CssTarget, className: string): ClassType | undefined => {
         const targetResults = this._stylesheets[target];
         if (targetResults) {
-            const item = targetResults[className];
+            const item = targetResults[className] as ClassType;
 
             if (item) {
                 return item;

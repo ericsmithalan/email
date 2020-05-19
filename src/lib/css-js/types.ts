@@ -4,7 +4,7 @@ import { CSSProperties, ReactNode } from "react";
 import { Theme } from "../theme/types";
 
 export type ParseArgs = {
-    value: any;
+    value: ClassType;
     target: CssTarget;
     theme: Theme;
     classKey: string;
@@ -36,6 +36,8 @@ export type Fn<R extends CssValue = CssValue> = (p: Prop) => R;
 
 //Fn = (<R extends CssValue>(t: any, p: any) => R) & Function;
 
+export type CssProp = keyof CssProperties;
+
 export interface CssProperties
     extends CSS.Properties<CssValue>,
         CSS.VendorProperties<CssValue>,
@@ -51,11 +53,11 @@ export type StyleRepository = {
 };
 
 export type ClassType = {
-    [K in string]?: CssProperties;
+    [K in string]?: CssProperties | TargetType | PsuedoType;
 };
 
 export type TargetType = {
-    [K in CssTarget]?: PropertyType;
+    [K in CssTarget]?: ClassType;
 };
 
 export type PsuedoType = {

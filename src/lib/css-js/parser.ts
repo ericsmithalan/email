@@ -4,18 +4,23 @@ import {
     CssTarget,
     CssValue,
     Fn,
+    CssProp,
     ParseResults,
     Styleable,
     StyleRepository,
     Styles,
     ParseArgs,
     Theme,
+    KeyValue,
+    ClassType,
+    CssProperties,
 } from "../types";
 import { decamelize, camelize } from "../utils/camelize";
 import { isObject, isTarget, isValueValid, isValidClassName, isPseudo } from "../utils/validation";
+import { PropertyType, TargetType } from "./types";
 
 export function parser(styles: Styles): ParseResults {
-    const _classNames = {};
+    const classNames: KeyValue = {};
     const repository = {
         "@reset": {},
         "@base": {},
@@ -36,47 +41,43 @@ export function parser(styles: Styles): ParseResults {
     };
 
     const recursiveParse = (parseArgs: ParseArgs) => {
-        const css: object = {};
+        const css: any = {};
 
         for (const [key, value] of Object.entries(parseArgs.value)) {
-            console.log(key);
+            let value: any = parseArgs.value[key];
+
+            let calculated = calculateValue(value, {
+                props: parseArgs.props,
+                theme: parseArgs.theme,
+            });
+
+            if (Object.keys(calculated).length > 0) {
+                if (isObject(calculated)) {
+                    const args = updateArgs(parseArgs, {
+                        value: calculated,
+                        classKey: formatClassName({ classKey: parseArgs.classKey }, key),
+                        target: isTarget(key) ? (key as CssTarget) : parseArgs.target,
+                        pseudo: isTarget(key) ? (key as CssPseudo) : parseArgs.pseudo,
+                    });
+
+                    const target: ClassType = repository[args.target];
+
+                    target[args.classKey] = recursiveParse(args) as ClassType;
+
+                    classNames[args.classKey] = decamelize(args.classKey);
+                } else {
+                    if (isValueValid(calculated)) {
+                        css[key] = calculated;
+                    }
+                }
+            }
         }
-
-        // for (const key in parseArgs.value) {
-        //     if (parseArgs.value.hasOwnProperty(key)) {
-        //         let value: any = parseArgs.value[key];
-
-        //         let calculated = calculateValue(value, {
-        //             props: parseArgs.props,
-        //             theme: parseArgs.theme,
-        //         });
-
-        //         if (isObject(calculated)) {
-        //             const args = updateArgs(parseArgs, {
-        //                 value: calculated,
-        //                 classKey: formatClassName({ classKey: parseArgs.classKey }, key),
-        //                 target: isTarget(key) ? (key as CssTarget) : parseArgs.target,
-        //                 pseudo: isTarget(key) ? (key as CssPseudo) : parseArgs.pseudo,
-        //             });
-
-        //             const target = repository[args.target];
-        //             target[args.classKey] = recursiveParse(args);
-
-        //             _classNames[args.classKey] = decamelize(args.classKey);
-        //         }
-
-        //         if (isValueValid(calculated)) {
-        //             css[key] = calculated as CssValue;
-        //         }
-        //     }
-        // }
-
         return css;
     };
 
     return {
         styles: repository,
-        classNames: _classNames,
+        classNames: classNames,
         parse: <T extends Styleable>(
             theme: Theme,
             props: T,
