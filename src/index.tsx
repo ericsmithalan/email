@@ -12,10 +12,6 @@ import * as serviceWorker from "./serviceWorker";
 
 const styleManager = new StyleManager(defaultTheme);
 
-const handleEvent = (type: string) => {
-    console.log(type);
-};
-
 const htmlDoc = renderToString(<Document />);
 
 ReactDOM.render(

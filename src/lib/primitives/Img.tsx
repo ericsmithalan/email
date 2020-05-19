@@ -24,7 +24,7 @@ const Img: FC<ImgElement> = (props: ImgElement) => {
         className: styles.classNames.ascImg,
 
         border: 0,
-        alt: "",
+        alt: "_",
         style: {
             height: "auto",
             display: "block",

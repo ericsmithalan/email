@@ -14,10 +14,6 @@ export interface DocumentProps {
 export interface DocumentState {}
 
 export default class Document extends Component<DocumentProps, DocumentState> {
-    constructor(props: DocumentProps) {
-        super(props);
-    }
-
     render() {
         const { injectables, subject } = this.props;
 

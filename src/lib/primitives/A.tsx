@@ -29,7 +29,7 @@ const A: FC<AElement> = (props: AElement) => {
         target: "_blank",
     };
 
-    const { mergedProps, ...rest } = useStyle2<AElement>(styles, props, A.defaultProps);
+    const { mergedProps } = useStyle2<AElement>(styles, props, A.defaultProps);
 
     return <a {...(mergedProps as AElement)} />;
 };
