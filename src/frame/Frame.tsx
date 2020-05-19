@@ -24,9 +24,7 @@ export default class Frame extends React.PureComponent<FrameProps, FrameState> {
     frameRef: HTMLIFrameElement | null = null;
     loaded: boolean = false;
     origin: string = "http://localhost:3000";
-    // handleLoad = this.handleLoad.bind(this);
 
-    // ((!node || !node.contentWindow) && null) || node.contentWindow.document.body;
     getDoc = (): Document | null => {
         return this.frameRef ? this.frameRef.contentDocument : null;
     };
@@ -113,7 +111,8 @@ export default class Frame extends React.PureComponent<FrameProps, FrameState> {
                 {...rest}
                 ref={(el) => (this.frameRef = el)}
                 width="100%"
-                height="100%"
+                frameBorder="0"
+                height={2000}
             >
                 {this.state.loaded ? this.getHead() : null}
                 {this.state.loaded && this.state.root
