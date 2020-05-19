@@ -12,3 +12,5 @@ export { Ul } from "./Ul";
 export { P } from "./P";
 export { Head } from "./Head";
 export { Style } from "./Style";
+export { Body } from "./Body";
+export { Html } from "./Html";

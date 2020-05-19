@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { renderToString } from "react-dom/server";
 
 import App from "./App";
-import Document from "./frame/Document";
+import Document from "./Document";
 import Frame from "./frame/Frame";
 import { StyleManager } from "./lib/css-js/StyleManager";
 import { EmailCssProvider } from "./lib/EmailCssProvider";
@@ -22,7 +22,7 @@ ReactDOM.render(
             </EmailCssProvider>
         </Frame>
     </React.StrictMode>,
-    document.querySelector("#root"),
+    document.querySelector("#root")
 );
 
 serviceWorker.unregister();

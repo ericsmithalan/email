@@ -1,40 +1,37 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 
+import Document from "./Document";
 import { style } from "./lib/css-js/style";
-import { useStyle2 } from "./lib/hooks/useStyle2";
 import { Table, Td, Tr } from "./lib/primitives";
 
 const styles = style({
     app: {
         backgroundColor: "red",
         "@tablet": {
-            backgroundColor: "blue",
+            backgroundColor: "blue"
         },
         "@phone": {
-            backgroundColor: "green",
+            backgroundColor: "green"
         },
         ":hover": {
-            backgroundColor: "orange",
-        },
-    },
+            backgroundColor: "orange"
+        }
+    }
 });
 
 interface AppProps {}
-
-const App: FC<AppProps> = (props: AppProps) => {
-    App.defaultProps = {
-        className: styles.classNames.app,
-    };
-
-    const { mergedProps } = useStyle2<AppProps>(styles, props, App.defaultProps);
-
-    return (
-        <Table {...mergedProps}>
-            <Tr>
-                <Td>hello again</Td>
-            </Tr>
-        </Table>
-    );
-};
+class App extends React.Component {
+    render() {
+        return (
+            <Document>
+                <Table>
+                    <Tr>
+                        <Td>Hello world</Td>
+                    </Tr>
+                </Table>
+            </Document>
+        );
+    }
+}
 
 export default App;

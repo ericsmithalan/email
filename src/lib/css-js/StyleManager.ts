@@ -12,13 +12,13 @@ export class StyleManager {
     private _styleables = {};
     private _globals: GlobalRepository = {
         "@reset": {
-            css: "",
-        },
+            css: ""
+        }
     };
     private _stylesheets: StyleRepository = {
         "@default": {},
         "@phone": {},
-        "@tablet": {},
+        "@tablet": {}
     };
 
     public get theme() {
@@ -194,14 +194,14 @@ export class StyleManager {
 
             if (trg === "@phone") {
                 css.push(
-                    `@media only screen and (max-width: ${this._theme.breakpoints.phone}px) {`,
+                    `@media only screen and (max-width: ${this._theme.breakpoints.phone}px) {`
                 );
                 important = true;
             }
 
             if (trg === "@tablet") {
                 css.push(
-                    `@media only screen and (max-width: ${this._theme.breakpoints.tablet}px) {`,
+                    `@media only screen and (max-width: ${this._theme.breakpoints.tablet}px) {`
                 );
                 important = true;
             }
@@ -250,7 +250,7 @@ const render = (obj: any, isImportant: boolean): string => {
                     arr.push(
                         `${decamelize(propertyKey)}:${ensureUnit(propValue)}${
                             isImportant ? "!important" : ""
-                        };`,
+                        };`
                     );
                 }
             }
