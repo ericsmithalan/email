@@ -17,7 +17,7 @@ import { Log } from "../utils/Logger";
 import { hasValue, isFunction, isObject, isPseudo, isTarget, isValidClassName, isValueValid } from "../utils/validation";
 import { ParsedValue } from "./types";
 
-export function parser(styles: Styles): ParseResults {
+export function parser(styles: Styles, classesOnly: boolean = false): ParseResults {
     const classNames: KeyValue = {};
     const repository = {
         "@reset": {},
@@ -86,6 +86,22 @@ export function parser(styles: Styles): ParseResults {
         return css;
     };
 
+    const getClassNamesOnly = (): KeyValue => {
+        const classes: KeyValue = {};
+
+        if (!isObject(styles)) {
+            Log.throwError(`invalid styles value ${styles}`);
+        }
+
+        for (const key in styles) {
+            if (styles.hasOwnProperty(key)) {
+                classes[key] = decamelize(key);
+            }
+        }
+
+        return classes;
+    };
+
     return {
         styles: repository,
         classNames: classNames,
@@ -103,7 +119,7 @@ export function parser(styles: Styles): ParseResults {
             recursiveParse(newArgs);
             return repository;
         },
-        parseModel: <T extends BaseModel>(theme: Theme, model: T) => {
+        parseWithModel: <T extends BaseModel>(theme: Theme, model: T) => {
             const newArgs = updateArgs(args as Partial<ParseArgs>, {
                 theme: theme,
                 props: model,
@@ -111,7 +127,11 @@ export function parser(styles: Styles): ParseResults {
             });
 
             recursiveParse(newArgs);
+
             return repository;
+        },
+        parseClassNames: () => {
+            return getClassNamesOnly();
         }
     };
 }

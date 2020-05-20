@@ -1,6 +1,7 @@
 import React from "react";
 
 import { style } from "../lib/css-js/style";
+import { useClassNames } from "../lib/hooks/useClassNames";
 import { useStyledModel } from "../lib/hooks/useStyledModel";
 import { Img, Table, Td, Tr } from "../lib/primitives";
 import { HeaderModel } from "../models/Header";
@@ -14,9 +15,10 @@ const styles = style({
 });
 
 export const Header = ({ title, image, date }: HeaderModel) => {
-    let img = useStyledModel(styles, image, styles.classNames.headerImage) as StyleableModel<
-        HTMLImageElement
-    >;
+    const { headerImage } = useClassNames(styles);
+
+    console.log(headerImage);
+    let img = useStyledModel(styles, image, headerImage) as StyleableModel<HTMLImageElement>;
 
     return (
         <Table>

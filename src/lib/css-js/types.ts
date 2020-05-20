@@ -34,7 +34,8 @@ export interface ParseResults {
     styles: StyleRepository;
     classNames: KeyValue;
     parse: <T extends Styleable>(theme: Theme, props: T, target?: CssTarget) => StyleRepository;
-    parseModel: <T extends BaseModel>(theme: Theme, model: T) => StyleRepository;
+    parseWithModel: <T extends BaseModel>(theme: Theme, model: T) => StyleRepository;
+    parseClassNames: () => KeyValue;
 }
 
 export type Fn<R extends CssValue = CssValue> = (p: Prop) => R;
