@@ -5,11 +5,10 @@
 -   Works as an email template and Web Page
 -   Responsive
 -   Supports Themes
--   Common Css
--   Reset Css
 -   Css, Inline Styles, and Styleable Properties are synced to ensure backward Compatablility
 -   Supports Pseudo elements
--   Static pages so SEO will pick up keywords
+-   Responsive
+-   Data driven
 
 ## Todo
 

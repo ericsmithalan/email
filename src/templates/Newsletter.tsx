@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from "react";
 
 import { Blurb } from "../components/Blurb";
 import { Header } from "../components/Header";
+import { If } from "../components/If";
 import { Spacer } from "../components/Spacer";
 import { style } from "../lib/css-js/style";
 import { useClassNames } from "../lib/hooks/useClassNames";
@@ -89,6 +90,8 @@ export const NewsletterTemplate: FC<NewsletterTemplateProps> = (props: Newslette
 
     const render = (model: NewsletterModel) => {
         const modules = [];
+
+        modules.push(<If test="gte mso 9">{<div>test comment</div>}</If>);
 
         if (hasValue(model.header)) {
             modules.push(<Header {...model.header} />);
