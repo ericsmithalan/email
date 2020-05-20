@@ -1,7 +1,7 @@
-import React, { FC, useEffect } from "react";
+import React from "react";
 
 import { StyleManager } from "./lib/css-js/StyleManager";
-import { EmailCssProvider } from "./lib/EmailCssProvider";
+import { CssProvider } from "./lib/CssProvider";
 import Frame from "./lib/frame/Frame";
 import { Body, Head } from "./lib/primitives";
 import { defaultReset } from "./lib/theme/defaultReset";
@@ -44,7 +44,7 @@ class App extends React.Component<AppProps, AppState> {
 
     body() {
         return (
-            <EmailCssProvider styleManager={this.styleManager}>
+            <CssProvider styleManager={this.styleManager}>
                 <Head>
                     <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
                     <meta name="viewport" content="width=device-width" />
@@ -66,9 +66,11 @@ class App extends React.Component<AppProps, AppState> {
                 <Body>
                     <TestTemplate />
                 </Body>
-            </EmailCssProvider>
+            </CssProvider>
         );
     }
+
+    // using Iframe to simulate SSR rendering
     render() {
         return (
             <Frame

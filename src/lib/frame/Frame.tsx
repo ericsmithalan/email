@@ -1,4 +1,4 @@
-import React, { FC, ReactChild, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import ReactDOM from "react-dom";
 
 import { FrameProvider } from "./FrameContext";

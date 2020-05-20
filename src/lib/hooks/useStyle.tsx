@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Styleable } from "../css-js/types";
-import { EmailCssContext } from "../EmailCssProvider";
+import { CssContext } from "../CssProvider";
 import { KeyValue, ParseResults } from "../types";
 
 export const useStyle = (
@@ -9,7 +9,7 @@ export const useStyle = (
     props: Styleable = {},
     defaultProps: Styleable = {}
 ): KeyValue => {
-    const { styleManager } = React.useContext(EmailCssContext);
+    const { styleManager } = React.useContext(CssContext);
 
     if (props && defaultProps) {
         parser.parse(styleManager.theme, Object.assign({}, defaultProps, props));

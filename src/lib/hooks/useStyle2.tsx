@@ -1,6 +1,6 @@
 import React from "react";
 
-import { EmailCssContext } from "../EmailCssProvider";
+import { CssContext } from "../CssProvider";
 import { ParseResults, Styleable } from "../types";
 import { mergeClassNames } from "../utils/mergeClassNames";
 
@@ -9,7 +9,7 @@ export const useStyle2 = <T extends Styleable>(
     props: T,
     defaultProps: Partial<T>
 ): T => {
-    const { styleManager } = React.useContext(EmailCssContext);
+    const { styleManager } = React.useContext(CssContext);
 
     const mergedProps = Object.assign({}, defaultProps, props);
 
