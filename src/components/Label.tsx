@@ -1,9 +1,9 @@
 import React, { FC, ReactNode } from "react";
 
-import { style } from "../lib/css-js/style";
 import { useClassNames } from "../lib/hooks/useClassNames";
 import { useStyle2 } from "../lib/hooks/useStyle2";
 import { Div, Span } from "../lib/primitives";
+import { style } from "../lib/style";
 import { LabelModel } from "../models/LabelModel";
 
 const styles = style({

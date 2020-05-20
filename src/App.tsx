@@ -1,9 +1,9 @@
 import React from "react";
 
-import { StyleManager } from "./lib/css-js/StyleManager";
 import { CssProvider } from "./lib/CssProvider";
-import Frame from "./lib/frame/Frame";
+import Frame from "./lib/Frame";
 import { Body, Head } from "./lib/primitives";
+import { StyleManager } from "./lib/StyleManager";
 import { defaultReset } from "./lib/theme/defaultReset";
 import { defaultTheme } from "./lib/theme/defaultTheme";
 import { TestTemplate } from "./templates/Test";

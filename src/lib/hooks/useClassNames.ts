@@ -1,6 +1,6 @@
 import React, { CSSProperties } from "react";
 
-import { KeyValue, ParseResults } from "../css-js/types";
+import { KeyValue, ParseResults } from "../types";
 
 export const useClassNames = (styles: ParseResults): KeyValue => {
     // const { styleManager } = React.useContext(EmailCssContext);

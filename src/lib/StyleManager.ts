@@ -1,10 +1,20 @@
 import deepmerge from "deepmerge";
 
-import { CssProperties, CssTarget, KeyValue, StyleRepository, Theme } from "../types";
-import { camelize, decamelize } from "../utils/camelize";
-import { Log } from "../utils/Logger";
-import { isPseudo, isStyleableProperty, isTagName } from "../utils/validation";
-import { ClassType, GlobalRepository, GlobalTarget, Styleable, TargetType } from "./types";
+import {
+    ClassType,
+    CssProperties,
+    CssTarget,
+    GlobalRepository,
+    GlobalTarget,
+    KeyValue,
+    Styleable,
+    StyleRepository,
+    TargetType,
+    Theme,
+} from "./types";
+import { camelize, decamelize } from "./utils/camelize";
+import { Log } from "./utils/Logger";
+import { isPseudo, isStyleableProperty, isTagName } from "./utils/validation";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}

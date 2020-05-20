@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { style } from "../css-js/style";
+import { style } from "../style";
 import { PrimitveElement } from "../types";
 
 export interface StyleElement extends React.HTMLProps<HTMLStyleElement>, PrimitveElement {}

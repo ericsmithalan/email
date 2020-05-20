@@ -1,27 +1,27 @@
-import { style } from "../css-js/style";
+import { style } from "../style";
 import { Prop } from "../types";
 
 const defaultCommon = style({
     defaultText: {
         fontFamily: (p: Prop) => p.t.fonts.fontFamily,
         fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
-        color: (p: Prop) => p.t.colors.darkFontColor,
+        color: (p: Prop) => p.t.colors.darkFontColor
     },
     fullWidth: {
-        width: "100%",
+        width: "100%"
     },
     bold: {
-        fontWeight: 600,
+        fontWeight: 600
     },
     italic: {
-        fontStyle: "italic",
+        fontStyle: "italic"
     },
     underline: {
-        textDecoration: "underline",
+        textDecoration: "underline"
     },
     caps: {
-        textTransform: "uppercase",
-    },
+        textTransform: "uppercase"
+    }
 });
 
 export { defaultCommon };
