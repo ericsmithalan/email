@@ -12,10 +12,10 @@ import {
     StyleRepository,
     Styles,
     Theme,
-} from "../types";
-import { camelize, decamelize } from "./camelize";
-import { Log } from "./Logger";
-import { hasValue, isFunction, isObject, isPseudo, isTarget, isValidClassName, isValueValid } from "./validation";
+} from "./types";
+import { camelize, decamelize } from "./utils/camelize";
+import { Log } from "./utils/Logger";
+import { hasValue, isFunction, isObject, isPseudo, isTarget, isValidClassName, isValueValid } from "./utils/validation";
 
 export function parser(styles: Styles, classesOnly: boolean = false): ParseResults {
     const classNames: KeyValue = {};
