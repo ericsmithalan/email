@@ -173,9 +173,7 @@ export class StyleManager {
     };
 
     getFonts = () => {
-        if (this._theme.fonts.googleFonts) {
-            return this._theme.fonts.googleFonts;
-        }
+        return this._theme.fonts.googleFonts;
     };
 
     getCss = (trg: CssTarget): string => {

@@ -22,10 +22,12 @@ export const Label: FC<Props> = (props: Props) => {
     const mergedProps = useStyle2(styles, props, Label.defaultProps);
 
     const render = () => {
+        const { lineBreak, ...rest } = mergedProps;
+
         if (props.lineBreak) {
-            return <Div {...mergedProps}>{props.children}</Div>;
+            return <Div {...rest}>{props.children}</Div>;
         }
-        return <Span {...mergedProps}>{props.children}</Span>;
+        return <Span {...rest}>{props.children}</Span>;
     };
 
     return render();

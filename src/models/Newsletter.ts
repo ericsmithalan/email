@@ -4,7 +4,7 @@ import { FooterModel } from "./Footer";
 import { HeaderModel } from "./Header";
 
 export interface NewsletterModel extends BaseModel {
-    header: HeaderModel;
-    blurb?: BlurbModel[];
+    header?: HeaderModel;
+    blurbs?: BlurbModel[];
     footer?: FooterModel;
 }

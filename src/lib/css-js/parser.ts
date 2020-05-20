@@ -73,7 +73,6 @@ export function parser(styles: Styles, classesOnly: boolean = false): ParseResul
                 }
             } else {
                 try {
-                    console.log(key, calculated);
                     css[key] = calculated as CssValue;
                 } catch (e) {
                     Log.throwError(`parser > parse error calculated:${calculated}${css}`);
@@ -150,6 +149,7 @@ const calculateValue = (
         if (hasValue(args) && hasValue(args.props) && hasValue(args.theme)) {
             calculated = fn({ t: args.theme, p: args.props });
 
+            console.log(calculated);
             if (!isValueValid(calculated)) {
                 Log.error(`parse > calculateValue value is invalid ${calculated}`);
             }

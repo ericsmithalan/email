@@ -25,7 +25,7 @@ const P: FC<PElement> = (props: PElement) => {
 
     const mergedProps = useStyle2<PElement>(styles, props, P.defaultProps);
 
-    return <p {...(mergedProps as PElement)} />;
+    return <p {...(mergedProps as PElement)}>{props.children}</p>;
 };
 
 export { P };

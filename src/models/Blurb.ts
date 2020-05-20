@@ -5,5 +5,6 @@ export interface BlurbModel extends BaseModel {
     hero: HeroModel;
     title: string;
     subTitle: string;
+    intro: string;
     paragraphs: string[];
 }

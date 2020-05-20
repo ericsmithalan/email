@@ -12,7 +12,7 @@ export const defaultTheme: Theme = {
         purpleColor: "#ca86ff",
         linkColor: "#ff9900",
         hoverColor: "#ff9900",
-        white: "#fff",
+        white: "#fff"
     },
     fonts: {
         googleFonts:
@@ -22,22 +22,22 @@ export const defaultTheme: Theme = {
         lightWeight: 300,
         normalWeight: 400,
         boldWeight: 600,
-        fontHeaderSize: 26,
-        fontSubHeaderSize: 24,
+        fontHeaderSize: 37,
+        fontSubHeaderSize: 30,
         fontTitleSize: 20,
         fontSubTitleSize: 17,
         fontDefaultSize: 15,
-        fontSmallSize: 12,
+        fontSmallSize: 12
     },
     spacing: {
         xsm: 4,
         sm: 8,
         m: 15,
         lg: 20,
-        xlg: 30,
+        xlg: 30
     },
     breakpoints: {
         phone: 400,
-        tablet: 700,
-    },
+        tablet: 700
+    }
 };

@@ -14,6 +14,7 @@ export interface AppState {
     default: string;
     tablet: string;
     phone: string;
+    font: string;
 }
 
 class App extends React.Component<AppProps, AppState> {
@@ -21,7 +22,8 @@ class App extends React.Component<AppProps, AppState> {
         reset: "",
         default: "",
         tablet: "",
-        phone: ""
+        phone: "",
+        font: ""
     };
     htmldoc = "";
     styleManager = new StyleManager(defaultTheme);
@@ -35,7 +37,8 @@ class App extends React.Component<AppProps, AppState> {
             reset: this.styleManager.getGlobal("@reset"),
             default: this.styleManager.getCss("@default"),
             tablet: this.styleManager.getCss("@tablet"),
-            phone: this.styleManager.getCss("@phone")
+            phone: this.styleManager.getCss("@phone"),
+            font: this.styleManager.getFonts()
         });
     }
 
@@ -54,6 +57,7 @@ class App extends React.Component<AppProps, AppState> {
                     <meta name="color-scheme" content="light" />
                     <meta name="supported-color-schemes" content="light" />
 
+                    <link rel="stylesheet" href={this.state.font} />
                     <style dangerouslySetInnerHTML={{ __html: this.state.reset }} />
                     <style dangerouslySetInnerHTML={{ __html: this.state.default }} />
                     <style dangerouslySetInnerHTML={{ __html: this.state.tablet }} />
