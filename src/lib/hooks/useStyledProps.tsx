@@ -1,8 +1,7 @@
 import React from "react";
 
-import { Styleable } from "../css-js/types";
 import { CssContext } from "../CssProvider";
-import { ParseResults } from "../types";
+import { ParseResults, Styleable } from "../types";
 import { mergeClassNames } from "../utils/mergeClassNames";
 
 export const useStyledProps = (parser: ParseResults, props: Styleable, defaultProps: Styleable) => {

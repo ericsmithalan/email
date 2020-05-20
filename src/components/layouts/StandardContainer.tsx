@@ -1,9 +1,9 @@
 import React, { FC, ReactNode } from "react";
 
-import { style } from "../../lib/css-js/style";
 import { useClassNames } from "../../lib/hooks/useClassNames";
 import { useStyle2 } from "../../lib/hooks/useStyle2";
 import { Table, Td, Tr } from "../../lib/primitives";
+import { style } from "../../lib/style";
 import { Prop, Styleable } from "../../lib/types";
 
 export interface StandardContainerProps extends Styleable {

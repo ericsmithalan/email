@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 
-import { style } from "../css-js/style";
 import { useClassNames } from "../hooks/useClassNames";
 import { useStyle2 } from "../hooks/useStyle2";
+import { style } from "../style";
 import { PrimitveElement } from "../types";
 
 export interface OlElement extends React.HTMLProps<HTMLOListElement>, PrimitveElement {}

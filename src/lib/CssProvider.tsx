@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { StyleManager } from "./css-js/StyleManager";
+import { StyleManager } from "./StyleManager";
 import { defaultTheme } from "./theme/defaultTheme";
 
 export type CssContextProps = {

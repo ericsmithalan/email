@@ -1,8 +1,17 @@
+import { FC, ReactNode } from "react";
+
+import { PrimitiveKind } from "../enums/PrimitiveKind";
 import { Styleable } from "../types";
 
 export type DepricatedAlign = "center" | "left" | "right";
 
+export type Primitve = keyof typeof PrimitiveKind;
+
 export interface PrimitveElement extends Styleable {}
+
+export type PrimitveSelector = {
+    [key in keyof Primitve]: ReactNode;
+};
 
 export type DepricatedElementAttributes = {
     width?: number | string;

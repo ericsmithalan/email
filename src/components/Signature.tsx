@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 
-import { style } from "../lib/css-js/style";
 import { useClassNames } from "../lib/hooks/useClassNames";
 import { useStyle2 } from "../lib/hooks/useStyle2";
 import { A, Img, Table, Td, Tr } from "../lib/primitives";
+import { style } from "../lib/style";
 import { Prop } from "../lib/types";
 import { Department, Location, SignatureModel } from "../models/Signature";
 import { Label } from "./Label";

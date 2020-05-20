@@ -1,9 +1,9 @@
 import React from "react";
 
-import { style } from "../lib/css-js/style";
 import { useClassNames } from "../lib/hooks/useClassNames";
 import { useStyle2 } from "../lib/hooks/useStyle2";
 import { P, Table, Td, Tr } from "../lib/primitives";
+import { style } from "../lib/style";
 import { Prop } from "../lib/types";
 import { BlurbModel } from "../models/Blurb";
 import { Hero } from "./Hero";

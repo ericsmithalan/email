@@ -1,9 +1,9 @@
 import _ from "underscore";
 
 import { AttributesKind } from "../enums/AttributesKind";
+import { PrimitiveKind } from "../enums/PrimitiveKind";
 import { PseudoKind } from "../enums/PseudoKind";
 import { StyleablePropertiesKind } from "../enums/StyleablePropertiesKind";
-import { TagNameKind } from "../enums/TagNameKind";
 import { TargetKind } from "../enums/TargetKind";
 
 export const isValueValid = (value: any): boolean => {
@@ -84,7 +84,7 @@ export const isTagName = (value: any): boolean => {
         return false;
     }
 
-    if (value && value in TagNameKind) {
+    if (value && value in PrimitiveKind) {
         return true;
     }
     return false;

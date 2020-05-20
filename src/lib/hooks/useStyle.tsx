@@ -1,8 +1,7 @@
 import React from "react";
 
-import { Styleable } from "../css-js/types";
 import { CssContext } from "../CssProvider";
-import { KeyValue, ParseResults } from "../types";
+import { KeyValue, ParseResults, Styleable } from "../types";
 
 export const useStyle = (
     parser: ParseResults,

@@ -1,8 +1,10 @@
 import { toEnum } from "../utils/toEnum";
 
-export const TagNameKind = toEnum([
+export const PrimitiveKind = toEnum([
     "a",
+    "body",
     "table",
+    "head",
     "body",
     "html",
     "div",
@@ -13,4 +15,8 @@ export const TagNameKind = toEnum([
     "hr",
     "td",
     "tr",
+    "hr",
+    "img",
+    "p",
+    "style"
 ]);
