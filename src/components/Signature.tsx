@@ -116,16 +116,7 @@ const Signature: FC<Props> = (props: Props) => {
 
 const styles = style({
     ctlSignature: {
-        color: (p: Prop) => p.t.colors.darkFontColor,
-        "@tablet":{
-            fontSize: 16
-        },
-        "@phone":{
-            fontSize: 13
-        }
-        ":hover":{
-            fontSize: 13
-        }
+        color: (p: Prop) => p.t.colors.darkFontColor
     },
     ctlLink: {
         color: (p: Prop) => p.t.colors.darkFontColor
