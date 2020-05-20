@@ -12,7 +12,7 @@ class Logger {
     };
 
     throwError = (message: string) => {
-        new Error(message);
+        throw new Error(message);
     };
 }
 

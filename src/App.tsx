@@ -31,7 +31,6 @@ class App extends React.Component<AppProps, AppState> {
     }
 
     handleDocumentReady(doc: Document) {
-        console.log("componentDidMount");
         this.setState({
             reset: this.styleManager.getGlobal("@reset"),
             default: this.styleManager.getCss("@default"),

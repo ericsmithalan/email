@@ -69,7 +69,6 @@ export default class Frame extends React.PureComponent<FrameProps, FrameState> {
         const { handleReceiveMessage } = this.props;
         if (handleReceiveMessage) {
             handleReceiveMessage(event);
-            console.log(event);
         }
     };
 

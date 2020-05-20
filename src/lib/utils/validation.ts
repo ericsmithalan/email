@@ -11,12 +11,10 @@ export const isValueValid = (value: any): boolean => {
         return false;
     }
 
-    if (value) {
-        if (typeof value === "string" || typeof value === "number") {
-            return true;
-        }
-        return false;
+    if (typeof value === "string" || typeof value === "number") {
+        return true;
     }
+
     return false;
 };
 

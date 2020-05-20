@@ -15,7 +15,7 @@ import {
 import { camelize, decamelize } from "../utils/camelize";
 import { Log } from "../utils/Logger";
 import { hasValue, isFunction, isObject, isPseudo, isTarget, isValidClassName, isValueValid } from "../utils/validation";
-import { ParsedValue } from "./types";
+import { CssValue, ParsedValue } from "./types";
 
 export function parser(styles: Styles, classesOnly: boolean = false): ParseResults {
     const classNames: KeyValue = {};
@@ -49,37 +49,34 @@ export function parser(styles: Styles, classesOnly: boolean = false): ParseResul
                 theme: parseArgs.theme
             });
 
-            if (Object.keys(calculated).length > 0) {
-                if (isObject(calculated)) {
-                    const args = updateArgs(parseArgs, {
-                        value: calculated,
-                        classKey: formatClassName({ classKey: parseArgs.classKey }, key),
-                        target: isTarget(key) ? (key as CssTarget) : parseArgs.target,
-                        pseudo: isPseudo(key) ? (key as CssPseudo) : parseArgs.pseudo
-                    });
+            if (isObject(calculated)) {
+                const args = updateArgs(parseArgs, {
+                    value: calculated,
+                    classKey: formatClassName({ classKey: parseArgs.classKey }, key),
+                    target: isTarget(key) ? (key as CssTarget) : parseArgs.target,
+                    pseudo: isPseudo(key) ? (key as CssPseudo) : parseArgs.pseudo
+                });
 
-                    try {
-                        const target: ClassType = repository[args.target];
-                        target[args.classKey] = recursiveParse(args) as ClassType;
-                    } catch (e) {
-                        Log.throwError(`parse error args:${{ ...args }}`);
-                    }
+                try {
+                    const target: ClassType = repository[args.target];
+                    target[args.classKey] = recursiveParse(args) as ClassType;
+                } catch (e) {
+                    Log.throwError(`parse error args:${{ ...args }}`);
+                }
 
-                    if (isValidClassName(args.classKey)) {
-                        classNames[args.classKey] = decamelize(args.classKey);
-                    } else {
-                        Log.warn(`parser > parse tried to add invalid className args:`, {
-                            ...args
-                        });
-                    }
+                if (isValidClassName(args.classKey)) {
+                    classNames[args.classKey] = decamelize(args.classKey);
                 } else {
-                    if (isValueValid(calculated)) {
-                        try {
-                            css[key] = calculated;
-                        } catch (e) {
-                            Log.error(`parser > parse error calculated:${calculated}`, css);
-                        }
-                    }
+                    Log.warn(`parser > parse tried to add invalid className args:`, {
+                        ...args
+                    });
+                }
+            } else {
+                try {
+                    console.log(key, calculated);
+                    css[key] = calculated as CssValue;
+                } catch (e) {
+                    Log.throwError(`parser > parse error calculated:${calculated}${css}`);
                 }
             }
         }
@@ -117,6 +114,7 @@ export function parser(styles: Styles, classesOnly: boolean = false): ParseResul
             });
 
             recursiveParse(newArgs);
+
             return repository;
         },
         parseWithModel: <T extends BaseModel>(theme: Theme, model: T) => {

@@ -45,34 +45,48 @@ export class StyleManager {
         }
     };
 
+    parseClassName = (className: string) => {
+        const classes = className.split(" ");
+
+        if (classes.length > 1) {
+            return classes[classes.length - 1];
+        }
+
+        return className;
+    };
+
     addPropStyles = (props: Styleable): CssProperties => {
         if (props) {
             if (props.className) {
+                const className = this.parseClassName(props.className);
+
                 // adds all styles under element style property
                 if (props.style) {
-                    const elementStyle =
-                        this._getClass("@default", camelize(props.className)) || {};
+                    const elementStyle = this._getClass("@default", camelize(className));
 
                     if (elementStyle) {
                         const combinedStyles = deepmerge.all([elementStyle, props.style]);
 
                         if (Object.keys(combinedStyles).length > 0) {
-                            this._setClass("@default", camelize(props.className), combinedStyles);
+                            this._setClass("@default", camelize(className), combinedStyles);
                         } else {
+                            Log.warn(`StyleManager > combinedStyles :`, props);
                         }
+                    } else {
+                        Log.warn(`StyleManager > elementStyle :`, props);
                     }
                 }
 
-                this._setElementPropStyles(props, camelize(props.className));
+                this._setElementPropStyles(props, camelize(className));
 
                 // return merged styles
-                const styles = this._getClass("@default", camelize(props.className));
+                const styles = this._getClass("@default", camelize(className));
 
                 // returns new styles
                 return styles || {};
             }
         } else {
-            Log.warn(`StyleManager > addPropStyles :`, props);
+            Log.warn(`StyleManager > props.className :`, props);
         }
 
         return {};
@@ -97,6 +111,7 @@ export class StyleManager {
                     if (combinedStyles) {
                         this._setClass("@default", className, combinedStyles);
                     } else {
+                        Log.warn(`StyleManager > _setElementPropStyles :`, combinedStyles);
                     }
                 }
             }
@@ -151,7 +166,9 @@ export class StyleManager {
             //@ts-ignore
             this._stylesheets[target][className] = merged;
         } catch (e) {
-            Log.throwError(e);
+            Log.throwError(
+                `${e} -- target:${target} -- className:${className} -- styles:${{ ...styles }}`
+            );
         }
     };
 
@@ -183,8 +200,6 @@ export class StyleManager {
             }
 
             const rendered = render(target as ClassType, important);
-
-            console.log("trg", target, rendered);
 
             css.push(rendered);
 
