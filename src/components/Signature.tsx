@@ -4,37 +4,13 @@ import { style } from "../lib/css-js/style";
 import { useClassNames } from "../lib/hooks/useClassNames";
 import { useStyle2 } from "../lib/hooks/useStyle2";
 import { A, Img, Table, Td, Tr } from "../lib/primitives";
-import { Prop, Styleable } from "../lib/types";
+import { Prop } from "../lib/types";
+import { Department, Location, SignatureModel } from "../models/Signature";
 import { Label } from "./Label";
 
-export type Department =
-    | "Ascendum"
-    | "Ascendum Digital"
-    | "Ascendum Talent"
-    | "Ascendum KPS"
-    | "Ascendum Products"
-    | "Ascendum Distancing";
+export type Props = {} & SignatureModel;
 
-export type Location =
-    | "US HQ"
-    | "India HQ"
-    | "India"
-    | "Cambridge UK"
-    | "New Jersey US"
-    | "Ahmedabad India"
-    | "Sydney Australia";
-
-export interface SignatureProps extends Styleable {
-    name: string;
-    jobTitle: string;
-    email: string;
-    department: Department;
-    workPhone: string;
-    cellPhone: string;
-    location: Location;
-}
-
-const Signature: FC<SignatureProps> = (props: SignatureProps) => {
+const Signature: FC<Props> = (props: Props) => {
     const {
         ctlSignature,
         ctlName,
@@ -45,7 +21,8 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
         ctlAddress,
         ctlPhone
     } = useClassNames(styles);
-    const mergedProps = useStyle2<SignatureProps>(styles, props, {
+
+    const mergedProps = useStyle2<Props>(styles, props, {
         className: ctlSignature
     });
 
@@ -93,7 +70,7 @@ const Signature: FC<SignatureProps> = (props: SignatureProps) => {
                                 <Label className={ctlHeading}>E</Label>
                             </Td>
                             <Td colSpan={3}>
-                                <Label className={email}>{props.email}</Label>
+                                <Label className={ctlEmail}>{props.email}</Label>
                             </Td>
                         </Tr>
                         <Tr>

@@ -3,6 +3,7 @@ import React, { FC, ReactNode } from "react";
 import { Blurb } from "../components/Blurb";
 import { Header } from "../components/Header";
 import { If } from "../components/If";
+import { Signature } from "../components/Signature";
 import { Spacer } from "../components/Spacer";
 import { style } from "../lib/css-js/style";
 import { useClassNames } from "../lib/hooks/useClassNames";
@@ -12,6 +13,7 @@ import { Styleable } from "../lib/types";
 import { hasValue } from "../lib/utils/validation";
 import { BlurbModel } from "../models/Blurb";
 import { NewsletterModel } from "../models/Newsletter";
+import { SignatureModel } from "../models/Signature";
 
 const styles = style({
     newsletterTable: {
@@ -72,7 +74,16 @@ const newsletter: NewsletterModel = {
             height: 100
         }
     },
-    blurbs: [blurb1, blurb2]
+    blurbs: [blurb1, blurb2],
+    signature: {
+        name: "Eric Smith",
+        jobTitle: "UX Designer",
+        email: "eric.smith@ascendum.com",
+        department: "Ascendum Digital",
+        workPhone: "253 229 1679",
+        cellPhone: "253 229 1679",
+        location: "US HQ"
+    }
 };
 
 export interface NewsletterTemplateProps extends Styleable {
@@ -103,6 +114,10 @@ export const NewsletterTemplate: FC<NewsletterTemplateProps> = (props: Newslette
                 modules.push(<Blurb key={i} {...item} />);
                 modules.push(<Spacer height={80} />);
             });
+        }
+
+        if (hasValue(model.signature)) {
+            modules.push(<Signature {...(model.signature as SignatureModel)} />);
         }
 
         return modules;
