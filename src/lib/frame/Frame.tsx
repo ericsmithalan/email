@@ -1,6 +1,5 @@
 import React, { FC, ReactChild, ReactNode } from "react";
 import ReactDOM from "react-dom";
-import { renderToString } from "react-dom/server";
 
 import { FrameProvider } from "./FrameContext";
 
@@ -9,7 +8,6 @@ export interface FrameMessage {
 }
 
 export interface FrameProps {
-    head: ReactNode;
     body: ReactNode;
     handleReceiveMessage?: (event: MessageEvent) => void;
 }
@@ -17,7 +15,6 @@ export interface FrameProps {
 export interface FrameState {
     loaded: boolean;
     root: HTMLHtmlElement;
-    head: HTMLHeadElement;
 }
 
 export default class Frame extends React.PureComponent<FrameProps, FrameState> {
@@ -39,9 +36,7 @@ export default class Frame extends React.PureComponent<FrameProps, FrameState> {
 
             if (doc) {
                 const html = doc.querySelector("html") as HTMLHtmlElement;
-                const head = doc.querySelector("head") as HTMLHeadElement;
-
-                this.setState({ loaded: true, root: html, head: head });
+                this.setState({ loaded: true, root: html });
             }
 
             this.loaded = true;
@@ -94,16 +89,13 @@ export default class Frame extends React.PureComponent<FrameProps, FrameState> {
         delete this.frameRef;
     }
 
-    getHead = () => {
-        const head: HTMLHeadElement | null = this.state.head;
-
-        if (head != null) {
-            return (head.innerHTML = renderToString(<>{this.props.head}</>));
-        }
-    };
-
     render() {
         const { children, ...rest } = this.props;
+
+        const html = this.state.root;
+        if (html) {
+            html.innerHTML = "";
+        }
 
         return (
             <iframe
@@ -114,7 +106,6 @@ export default class Frame extends React.PureComponent<FrameProps, FrameState> {
                 frameBorder="0"
                 height={2000}
             >
-                {this.state.loaded ? this.getHead() : null}
                 {this.state.loaded && this.state.root
                     ? ReactDOM.createPortal(
                           <FrameProvider doc={this.document} win={this.window}>

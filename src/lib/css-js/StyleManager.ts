@@ -4,7 +4,7 @@ import { CssProperties, CssTarget, KeyValue, StyleRepository, Theme } from "../t
 import { camelize, decamelize } from "../utils/camelize";
 import { Log } from "../utils/Logger";
 import { isPseudo, isStyleableProperty, isTagName, isValidClassName } from "../utils/validation";
-import { ClassType, GlobalRepository, GlobalTarget, GlobalTargetType, Styleable, TargetType } from "./types";
+import { ClassType, GlobalRepository, GlobalTarget, Styleable, TargetType } from "./types";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
@@ -34,15 +34,19 @@ export class StyleManager {
     }
 
     public addStyle = (styleSheet: StyleRepository, target: CssTarget) => {
-        if (target) {
+        if (styleSheet && target) {
             const styles = this._getTarget(target);
             this._stylesheets = deepmerge.all([styles, styleSheet as StyleRepository]);
+        } else {
+            Log.error(`StyleManager > addStyle :`, styleSheet, target);
         }
     };
 
     public addGlobal = (css: string, target: GlobalTarget) => {
-        if (target) {
-            this._setGlobal("@reset", css);
+        if (css && target) {
+            this.setGlobal(css, "@reset");
+        } else {
+            Log.error(`StyleManager > addGlobal :`, css, target);
         }
     };
 
@@ -72,6 +76,8 @@ export class StyleManager {
                 // returns new styles
                 return styles || {};
             }
+        } else {
+            Log.warn(`StyleManager > addPropStyles :`, props);
         }
 
         return {};
@@ -140,15 +146,16 @@ export class StyleManager {
     };
 
     //@ts-ignore TargetType expecting a return even
-    private _getGlobal = (target: GlobalTarget): GlobalTargetType => {
+    getGlobal = (target: GlobalTarget): string => {
         try {
-            return this._globals[target] as GlobalTargetType;
+            //@ts-ignore
+            return this._globals[target]["css"] as string;
         } catch (e) {
             Log.throwError(e);
         }
     };
 
-    private _setGlobal = (target: GlobalTarget, css: string): void => {
+    setGlobal = (css: string, target: GlobalTarget): void => {
         try {
             //@ts-ignore
             this._globals[target]["css"] = css;
@@ -176,16 +183,7 @@ export class StyleManager {
         }
     };
 
-    public globalCss = (target: GlobalTarget) => {
-        try {
-            //@ts-ignore
-            this._globals[target]["css"] = css;
-        } catch (e) {
-            Log.throwError(e);
-        }
-    };
-
-    public css = (trg: CssTarget): string => {
+    public getCss = (trg: CssTarget): string => {
         try {
             let important = false;
 
