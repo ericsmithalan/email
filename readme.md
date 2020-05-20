@@ -7,7 +7,7 @@ yarn start
 ```
 ---
 
-#### Features
+### Features
 
 
 ##### Referenced Styles
@@ -47,6 +47,27 @@ const Table: FC<TableElement> = (props: TableElement) => {
     );
 };
 ```
+### Output
+Styles are parsed and returns inline styles back to the element while updating the stylesheet to include styles related to that component. Thus, keeping the inline styles and stylesheet in sync. 
+
+
+##### Stylesheet Output
+```
+<style>
+    .asc-table{
+        font-family:'Barlow', sans-serif;
+        font-size:15px;
+        color:#2C2C2C;
+        font-weight:400px;
+        border:0;
+    }
+
+    ...
+
+</style>
+```
+
+---
 ##### Element Style Output
 ```
 <table class="asc-table" cellpadding="0" cellspacing="0" border="0" align="center" 
