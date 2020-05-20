@@ -5,7 +5,7 @@ import Frame from "./lib/frame/Frame";
 import { Body, Head } from "./lib/primitives";
 import { defaultReset } from "./lib/theme/defaultReset";
 import { defaultTheme } from "./lib/theme/defaultTheme";
-import { Newsletter } from "./templates/Newsletter";
+import { NewsletterTemplate } from "./templates/Newsletter";
 
 class App extends React.Component {
     htmldoc = "";
@@ -38,7 +38,7 @@ class App extends React.Component {
                     />
                 </Head>
                 <Body>
-                    <Newsletter></Newsletter>
+                    <NewsletterTemplate />
                 </Body>
             </>
         );

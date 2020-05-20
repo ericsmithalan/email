@@ -1,3 +1,4 @@
+import { BaseModel } from "../../models/BaseModel";
 import {
     ClassType,
     CssPseudo,
@@ -24,7 +25,7 @@ export function parser(styles: Styles): ParseResults {
         "@common": {},
         "@default": {},
         "@phone": {},
-        "@tablet": {},
+        "@tablet": {}
     };
 
     if (!styles) {
@@ -32,7 +33,7 @@ export function parser(styles: Styles): ParseResults {
     }
 
     const args = {
-        value: styles,
+        value: styles
     };
 
     const recursiveParse = (parseArgs: ParseArgs) => {
@@ -45,7 +46,7 @@ export function parser(styles: Styles): ParseResults {
         for (const [key, value] of Object.entries(parseArgs.value)) {
             let calculated = calculateValue(value as any, {
                 props: parseArgs.props,
-                theme: parseArgs.theme,
+                theme: parseArgs.theme
             });
 
             if (Object.keys(calculated).length > 0) {
@@ -54,7 +55,7 @@ export function parser(styles: Styles): ParseResults {
                         value: calculated,
                         classKey: formatClassName({ classKey: parseArgs.classKey }, key),
                         target: isTarget(key) ? (key as CssTarget) : parseArgs.target,
-                        pseudo: isPseudo(key) ? (key as CssPseudo) : parseArgs.pseudo,
+                        pseudo: isPseudo(key) ? (key as CssPseudo) : parseArgs.pseudo
                     });
 
                     try {
@@ -68,7 +69,7 @@ export function parser(styles: Styles): ParseResults {
                         classNames[args.classKey] = decamelize(args.classKey);
                     } else {
                         Log.warn(`parser > parse tried to add invalid className args:`, {
-                            ...args,
+                            ...args
                         });
                     }
                 } else {
@@ -91,23 +92,33 @@ export function parser(styles: Styles): ParseResults {
         parse: <T extends Styleable>(
             theme: Theme,
             props: T,
-            target?: CssTarget,
+            target?: CssTarget
         ): StyleRepository => {
             const newArgs = updateArgs(args as Partial<ParseArgs>, {
                 theme: theme,
                 props: props as T,
-                target: target || "@default",
+                target: target || "@default"
             });
 
             recursiveParse(newArgs);
             return repository;
         },
+        parseModel: <T extends BaseModel>(theme: Theme, model: T) => {
+            const newArgs = updateArgs(args as Partial<ParseArgs>, {
+                theme: theme,
+                props: model,
+                target: "@default"
+            });
+
+            recursiveParse(newArgs);
+            return repository;
+        }
     };
 }
 
 const calculateValue = (
     value: ParsedValue,
-    args: { props: Styleable; theme: Theme },
+    args: { props: Styleable; theme: Theme }
 ): ParsedValue => {
     let calculated: ParsedValue = value;
 
@@ -126,7 +137,7 @@ const calculateValue = (
             }
         } else {
             Log.throwError(
-                `args or args.props or args.theme is undefined args:${args} args.props:${args.props} args.theme:${args.theme}`,
+                `args or args.props or args.theme is undefined args:${args} args.props:${args.props} args.theme:${args.theme}`
             );
         }
     }

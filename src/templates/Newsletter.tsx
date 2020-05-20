@@ -1,67 +1,32 @@
 import React, { ReactNode } from "react";
 
-export interface Image {
-    alt: string;
-    source: string;
-}
-
-export interface Header {
-    image?: Image;
-    title?: string;
-    date?: Date;
-}
-
-export interface Footer {
-    image: Image;
-}
-
-export interface Hero {
-    image: Image;
-}
-
-export interface Blurb {
-    hero: Hero;
-    title: string;
-    subTitle: string;
-    paragraphs: string[];
-}
-
-export interface NewsletterModel {
-    header: Header;
-    blurb?: Blurb[];
-    footer?: Footer;
-}
+import { Header } from "../components/Header";
+import { hasValue } from "../lib/utils/validation";
+import { NewsletterModel } from "../models/Newsletter";
 
 const newsletter: NewsletterModel = {
     header: {
         title: "My Title",
-        date: new Date()
+        date: new Date(),
+        image: {
+            alt: "test alt",
+            src: "https://via.placeholder.com/150",
+            width: 150,
+            height: "auto"
+        }
     }
 };
 
-export const Newsletter = () => {
+export const NewsletterTemplate = () => {
+    let header: ReactNode;
+
     const render = (model: NewsletterModel) => {
-        if (hasValues(model.header)) {
-            console.log(model.header);
+        if (hasValue(model.header)) {
+            return <Header {...model.header} />;
         }
+
         return <div></div>;
     };
 
     return render(newsletter);
-};
-
-const hasValues = (value: any) => {
-    if (value !== null || value !== undefined || value !== "") {
-        if (typeof value === "object") {
-            if (Object.keys(value).length > 0) {
-                return true;
-            }
-
-            return false;
-        }
-
-        return true;
-    }
-
-    return false;
 };
