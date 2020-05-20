@@ -1,22 +1,19 @@
 import React from "react";
 
 import { EmailCssContext } from "../EmailCssProvider";
-import { KeyValue, ParseResults, Styleable } from "../types";
+import { ParseResults, Styleable } from "../types";
 import { mergeClassNames } from "../utils/mergeClassNames";
 
 export const useStyle2 = <T extends Styleable>(
     parser: ParseResults,
     props: T,
-    defaultProps: Partial<T>,
-): { classNames: KeyValue; mergedProps: T } => {
+    defaultProps: Partial<T>
+): T => {
     const { styleManager } = React.useContext(EmailCssContext);
 
-    parser.parse(
-        styleManager.theme,
-        Object.assign({}, defaultProps, props, {
-            className: mergeClassNames(defaultProps, props),
-        }),
-    );
+    const mergedProps = Object.assign({}, defaultProps, props);
+
+    parser.parse(styleManager.theme, mergedProps);
 
     styleManager.addStyle(parser.styles, "@default");
 
@@ -28,13 +25,12 @@ export const useStyle2 = <T extends Styleable>(
 
     const propStyles = styleManager.addPropStyles(props);
 
-    const { uid, ...rest } = Object.assign({}, defaultProps, props, {
+    console.log(props.className);
+
+    const { uid, ...rest } = Object.assign({}, mergedProps, {
         className: mergeClassNames(defaultProps, props),
-        style: Object.assign({}, defaultStyles, propStyles),
+        style: Object.assign({}, defaultStyles, propStyles)
     });
 
-    return {
-        classNames: parser.classNames,
-        mergedProps: rest as T,
-    };
+    return rest as T;
 };

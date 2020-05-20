@@ -6,10 +6,11 @@ import { useStyledModel } from "../lib/hooks/useStyledModel";
 import { Img, Table, Td, Tr } from "../lib/primitives";
 import { HeaderModel } from "../models/Header";
 import { StyleableModel } from "../models/types";
+import { Label } from "./Label";
 
 const styles = style({
     headerImage: {
-        width: 150,
+        width: 600,
         height: "auto"
     }
 });
@@ -33,9 +34,13 @@ export const Header = ({ title, image, date }: HeaderModel) => {
             <Tr>
                 <Td>{title}</Td>
             </Tr>
-            <Tr>
-                <Td>{date?.toString()}</Td>
-            </Tr>
+            {date && (
+                <Tr>
+                    <Td>
+                        <Label> {date.toDateString()}</Label>
+                    </Td>
+                </Tr>
+            )}
         </Table>
     );
 };

@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 
 import { Header } from "../components/Header";
+import { Table, Td, Tr } from "../lib/primitives";
 import { hasValue } from "../lib/utils/validation";
 import { NewsletterModel } from "../models/Newsletter";
 
@@ -10,9 +11,8 @@ const newsletter: NewsletterModel = {
         date: new Date(),
         image: {
             alt: "test alt",
-            src: "https://via.placeholder.com/150",
-            width: 150,
-            height: "auto"
+            width: 600,
+            height: 200
         }
     }
 };
@@ -24,9 +24,13 @@ export const NewsletterTemplate = () => {
         if (hasValue(model.header)) {
             return <Header {...model.header} />;
         }
-
-        return <div></div>;
     };
 
-    return render(newsletter);
+    return (
+        <Table>
+            <Tr>
+                <Td>{render(newsletter)}</Td>
+            </Tr>
+        </Table>
+    );
 };

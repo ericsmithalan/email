@@ -2,6 +2,7 @@ import React, { FC } from "react";
 
 import { style } from "../css-js/style";
 import { Prop } from "../css-js/types";
+import { useClassNames } from "../hooks/useClassNames";
 import { useStyle2 } from "../hooks/useStyle2";
 import { DepricatedLinkAttributes, PrimitveElement } from "../types";
 
@@ -16,17 +17,18 @@ const styles = style({
         fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
         color: (p: Prop) => p.t.colors.darkFontColor,
         fontWeight: (p: Prop) => p.t.fonts.normalWeight,
-        textDecoration: "none",
-    },
+        textDecoration: "none"
+    }
 });
 
 const A: FC<AElement> = (props: AElement) => {
+    const { ascA } = useClassNames(styles);
     A.defaultProps = {
-        className: styles.classNames.ascA,
-        target: "_blank",
+        className: ascA,
+        target: "_blank"
     };
 
-    const { mergedProps } = useStyle2<AElement>(styles, props, A.defaultProps);
+    const mergedProps = useStyle2<AElement>(styles, props, A.defaultProps);
 
     return <a {...(mergedProps as AElement)} />;
 };

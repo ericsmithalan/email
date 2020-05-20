@@ -2,6 +2,7 @@ import React, { FC } from "react";
 
 import { style } from "../css-js/style";
 import { Prop } from "../css-js/types";
+import { useClassNames } from "../hooks/useClassNames";
 import { useStyle2 } from "../hooks/useStyle2";
 import { DepricatedTdAttributes, PrimitveElement } from "../types";
 
@@ -15,19 +16,20 @@ const styles = style({
         fontFamily: (p: Prop) => p.t.fonts.fontFamily,
         fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
         color: (p: Prop) => p.t.colors.darkFontColor,
-        fontWeight: (p: Prop) => p.t.fonts.normalWeight,
-    },
+        fontWeight: (p: Prop) => p.t.fonts.normalWeight
+    }
 });
 
 const Td: FC<TdElement> = (props: TdElement) => {
+    const { ascTd } = useClassNames(styles);
     Td.defaultProps = {
-        className: styles.classNames.ascTd,
+        className: ascTd,
         align: "left",
 
-        valign: "top",
+        valign: "top"
     };
 
-    const { mergedProps } = useStyle2<TdElement>(styles, props, Td.defaultProps);
+    const mergedProps = useStyle2<TdElement>(styles, props, Td.defaultProps);
 
     return <td {...(mergedProps as TdElement)} />;
 };

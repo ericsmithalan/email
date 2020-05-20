@@ -2,6 +2,7 @@ import React, { FC } from "react";
 
 import { style } from "../css-js/style";
 import { Prop } from "../css-js/types";
+import { useClassNames } from "../hooks/useClassNames";
 import { useStyle2 } from "../hooks/useStyle2";
 import { PrimitveElement } from "../types";
 
@@ -19,13 +20,14 @@ const styles = style({
 });
 
 const Body: FC<BodyElement> = (props: BodyElement) => {
+    const { ascBody } = useClassNames(styles);
     Body.defaultProps = {
-        className: styles.classNames.ascBody,
+        className: ascBody,
 
         width: "100%"
     };
 
-    const { mergedProps } = useStyle2(styles, props, Body.defaultProps);
+    const mergedProps = useStyle2(styles, props, Body.defaultProps);
 
     return <body {...(mergedProps as BodyElement)} />;
 };

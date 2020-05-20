@@ -2,6 +2,7 @@ import React, { FC } from "react";
 
 import { style } from "../css-js/style";
 import { Prop } from "../css-js/types";
+import { useClassNames } from "../hooks/useClassNames";
 import { useStyle2 } from "../hooks/useStyle2";
 import { PrimitveElement } from "../types";
 
@@ -12,16 +13,17 @@ const styles = style({
         fontFamily: (p: Prop) => p.t.fonts.fontFamily,
         fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
         color: (p: Prop) => p.t.colors.darkFontColor,
-        fontWeight: (p: Prop) => p.t.fonts.normalWeight,
-    },
+        fontWeight: (p: Prop) => p.t.fonts.normalWeight
+    }
 });
 
 const Div: FC<DivElement> = (props: DivElement) => {
+    const { ascDiv } = useClassNames(styles);
     Div.defaultProps = {
-        className: styles.classNames.ascDiv,
+        className: ascDiv
     };
 
-    const { mergedProps } = useStyle2<DivElement>(styles, props, Div.defaultProps);
+    const mergedProps = useStyle2<DivElement>(styles, props, Div.defaultProps);
 
     return <div {...(mergedProps as DivElement)} />;
 };
