@@ -1,10 +1,9 @@
 import React, { FC } from "react";
 
-import { style } from "../css-js/style";
-import { Prop } from "../css-js/types";
 import { useClassNames } from "../hooks/useClassNames";
 import { useStyle2 } from "../hooks/useStyle2";
-import { DepricatedImageAttributes, PrimitveElement } from "../types";
+import { style } from "../style";
+import { DepricatedImageAttributes, PrimitveElement, Prop } from "../types";
 
 export interface ImgElement
     extends React.HTMLProps<HTMLImageElement>,
