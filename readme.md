@@ -1,10 +1,93 @@
-# Email newsletter template project
+# Email template (unstable)
+
+
+### Motivation
 
 While researching ways to create email newsletters, I discoverd a gap not supported by the tools I looked at. The gap was around making newsletters publishable to the web in a SEO friendly way. All the content produced in newslettes can not only help with SEO, but it could help attract new hires and provide people with useful information about the company.
 
-This tool focuses on single static pages only.
 
-## Initial Goals:
+##### Startup
+```
+yarn start
+```
+---
+
+#### Features
+
+
+##### Referenced Styles
+Properties and Theme are passed in and can be referenced inside the style method
+
+```
+const styles = style({
+    ascTable: {
+        fontFamily: (p: Prop) => p.t.fonts.fontFamily,
+        fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
+        color: (p: Prop) => p.t.colors.darkFontColor,
+        fontWeight: (p: Prop) => p.t.fonts.normalWeight
+    }
+});
+
+```
+##### Inline Styles
+Defaultprops and Props are passed to the parser and returned to include all the styles.
+```
+
+const Table: FC<TableElement> = (props: TableElement) => {
+    const { ascTable } = useClassNames(styles);
+    Table.defaultProps = {
+        width: 800,
+        className: ascTable,
+        cellPadding: 0,
+        cellSpacing: 0,
+        border: 0
+    };
+
+    const mergedProps = useStyle2<TableElement>(styles, props, Table.defaultProps);
+
+    return (
+        <table role="presentation" {...(mergedProps as TableElement)}>
+            <tbody>{props.children}</tbody>
+        </table>
+    );
+};
+```
+##### Element Style Output
+```
+<table class="asc-table" cellpadding="0" cellspacing="0" border="0" align="center" 
+    style="font-family: Barlow, sans-serif; 
+    font-size: 15px; color:#2C2C2C; 
+    font-weight: 400; border: 0px; width: 800px;">...
+```
+
+### Responsive & Pseudo
+Element styles are stored as @default, @tablet, or @phone. Each represents a stylesheet that renders in the head.  
+
+Below shows how to specify where a style gets stored
+
+```
+const styles = style({
+    ctlSignature: {
+        color: (p: Prop) => p.t.colors.darkFontColor,
+        "@tablet":{
+            fontSize: 16
+        },
+        "@phone":{
+            fontSize: 13
+        }
+        ":hover":{
+            fontSize: 13
+        }
+    },
+    ctlLink: {
+       ...
+
+```
+
+---
+
+
+##### Initial Goals:
 
 -   Create a data driven component library that can output HTML for web and/or Email.
 -   Provide a basic framework that supports responsiveness and themes.
@@ -12,61 +95,6 @@ This tool focuses on single static pages only.
 -   Bury the email tricks and hacks at lower levels to make developing easier and more efficient.
 -   100% data driven. At some point, I should be able to pass a JSON doc and a web page and/or email template would return.
 
-## Long Term Goals:
-
--   Create a UI experience for adding and editing content.
--   Publishing and bulk Email support
--   Page Directory
-
-## Non Goals
+##### Non Goal
 
 -   Not for building entire websites or apps.
-
-## OLD ----------------------
-
-## Why email + web Newsletters?
-
--   Great SEO opportuntiy
--   Let potential employees learn more about the company
-
-## Problems with creating email templates
-
--   Requires lots of HTML and CSS compared to web
--   100's of email clients that render things differently
--   Typically built for email only
--   lots of "tricks" and hacks to make emails render correctly.
-
-## Solution
-
--   Make it easier to develop email templates
--   Create a scalable system that can evolve
--   Allow emails to be used as web page
-
-## Unique Features
-
--   Syncs document stylesheets with component inline styles.
--   100% customizable
--   Works on web and in emails
-
-## Features
-
--   Works as an email template and Web Page
--   Responsive
--   Supports Themes
--   Css, Inline Styles, and Styleable Properties are synced to ensure backward Compatablility
--   Supports Pseudo elements
--   Responsive
--   Data driven so no inline text.
--   100% static page with no JS
-
-## Extended ideas
-
--   Create a UI that allows for data entry
--   Connect with contacts API
--   Use nodejs to send emails https://nodemailer.com/smtp/
--   Allow components to be email only. These will only render in email, not on web.
-
-## ToDO
-
--   Web should turn off inline styles
--   Allow element substitution for websites to optimize for SEO

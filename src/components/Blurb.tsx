@@ -24,7 +24,7 @@ const styles = style({
         fontSize: (p: Prop) => p.t.fonts.fontSubHeaderSize,
         fontWeight: 400,
         marginBottom: 15,
-        "@tablet": {
+        "@phone": {
             fontSize: (p: Prop) => p.t.fonts.fontTitleSize
         }
     },
