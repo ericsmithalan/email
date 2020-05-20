@@ -2,10 +2,10 @@ import React from "react";
 
 import { style } from "../lib/css-js/style";
 import { useClassNames } from "../lib/hooks/useClassNames";
-import { useStyledModel } from "../lib/hooks/useStyledModel";
+import { useStyle2 } from "../lib/hooks/useStyle2";
 import { Img, Table, Td, Tr } from "../lib/primitives";
+import { Prop } from "../lib/types";
 import { HeaderModel } from "../models/Header";
-import { StyleableModel } from "../models/types";
 import { Label } from "./Label";
 
 const styles = style({
@@ -14,32 +14,40 @@ const styles = style({
             width: "100%",
             height: "auto"
         }
+    },
+    headerTitle: {
+        fontFamily: (p: Prop) => p.t.fonts.headerFontFamily,
+        fontSize: (p: Prop) => p.t.fonts.fontHeaderSize
     }
 });
 
-export const Header = ({ title, image, date }: HeaderModel) => {
-    const { headerImage } = useClassNames(styles);
+type Props = HeaderModel;
 
-    let img = useStyledModel(styles, image, headerImage) as StyleableModel<HTMLImageElement>;
+export const Header = (props: Props) => {
+    const { headerImage, headerTitle } = useClassNames(styles);
+
+    //let img = useStyledModel(styles, image, headerImage) as Styleable;
+
+    let merged = useStyle2(styles, props, {});
 
     return (
         <Table>
-            {img && (
+            {props.image && (
                 <Tr>
                     <Td>
-                        <Img {...img} />
+                        <Img {...props.image} className={headerImage} />
                     </Td>
                 </Tr>
             )}
             <Tr>
                 <Td>
-                    <Label>{title}</Label>
+                    <Label className={headerTitle}>{props.title}</Label>
                 </Td>
             </Tr>
-            {date && (
+            {props.date && (
                 <Tr>
                     <Td>
-                        <Label>{date.toDateString()}</Label>
+                        <Label>{props.date.toDateString()}</Label>
                     </Td>
                 </Tr>
             )}

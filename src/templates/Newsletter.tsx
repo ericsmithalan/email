@@ -11,7 +11,6 @@ import { NewsletterModel } from "../models/Newsletter";
 
 const styles = style({
     newsletterTable: {
-        backgroundColor: "#ccc",
         width: 800
     }
 });
@@ -22,8 +21,8 @@ const newsletter: NewsletterModel = {
         date: new Date(),
         image: {
             alt: "test alt",
-            width: 600,
-            height: 200
+            width: "100%",
+            height: "auto"
         }
     }
 };

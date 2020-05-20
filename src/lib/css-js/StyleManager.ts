@@ -3,13 +3,12 @@ import deepmerge from "deepmerge";
 import { CssProperties, CssTarget, KeyValue, StyleRepository, Theme } from "../types";
 import { camelize, decamelize } from "../utils/camelize";
 import { Log } from "../utils/Logger";
-import { isPseudo, isStyleableProperty, isTagName, isValidClassName } from "../utils/validation";
+import { isPseudo, isStyleableProperty, isTagName } from "../utils/validation";
 import { ClassType, GlobalRepository, GlobalTarget, Styleable, TargetType } from "./types";
 
 export class StyleManager {
     constructor(private readonly _theme: Theme) {}
 
-    private _styleables = {};
     private _globals: GlobalRepository = {
         "@reset": {
             css: ""
@@ -27,10 +26,6 @@ export class StyleManager {
 
     get stylesheets() {
         return this._stylesheets;
-    }
-
-    get styleables() {
-        return this._styleables;
     }
 
     addStyle = (styleSheet: StyleRepository) => {
@@ -82,23 +77,6 @@ export class StyleManager {
 
         return {};
     };
-
-    classNames(target: CssTarget): KeyValue {
-        const classes = this._getTarget(target);
-        const classNames: KeyValue = {};
-
-        if (classes) {
-            for (const key in classes) {
-                if (classes.hasOwnProperty(key)) {
-                    if (isValidClassName(key)) {
-                        classNames[key] = decamelize(key);
-                    }
-                }
-            }
-        }
-
-        return classNames;
-    }
 
     private _setElementPropStyles = (props: any, className: string): void => {
         const results: KeyValue = {};
@@ -177,7 +155,7 @@ export class StyleManager {
         }
     };
 
-    fonts = () => {
+    getFonts = () => {
         if (this._theme.fonts.googleFonts) {
             return this._theme.fonts.googleFonts;
         }
