@@ -1,11 +1,6 @@
 # Email template (unstable)
 
 
-### Motivation
-
-While researching ways to create email newsletters, I discoverd a gap not supported by the tools I looked at. The gap was around making newsletters publishable to the web in a SEO friendly way. All the content produced in newslettes can not only help with SEO, but it could help attract new hires and provide people with useful information about the company.
-
-
 ##### Startup
 ```
 yarn start
