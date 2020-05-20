@@ -36,6 +36,14 @@ export default class Frame extends React.PureComponent<FrameProps, FrameState> {
 
             if (doc) {
                 const html = doc.querySelector("html") as HTMLHtmlElement;
+                const header = doc.querySelector("head") as HTMLHeadElement;
+
+                doc.body.remove();
+
+                if (header) {
+                    header.remove();
+                }
+
                 this.setState({ loaded: true, root: html });
             }
 
@@ -91,11 +99,6 @@ export default class Frame extends React.PureComponent<FrameProps, FrameState> {
 
     render() {
         const { children, ...rest } = this.props;
-
-        const html = this.state.root;
-        if (html) {
-            html.innerHTML = "";
-        }
 
         return (
             <iframe

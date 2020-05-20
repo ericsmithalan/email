@@ -1,16 +1,17 @@
 import React, { CSSProperties } from "react";
 
 import { BaseModel } from "../../models/BaseModel";
+import { StyleableModel } from "../../models/types";
+import { Styleable } from "../css-js/types";
 import { EmailCssContext } from "../EmailCssProvider";
-import { KeyValue, ParseResults } from "../types";
+import { ParseResults } from "../types";
 
 export const useStyledModel = <T extends BaseModel>(
     parser: ParseResults,
-    model: T | undefined
+    model: T | undefined,
+    className: string | undefined
 ): {
-    classNames: KeyValue | undefined;
-    styles: CSSProperties | undefined;
-    props: T | undefined;
+    props: StyleableModel<any> | undefined;
 } => {
     const { styleManager } = React.useContext(EmailCssContext);
 
@@ -19,18 +20,16 @@ export const useStyledModel = <T extends BaseModel>(
 
         styleManager.addStyle(parser.styles, "@default");
 
-        const modelStyels = styleManager.addPropStyles(model) as CSSProperties;
+        const modelStyels = styleManager.addPropStyles(
+            Object.assign({}, model, { className: className })
+        ) as CSSProperties;
 
         return {
-            classNames: parser.classNames,
-            styles: modelStyels,
-            props: model as T
+            props: model as T & Styleable
         };
     }
 
     return {
-        classNames: undefined,
-        styles: undefined,
         props: undefined
     };
 };
