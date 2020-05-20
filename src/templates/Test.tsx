@@ -3,12 +3,14 @@ import React, { FC, ReactNode } from "react";
 import { Blurb } from "../components/Blurb";
 import { Header } from "../components/Header";
 import { If } from "../components/If";
+import ContentWithGutters from "../components/layouts/ContentWithGutters";
 import { StandardContainer } from "../components/layouts/StandardContainer";
 import { Signature } from "../components/Signature";
 import { Spacer } from "../components/Spacer";
 import { style } from "../lib/css-js/style";
 import { useClassNames } from "../lib/hooks/useClassNames";
 import { useStyle2 } from "../lib/hooks/useStyle2";
+import { Img, P } from "../lib/primitives";
 import { Styleable } from "../lib/types";
 import { hasValue } from "../lib/utils/validation";
 import { BlurbModel } from "../models/Blurb";
@@ -124,6 +126,32 @@ export const TestTemplate: FC<TestTemplateProps> = (props: TestTemplateProps) =>
         if (hasValue(model.signature)) {
             modules.push(<Signature {...(model.signature as SignatureModel)} />);
         }
+
+        modules.push(
+            <ContentWithGutters leftGutterContent={<Img width={180} height={250} />}>
+                <P>
+                    Foot Locker’s Project Greenhouse mobile and web application developed by the
+                    Ascendum Digital team is an honoree in the 2020 Webby Awards. The international
+                    Webby Awards is hailed as the "Internet's highest honor" by The New York Times.
+                    There were more than 13k submissions this year.
+                </P>
+                <P>
+                    By earning the “Honoree” status, Project Greenhouse was named a top five
+                    submission in the Mobile App Beauty and Lifestyle category, along with notable
+                    names including Macy’s and Gucci. The Webby Awards is the leading international
+                    awards organization honoring excellence on the Internet, including websites,
+                    video, advertising, media & PR, apps, mobile, voice, social, podcasts, and
+                    games.
+                </P>
+                <P>
+                    The official Webby Award (selected by the Academy) and People’s Voice Award
+                    (selected by the voting public) winners will be announced during a live
+                    streaming broadcast on Tuesday May 19 at 3pm ET, 12pm PT, and 8pm GMT at
+                    www.webbyawards.com. The event is virtually hosted by stand-up comedian, actor
+                    and writer Patton Oswalt.
+                </P>
+            </ContentWithGutters>
+        );
 
         return modules;
     };
