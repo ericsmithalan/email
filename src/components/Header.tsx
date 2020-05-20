@@ -17,7 +17,8 @@ const styles = style({
     },
     headerTitle: {
         fontFamily: (p: Prop) => p.t.fonts.headerFontFamily,
-        fontSize: (p: Prop) => p.t.fonts.fontHeaderSize
+        fontSize: (p: Prop) => p.t.fonts.fontDefaultSize,
+        fontWeight: (p: Prop) => 600
     }
 });
 
@@ -26,9 +27,7 @@ type Props = HeaderModel;
 export const Header = (props: Props) => {
     const { headerImage, headerTitle } = useClassNames(styles);
 
-    //let img = useStyledModel(styles, image, headerImage) as Styleable;
-
-    let merged = useStyle2(styles, props, {});
+    useStyle2(styles, props, {});
 
     return (
         <Table>

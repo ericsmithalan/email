@@ -55,7 +55,7 @@ const Signature: FC<Props> = (props: Props) => {
             <Tr>
                 <Td>
                     <A href={"http://www.ascendum.com"}>
-                        <Img width={213} height={45} src={getLogoUrl(props.department)} />
+                        <Img width={213} height={45} />
                     </A>
                 </Td>
             </Tr>

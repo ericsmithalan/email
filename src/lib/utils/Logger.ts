@@ -12,7 +12,8 @@ class Logger {
     };
 
     throwError = (message: string) => {
-        throw new Error(message);
+        console.error(message);
+        // throw new Error(message);
     };
 }
 

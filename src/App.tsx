@@ -6,7 +6,7 @@ import Frame from "./lib/frame/Frame";
 import { Body, Head } from "./lib/primitives";
 import { defaultReset } from "./lib/theme/defaultReset";
 import { defaultTheme } from "./lib/theme/defaultTheme";
-import { NewsletterTemplate } from "./templates/Newsletter";
+import { TestTemplate } from "./templates/Test";
 
 export interface AppProps {}
 export interface AppState {
@@ -64,7 +64,7 @@ class App extends React.Component<AppProps, AppState> {
                     <style dangerouslySetInnerHTML={{ __html: this.state.phone }} />
                 </Head>
                 <Body>
-                    <NewsletterTemplate />
+                    <TestTemplate />
                 </Body>
             </EmailCssProvider>
         );

@@ -1,12 +1,12 @@
 import React, { FC, ReactNode } from "react";
 
-import { style } from "../lib/css-js/style";
-import { useClassNames } from "../lib/hooks/useClassNames";
-import { useStyle2 } from "../lib/hooks/useStyle2";
-import { Table, Td, Tr } from "../lib/primitives";
-import { Prop, Styleable } from "../lib/types";
+import { style } from "../../lib/css-js/style";
+import { useClassNames } from "../../lib/hooks/useClassNames";
+import { useStyle2 } from "../../lib/hooks/useStyle2";
+import { Table, Td, Tr } from "../../lib/primitives";
+import { Prop, Styleable } from "../../lib/types";
 
-export interface ContainerProps extends Styleable {
+export interface StandardContainerProps extends Styleable {
     rowGutter?: number;
     columnGutter?: number;
     gutterLeftContent?: ReactNode;
@@ -16,7 +16,7 @@ export interface ContainerProps extends Styleable {
     height?: string | number;
 }
 
-const Container: FC<ContainerProps> = (props: ContainerProps) => {
+const StandardContainer: FC<StandardContainerProps> = (props: StandardContainerProps) => {
     const {
         container,
         containerGutterLeft,
@@ -26,14 +26,23 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
         containerGutterBottom
     } = useClassNames(styles);
 
-    const mergedProps = useStyle2<ContainerProps>(styles, props, {
-        className: container
-    });
+    StandardContainer.defaultProps = {
+        className: container,
+        columnGutter: 20,
+        rowGutter: 20,
+        align: "center"
+    };
+
+    const mergedProps = useStyle2<StandardContainerProps>(
+        styles,
+        props,
+        StandardContainer.defaultProps
+    );
 
     const { rowGutter, columnGutter, gutterLeftContent, gutterRightContent, ...rest } = mergedProps;
 
     return (
-        <Table align="center" {...mergedProps}>
+        <Table align="center" {...rest}>
             {getRowGutter(props, containerGutterTop)}
             <Tr>
                 {getColumnGutter(props, containerGutterLeft, props.gutterLeftContent)}
@@ -46,7 +55,7 @@ const Container: FC<ContainerProps> = (props: ContainerProps) => {
 };
 
 const getRowGutter = (
-    props: ContainerProps,
+    props: StandardContainerProps,
     className: string,
     content: ReactNode = undefined
 ): JSX.Element | null => {
@@ -63,7 +72,7 @@ const getRowGutter = (
 };
 
 const getColumnGutter = (
-    props: ContainerProps,
+    props: StandardContainerProps,
     className: string,
     content: ReactNode = undefined
 ): JSX.Element | null => {
@@ -131,4 +140,4 @@ const styles = style({
         padding: 20
     }
 });
-export { Container };
+export { StandardContainer };

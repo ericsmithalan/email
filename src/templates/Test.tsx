@@ -3,15 +3,17 @@ import React, { FC, ReactNode } from "react";
 import { Blurb } from "../components/Blurb";
 import { Header } from "../components/Header";
 import { If } from "../components/If";
+import { StandardContainer } from "../components/layouts/StandardContainer";
 import { Signature } from "../components/Signature";
 import { Spacer } from "../components/Spacer";
 import { style } from "../lib/css-js/style";
 import { useClassNames } from "../lib/hooks/useClassNames";
 import { useStyle2 } from "../lib/hooks/useStyle2";
-import { Table, Td, Tr } from "../lib/primitives";
 import { Styleable } from "../lib/types";
 import { hasValue } from "../lib/utils/validation";
 import { BlurbModel } from "../models/Blurb";
+import { FooterModel } from "../models/Footer";
+import { HeaderModel } from "../models/Header";
 import { NewsletterModel } from "../models/Newsletter";
 import { SignatureModel } from "../models/Signature";
 
@@ -64,7 +66,14 @@ const blurb2: BlurbModel = {
     ]
 };
 
-const newsletter: NewsletterModel = {
+interface TestModel {
+    header?: HeaderModel;
+    blurbs?: BlurbModel[];
+    footer?: FooterModel;
+    signature?: SignatureModel;
+}
+
+const test: TestModel = {
     header: {
         title: "DEVELOP BEYOND NEWSLETTER",
         date: new Date(),
@@ -86,18 +95,14 @@ const newsletter: NewsletterModel = {
     }
 };
 
-export interface NewsletterTemplateProps extends Styleable {
-    model?: NewsletterModel;
-}
+export interface TestTemplateProps extends Styleable {}
 
-export const NewsletterTemplate: FC<NewsletterTemplateProps> = (props: NewsletterTemplateProps) => {
+export const TestTemplate: FC<TestTemplateProps> = (props: TestTemplateProps) => {
     const { newsletterTable } = useClassNames(styles);
 
-    NewsletterTemplate.defaultProps = {
+    const merged = useStyle2(styles, props, {
         className: newsletterTable
-    };
-
-    const merged = useStyle2(styles, props, NewsletterTemplate.defaultProps);
+    });
 
     const render = (model: NewsletterModel) => {
         const modules = [];
@@ -111,8 +116,8 @@ export const NewsletterTemplate: FC<NewsletterTemplateProps> = (props: Newslette
 
         if (hasValue(model.blurbs)) {
             model.blurbs?.forEach((item, i: number) => {
-                modules.push(<Blurb key={i} {...item} />);
-                modules.push(<Spacer height={80} />);
+                modules.push(<Blurb key={item.title} {...item} />);
+                modules.push(<Spacer key={i} height={80} />);
             });
         }
 
@@ -123,11 +128,5 @@ export const NewsletterTemplate: FC<NewsletterTemplateProps> = (props: Newslette
         return modules;
     };
 
-    return (
-        <Table align="center" {...merged}>
-            <Tr>
-                <Td>{render(newsletter)}</Td>
-            </Tr>
-        </Table>
-    );
+    return <StandardContainer>{render(test)}</StandardContainer>;
 };

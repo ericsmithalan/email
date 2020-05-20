@@ -13,7 +13,6 @@ const styles = style({
     headerTitle: {
         fontSize: (p: Prop) => p.t.fonts.fontHeaderSize,
         fontWeight: 600,
-        marginBottom: 8,
         "@tablet": {
             fontSize: (p: Prop) => p.t.fonts.fontTitleSize
         },
@@ -24,6 +23,7 @@ const styles = style({
     subTitle: {
         fontSize: (p: Prop) => p.t.fonts.fontSubHeaderSize,
         fontWeight: 400,
+        marginBottom: 15,
         "@tablet": {
             fontSize: (p: Prop) => p.t.fonts.fontTitleSize
         }

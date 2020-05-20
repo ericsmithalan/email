@@ -1,7 +1,6 @@
 import CSS from "csstype";
 import { CSSProperties, ReactNode } from "react";
 
-import { BaseModel } from "../../models/BaseModel";
 import { GlobalTargetKind, TargetKind } from "../enums/TargetKind";
 import { Theme } from "../theme/types";
 import * as MSO from "./types.mso";
@@ -34,7 +33,6 @@ export interface ParseResults {
     styles: StyleRepository;
     classNames: KeyValue;
     parse: <T extends Styleable>(theme: Theme, props: T, target?: CssTarget) => StyleRepository;
-    parseWithModel: <T extends BaseModel>(theme: Theme, model: T) => StyleRepository;
     parseClassNames: () => KeyValue;
 }
 

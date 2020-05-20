@@ -1,4 +1,3 @@
-import { BaseModel } from "../../models/BaseModel";
 import {
     ClassType,
     CssPseudo,
@@ -48,6 +47,8 @@ export function parser(styles: Styles, classesOnly: boolean = false): ParseResul
                 props: parseArgs.props,
                 theme: parseArgs.theme
             });
+
+            console.log("calculated", calculated);
 
             if (isObject(calculated)) {
                 const args = updateArgs(parseArgs, {
@@ -106,27 +107,19 @@ export function parser(styles: Styles, classesOnly: boolean = false): ParseResul
             props: T,
             target?: CssTarget
         ): StyleRepository => {
-            const newArgs = updateArgs(args as Partial<ParseArgs>, {
-                theme: theme,
-                props: props as T,
-                target: target || "@default"
-            });
+            if (styles) {
+                const newArgs = updateArgs(args as Partial<ParseArgs>, {
+                    theme: theme,
+                    props: props as T,
+                    target: target || "@default"
+                });
 
-            recursiveParse(newArgs);
-
-            return repository;
+                recursiveParse(newArgs);
+                return repository;
+            }
+            return {};
         },
-        parseWithModel: <T extends BaseModel>(theme: Theme, model: T) => {
-            const newArgs = updateArgs(args as Partial<ParseArgs>, {
-                theme: theme,
-                props: model,
-                target: "@default"
-            });
 
-            recursiveParse(newArgs);
-
-            return repository;
-        },
         parseClassNames: () => {
             return getClassNamesOnly();
         }
