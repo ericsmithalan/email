@@ -15,7 +15,7 @@ export const useStyle2 = <T extends Styleable>(
 
     parser.parse(styleManager.theme, mergedProps);
 
-    styleManager.addStyle(parser.styles, "@default");
+    styleManager.addStyle(parser.styles);
 
     let defaultStyles = {};
 
@@ -24,8 +24,6 @@ export const useStyle2 = <T extends Styleable>(
     }
 
     const propStyles = styleManager.addPropStyles(props);
-
-    console.log(props.className);
 
     const { uid, ...rest } = Object.assign({}, mergedProps, {
         className: mergeClassNames(defaultProps, props),

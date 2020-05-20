@@ -10,15 +10,16 @@ import { Label } from "./Label";
 
 const styles = style({
     headerImage: {
-        width: 600,
-        height: "auto"
+        "@tablet": {
+            width: "100%",
+            height: "auto"
+        }
     }
 });
 
 export const Header = ({ title, image, date }: HeaderModel) => {
     const { headerImage } = useClassNames(styles);
 
-    console.log(headerImage);
     let img = useStyledModel(styles, image, headerImage) as StyleableModel<HTMLImageElement>;
 
     return (
@@ -30,14 +31,15 @@ export const Header = ({ title, image, date }: HeaderModel) => {
                     </Td>
                 </Tr>
             )}
-
             <Tr>
-                <Td>{title}</Td>
+                <Td>
+                    <Label>{title}</Label>
+                </Td>
             </Tr>
             {date && (
                 <Tr>
                     <Td>
-                        <Label> {date.toDateString()}</Label>
+                        <Label>{date.toDateString()}</Label>
                     </Td>
                 </Tr>
             )}

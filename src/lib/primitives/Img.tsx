@@ -35,12 +35,26 @@ const Img: FC<ImgElement> = (props: ImgElement) => {
     };
 
     if (!props.src) {
-        source = `https://via.placeholder.com/${props.width}x${props.height}`;
+        source = placeholder(props);
     }
 
     const mergedProps = useStyle2<ImgElement>(styles, props, Img.defaultProps);
     // @ts-ignore
     return <img {...(mergedProps as ImgElement)} src={source} />;
+};
+
+const placeholder = (props: ImgElement): string => {
+    let width: string | number | undefined = 800;
+    let height: string | number | undefined = 300;
+    if (!props.width) {
+        width = props.width;
+    }
+
+    if (!props.height) {
+        height = props.height;
+    }
+
+    return `https://via.placeholder.com/${width}x${height}`;
 };
 
 export { Img };

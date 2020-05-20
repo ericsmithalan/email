@@ -10,6 +10,8 @@ export interface FrameMessage {
 export interface FrameProps {
     body: ReactNode;
     handleReceiveMessage?: (event: MessageEvent) => void;
+    onDocumentReady?: (doc: Document) => void;
+    sendMessage?: () => void;
 }
 
 export interface FrameState {
@@ -44,7 +46,11 @@ export default class Frame extends React.PureComponent<FrameProps, FrameState> {
                     header.remove();
                 }
 
-                this.setState({ loaded: true, root: html });
+                this.setState({ loaded: true, root: html }, () => {
+                    if (this.props.onDocumentReady) {
+                        this.props.onDocumentReady(doc);
+                    }
+                });
             }
 
             this.loaded = true;
@@ -63,6 +69,7 @@ export default class Frame extends React.PureComponent<FrameProps, FrameState> {
         const { handleReceiveMessage } = this.props;
         if (handleReceiveMessage) {
             handleReceiveMessage(event);
+            console.log(event);
         }
     };
 
@@ -98,7 +105,7 @@ export default class Frame extends React.PureComponent<FrameProps, FrameState> {
     }
 
     render() {
-        const { children, ...rest } = this.props;
+        const { onDocumentReady, children, ...rest } = this.props;
 
         return (
             <iframe

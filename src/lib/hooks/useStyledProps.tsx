@@ -11,11 +11,11 @@ export const useStyledProps = (parser: ParseResults, props: Styleable, defaultPr
     parser.parse(
         styleManager.theme,
         Object.assign({}, defaultProps, props, {
-            className: mergeClassNames(defaultProps, props),
-        }),
+            className: mergeClassNames(defaultProps, props)
+        })
     );
 
-    styleManager.addStyle(parser.styles, "@default");
+    styleManager.addStyle(parser.styles);
 
     let defaultStyles = {};
 
@@ -27,7 +27,7 @@ export const useStyledProps = (parser: ParseResults, props: Styleable, defaultPr
 
     const mergedProps = Object.assign({}, defaultProps, props, {
         className: mergeClassNames(defaultProps, props),
-        style: Object.assign({}, defaultStyles, propStyles),
+        style: Object.assign({}, defaultStyles, propStyles)
     });
 
     return mergedProps;

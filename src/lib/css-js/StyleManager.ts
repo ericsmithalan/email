@@ -21,28 +21,28 @@ export class StyleManager {
         "@tablet": {}
     };
 
-    public get theme() {
+    get theme() {
         return this._theme;
     }
 
-    public get stylesheets() {
+    get stylesheets() {
         return this._stylesheets;
     }
 
-    public get styleables() {
+    get styleables() {
         return this._styleables;
     }
 
-    public addStyle = (styleSheet: StyleRepository, target: CssTarget) => {
-        if (styleSheet && target) {
-            const styles = this._getTarget(target);
-            this._stylesheets = deepmerge.all([styles, styleSheet as StyleRepository]);
+    addStyle = (styleSheet: StyleRepository) => {
+        if (styleSheet) {
+            // const styles = this._getTarget(target);
+            this._stylesheets = deepmerge.all([this._stylesheets, styleSheet]);
         } else {
-            Log.error(`StyleManager > addStyle :`, styleSheet, target);
+            Log.error(`StyleManager > addStyle :`, styleSheet);
         }
     };
 
-    public addGlobal = (css: string, target: GlobalTarget) => {
+    addGlobal = (css: string, target: GlobalTarget) => {
         if (css && target) {
             this.setGlobal(css, "@reset");
         } else {
@@ -50,7 +50,7 @@ export class StyleManager {
         }
     };
 
-    public addPropStyles = (props: Styleable): CssProperties => {
+    addPropStyles = (props: Styleable): CssProperties => {
         if (props) {
             if (props.className) {
                 // adds all styles under element style property
@@ -83,7 +83,7 @@ export class StyleManager {
         return {};
     };
 
-    public classNames(target: CssTarget): KeyValue {
+    classNames(target: CssTarget): KeyValue {
         const classes = this._getTarget(target);
         const classNames: KeyValue = {};
 
@@ -168,7 +168,7 @@ export class StyleManager {
         try {
             //@ts-ignore
             const currentCls = this._stylesheets[target][className];
-            const merged = Object.assign({}, currentCls, styles);
+            const merged = deepmerge.all([currentCls, styles]);
 
             //@ts-ignore
             this._stylesheets[target][className] = merged;
@@ -177,13 +177,13 @@ export class StyleManager {
         }
     };
 
-    public fonts = () => {
+    fonts = () => {
         if (this._theme.fonts.googleFonts) {
             return this._theme.fonts.googleFonts;
         }
     };
 
-    public getCss = (trg: CssTarget): string => {
+    getCss = (trg: CssTarget): string => {
         try {
             let important = false;
 
@@ -206,6 +206,8 @@ export class StyleManager {
 
             const rendered = render(target as ClassType, important);
 
+            console.log("trg", target, rendered);
+
             css.push(rendered);
 
             if (trg === "@tablet" || trg === "@phone") {
@@ -216,7 +218,6 @@ export class StyleManager {
         } catch (e) {
             Log.throwError(e);
         }
-
         return "";
     };
 }

@@ -7,7 +7,7 @@ import { KeyValue, ParseResults } from "../types";
 export const useStyle = (
     parser: ParseResults,
     props: Styleable = {},
-    defaultProps: Styleable = {},
+    defaultProps: Styleable = {}
 ): KeyValue => {
     const { styleManager } = React.useContext(EmailCssContext);
 
@@ -15,7 +15,7 @@ export const useStyle = (
         parser.parse(styleManager.theme, Object.assign({}, defaultProps, props));
     }
 
-    styleManager.addStyle(parser.styles, "@default");
+    styleManager.addStyle(parser.styles);
 
     let defaultStyles = {};
     let propStyles = {};

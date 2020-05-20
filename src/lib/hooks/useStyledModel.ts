@@ -17,7 +17,7 @@ export const useStyledModel = <T extends BaseModel>(
 
         parser.parseWithModel(styleManager.theme, model);
 
-        styleManager.addStyle(parser.styles, "@default");
+        styleManager.addStyle(parser.styles);
 
         const modelStyels = styleManager.addPropStyles(model) as CSSProperties;
 

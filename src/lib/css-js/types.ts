@@ -49,7 +49,7 @@ export interface CssProperties
         MSO.Properties<CssValue> {}
 
 export type Styles = {
-    [K in string]?: CssProperties | TargetType | PsuedoType | PropertyType;
+    [K in string]: TargetType | PsuedoType | PropertyType | ClassType;
 };
 
 export type StyleRepository = {
@@ -65,7 +65,7 @@ export type GlobalTargetType = {
 };
 
 export type ClassType = {
-    [K in string]: CssProperties | TargetType | PsuedoType | PropertyType;
+    [K in string]: TargetType | PsuedoType | PropertyType;
 };
 
 // TargetType's are stored as parents of ClassType
@@ -82,7 +82,7 @@ export type PsuedoType = {
 };
 
 export type PropertyType = {
-    [K in keyof CssProperties]?: ParsedValue | CssValue;
+    [K in keyof CssProperties]: ParsedValue | CssValue;
 };
 
 export type GlobalTarget = keyof typeof GlobalTargetKind;
