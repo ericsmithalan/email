@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { CssManager, Manager } from "./CssManager";
+import { CssManager } from "./CssManager";
 import { defaultTheme } from "./defaultTheme";
 
 export type CssContextProps = {
@@ -8,5 +8,5 @@ export type CssContextProps = {
 };
 
 export const CssContext = React.createContext<CssContextProps>({
-    manager: new Manager(defaultTheme)
+    manager: new CssManager(defaultTheme)
 });

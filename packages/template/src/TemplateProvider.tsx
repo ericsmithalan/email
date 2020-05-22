@@ -1,17 +1,17 @@
 import * as React from "react";
 
-import { Config } from "./Config";
+import { Template } from "./Template";
 import { TemplateContext } from "./TemplateContext";
 
 export type CssProviderProps = {
     children: React.ReactNode;
-    config?: Config;
+    template?: Template;
 };
 
 export class CssProvider extends React.Component<CssProviderProps> {
     render() {
         return (
-            <TemplateContext.Provider value={this.props.config}>
+            <TemplateContext.Provider value={this.props.template}>
                 {this.props.children}
             </TemplateContext.Provider>
         );

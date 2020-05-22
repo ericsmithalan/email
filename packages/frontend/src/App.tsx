@@ -1,5 +1,5 @@
-import { Primitive } from "@templates/core";
 import { css, useCssClasses, useCssProps } from "@templates/jscss";
+import { Primitive, useTemplate } from "@templates/template";
 import React, { FC } from "react";
 
 const styles = css({
@@ -11,7 +11,8 @@ const styles = css({
 type Props = {};
 
 const App: FC<Props> = (props: Props) => {
-    const template = useTem;
+    const template = useTemplate();
+
     const classes = useCssClasses(styles);
 
     App.defaultProps = {

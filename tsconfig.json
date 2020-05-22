@@ -25,6 +25,6 @@
         { "path": "packages/debug" },
         { "path": "packages/jscss" },
         { "path": "packages/theme" },
-        { "path": "packages/core" }
+        { "path": "packages/template" }
     ]
 }

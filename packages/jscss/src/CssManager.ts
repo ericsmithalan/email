@@ -9,14 +9,14 @@ import { mergeProps } from "./utils/mergeProps";
 import { cssCloseString, cssOpenString } from "./utils/styleMediaStrings";
 import { toCamelCase } from "./utils/toCamelCase";
 
-export interface CssManager {
-    theme: CssTheme;
-    addParsedCss: (css: Css) => void;
-    registerProps: <T extends StyleableProps>(props: T) => T;
-    getCss: (styleKey: StyleKey) => string;
-}
+// export interface CssManager {
+//     theme: CssTheme;
+//     addParsedCss: (css: Css) => void;
+//     registerProps: <T extends StyleableProps>(props: T) => T;
+//     getCss: (styleKey: StyleKey) => string;
+// }
 
-export class Manager implements CssManager {
+export class CssManager {
     constructor(private readonly _theme: CssTheme) {}
 
     _styles: Sheets = {
