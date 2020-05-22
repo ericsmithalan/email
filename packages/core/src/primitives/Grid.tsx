@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Primitive } from "./Primitive";
 
 const Grid = () => {
