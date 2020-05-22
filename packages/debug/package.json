@@ -2,8 +2,9 @@
   "name": "@templates/debug",
   "version": "0.0.1",
   "description": "",
+  "module": "lib/bundle.ems.js",
+  "types": "lib/index.d.ts",
   "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
   "files": [
     "lib"
   ],
@@ -14,14 +15,15 @@
     "typescript": "^3.9.3"
   },
   "scripts": {
-    "build": "tsc --incremental",
-    "clean": "rimraf lib",
-    "build:lib": "tsc -w --preserveWatchOutput"
+    "build:lib": "tsc -w -p ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4",
     "rimraf": "^3.0.2",
+    "ts-node": "^8.10.1",
     "typescript": "^3.9.3"
   }
 }

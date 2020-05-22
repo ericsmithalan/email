@@ -8,9 +8,8 @@
     "lerna": "^3.21.0"
   },
   "scripts": {
-    "clean": "lerna run clean --parallel",
-    "start": "lerna run start",
-    "build:lib": "lerna run build:lib --parallel",
-    "build": "lerna run build"
+    "clean": "rm -rf node_modules packages/**/node_modules packages/**/lib",
+    "start": "yarn workspace @templates/frontend start",
+    "build:lib": "lerna run build:lib --parallel --stream"
   }
 }

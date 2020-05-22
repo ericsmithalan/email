@@ -1,5 +1,5 @@
 import { css, useCssClasses, useCssProps } from "@templates/jscss";
-import { Primitive, useTemplate } from "@templates/template";
+import { Link, useTemplate } from "@templates/template";
 import React, { FC } from "react";
 
 const styles = css({
@@ -12,6 +12,8 @@ type Props = {};
 
 const App: FC<Props> = (props: Props) => {
     const template = useTemplate();
+
+    template.setRenderFor("email");
 
     const classes = useCssClasses(styles);
 
@@ -27,11 +29,7 @@ const App: FC<Props> = (props: Props) => {
 
     const newProps = useCssProps(styles, props, App.defaultProps);
 
-    return (
-        <Primitive as="div" {...newProps}>
-            Hi
-        </Primitive>
-    );
+    return <Link {...newProps}>Hi</Link>;
 };
 
 export default App;

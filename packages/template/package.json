@@ -2,8 +2,9 @@
   "name": "@templates/template",
   "version": "0.0.1",
   "description": "",
+  "module": "lib/bundle.ems.js",
+  "types": "lib/index.d.ts",
   "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
   "files": [
     "lib"
   ],
@@ -11,18 +12,16 @@
     "access": "public"
   },
   "peerDependencies": {
-    "typescript": "~3.7.2",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "rimraf": "^3.0.2",
-    "react-dom": "^16.13.1"
+    "typescript": "~3.7.2"
   },
   "scripts": {
-    "build": "tsc --incremental",
-    "clean": "rimraf lib",
-    "build:lib": "tsc -w --preserveWatchOutput"
+    "build:lib": "tsc -w -p ."
   },
   "author": "",
   "license": "ISC",
@@ -30,12 +29,15 @@
     "@templates/debug": "0.0.1",
     "@templates/jscss": "0.0.1",
     "@templates/theme": "0.0.1",
-    "rimraf": "^3.0.2",
-    "typescript": "~3.7.2",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.1",
+    "typescript": "~3.7.2"
   }
 }

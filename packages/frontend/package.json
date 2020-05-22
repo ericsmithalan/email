@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "@templates/frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,21 +11,26 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "ts-node": "^8.10.1",
     "typescript": "~3.7.2"
   },
   "peerDependencies": {
-    "typescript": "~3.7.2",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "rimraf": "^3.0.2",
-    "react-dom": "^16.13.1"
+    "typescript": "~3.7.2"
   },
   "scripts": {
+    "clean-packages": "rm -rf ./packages/*/node_modules",
+    "clean-locks": "rm -rf ./packages/*/yarn.lock",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
