@@ -1,0 +1,32 @@
+{
+  "name": "@templates/theme",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc --incremental",
+    "clean": "rimraf lib",
+    "build:lib": "tsc -w --incremental --preserveWatchOutput"
+  },
+  "peerDependencies": {
+    "typescript": "~3.7.2",
+    "rimraf": "^3.0.2"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@templates/debug": "0.0.1",
+    "@types/deepmerge": "^2.2.0",
+    "csstype": "^2.6.10",
+    "deepmerge": "^4.2.2",
+    "rimraf": "^3.0.2",
+    "typescript": "~3.7.2"
+  }
+}

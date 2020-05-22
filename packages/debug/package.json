@@ -1,0 +1,27 @@
+{
+  "name": "@templates/debug",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "typescript": "^3.9.3"
+  },
+  "scripts": {
+    "build": "tsc --incremental",
+    "clean": "rimraf lib",
+    "build:lib": "tsc -w --preserveWatchOutput"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.3"
+  }
+}

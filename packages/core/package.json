@@ -1,0 +1,41 @@
+{
+  "name": "@templates/core",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "typescript": "~3.7.2",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "react": "^16.13.1",
+    "rimraf": "^3.0.2",
+    "react-dom": "^16.13.1"
+  },
+  "scripts": {
+    "build": "tsc --incremental",
+    "clean": "rimraf lib",
+    "build:lib": "tsc -w --preserveWatchOutput"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@templates/debug": "0.0.1",
+    "@templates/jscss": "0.0.1",
+    "@templates/theme": "0.0.1",
+    "rimraf": "^3.0.2",
+    "typescript": "~3.7.2",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}

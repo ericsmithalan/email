@@ -1,0 +1,30 @@
+{
+    "exclude": ["node_modules", "dist", "lib"],
+    "compilerOptions": {
+        "skipLibCheck": false,
+        "target": "esnext",
+        "module": "esnext",
+        "lib": ["dom", "esnext"],
+        "jsx": "react",
+        "downlevelIteration": true,
+        "noFallthroughCasesInSwitch": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "paths": {
+            "@templates/*": ["packages/*/src"]
+        },
+        "composite": true,
+        "sourceMap": true,
+        "declaration": true,
+        "declarationMap": true
+    },
+    "references": [
+        { "path": "packages/debug" },
+        { "path": "packages/jscss" },
+        { "path": "packages/theme" },
+        { "path": "packages/core" }
+    ]
+}
