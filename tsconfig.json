@@ -23,8 +23,10 @@
     },
     "references": [
         { "path": "packages/debug" },
-        { "path": "packages/jscss" },
         { "path": "packages/theme" },
-        { "path": "packages/template" }
+        { "path": "packages/jscss" },
+        { "path": "packages/elements" },
+        { "path": "packages/main" },
+        { "path": "packages/frontend" }
     ]
 }

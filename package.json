@@ -4,12 +4,18 @@
   "workspaces": [
     "packages/*"
   ],
-  "devDependencies": {
+  "dependencies": {
     "lerna": "^3.21.0"
   },
   "scripts": {
-    "clean": "rm -rf node_modules packages/**/node_modules packages/**/lib",
+    "clean": "rm -rf packages/**/lib",
+    "clean:all": "rm -rf node_modules packages/**/node_modules packages/**/lib",
     "start": "yarn workspace @templates/frontend start",
     "build:lib": "lerna run build:lib --parallel --stream"
-  }
+  },
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/ericsmithalan/email.git",
+  "author": "Eric Smith <ericsmithalan@gmail.com>",
+  "license": "MIT"
 }

@@ -5,6 +5,6 @@
         "outDir": "./lib",
         "rootDir": "./src",
         "baseUrl": "./",
-        "tsBuildInfoFile": "../../buildcache/debug"
+        "tsBuildInfoFile": "../../buildcache/elements"
     }
 }

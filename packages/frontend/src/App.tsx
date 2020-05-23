@@ -1,5 +1,6 @@
+import { Link } from "@templates/elements";
 import { css, useCssClasses, useCssProps } from "@templates/jscss";
-import { Link, useTemplate } from "@templates/template";
+import { useTemplate } from "@templates/main";
 import React, { FC } from "react";
 
 const styles = css({

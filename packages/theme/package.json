@@ -12,23 +12,12 @@
     "access": "public"
   },
   "scripts": {
-    "build:lib": "tsc -w -p ."
-  },
-  "peerDependencies": {
-    "rimraf": "^3.0.2",
-    "typescript": "~3.7.2"
+    "build:lib": "tsc -w -p ./tsconfig.json"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@templates/debug": "0.0.1",
-    "@types/deepmerge": "^2.2.0",
-    "concurrently": "^5.2.0",
-    "csstype": "^2.6.10",
-    "deepmerge": "^4.2.2",
-    "nodemon": "^2.0.4",
-    "rimraf": "^3.0.2",
-    "ts-node": "^8.10.1",
-    "typescript": "~3.7.2"
+    "typescript": "^3.9.3"
   }
 }

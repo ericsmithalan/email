@@ -201,169 +201,14 @@
         "signature": "cd6efb9467a8b6338ece2e2855e37765700f2cd061ca54b01b33878cf5c7677e",
         "affectsGlobalScope": true
       },
-      "../node_modules/@types/react/global.d.ts": {
-        "version": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
-        "signature": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
-        "affectsGlobalScope": true
-      },
-      "../node_modules/csstype/index.d.ts": {
-        "version": "cd4fba36eeb79a6e2ff14bbe1024cd83ae542c1bd1c2a02ed853ebc251974119",
-        "signature": "cd4fba36eeb79a6e2ff14bbe1024cd83ae542c1bd1c2a02ed853ebc251974119",
+      "../packages/debug/src/logger.ts": {
+        "version": "a585d8b21a2eb1e8940f53c8042be784cf2d2ae3898bcb117661915b089ced58",
+        "signature": "9d92f8764bdfa4f27950cc1b1233119bc5feaf62411def6191ecbc837fae2853",
         "affectsGlobalScope": false
       },
-      "../node_modules/@types/prop-types/index.d.ts": {
-        "version": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
-        "signature": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/@types/react/index.d.ts": {
-        "version": "e726c865f71af8f20d4a03e17182f62a38e1fd300161b867dc6068ce6529f7f2",
-        "signature": "e726c865f71af8f20d4a03e17182f62a38e1fd300161b867dc6068ce6529f7f2",
-        "affectsGlobalScope": true
-      },
-      "../node_modules/deepmerge/index.d.ts": {
-        "version": "f163b1edf76fbde01836f8522fbe646fe2f55e313bb7fdd363891748f9b57c60",
-        "signature": "f163b1edf76fbde01836f8522fbe646fe2f55e313bb7fdd363891748f9b57c60",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/types.ts": {
-        "version": "00eb9a795df385368ad60887799a00fe6d52f03a49670fe34e1925dba3310267",
-        "signature": "11d62df922a31e0a298a057fea007afab02a03167dca965587ca182b3080095c",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/ensureunit.ts": {
-        "version": "e75c015be88bcf32e6bd2d7e7687b41f22d2571d2522001020e917c0cbf85642",
-        "signature": "4bcd58b7cf82d0a642dc11efb67b98997cbda7e53f4754f4889a4223fad93be1",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/toenum.ts": {
-        "version": "4b942b5dd8980e961fca7ed26cd7323126b2bc33dde4e0082a23126e6d1b9668",
-        "signature": "75ae567b93bf82cd6eefcb2c5bbcfe37fbfcebe910a2cace2889e22a1bc4abf4",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/enums.ts": {
-        "version": "ef0c56b94bd21c597b7038965ea6cde622d54de68830de7c10b1af562787d3a7",
-        "signature": "f4b52e618cb8f58db9f4fb7f75efc58d0a16960325579ec6aa5483e169da604f",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/hasvalue.ts": {
-        "version": "7dc6b1e1b3f90e00de45bbe627f54059cb6a27df7f15661183b0400bfbbf412a",
-        "signature": "41848a03dfd4cc6c436a741a98f5791c1844cab07453d1ae3be30e51dfd55e30",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/ispseudo.ts": {
-        "version": "4fe28b63948309e7690cc2c957c287b32b07d9cb2798099eb831d4d24ae91c9e",
-        "signature": "912dcf07b87ed0833707e2cd409b582c7c5ca26de187c5abeed8dc7e74d8567c",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/toclassname.ts": {
-        "version": "a1f99b805475673dc5b1e5e26f1093f10bc3697a7a3a7fd702c583cf2800ee84",
-        "signature": "3bed5572961a5b0e8104f17caaad048c3a14f6e0365aae618a5d5a03a269cb5c",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/csstostring.ts": {
-        "version": "6c824478d20741563eddd290369c5f5d483eac779f568e6e0414e378c8baf5a9",
-        "signature": "d1a0ad01868caa70001e74c7043f04a99484604ba1742c6d18a0add3411faa18",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/getcurrentclassname.ts": {
-        "version": "45d35cd89267463b80ba141b8d79fe5a8a03e999e06f978fe2234a59dd3edcab",
-        "signature": "024dca3e160966a67964ca5af356ecf5b497915eb086a3582d46b897cc3a0c4c",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/isstyleableprop.ts": {
-        "version": "d016e66d41067f638ffa8e8368fa09f92e1f1cc3a32f1cef0f011285b0588c32",
-        "signature": "1e5705527b8bae987eb6f593c03ce3638591db8f7857c0dd21df6031586d2d7d",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/pushprops.ts": {
-        "version": "26b4e529c50908196c402a925e6f56fac8549928118ca0766f8cfac31a07d91d",
-        "signature": "0f5ef74cd8c35c8aefa2a631763ab2775e1ca4ad1110f2686137e2699540c5a0",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/mergeprops.ts": {
-        "version": "dd9e5fba9b6c43a996fcc7a63e493c4babbf4c70e84c2d2def5180bdaee2ac16",
-        "signature": "668c9a27b555ee59e0c9322b614dacbd3e47b519614d3e7a57bc4e1e5005a11b",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/stylemediastrings.ts": {
-        "version": "dce1ed6de98199a5598f6e5b7a76f1df1f77d5414d5199c3664d82796ecbcad6",
-        "signature": "e8051e41fee79ddae3ddbbd41a30efaf2133ef481f40ef7265936134c5823305",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/tocamelcase.ts": {
-        "version": "e919afcd3d155c2b1f71bf291c1ff6aa8944a45cf99c78d56bc433684ef3efad",
-        "signature": "b01cdbb5a4f1b4edda0183c686593a0faeb9f37a07abc823b2ea8e7597509621",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/cssmanager.ts": {
-        "version": "aa32267522ccaa22a1e768489a454f1172d17be5dab3451d7101f11b26eb95ee",
-        "signature": "4d97512f86114d469249450e45439dc1aefffc1ef7caaa38ede9bee3e28efb16",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/defaulttheme.ts": {
-        "version": "acc84e6a4b9f5ecd7fcf35319eee2f177f62fbfa28d6ff120294bf5302cd7775",
-        "signature": "aa3760dc3c771ea9ab0169805a11d58e9acc71c25a4a83eb450d1066d497dc95",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/csscontext.ts": {
-        "version": "8fa9c361d70004fb2dae5eff70ffc678afaa926350aeb55626c06ba937bcca66",
-        "signature": "064654e847748c8ffee3c2c7b6429926c83d6110c93a612e9a407a1718b78343",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/isfunction.ts": {
-        "version": "17dbf7d22d73121ce514a946f43ab7a231c7c8590c7c1b47bc23bc56f05d2a71",
-        "signature": "7a455675e693c5d6a60f45d38a0ac91b9ce025ee6b750548dd4b9955b7e3f746",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/isobject.ts": {
-        "version": "a8a88ce640dbedfd73eda0f920e0646178314d71771e72b6f7487490e8d27e48",
-        "signature": "96401e586d959cdb0a84611efb0c32a609626caa803c0514ab8fce4263c5679c",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/isstylesheetkey.ts": {
-        "version": "2f325d914119634316335c34d6facf483ce9fec0c7fe610f22197543163455c0",
-        "signature": "83e072cca093f422ba5589c6868166e1e2f6a93945f74b54f432e73450f8105a",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/maybeclassname.ts": {
-        "version": "913f27dc8ff1c8632b5d0898f3c27cd7e1c359f45c00d49e7b33b7804ee49baa",
-        "signature": "370e231ecf2e5288d9b8b3dd708b9bfae4e4eef8b611bdb0e6df23d515907155",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/cssparser.ts": {
-        "version": "b4ed271924383e745c619adc7c2faea5b1f7aa1a98dba1d6452844ff92a5178d",
-        "signature": "8c64d1b72738fabecb544cffffa51fcde132c136553e05195825c62d3243e9f8",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/cssprovider.tsx": {
-        "version": "3ce2cb4cb1d46eea682879d8c663ebddee00d2074a594b9141905f99b4e972a7",
-        "signature": "7ab1c2ce8cd4a39c39a85beedd681408674e899c66d4f377de06b1f52f404269",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/css.ts": {
-        "version": "6b03659c0e1849dd7dcd8b9ff59f92120188f214952871fe66b27b81d5099b75",
-        "signature": "9cc4c2ee08ad24302591d78763323146e8685b448cd7376bb6ba218675bac7fb",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/usecssprops.ts": {
-        "version": "eaf9c7879fb6c80b8777863a957b7aab622b4d6c6e44d7c65492c37c6cb259b3",
-        "signature": "3f546c04923d02b17a9981a221ec185f9ece1da35d96820fea90de9a9fb8db6b",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/usecssclasses.ts": {
-        "version": "64c2919c4dec8237350262a2c958c3d983b32a873cd44e835c0c71ab3cc8c4d4",
-        "signature": "33856c7bfac023b32448162f69c038adff85af0d3834888288b2a28bc35e56f4",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/index.ts": {
-        "version": "efd8b2999615e87371aed4a0bc56a65be0ce5fcbdf75bbdbf5e07686c1929227",
-        "signature": "ca40a21306fccf273203d07ae1967156af25b4b6fa32124aa3e1cd6a83ff5924",
-        "affectsGlobalScope": false
-      },
-      "../packages/jscss/src/utils/isvalidcssvalue.ts": {
-        "version": "8c090f7ae634c3918ced3db46d39addbf62a77c1951e7192366693ba5b91f0d8",
-        "signature": "c6b09fe25a47356a3a5a11e17181495b39f1d1a4f7a7c6c81fae32a9ab5a0689",
+      "../packages/debug/src/index.ts": {
+        "version": "8a721ac2e60507d72357e070a8c09f26835abbfb8443443815e27a891311f590",
+        "signature": "9e1d3c3e1d8a31c11c5e9e1d5d6aa78b45eb48ac89eeba39992e5fa0c7fd5318",
         "affectsGlobalScope": false
       },
       "../node_modules/@babel/types/lib/index.d.ts": {
@@ -711,10 +556,30 @@
         "signature": "2b8264b2fefd7367e0f20e2c04eed5d3038831fe00f5efbc110ff0131aab899b",
         "affectsGlobalScope": false
       },
+      "../node_modules/@types/prop-types/index.d.ts": {
+        "version": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
+        "signature": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
+        "affectsGlobalScope": false
+      },
       "../node_modules/@types/q/index.d.ts": {
         "version": "f9a2dd6a6084665f093ed0e9664b8e673be2a45e342a59dd4e0e4e552e68a9ad",
         "signature": "f9a2dd6a6084665f093ed0e9664b8e673be2a45e342a59dd4e0e4e552e68a9ad",
         "affectsGlobalScope": false
+      },
+      "../node_modules/@types/react/global.d.ts": {
+        "version": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
+        "signature": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
+        "affectsGlobalScope": true
+      },
+      "../node_modules/csstype/index.d.ts": {
+        "version": "cd4fba36eeb79a6e2ff14bbe1024cd83ae542c1bd1c2a02ed853ebc251974119",
+        "signature": "cd4fba36eeb79a6e2ff14bbe1024cd83ae542c1bd1c2a02ed853ebc251974119",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@types/react/index.d.ts": {
+        "version": "e726c865f71af8f20d4a03e17182f62a38e1fd300161b867dc6068ce6529f7f2",
+        "signature": "e726c865f71af8f20d4a03e17182f62a38e1fd300161b867dc6068ce6529f7f2",
+        "affectsGlobalScope": true
       },
       "../node_modules/@types/react-dom/index.d.ts": {
         "version": "8483a29c17f7feb768a1f4333cf12ccf1e7341bd89dadcf407e012d5315228d0",
@@ -752,7 +617,7 @@
       "allowSyntheticDefaultImports": true,
       "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,
-      "baseUrl": "../packages/jscss",
+      "baseUrl": "../packages/debug",
       "paths": {
         "@templates/*": [
           "packages/*/src"
@@ -762,12 +627,12 @@
       "sourceMap": true,
       "declaration": true,
       "declarationMap": true,
-      "outDir": "../packages/jscss/lib",
-      "rootDir": "../packages/jscss/src",
-      "tsBuildInfoFile": "./jscss",
+      "outDir": "../packages/debug/lib",
+      "rootDir": "../packages/debug/src",
+      "tsBuildInfoFile": "./debug",
       "watch": true,
-      "project": "../packages/jscss/tsconfig.json",
-      "configFilePath": "../packages/jscss/tsconfig.json"
+      "project": "../packages/debug/tsconfig.json",
+      "configFilePath": "../packages/debug/tsconfig.json"
     },
     "referencedMap": {
       "../node_modules/@babel/parser/typings/babel-parser.d.ts": [
@@ -1357,12 +1222,6 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../node_modules/deepmerge/index.d.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts"
-      ],
       "../node_modules/typescript/lib/lib.dom.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -1603,226 +1462,14 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../packages/jscss/src/css.ts": [
+      "../packages/debug/src/index.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/cssparser.ts",
-        "../packages/jscss/src/types.ts"
+        "../packages/debug/src/logger.ts"
       ],
-      "../packages/jscss/src/csscontext.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/react/index.d.ts",
-        "../packages/jscss/src/cssmanager.ts",
-        "../packages/jscss/src/defaulttheme.ts"
-      ],
-      "../packages/jscss/src/cssmanager.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/deepmerge/index.d.ts",
-        "../packages/jscss/src/types.ts",
-        "../packages/jscss/src/utils/csstostring.ts",
-        "../packages/jscss/src/utils/getcurrentclassname.ts",
-        "../packages/jscss/src/utils/isstyleableprop.ts",
-        "../packages/jscss/src/utils/mergeprops.ts",
-        "../packages/jscss/src/utils/stylemediastrings.ts",
-        "../packages/jscss/src/utils/tocamelcase.ts"
-      ],
-      "../packages/jscss/src/cssparser.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/types.ts",
-        "../packages/jscss/src/utils/hasvalue.ts",
-        "../packages/jscss/src/utils/isfunction.ts",
-        "../packages/jscss/src/utils/isobject.ts",
-        "../packages/jscss/src/utils/ispseudo.ts",
-        "../packages/jscss/src/utils/isstylesheetkey.ts",
-        "../packages/jscss/src/utils/maybeclassname.ts",
-        "../packages/jscss/src/utils/toclassname.ts"
-      ],
-      "../packages/jscss/src/cssprovider.tsx": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/react/index.d.ts",
-        "../packages/jscss/src/csscontext.ts"
-      ],
-      "../packages/jscss/src/defaulttheme.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/types.ts"
-      ],
-      "../packages/jscss/src/enums.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/utils/toenum.ts"
-      ],
-      "../packages/jscss/src/index.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/css.ts",
-        "../packages/jscss/src/cssmanager.ts",
-        "../packages/jscss/src/types.ts",
-        "../packages/jscss/src/usecssclasses.ts",
-        "../packages/jscss/src/usecssprops.ts"
-      ],
-      "../packages/jscss/src/types.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/csstype/index.d.ts"
-      ],
-      "../packages/jscss/src/usecssclasses.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/react/index.d.ts",
-        "../packages/jscss/src/types.ts"
-      ],
-      "../packages/jscss/src/usecssprops.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/react/index.d.ts",
-        "../packages/jscss/src/csscontext.ts",
-        "../packages/jscss/src/types.ts",
-        "../packages/jscss/src/utils/mergeprops.ts"
-      ],
-      "../packages/jscss/src/utils/csstostring.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/utils/ensureunit.ts",
-        "../packages/jscss/src/utils/ispseudo.ts",
-        "../packages/jscss/src/utils/toclassname.ts"
-      ],
-      "../packages/jscss/src/utils/ensureunit.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts"
-      ],
-      "../packages/jscss/src/utils/getcurrentclassname.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts"
-      ],
-      "../packages/jscss/src/utils/hasvalue.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts"
-      ],
-      "../packages/jscss/src/utils/isfunction.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/utils/hasvalue.ts"
-      ],
-      "../packages/jscss/src/utils/isobject.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/utils/hasvalue.ts"
-      ],
-      "../packages/jscss/src/utils/ispseudo.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/enums.ts",
-        "../packages/jscss/src/utils/hasvalue.ts"
-      ],
-      "../packages/jscss/src/utils/isstyleableprop.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/enums.ts",
-        "../packages/jscss/src/utils/hasvalue.ts"
-      ],
-      "../packages/jscss/src/utils/isstylesheetkey.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/enums.ts",
-        "../packages/jscss/src/utils/hasvalue.ts"
-      ],
-      "../packages/jscss/src/utils/isvalidcssvalue.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/enums.ts",
-        "../packages/jscss/src/utils/hasvalue.ts"
-      ],
-      "../packages/jscss/src/utils/maybeclassname.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/utils/hasvalue.ts",
-        "../packages/jscss/src/utils/ispseudo.ts",
-        "../packages/jscss/src/utils/isstylesheetkey.ts"
-      ],
-      "../packages/jscss/src/utils/mergeprops.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/types.ts",
-        "../packages/jscss/src/utils/pushprops.ts"
-      ],
-      "../packages/jscss/src/utils/pushprops.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/utils/isstyleableprop.ts"
-      ],
-      "../packages/jscss/src/utils/stylemediastrings.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../packages/jscss/src/types.ts"
-      ],
-      "../packages/jscss/src/utils/tocamelcase.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts"
-      ],
-      "../packages/jscss/src/utils/toclassname.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts"
-      ],
-      "../packages/jscss/src/utils/toenum.ts": [
+      "../packages/debug/src/logger.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
@@ -2417,12 +2064,6 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../node_modules/deepmerge/index.d.ts": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts"
-      ],
       "../node_modules/typescript/lib/lib.dom.d.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -2663,47 +2304,8 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../packages/jscss/src/css.ts": [
-        "../packages/jscss/src/types.ts"
-      ],
-      "../packages/jscss/src/csscontext.ts": [
-        "../node_modules/@types/react/index.d.ts",
-        "../packages/jscss/src/cssmanager.ts"
-      ],
-      "../packages/jscss/src/cssmanager.ts": [
-        "../packages/jscss/src/types.ts"
-      ],
-      "../packages/jscss/src/cssparser.ts": [
-        "../packages/jscss/src/types.ts"
-      ],
-      "../packages/jscss/src/cssprovider.tsx": [
-        "../node_modules/@types/react/index.d.ts",
-        "../packages/jscss/src/csscontext.ts"
-      ],
-      "../packages/jscss/src/defaulttheme.ts": [
-        "../packages/jscss/src/types.ts"
-      ],
-      "../packages/jscss/src/index.ts": [
-        "../packages/jscss/src/css.ts",
-        "../packages/jscss/src/cssmanager.ts",
-        "../packages/jscss/src/types.ts",
-        "../packages/jscss/src/usecssclasses.ts",
-        "../packages/jscss/src/usecssprops.ts"
-      ],
-      "../packages/jscss/src/types.ts": [
-        "../node_modules/csstype/index.d.ts"
-      ],
-      "../packages/jscss/src/usecssclasses.ts": [
-        "../packages/jscss/src/types.ts"
-      ],
-      "../packages/jscss/src/usecssprops.ts": [
-        "../packages/jscss/src/types.ts"
-      ],
-      "../packages/jscss/src/utils/mergeprops.ts": [
-        "../packages/jscss/src/types.ts"
-      ],
-      "../packages/jscss/src/utils/stylemediastrings.ts": [
-        "../packages/jscss/src/types.ts"
+      "../packages/debug/src/index.ts": [
+        "../packages/debug/src/logger.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -2785,7 +2387,6 @@
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
       "../node_modules/csstype/index.d.ts",
-      "../node_modules/deepmerge/index.d.ts",
       "../node_modules/typescript/lib/lib.dom.d.ts",
       "../node_modules/typescript/lib/lib.es2015.collection.d.ts",
       "../node_modules/typescript/lib/lib.es2015.core.d.ts",
@@ -2826,58 +2427,8 @@
       "../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../node_modules/typescript/lib/lib.esnext.promise.d.ts",
       "../node_modules/typescript/lib/lib.esnext.string.d.ts",
-      "../packages/jscss/src/css.ts",
-      "../packages/jscss/src/csscontext.ts",
-      [
-        "../packages/jscss/src/cssmanager.ts",
-        [
-          {
-            "file": "../packages/jscss/src/cssmanager.ts",
-            "start": 20,
-            "length": 18,
-            "messageText": "Cannot find module '@templates/debug' or its corresponding type declarations.",
-            "category": 1,
-            "code": 2307
-          }
-        ]
-      ],
-      [
-        "../packages/jscss/src/cssparser.ts",
-        [
-          {
-            "file": "../packages/jscss/src/cssparser.ts",
-            "start": 20,
-            "length": 18,
-            "messageText": "Cannot find module '@templates/debug' or its corresponding type declarations.",
-            "category": 1,
-            "code": 2307
-          }
-        ]
-      ],
-      "../packages/jscss/src/cssprovider.tsx",
-      "../packages/jscss/src/defaulttheme.ts",
-      "../packages/jscss/src/enums.ts",
-      "../packages/jscss/src/index.ts",
-      "../packages/jscss/src/types.ts",
-      "../packages/jscss/src/usecssclasses.ts",
-      "../packages/jscss/src/usecssprops.ts",
-      "../packages/jscss/src/utils/csstostring.ts",
-      "../packages/jscss/src/utils/ensureunit.ts",
-      "../packages/jscss/src/utils/getcurrentclassname.ts",
-      "../packages/jscss/src/utils/hasvalue.ts",
-      "../packages/jscss/src/utils/isfunction.ts",
-      "../packages/jscss/src/utils/isobject.ts",
-      "../packages/jscss/src/utils/ispseudo.ts",
-      "../packages/jscss/src/utils/isstyleableprop.ts",
-      "../packages/jscss/src/utils/isstylesheetkey.ts",
-      "../packages/jscss/src/utils/isvalidcssvalue.ts",
-      "../packages/jscss/src/utils/maybeclassname.ts",
-      "../packages/jscss/src/utils/mergeprops.ts",
-      "../packages/jscss/src/utils/pushprops.ts",
-      "../packages/jscss/src/utils/stylemediastrings.ts",
-      "../packages/jscss/src/utils/tocamelcase.ts",
-      "../packages/jscss/src/utils/toclassname.ts",
-      "../packages/jscss/src/utils/toenum.ts"
+      "../packages/debug/src/index.ts",
+      "../packages/debug/src/logger.ts"
     ]
   },
   "version": "3.9.3"

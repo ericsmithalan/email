@@ -1,4 +1,3 @@
-import { CssTheme } from "@templates/jscss";
 import * as React from "react";
 
 export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
@@ -21,12 +20,3 @@ export type PrimitiveProps<E extends React.ElementType> = PrimitiveOwnProps<E> &
 export interface Primitive {
     children: React.ReactNode;
 }
-
-export interface Configuration {
-    renderFor?: RenderFor;
-    theme?: Theme;
-}
-
-export type Theme = CssTheme;
-
-export type RenderFor = "web" | "email" | "both";

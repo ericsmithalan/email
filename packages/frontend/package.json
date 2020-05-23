@@ -2,39 +2,22 @@
   "name": "@templates/frontend",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@templates/template": "0.0.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "concurrently": "^5.2.0",
-    "nodemon": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "ts-node": "^8.10.1",
-    "typescript": "~3.7.2"
-  },
-  "peerDependencies": {
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "rimraf": "^3.0.2",
-    "typescript": "~3.7.2"
-  },
   "scripts": {
-    "clean-packages": "rm -rf ./packages/*/node_modules",
-    "clean-locks": "rm -rf ./packages/*/yarn.lock",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@templates/debug": "0.0.1",
+    "@templates/jscss": "0.0.1",
+    "@types/node": "^14.0.5",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "typescript": "^3.9.3"
   },
   "eslintConfig": {
     "extends": "react-app"
