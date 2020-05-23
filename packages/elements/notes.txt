@@ -1,0 +1,67 @@
+https://www.w3.org/TR/2011/WD-html5-20110525/content-models.html
+
+Internal Models
+
+Metadata
+Styles
+Scripts
+
+------------------
+
+Emaill models
+
+Document
+Header
+Components[]
+Footer
+
+
+--------------------
+
+Element Base models
+
+Inline
+Block
+Embedded
+Form
+
+-----------------
+
+Elements
+
+Heading = h1, h2, h3...
+Text = span, p , div...
+Image = img
+Video = 
+Grid = table, div
+List = ol, ul...
+Link = a
+Video = video
+Button = a, button...
+
+-----------------
+
+Containers
+
+
+Header
+Nav
+Main
+Article
+Section
+Aside
+Footer
+
+Video
+
+-----------------
+
+Content models
+
+Metadata content
+Flow content
+Sectioning content
+Heading content
+Phrasing content
+Embedded content
+Interactive content

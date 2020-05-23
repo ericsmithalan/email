@@ -26,7 +26,6 @@
         { "path": "packages/theme" },
         { "path": "packages/jscss" },
         { "path": "packages/elements" },
-        { "path": "packages/main" },
-        { "path": "packages/frontend" }
+        { "path": "packages/main" }
     ]
 }

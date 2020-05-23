@@ -221,39 +221,54 @@
         "signature": "e726c865f71af8f20d4a03e17182f62a38e1fd300161b867dc6068ce6529f7f2",
         "affectsGlobalScope": true
       },
-      "../packages/elements/src/elements/link.tsx": {
+      "../packages/elements/src/primitives/link.tsx": {
         "version": "2bb61c6cce1c8f0e41d2d716aef7e2ddb48afa71667453dc82c04c32734e31e9",
         "signature": "7db3a99e0e970c7b5edf51da007035528acd8399fc502f921317a54592d81a36",
         "affectsGlobalScope": false
       },
       "../packages/elements/src/index.ts": {
-        "version": "0bc163e48e1996e9354d1ede56079a2e69cd043bb2524201b955ff9615de71d0",
-        "signature": "b6f21b4e9ac7632063c045038430d9ffb18ec0ba9359f69257fd16896afc0ced",
+        "version": "76135186e58b20a5e849f012077878ea1a11ad3dd39edd91b3b6adf1e9ca5b3c",
+        "signature": "22803d77de88a4681e148a68d6194249ce33b8e0841cd1002e02fb0a4a582283",
         "affectsGlobalScope": false
       },
       "../packages/elements/src/types.ts": {
-        "version": "b9f33b64d046c0675ed38d2d67f87d9f947b6eacb70fd4edfdada8ff9b15266d",
-        "signature": "4f9393c20bf4393f317db6405fe574f0c9a14ea28d5eb2f51881fdfe5aadb7a0",
+        "version": "07f0d61e833e25bebee66bab02d5579c1719972d2642ae8bf85b13678b2f586d",
+        "signature": "17ffd38a1411d29f7fe0e2c485d0bdf14d17669c6cbfbf402b20cc5f66c89dda",
         "affectsGlobalScope": false
       },
-      "../packages/elements/src/elements/primitive.tsx": {
-        "version": "3443d11e867cd46befbdc20d77e6b5cb140cebc436d77fc7e54070f35c12386b",
-        "signature": "919f807bcbb6d03d9760c860bc0b697addafac08c101be04b913cdcd41b49e63",
+      "../packages/elements/src/abstract/primitive.tsx": {
+        "version": "00738a9949a86b897b3ec4316a588edb5b0f5fcbb3d69d295e8d50ef4f74564b",
+        "signature": "9788078dc0cc9709259186ae8e799eb719f3af24f9e40c7545ff1b0b5e0e325a",
         "affectsGlobalScope": false
       },
-      "../packages/elements/src/elements/container.tsx": {
-        "version": "64040c2bd8f3569340a557549eabbe7ac4d9e94f25794b8b5e97124fbab8dc4b",
-        "signature": "3f10458bb761c747ad53fab5841a6be3a5bf7f11f9e7e5f8bf144019099f5b7c",
+      "../packages/elements/src/abstract/primitiveblock.tsx": {
+        "version": "7c05868c94a00dc374b60181a2f02c97c7f31ab9d6868416b8c0ec64742b7023",
+        "signature": "626243c91e4e8981d84b3f1081fff050606a4f1cc05d3b108ab95e6405748ba6",
         "affectsGlobalScope": false
       },
-      "../packages/elements/src/elements/grid.tsx": {
-        "version": "477012173bd8618929fa2f74b429d2514ce988b474ba63c293c92bcf0694f09d",
+      "../packages/elements/src/abstract/primitiveinline.tsx": {
+        "version": "808a23627e434fa495e53feaf0cfcd7de5d886728599da2a4067625268417bbe",
+        "signature": "a052ca2f465c0e529ed1ff205faeb9925be60fc9c9675c7f21e2fdf559694366",
+        "affectsGlobalScope": false
+      },
+      "../packages/elements/src/primitives/block.tsx": {
+        "version": "0a85f82368a93d6a9386005163dcdf1990b333922976db56ffa52ce919f79612",
+        "signature": "acb3a69e1f415a8c762ffc23d7601a80e61f513db4a4999f02a8a5ee622fb71f",
+        "affectsGlobalScope": false
+      },
+      "../packages/elements/src/primitives/grid.tsx": {
+        "version": "2f6a40de141fcfa67050a64db26301360dd3404e85ccc987507ab06699691552",
         "signature": "fd666353f3743560786c6881825f981005bd77ca785f28acb171fc32af5647d0",
         "affectsGlobalScope": false
       },
-      "../packages/elements/src/elements/label.tsx": {
-        "version": "4defed88119f28bec8eeb774aad3826be3e4d8c0497e8742b4d0c6c11275b3c7",
-        "signature": "f241660f365ae19889e28e9a4e10c6730c405c92b30721daee358798b94c9c86",
+      "../packages/elements/src/primitives/image.tsx": {
+        "version": "3bfb6799022d056b502730f69c5708c1c0bdffffc798a7a7ff4db3a8092bafb7",
+        "signature": "bbd822a1329176acad076b19cd5838e925656696e6e0f0f391da5185ec831d5a",
+        "affectsGlobalScope": false
+      },
+      "../packages/elements/src/primitives/inline.tsx": {
+        "version": "f11f409bc03675e32464f6f88bc412242b8d661b0066442381172388624178a8",
+        "signature": "1303c20d1611be65b6190668d7cee42b1eed4719b1ddacc60c0b84704b7550bf",
         "affectsGlobalScope": false
       },
       "../node_modules/@babel/types/lib/index.d.ts": {
@@ -1487,38 +1502,37 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../packages/elements/src/elements/container.tsx": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/react/index.d.ts",
-        "../packages/elements/src/elements/primitive.tsx"
-      ],
-      "../packages/elements/src/elements/grid.tsx": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/react/index.d.ts",
-        "../packages/elements/src/elements/primitive.tsx"
-      ],
-      "../packages/elements/src/elements/label.tsx": [
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/fs.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/react/index.d.ts",
-        "../packages/elements/src/elements/primitive.tsx"
-      ],
-      "../packages/elements/src/elements/link.tsx": [
+      "../packages/elements/src/abstract/primitive.tsx": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/react/index.d.ts"
       ],
-      "../packages/elements/src/elements/primitive.tsx": [
+      "../packages/elements/src/abstract/primitiveblock.tsx": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/react/index.d.ts",
+        "../packages/elements/src/abstract/primitive.tsx"
+      ],
+      "../packages/elements/src/abstract/primitiveinline.tsx": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/react/index.d.ts",
+        "../packages/elements/src/abstract/primitive.tsx"
+      ],
+      "../packages/elements/src/index.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../packages/elements/src/primitives/link.tsx"
+      ],
+      "../packages/elements/src/primitives/block.tsx": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
@@ -1526,12 +1540,33 @@
         "../node_modules/@types/react/index.d.ts",
         "../packages/elements/src/types.ts"
       ],
-      "../packages/elements/src/index.ts": [
+      "../packages/elements/src/primitives/grid.tsx": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts",
-        "../packages/elements/src/elements/link.tsx"
+        "../node_modules/@types/react/index.d.ts"
+      ],
+      "../packages/elements/src/primitives/image.tsx": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/react/index.d.ts"
+      ],
+      "../packages/elements/src/primitives/inline.tsx": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/react/index.d.ts"
+      ],
+      "../packages/elements/src/primitives/link.tsx": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/react/index.d.ts"
       ],
       "../packages/elements/src/types.ts": [
         "../node_modules/@types/node/fs.d.ts",
@@ -2369,15 +2404,23 @@
         "../node_modules/@types/node/ts3.2/util.d.ts",
         "../node_modules/@types/node/util.d.ts"
       ],
-      "../packages/elements/src/elements/link.tsx": [
+      "../packages/elements/src/abstract/primitive.tsx": [
         "../node_modules/@types/react/index.d.ts"
       ],
-      "../packages/elements/src/elements/primitive.tsx": [
-        "../node_modules/@types/react/index.d.ts",
-        "../packages/elements/src/types.ts"
+      "../packages/elements/src/abstract/primitiveblock.tsx": [
+        "../packages/elements/src/abstract/primitive.tsx"
+      ],
+      "../packages/elements/src/abstract/primitiveinline.tsx": [
+        "../packages/elements/src/abstract/primitive.tsx"
       ],
       "../packages/elements/src/index.ts": [
-        "../packages/elements/src/elements/link.tsx"
+        "../packages/elements/src/primitives/link.tsx"
+      ],
+      "../packages/elements/src/primitives/block.tsx": [
+        "../packages/elements/src/types.ts"
+      ],
+      "../packages/elements/src/primitives/link.tsx": [
+        "../node_modules/@types/react/index.d.ts"
       ],
       "../packages/elements/src/types.ts": [
         "../node_modules/@types/react/index.d.ts"
@@ -2502,12 +2545,15 @@
       "../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../node_modules/typescript/lib/lib.esnext.promise.d.ts",
       "../node_modules/typescript/lib/lib.esnext.string.d.ts",
-      "../packages/elements/src/elements/container.tsx",
-      "../packages/elements/src/elements/grid.tsx",
-      "../packages/elements/src/elements/label.tsx",
-      "../packages/elements/src/elements/link.tsx",
-      "../packages/elements/src/elements/primitive.tsx",
+      "../packages/elements/src/abstract/primitive.tsx",
+      "../packages/elements/src/abstract/primitiveblock.tsx",
+      "../packages/elements/src/abstract/primitiveinline.tsx",
       "../packages/elements/src/index.ts",
+      "../packages/elements/src/primitives/block.tsx",
+      "../packages/elements/src/primitives/grid.tsx",
+      "../packages/elements/src/primitives/image.tsx",
+      "../packages/elements/src/primitives/inline.tsx",
+      "../packages/elements/src/primitives/link.tsx",
       "../packages/elements/src/types.ts"
     ]
   },

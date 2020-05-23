@@ -18,5 +18,6 @@ export type PrimitiveProps<E extends React.ElementType> = PrimitiveOwnProps<E> &
     Omit<PropsOf<E>, keyof PrimitiveOwnProps>;
 
 export interface Primitive {
-    children: React.ReactNode;
+    children?: React.ReactNode;
+    for?: "web" | "email";
 }
